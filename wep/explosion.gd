@@ -14,7 +14,7 @@ static var debug_show_radius := false
 # I know why, it's actually finding the closest point to a sphere. Not just a normal distance check.
 # I have solved it in the past and I may have to, again.
 @export_range(0, 5, 0.001, "hide_slider", "suffix:m")
-var splash_radius = 146 * HU:#2.3: #146 * HU:
+var splash_radius = 146 * HU:
 	set(new):
 #		print("from %s to %s" % [splash_radius, new])
 		splash_radius = new
@@ -25,7 +25,7 @@ var splash_radius = 146 * HU:#2.3: #146 * HU:
 		$BlastDecal.size = (Vector3.ONE * 4) * splash_radius / 2.0
 
 @export_range(0, 120, 1, "hide_slider", "or_greater")
-var base_damage := 90.0 # 90.0
+var base_damage := 90.0
 
 var source: Player
 
@@ -38,7 +38,7 @@ func _ready() -> void:
 	
 	process_physics_priority = 100
 	lifetimer.timeout.connect(queue_free)
-	# Stay on just for one frame for the collisions to register.
+	# Stay on, just for one frame, for the collisions to register.
 	get_tree().physics_frame.connect(set_monitoring.bind(false), CONNECT_DEFERRED)
 
 func _debug_physics_process():
@@ -59,7 +59,7 @@ func apply_knockback(player: Player):
 			global_position.distance_to(player_global_center))
 	if source == player:
 #		splash_radius -= 25 * HU
-		splash_radius -= 25.25 * HU
+		splash_radius -= 25.25 * HU # For some reason this works better.
 	
 	var edge_damage := base_damage * 0.5
 	var damage := maxf(
@@ -75,6 +75,7 @@ func apply_knockback(player: Player):
 			multiplier = SCALE_SELF_SOLDIER_BADRJ
 	
 	# Pretends that the knockback direction of attacks come from 10 Hu lower than they really do.
+	# It's part of why you're frequently pushed upwards when taking damage in the Vanilla game.
 	var direction := (global_position + Vector3(0, -10 * HU, 0)).direction_to(player_global_center)
 	
 	var volume_ratio := 1.49091 if player.crouching else 1.0
@@ -89,15 +90,8 @@ func is_valid_target(player: Player) -> bool:
 	var query := PhysicsRayQueryParameters3D.create(
 			global_position, player.get_global_center(),
 			0xFFFFFFFF, [player.get_rid()])
-			
-#		var dir := global_position.direction_to(player.global_position)
-#		var dir := global_position.direction_to(player_global_center)
-#		begin_offset = Vector3(
-#				dir.x * 1.0 * HU, 
-#				dir.y * 30.0 * HU,
-#				dir.z * 1.0 * HU).length()
-#		print(begin_offset)
 	
+	# Check for any obstruction between the player and the blast.
 	return get_world_3d().direct_space_state.intersect_ray(query).is_empty()
 
 

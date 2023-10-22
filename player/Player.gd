@@ -44,8 +44,6 @@ var MAX_SLOPE_ANGLE := deg_to_rad(46.0): # Should be 45.573 degrees
 		
 		if debug_top_down_view:
 			_debug_top_down_camera = Camera3D.new()
-			#_debug_top_down_camera.rotation.x = PI / -2
-			#_debug_top_down_camera.position.y = 10.0
 			var tw := create_tween().set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_OUT).set_parallel()
 			tw.tween_property(_debug_top_down_camera, "position:y", 10.0, 0.75).from(cam_pivot.position.y)
 			tw.tween_property(_debug_top_down_camera, "rotation:x", PI / -2, 0.75).from(cam_pivot.rotation.x)
@@ -144,7 +142,7 @@ func _physics_process(delta: float):
 	if not grounded:
 		velocity.y = move_toward(velocity.y, -TERMINAL_SPEED, GRAVITY_FORCE * delta)
 	
-	
+	# ======== The ACCELERATION part, yippie ========
 	var velocity_planar := Vector2(velocity.x, velocity.z)
 	
 	# This dot is the cause for all the movement tricks in Source games.
@@ -154,22 +152,14 @@ func _physics_process(delta: float):
 	var max_speed := GROUND_SPEED if grounded else AIR_SPEED
 	var acceleration := GROUND_ACCELERATION if grounded else AIR_ACCELERATION
 	if crouching:
-		max_speed = GROUND_SPEED * 0.333333
+		max_speed = GROUND_SPEED * CROUCH_SPEED_MULTIPLIER
 	
 	# The magic Source function.
 	var add_speed := clampf(max_speed - current_speed, 0.0, acceleration * delta)
 	velocity_planar += wish_dir * add_speed
-	# ====================== Unused, overly verbose ACCELERATE
-#	var wish_speed := wish_dir.length() * max_speed
-#	var add_speed := wish_speed - current_speed
-#
-#	if add_speed > 0:
-#		var acceleration_speed := minf(max_accel * delta * wish_speed, add_speed)
-#		velocity_planar += wish_dir * acceleration_speed
-	# =========================
 	
-	# We're done working with our decomposed velocity.
 	velocity = Vector3(velocity_planar.x, velocity.y, velocity_planar.y)
+	# ====================================================
 	
 	_handle_collision(delta)
 	
@@ -180,28 +170,10 @@ func _physics_process(delta: float):
 		position = Vector3(0, 100 * HU, 0) # Back to the origin for falling into the void.
 
 func _apply_friction(delta: float):
-	# ========== OLD Apply drag/friction.
-#	if not grounded:
-#		velocity.y = move_toward(velocity.y, -TERMINAL_SPEED, GRAVITY_FORCE * delta)
-#	else:
-#		velocity_planar -= velocity_planar.normalized() * GROUND_DECELERATION * delta
-#
-#		if velocity_planar.length_squared() < 1.0 and wish_dir.length_squared() < 0.01:
-#			velocity_planar = Vector2.ZERO # Full stop with no velocity.
-#	_apply_friction(delta, velocity_planar, velocity_vertical)
-	# Apply friction my way, let's see.
 	if not grounded:
 		return
 	
 	var speed := velocity.length()
-#	var adjusted_speed := speed / HU
-#	if _debug_all_speeds.size() > 0 and _debug_all_speeds[-1] == adjusted_speed:
-#		if _debug_all_speeds.size() > 2:
-#			print(_debug_str, " Array size: ", _debug_all_speeds.size(), "\n")
-#		_debug_all_speeds.clear()
-#		_debug_str = ""
-#	_debug_all_speeds.append(adjusted_speed)
-#	_debug_str += "%6.2f\t" % [adjusted_speed]
 	var deceleration := GROUND_DECELERATION * delta
 	
 	# Stronger friction when speed is greater than 100 HU ("speed * 0.01" penalty)
@@ -209,6 +181,7 @@ func _apply_friction(delta: float):
 #		speed -= deceleration * (speed * 0.01)
 #	else:
 #		speed = move_toward(speed, 0, deceleration * HU)
+	# The one line below is equal to the above.
 	speed = move_toward(speed, 0, deceleration * maxf(speed * 0.01, HU))
 	
 	velocity = velocity.normalized() * speed
@@ -262,9 +235,10 @@ func _clamp_speed():
 func _handle_camera_rotation(event: InputEventMouseMotion):
 	cam_pivot.rotation.y -= event.relative.x * deg_to_rad(camera_sensitivity)
 	cam_pivot.rotation.x -= event.relative.y * deg_to_rad(camera_sensitivity)
-	cam_pivot.rotation.x = clampf(cam_pivot.rotation.x, -1.55334 , 1.55334) # 89 degrees.
+	cam_pivot.rotation.x = clampf(cam_pivot.rotation.x, -1.55334 , 1.55334) # 89 degrees up and down.
 	
 	if debug_top_down_view:
+		# The debug camera does not rotate on its own.
 		_debug_top_down_camera.rotation.y = cam_pivot.rotation.y
 
 func _handle_noclip(delta: float):
@@ -282,7 +256,7 @@ func _handle_noclip(delta: float):
 		velocity += cam_pivot.transform.translated_local(flat_acceleration).origin - cam_pivot.position
 		velocity = velocity.limit_length(NOCLIP_SPEED)
 	elif vertical_acceleration == 0.0:
-		velocity = velocity.move_toward(Vector3.ZERO, NOCLIP_ACCELERATION * delta)
+		velocity = velocity.move_toward(Vector3.ZERO, NOCLIP_ACCELERATION * delta) # Decelerate.
 	
 	position += velocity * delta
 
@@ -296,8 +270,7 @@ func _floor_intersect_ray() -> Dictionary:
 	return get_world_3d().direct_space_state.intersect_ray(query)
 
 func _floor_intersect_shape() -> KinematicCollision3D:
-	var collision := move_and_collide(Vector3.DOWN * FLOOR_RAY_REACH, true)
-	return collision
+	return move_and_collide(Vector3.DOWN * FLOOR_RAY_REACH, true)
 
 
 func get_slope_angle(normal: Vector3) -> float:
@@ -305,20 +278,17 @@ func get_slope_angle(normal: Vector3) -> float:
 
 func get_global_center() -> Vector3:
 	var center := capsule.global_position
-#	const HEIGHT_BASE = 82 * HU
-#	var center := global_position
-#	center.y += HEIGHT_BASE / 2.0
 	if crouching:
 		# Pretend the center is further down than it actually is.
-		# Makes rocket jumping even stronger. For some reason 0.6 works better now.
-		center.y = global_position.y + (55 * HU) * 0.6 # Halved because of the box extents.
+		# Makes rocket jumping even stronger. Halved because of the box extents.
+		center.y = global_position.y + (55 * HU) * 0.6 # For some reason 0.6 works better now.
 	
 	return center
 
 func get_height() -> float:
 	return capsule.shape.height
 
-func get_width() -> float:
+func get_width() -> float: # Not used anywhere, actually.
 	return capsule.shape.radius
 
 
@@ -336,14 +306,10 @@ func _debug_draw():
 			wish_dir.length(), 
 			Color.DARK_CYAN, 0.25, false)
 	var radius: float = capsule.shape.radius
-#	var height: float = capsule.shape.height
-#	DebugDraw3D.draw_cylinder(capsule.global_transform.scaled_local(Vector3(radius, height, radius)), Color.YELLOW)
 	DebugDraw3D.draw_cylinder(global_transform.scaled_local(Vector3(radius, HU, radius)), Color.YELLOW)
 
 
 #const JUMP_HEIGHT = 72 * HU
 #func _get_jump_force(height: float):
-#	return -sqrt(2 * GRAVITY_FORCE * height)    # - ceil(GRAVITY * delta)
-#283 * 0.01905
-#sqrt(2 * 800 * 0.01905 * 50 * 0.01905)
+#	return -sqrt(2 * GRAVITY_FORCE * height)    # - ceil(GRAVITY_FORCE * delta)
 

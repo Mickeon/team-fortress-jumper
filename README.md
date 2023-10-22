@@ -1,5 +1,5 @@
 # Team Fortress Jumper
-A small demo built in Godot that attempts to recreate how it feels to rocket-jump around in Team Fortress 2.
+A small demo built in Godot 4.1 that attempts to recreate how it feels to rocket-jump around in **Team Fortress 2**.
 As it stands, it's pretty close. Collisions are almost entirely broken. Things like bunny-hopping is also intentionally allowed (it's pretty fun to mess around with).
 
 <img width="45%" alt="Team Fortress Jumper Harvest preview" src="https://github.com/Mickeon/team-fortress-jumper/assets/66727710/2b6b756d-82e6-4af9-9e2f-8cf5a100eed8">
@@ -9,7 +9,7 @@ As it stands, it's pretty close. Collisions are almost entirely broken. Things l
 This repository has not been originally designed to be visible by the public, but I'm putting it out there. It could be useful as a general point of reference. 
 Full support for this demo, as well as additional features __(such as multiplayer)__ should **not** be taken for granted.
 
-You can try a **considerably** stripped out version of this project on a Chromium web browser [clicking here](https://mickeon.netlify.app/team-fortress-jumper/).
+You can try a **considerably** stripped out version of this project on a Chromium web browser by [clicking here](https://mickeon.netlify.app/team-fortress-jumper/).
 
 ## Controls
 
@@ -49,7 +49,7 @@ This project is primarily based off the work of aneacsu [in this blog](https://a
 
 - Harvest map originally ported to Blender by [hisanimations](https://www.youtube.com/@hisanimations).
 - Sound effects ripped and organized by [Broly9990](https://www.sounds-resource.com/submitter/Broly9990/), [Cooper B. Chance](https://www.sounds-resource.com/submitter/Cooper+B.+Chance/), [Irockz](https://www.sounds-resource.com/submitter/Irockz/), [KIZ](https://www.sounds-resource.com/submitter/KIZ/), [Undeadbraindead](https://www.sounds-resource.com/submitter/Undeadbraindead/):
-  https://www.sounds-resource.com/pc_computer/tf2/sound/18547/;
+	at the [Source Resource](https://www.sounds-resource.com/pc_computer/tf2/sound/18547/);
 - [Godot Engine](https://godotengine.org/) for allowing this;
 - The [Team Fortress 2](https://www.teamfortress.com/) development team for creating a masterpiece;
 - [Valve Software](https://www.valvesoftware.com/it/) for... owning most of the assets, __yeah__;

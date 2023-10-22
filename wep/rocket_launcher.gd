@@ -3,8 +3,8 @@ extends Node3D
 const Rocket = preload("./rocket.gd")
 
 const HU = Player.HU
-const SHOOT_OFFSET = Vector3(12.0, -3.0, -23.5) * HU # Original coords: (23.5, 12.0, -3.0)
-const SHOOT_OFFSET_CROUCH = Vector3(12.0, 8.0, -23.5) * HU # Original coords: (23.5, 12.0, 8.0)
+const SHOOT_OFFSET = Vector3(12.0, -3.0, -23.5) * HU # Vanilla coords: (23.5, 12.0, -3.0)
+const SHOOT_OFFSET_CROUCH = Vector3(12.0, 8.0, -23.5) * HU # Vanilla coords: (23.5, 12.0, 8.0)
 
 @export var attack_interval := 0.8
 
@@ -36,6 +36,7 @@ var interval_timer: SceneTreeTimer
 func refresh_interval():
 	interval_timer = get_tree().create_timer(attack_interval)
 	interval_timer.timeout.connect(func():
+			# When holding down the button, shoot again as soon as possible.
 			if Input.is_action_pressed("player_primary"): shoot()
 	)
 
@@ -44,9 +45,12 @@ func setup_projectile(rocket: Rocket, shoot_offset: Vector3):
 	var origin := global_position
 	var target := global_transform.translated_local(Vector3.FORWARD * 2000 * HU).origin
 	
+	# Check for the closest obstruction straight ahead.
 	var query := PhysicsRayQueryParameters3D.create(origin, target, 0xFFFFFFFF, [player_owner.get_rid()])
 	var result := get_world_3d().direct_space_state.intersect_ray(query)
 	
+	# When the obstruction is too close, rockets point far into the horizon.
+	# Otherwise, you'd often shoot yourself in the face when peeking corners.
 	if result and origin.distance_to(result.position) > 200 * HU:
 		target = result.position
 	

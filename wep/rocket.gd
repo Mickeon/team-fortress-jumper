@@ -12,11 +12,12 @@ func _ready():
 	if get_tree().current_scene == self:
 		$Lifetime.stop()
 	
-	target_position.z = -speed * get_physics_process_delta_time()
-	translate_object_local(-target_position * 1)
-#	translate_object_local(target_position * 4)
 #	hit_from_inside = true
 #	set_deferred("hit_from_inside", false)
+	# HACK: The code above should've prevented rockets from going through close geometry, but it does not.
+	# Alternatively, we push the rocket back, then move it forward to update the raycast at the beginning.
+	target_position.z = -speed * get_physics_process_delta_time()
+	translate_object_local(-target_position)
 
 func _physics_process(delta):
 	if is_colliding():
@@ -33,6 +34,7 @@ func explode():
 	
 	explosion.source = source
 	explosion.position = global_position
+	# Tansform mumbo jumbo, to ensure the blast node is looking AWAY from the point of impact.
 	var normal := get_collision_normal()
 	if normal.is_equal_approx(Vector3.DOWN):
 		explosion.rotation.x += PI
