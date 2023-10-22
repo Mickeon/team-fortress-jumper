@@ -2,9 +2,14 @@
 A small demo built in Godot that attempts to recreate how it feels to rocket-jump around in Team Fortress 2.
 As it stands, it's pretty close. Collisions are almost entirely broken. Things like bunny-hopping is also intentionally allowed (it's pretty fun to mess around with).
 
-This repository has not been originally designed to be visible by the public, but I'm putting it out there. It could be useful as a general point of reference.
-Full support for this demo, as well as additional features (such as multiplayer) should **not** be taken for granted.
+<img width="45%" alt="Team Fortress Jumper Harvest preview" src="https://github.com/Mickeon/team-fortress-jumper/assets/66727710/2b6b756d-82e6-4af9-9e2f-8cf5a100eed8">
+<img width="45%" alt="Team Fortress Jumper Test map preview" src="https://github.com/Mickeon/team-fortress-jumper/assets/66727710/7846da8f-d52c-46cc-882e-41141fe12f63">
 
+###### Do not judge this code quality.
+This repository has not been originally designed to be visible by the public, but I'm putting it out there. It could be useful as a general point of reference. 
+Full support for this demo, as well as additional features __(such as multiplayer)__ should **not** be taken for granted.
+
+You can try a **considerably** stripped out version of this project on a Chromium web browser [clicking here](https://mickeon.netlify.app/team-fortress-jumper/).
 
 ## Controls
 
@@ -37,6 +42,8 @@ Full support for this demo, as well as additional features (such as multiplayer)
 
 
 ## Credits
+
+My Twitter: https://twitter.com/DoodlingMicky
 
 This project is primarily based off the work of aneacsu [in this blog](https://aneacsu.com/blog/2023/04/09/quake-movement-godot)(See also [this video](https://www.youtube.com/watch?v=ssU6ec_um78)), as well as my prior experience with [Team Fortress Unity](https://www.youtube.com/watch?v=4WNybhStAE0).
 
