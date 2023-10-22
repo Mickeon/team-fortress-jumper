@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://ckmqsqese0apt"]
+
+[resource]
+resource_name = "cap_point_base"
+cull_mode = 2
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.627451, 0.627451, 0.627451, 1)
+metallic = 0.28
+metallic_specular = 0.61
+roughness = 0.23

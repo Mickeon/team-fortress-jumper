@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://dtr5wpjt4slx5"]
+
+[resource]
+resource_name = "ceiling_pipe01"
+cull_mode = 2
+vertex_color_use_as_albedo = true
+metallic = 1.0

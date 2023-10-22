@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://busng620vvktd"]
+
+[resource]
+resource_name = "window006b"
+cull_mode = 2
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.870588, 0.486275, 0.227451, 1)
+metallic = 0.16
+metallic_specular = 0.41

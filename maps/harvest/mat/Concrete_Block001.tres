@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://dm23qa0lxq000"]
+
+[resource]
+resource_name = "Concrete_Block001"
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.54902, 0.54902, 0.678431, 1)
+metallic = 0.66
+metallic_specular = 0.8
+roughness = 0.74

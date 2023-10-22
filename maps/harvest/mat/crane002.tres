@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://buxikqk5pe1r7"]
+
+[resource]
+resource_name = "crane002"
+cull_mode = 2
+vertex_color_use_as_albedo = true
+metallic = 1.0

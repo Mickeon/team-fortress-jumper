@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://1b85cxqfwnog"]
+
+[resource]
+resource_name = "rock_worn001"
+cull_mode = 2
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.627451, 0.627451, 0.627451, 1)
+metallic = 0.19
+metallic_specular = 0.64
+roughness = 0.84

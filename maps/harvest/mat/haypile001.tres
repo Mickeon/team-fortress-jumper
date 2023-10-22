@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://h6nihrfmmw6i"]
+
+[resource]
+resource_name = "haypile001"
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.854902, 0.529412, 0.313726, 1)
+metallic = 0.46

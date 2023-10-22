@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://c7hb7s71l8iwr"]
+
+[resource]
+resource_name = "hanging_ceiling_lamp"
+cull_mode = 2
+vertex_color_use_as_albedo = true
+metallic = 1.0

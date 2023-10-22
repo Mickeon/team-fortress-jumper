@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://biofnfryj6gog"]
+
+[resource]
+resource_name = "grain_sack_red"
+cull_mode = 2
+vertex_color_use_as_albedo = true
+metallic = 1.0

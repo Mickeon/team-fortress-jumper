@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://xnor1ir3y6j6"]
+
+[sub_resource type="Gradient" id="Gradient_ilr3l"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0.0538117, 0.26009, 0.399103, 0.587444, 0.753363)
+colors = PackedColorArray(0, 0, 0, 0.941176, 0, 0, 0, 0.831373, 0, 0, 0, 0.831373, 0, 0, 0, 0.568627, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_mvuq3"]
+gradient = SubResource("Gradient_ilr3l")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="GDScript" id="GDScript_4gn02"]
+resource_name = "test_ground"
+script/source = "extends CSGBox3D
+
+
+func _init() -> void:
+	queue_free()
+"
+
+[node name="BlastDecal" type="Decal"]
+size = Vector3(4, 4, 4)
+texture_albedo = SubResource("GradientTexture2D_mvuq3")
+albedo_mix = 0.65
+normal_fade = 0.01
+lower_fade = 3.27847
+
+[node name="TestGround" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.15, 0)
+top_level = true
+size = Vector3(2, 0.25, 5)
+script = SubResource("GDScript_4gn02")

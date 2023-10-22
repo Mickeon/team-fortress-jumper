@@ -1,0 +1,71 @@
+[gd_scene load_steps=7 format=3 uid="uid://dnn6dus4lvweg"]
+
+[ext_resource type="Script" path="res://wep/rocket.gd" id="1_uh251"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dqyvw"]
+transparency = 3
+alpha_hash_scale = 1.0
+alpha_antialiasing_mode = 0
+blend_mode = 1
+vertex_color_use_as_albedo = true
+disable_receive_shadows = true
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+distance_fade_mode = 2
+distance_fade_min_distance = 0.75
+distance_fade_max_distance = 1.25
+
+[sub_resource type="Gradient" id="Gradient_aangh"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_xi33m"]
+gradient = SubResource("Gradient_aangh")
+width = 16
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_xhuh6"]
+lifetime_randomness = 0.2
+flatness = 0.25
+gravity = Vector3(0, -1, 0)
+initial_velocity_max = 1.0
+color = Color(0.533333, 0.941176, 1, 1)
+color_ramp = SubResource("GradientTexture1D_xi33m")
+turbulence_noise_speed = Vector3(2.365, 0, 0)
+
+[sub_resource type="QuadMesh" id="QuadMesh_sm6mi"]
+size = Vector2(0.25, 0.25)
+
+[node name="Rocket" type="RayCast3D"]
+process_thread_group = 1
+process_thread_group_order = 0
+process_thread_messages = 0
+exclude_parent = false
+target_position = Vector3(0, 0, -1)
+hit_from_inside = true
+debug_shape_custom_color = Color(1, 0.396078, 0.792157, 1)
+debug_shape_thickness = 5
+script = ExtResource("1_uh251")
+speed = 20.995
+
+[node name="Lifetime" type="Timer" parent="."]
+wait_time = 8.0
+autostart = true
+
+[node name="Box" type="CSGBox3D" parent="."]
+transform = Transform3D(0.707107, -0.707107, 0, 0.707107, 0.707107, 0, 0, 0, 1, 0, 0, 0.5)
+size = Vector3(0.25, 0.25, 1)
+
+[node name="Trail" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
+material_override = SubResource("StandardMaterial3D_dqyvw")
+lifetime = 0.5
+visibility_aabb = AABB(-1, -1.014, -4.048, 2, 2.027, 5.081)
+process_material = SubResource("ParticleProcessMaterial_xhuh6")
+draw_pass_1 = SubResource("QuadMesh_sm6mi")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.358368, 0, -0.93358, 0, 1, 0, 0.93358, 0, 0.358368, -1.5, 0, 2.567)
+visible = false
+
+[connection signal="timeout" from="Lifetime" to="." method="queue_free"]

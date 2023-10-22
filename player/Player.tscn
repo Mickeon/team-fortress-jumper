@@ -1,0 +1,92 @@
+[gd_scene load_steps=9 format=3 uid="uid://bp3faj46c64ck"]
+
+[ext_resource type="Script" path="res://player/Player.gd" id="1"]
+[ext_resource type="Script" path="res://wep/rocket_launcher.gd" id="2_eytv3"]
+[ext_resource type="AudioStream" uid="uid://cl0o43vfjhoqo" path="res://sfx/rocket_jumper_shoot.wav" id="3_jfsrj"]
+[ext_resource type="Script" path="res://addons/smoothing/smoothing.gd" id="4_5fufl"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1tjpu"]
+no_depth_test = true
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0.209462, 0.125347, 7.21961e-08, 1)
+metallic = 0.45
+roughness = 0.0
+emission_enabled = true
+emission = Color(0.180392, 0.0901961, 0, 1)
+rim_enabled = true
+clearcoat = 0.37
+clearcoat_roughness = 0.67
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_301pk"]
+resource_local_to_scene = true
+size = Vector3(0.914, 1.562, 0.914)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6j1es"]
+resource_local_to_scene = true
+radius = 0.457
+height = 1.562
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_el3cl"]
+resource_local_to_scene = true
+height = 1.562
+radius = 0.457
+
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("cam_pivot", "capsule") groups=["players"]]
+process_thread_group = 1
+process_thread_group_order = 0
+process_thread_messages = 0
+floor_stop_on_slope = false
+floor_block_on_wall = false
+floor_max_angle = 0.802851
+script = ExtResource("1")
+FLOOR_RAY_POSITION = Vector3(0, 0.019, 0)
+FLOOR_RAY_REACH = 0.25
+cam_pivot = NodePath("Smoothing3D/Pivot")
+capsule = NodePath("CollisionShapeCylinder")
+
+[node name="Smoothing3D" type="Node3D" parent="."]
+script = ExtResource("4_5fufl")
+target = NodePath("..")
+
+[node name="Pivot" type="Node3D" parent="Smoothing3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2954, 0)
+
+[node name="Camera" type="Camera3D" parent="Smoothing3D/Pivot"]
+fov = 85.0
+
+[node name="RocketLauncher" type="Node3D" parent="Smoothing3D/Pivot"]
+script = ExtResource("2_eytv3")
+
+[node name="Cylinder" type="CSGCylinder3D" parent="Smoothing3D/Pivot/RocketLauncher"]
+transform = Transform3D(-0.988228, -0.152958, -0.00293694, -1.67829e-09, -0.0191974, 0.999816, -0.152986, 0.988046, 0.0189714, 0.197063, -0.217942, -0.175458)
+sorting_offset = 66.265
+sorting_use_aabb_center = false
+radius = 0.0950297
+height = 0.6
+sides = 12
+material = SubResource("StandardMaterial3D_1tjpu")
+
+[node name="Shoot" type="AudioStreamPlayer3D" parent="Smoothing3D/Pivot/RocketLauncher"]
+transform = Transform3D(-0.988228, -0.152958, -0.00293694, -2.60944e-09, -0.0191974, 0.999816, -0.152986, 0.988046, 0.0189714, 0, 0, 0)
+stream = ExtResource("3_jfsrj")
+volume_db = -20.0
+max_db = -20.0
+max_polyphony = 10
+attenuation_filter_cutoff_hz = 18520.0
+
+[node name="CollisionShapeBox" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.781, 0)
+visible = false
+shape = SubResource("BoxShape3D_301pk")
+disabled = true
+
+[node name="CollisionShapeCapsule" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.781, 0)
+visible = false
+shape = SubResource("CapsuleShape3D_6j1es")
+disabled = true
+
+[node name="CollisionShapeCylinder" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.781, 0)
+shape = SubResource("CylinderShape3D_el3cl")

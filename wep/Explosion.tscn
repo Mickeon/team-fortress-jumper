@@ -1,0 +1,107 @@
+[gd_scene load_steps=13 format=3 uid="uid://dro1lx1y42eja"]
+
+[ext_resource type="Script" path="res://wep/explosion.gd" id="1_u2aqr"]
+[ext_resource type="PackedScene" uid="uid://xnor1ir3y6j6" path="res://wep/BlastDecal.tscn" id="3_bgour"]
+[ext_resource type="AudioStream" uid="uid://dks5r3sh7vryc" path="res://sfx/rocket_jumper_explode1.wav" id="3_mq40r"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_r7on5"]
+radius = 2.0
+
+[sub_resource type="Gradient" id="Gradient_agyos"]
+offsets = PackedFloat32Array(0.0673077, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_onu2f"]
+gradient = SubResource("Gradient_agyos")
+width = 16
+height = 16
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.8, 0.2)
+metadata/_snap_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t44uc"]
+transparency = 1
+diffuse_mode = 2
+albedo_color = Color(2.5, 2, 0.75, 0.5)
+albedo_texture = SubResource("GradientTexture2D_onu2f")
+texture_filter = 2
+disable_receive_shadows = true
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_t58pu"]
+_data = [Vector2(0, 1), -0.372456, -0.538305, 0, 0, Vector2(0.7, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_j4xaj"]
+width = 32
+curve = SubResource("Curve_t58pu")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_pn7dq"]
+lifetime_randomness = 0.5
+direction = Vector3(0, 1, 0)
+gravity = Vector3(0, -5, 0)
+initial_velocity_min = 3.0
+initial_velocity_max = 5.0
+angular_velocity_min = -300.0
+angular_velocity_max = 300.0
+linear_accel_min = -3.0
+damping_max = 2.0
+scale_min = 0.25
+scale_curve = SubResource("CurveTexture_j4xaj")
+hue_variation_min = -0.1
+hue_variation_max = 0.1
+
+[sub_resource type="QuadMesh" id="QuadMesh_osaed"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_4c5hd"]
+streams_count = 1
+random_volume_offset_db = 0.0
+stream_0/stream = ExtResource("3_mq40r")
+stream_0/weight = 1.0
+
+[node name="Explosion" type="Area3D"]
+top_level = true
+script = ExtResource("1_u2aqr")
+
+[node name="BlastShape" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_r7on5")
+
+[node name="BlastDecal" parent="." instance=ExtResource("3_bgour")]
+
+[node name="BlastParticles" type="GPUParticles3D" parent="."]
+process_thread_group = 1
+process_thread_group_order = 0
+process_thread_messages = 0
+material_override = SubResource("StandardMaterial3D_t44uc")
+cast_shadow = 0
+amount = 16
+lifetime = 2.0
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_pn7dq")
+draw_pass_1 = SubResource("QuadMesh_osaed")
+
+[node name="Explode" type="AudioStreamPlayer3D" parent="."]
+process_thread_group = 1
+process_thread_group_order = 0
+process_thread_messages = 0
+stream = SubResource("AudioStreamRandomizer_4c5hd")
+volume_db = -25.0
+unit_size = 4.86
+max_db = -20.0
+autoplay = true
+max_distance = 40.0
+attenuation_filter_cutoff_hz = 17350.0
+
+[node name="Conular" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.881235, 0)
+visible = false
+cone = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="ready" from="BlastParticles" to="BlastParticles" method="set_one_shot" binds= [true]]

@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://drw45emntdng5"]
+
+[resource]
+resource_name = "sign_barricade001a"
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.6, 0.419608, 0.239216, 1)
+metallic = 0.17
+metallic_specular = 0.34

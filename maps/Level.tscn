@@ -1,0 +1,186 @@
+[gd_scene load_steps=12 format=3 uid="uid://dsyym2bcxma0k"]
+
+[ext_resource type="Script" path="res://maps/level.gd" id="1_mcdpx"]
+[ext_resource type="Material" uid="uid://bagj31aqo6y0f" path="res://maps/test_mat.tres" id="2_hlduo"]
+[ext_resource type="PackedScene" uid="uid://bp3faj46c64ck" path="res://player/Player.tscn" id="3_u5blx"]
+[ext_resource type="Script" path="res://player/player_debugger.gd" id="4_5vp0v"]
+[ext_resource type="FontFile" uid="uid://idu5r2kjc1sx" path="res://shared/fonts/SourceCodePro-Medium.ttf" id="4_lm2km"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_rtpvj"]
+sky_horizon_color = Color(0.624681, 0.637029, 0.654167, 1)
+sky_curve = 0.0724453
+ground_bottom_color = Color(0.0823529, 0.0705882, 0.219608, 1)
+ground_horizon_color = Color(0.624681, 0.637029, 0.654167, 1)
+ground_curve = 0.0772753
+
+[sub_resource type="Sky" id="Sky_ck6x6"]
+sky_material = SubResource("ProceduralSkyMaterial_rtpvj")
+
+[sub_resource type="Environment" id="Environment_0m0w2"]
+background_mode = 2
+sky = SubResource("Sky_ck6x6")
+tonemap_mode = 2
+ssil_enabled = true
+ssil_radius = 1.5
+sdfgi_cascades = 2
+sdfgi_min_cell_size = 2.8
+sdfgi_cascade0_distance = 179.2
+sdfgi_max_distance = 716.8
+sdfgi_y_scale = 0
+glow_enabled = true
+glow_bloom = 0.05
+fog_enabled = true
+fog_light_color = Color(1, 0.662745, 0.423529, 1)
+fog_density = 0.005
+fog_aerial_perspective = 0.806
+fog_sky_affect = 0.148
+adjustment_enabled = true
+adjustment_contrast = 1.25
+adjustment_saturation = 1.1
+
+[sub_resource type="LabelSettings" id="LabelSettings_1bwkk"]
+font = ExtResource("4_lm2km")
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Gradient" id="Gradient_ppgpi"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.221154, 0.306034, 0.431034)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 0.148018, 0.380562, 0.27681, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_02c5r"]
+gradient = SubResource("Gradient_ppgpi")
+width = 32
+height = 32
+fill = 2
+fill_from = Vector2(0.5, 0.5)
+
+[node name="Level" type="Node3D"]
+script = ExtResource("1_mcdpx")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_0m0w2")
+
+[node name="DirectionalLight" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.741328, -0.151473, -0.653826, 0.161477, -0.905325, 0.392825, -0.651427, -0.39679, -0.646684, 0, 3, 0)
+light_color = Color(0.992157, 0.964706, 0.972549, 1)
+light_bake_mode = 1
+shadow_enabled = true
+directional_shadow_mode = 0
+directional_shadow_max_distance = 55.0
+directional_shadow_pancake_size = 8.6
+
+[node name="MainGround" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+calculate_tangents = false
+use_collision = true
+size = Vector3(42, 1, 48)
+material = ExtResource("2_hlduo")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="MainGround"]
+transform = Transform3D(-4.37114e-08, -0.632029, 0.774944, 0, 0.774944, 0.632029, -1, 2.76269e-08, -3.38739e-08, -23.0581, 3.03092, 14.4054)
+use_collision = true
+size = Vector3(39.3993, 7.44525, 1)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="MainGround/CSGBox3D4"]
+transform = Transform3D(0.971076, -0.15091, 0.185034, 0.15091, 0.988446, 0.0141666, -0.185034, 0.0141667, 0.98263, -25.188, -1.97571, 2.42246)
+use_collision = true
+size = Vector3(26.8049, 7.44525, 1)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="MainGround/CSGBox3D4"]
+transform = Transform3D(0.592154, -0.509305, 0.62447, 0.509305, 0.837082, 0.199758, -0.62447, 0.199758, 0.755072, -39.1601, -7.09486, 8.69915)
+use_collision = true
+size = Vector3(26.8049, 7.44525, 1)
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="MainGround/CSGBox3D4/CSGBox3D6"]
+transform = Transform3D(-0.00454122, 0.999644, 0.0262566, -0.420783, -0.0257294, 0.906795, 0.90715, -0.00693038, 0.420751, -9.74442, -9.19768, 11.2775)
+use_collision = true
+size = Vector3(26.8049, 7.44525, 1)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="MainGround"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.685213, 3.69241, -16.2585)
+use_collision = true
+size = Vector3(9.683, 1.02, 4.2)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="MainGround/CSGBox3D3"]
+transform = Transform3D(0.747647, -0.664096, 0, 0.664096, 0.747647, 0, 0, 0, 1, 6.39606, 1.29774, 0.038599)
+use_collision = true
+size = Vector3(4, 1.02, 4.2)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="MainGround/CSGBox3D3"]
+transform = Transform3D(1, 0, 0, 0, 0.775132, 0.631799, 0, -0.631799, 0.775132, -0.685213, -2.69241, 4.0423)
+use_collision = true
+size = Vector3(12.053, 7.44525, 1)
+
+[node name="Ramp" type="CSGBox3D" parent="MainGround/CSGBox3D3"]
+transform = Transform3D(0.866025, -0.5, 0, 0.5, 0.866025, 0, 0, 0, 1, -8.77952, -2.35706, 0)
+use_collision = true
+size = Vector3(9.683, 1.02, 4.2)
+
+[node name="HighWall" type="CSGBox3D" parent="MainGround"]
+transform = Transform3D(3.55271e-15, 4.37114e-08, -1, 1, -2.98023e-08, 0, -2.98023e-08, -1, -4.37114e-08, 11.3163, 5.33535, 24.7994)
+use_collision = true
+size = Vector3(12.0125, 3.34849, 6.65666)
+
+[node name="VerySteep" type="CSGBox3D" parent="MainGround/HighWall"]
+transform = Transform3D(0.965926, 0.258819, -3.09086e-08, -0.258819, 0.965926, -1.28028e-08, 2.65419e-08, 2.03663e-08, 1, 9.53674e-07, -0.1714, 6.63225)
+use_collision = true
+size = Vector3(12.0125, 1.02, 6.65666)
+
+[node name="RJWall" type="CSGBox3D" parent="MainGround/HighWall"]
+transform = Transform3D(1.3027e-15, 1, -2.98023e-08, 4.37114e-08, -2.98023e-08, -1, -1, 2.25001e-15, -4.37114e-08, -0.421529, 0.653, -6.2159)
+use_collision = true
+size = Vector3(6, 8.839, 2)
+
+[node name="Pillar" type="CSGBox3D" parent="MainGround"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.84132, 2.00902, 8.02845)
+use_collision = true
+size = Vector3(1.33834, 3.73146, 0.682947)
+
+[node name="CrouchUnder" type="CSGBox3D" parent="MainGround/Pillar"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.13368, -0.31702, 1.01855)
+size = Vector3(1.372, 0.019, 1.372)
+
+[node name="JumpableBox" type="CSGBox3D" parent="MainGround"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0.843, 12)
+size = Vector3(1.372, 0.686, 1.372)
+
+[node name="JumpableBoxWithCrouch" type="CSGBox3D" parent="MainGround/JumpableBox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.129, 1.3716)
+size = Vector3(1.372, 0.943, 1.372)
+
+[node name="ThinFence" type="CSGBox3D" parent="MainGround/JumpableBox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1658, 0.129, 0.1447)
+size = Vector3(2.803, 0.29, 0.05)
+
+[node name="Player" parent="." instance=ExtResource("3_u5blx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.7531, 1.26251, 0)
+
+[node name="PlayerDebugger" type="Label" parent="." node_paths=PackedStringArray("player")]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "POS:
+VEL:
+SPD: "
+label_settings = SubResource("LabelSettings_1bwkk")
+script = ExtResource("4_5vp0v")
+player = NodePath("../Player")
+display_meters_as_hu = true
+
+[node name="Crosshair" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0.501961)
+texture_filter = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 0
+texture = SubResource("GradientTexture2D_02c5r")
+stretch_mode = 3

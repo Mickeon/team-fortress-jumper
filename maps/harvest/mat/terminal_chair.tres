@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://br0g253vi6w4x"]
+
+[resource]
+resource_name = "terminal_chair"
+cull_mode = 2
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.941176, 0, 0.12549, 1)
+metallic = 0.2

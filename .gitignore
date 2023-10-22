@@ -1,0 +1,12 @@
+# Godot 4+ specific ignores
+.godot/
+
+
+# Audio cache used only by Vegas
+*.sfk
+
+# Annoying .tmp files
+*.tmp
+
+# File only used by me during testing.
+tf_notes.txt

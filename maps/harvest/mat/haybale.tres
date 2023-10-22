@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://dwevebqxr3gag"]
+
+[resource]
+resource_name = "haybale"
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.768627, 0.643137, 0, 1)
+metallic = 0.1
+metallic_specular = 0.88
