@@ -1,6 +1,7 @@
 extends Label
 
 const HU = Player.HU
+const Explosion = preload("res://wep/explosion.gd")
 
 @export var player: Player
 @export var display_meters_as_hu := false
@@ -13,6 +14,8 @@ func _input(event):
 			KEY_F3:
 				if key_event.is_command_or_control_pressed():
 					display_meters_as_hu = not display_meters_as_hu
+				elif key_event.shift_pressed:
+					Explosion.debug_show_radius = not Explosion.debug_show_radius
 				else:
 					visible = not visible
 			KEY_PAGEDOWN, KEY_PAGEUP:

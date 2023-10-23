@@ -5,11 +5,13 @@ As it stands, it's pretty close. Collisions are almost entirely broken. Things l
 <img width="45%" alt="Team Fortress Jumper Harvest preview" src="https://github.com/Mickeon/team-fortress-jumper/assets/66727710/2b6b756d-82e6-4af9-9e2f-8cf5a100eed8">
 <img width="45%" alt="Team Fortress Jumper Test map preview" src="https://github.com/Mickeon/team-fortress-jumper/assets/66727710/7846da8f-d52c-46cc-882e-41141fe12f63">
 
-###### Do not judge this code quality.
+<sup> Do not judge this code quality. </sup>
+
 This repository has not been originally designed to be visible by the public, but I'm putting it out there. It could be useful as a general point of reference. 
-Full support for this demo, as well as additional features __(such as multiplayer)__ should **not** be taken for granted.
+Full support for this demo, as well as additional features _(such as multiplayer)_ should **not** be taken for granted.
 
 You can try a **considerably** stripped out version of this project on a Chromium web browser by [clicking here](https://mickeon.netlify.app/team-fortress-jumper/).
+Alternatively, download a build from [the releases](https://github.com/Mickeon/team-fortress-jumper/releases/tag/Demo).
 
 ## Controls
 
@@ -39,6 +41,7 @@ You can try a **considerably** stripped out version of this project on a Chromiu
 | **N** or **E** | Toggle noclip
 | **Page Up/Down** | Change time scale
 | **CTRL** + **F3** | Toggle Hammer Units/Meters.
+| **SHIFT** + **F3** | Toggle Explosion Radius display.
 
 
 ## Credits

@@ -4,7 +4,7 @@
 
 This is an add-on for debug drawing in 3D and for some 2D overlays, which is written in `C++` and can be used with `GDScript` or `C#`.
 
-Based on my previous addon, which was developed only for C# https://github.com/DmitriySalnikov/godot_debug_draw_cs, and which was inspired by Zylann's GDScript addon https://github.com/Zylann/godot_debug_draw
+Based on my previous addon, which was developed [only for C#](https://github.com/DmitriySalnikov/godot_debug_draw_cs), and which was inspired by [Zylann's GDScript addon](https://github.com/Zylann/godot_debug_draw)
 
 ## [Godot 3 version](https://github.com/DmitriySalnikov/godot_debug_draw_3d/tree/godot_3)
 
@@ -12,11 +12,9 @@ Based on my previous addon, which was developed only for C# https://github.com/D
 
 Your support adds motivation to develop my public projects.
 
-[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/I2I53VZ2D)
-
-[![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://paypal.me/dmitriysalnikov)
-
 [<img src="https://upload.wikimedia.org/wikipedia/commons/8/8f/QIWI_logo.svg" alt="qiwi" width=90px/>](https://qiwi.com/n/DMITRIYSALNIKOV)
+
+[<img src="https://static.boosty.to/assets/images/boostyDomainLogo.5Vlxt.svg" alt="Boosty" width=120px/>](https://boosty.to/dmitriysalnikov/donate)
 
 ## Features
 
@@ -52,6 +50,18 @@ Precompiled for:
 * Linux
 * macOS
 * Android
+* Web (WebAssembly)
+
+## [Interactive Web Demo](https://dmitriysalnikov.github.io/godot_debug_draw_3d/)
+
+[![screenshot_web](/images/screenshot_web.png)](https://dmitriysalnikov.github.io/godot_debug_draw_3d/)
+
+Thanks to Nick Maltbie ([nicholas-maltbie](https://github.com/nicholas-maltbie)) ([#24](https://github.com/DmitriySalnikov/godot_debug_draw_3d/pull/24))
+
+> **Warning**
+>
+> * The web version uses `OpenGL`, which in `Godot 4.1` incorrectly assigns colors to the last rendered geometry instances.
+> * Firefox most likely can't run this demo
 
 ## Download
 
@@ -77,33 +87,33 @@ Simple test:
 
 ```gdscript
 func _process(delta: float) -> void:
-	var _time = Time.get_ticks_msec() / 1000.0
-	var box_pos = Vector3(0, sin(_time * 4), 0)
-	var line_begin = Vector3(-1, sin(_time * 4), 0)
-	var line_end = Vector3(1, cos(_time * 4), 0)
+    var _time = Time.get_ticks_msec() / 1000.0
+    var box_pos = Vector3(0, sin(_time * 4), 0)
+    var line_begin = Vector3(-1, sin(_time * 4), 0)
+    var line_end = Vector3(1, cos(_time * 4), 0)
 
-	DebugDraw3D.draw_box(box_pos, Vector3(1, 2, 1), Color(0, 1, 0))
-	DebugDraw3D.draw_line(line_begin, line_end, Color(1, 1, 0))
-	DebugDraw2D.set_text("Time", _time)
-	DebugDraw2D.set_text("Frames drawn", Engine.get_frames_drawn())
-	DebugDraw2D.set_text("FPS", Engine.get_frames_per_second())
-	DebugDraw2D.set_text("delta", delta)
+    DebugDraw3D.draw_box(box_pos, Vector3(1, 2, 1), Color(0, 1, 0))
+    DebugDraw3D.draw_line(line_begin, line_end, Color(1, 1, 0))
+    DebugDraw2D.set_text("Time", _time)
+    DebugDraw2D.set_text("Frames drawn", Engine.get_frames_drawn())
+    DebugDraw2D.set_text("FPS", Engine.get_frames_per_second())
+    DebugDraw2D.set_text("delta", delta)
 ```
 
 ```csharp
 public override void _Process(float delta)
 {
-	var _time = Time.GetTicksMsec() / 1000.0f;
-	var box_pos = new Vector3(0, Mathf.Sin(_time * 4f), 0);
-	var line_begin = new Vector3(-1, Mathf.Sin(_time * 4f), 0);
-	var line_end = new Vector3(1, Mathf.Cos(_time * 4f), 0);
+    var _time = Time.GetTicksMsec() / 1000.0f;
+    var box_pos = new Vector3(0, Mathf.Sin(_time * 4f), 0);
+    var line_begin = new Vector3(-1, Mathf.Sin(_time * 4f), 0);
+    var line_end = new Vector3(1, Mathf.Cos(_time * 4f), 0);
 
-	DebugDraw3D.DrawBox(box_pos, new Vector3(1, 2, 1), new Color(0, 1, 0));
-	DebugDraw3D.DrawLine(line_begin, line_end, new Color(1, 1, 0));
-	DebugDraw2D.SetText("Time", _time);
-	DebugDraw2D.SetText("Frames drawn", Engine.GetFramesDrawn());
-	DebugDraw2D.SetText("FPS", Engine.GetFramesPerSecond());
-	DebugDraw2D.SetText("delta", delta);
+    DebugDraw3D.DrawBox(box_pos, new Vector3(1, 2, 1), new Color(0, 1, 0));
+    DebugDraw3D.DrawLine(line_begin, line_end, new Color(1, 1, 0));
+    DebugDraw2D.SetText("Time", _time);
+    DebugDraw2D.SetText("Frames drawn", Engine.GetFramesDrawn());
+    DebugDraw2D.SetText("FPS", Engine.GetFramesPerSecond());
+    DebugDraw2D.SetText("delta", delta);
 }
 ```
 
@@ -117,11 +127,11 @@ A list of all functions is available in the documentation inside the editor.
 Besides `DebugDraw2D/3D`, you can also use `Dbg2/3`.
 
 ```gdscript
-	DebugDraw3D.draw_box_xf(Transform3D(), Color.GREEN)
-	Dbg3.draw_box_xf(Transform3D(), Color.GREEN)
+    DebugDraw3D.draw_box_xf(Transform3D(), Color.GREEN)
+    Dbg3.draw_box_xf(Transform3D(), Color.GREEN)
 
-	DebugDraw2D.set_text("delta", delta)
-	Dbg2.set_text("delta", delta)
+    DebugDraw2D.set_text("delta", delta)
+    Dbg2.set_text("delta", delta)
 ```
 
 But unfortunately at the moment `GDExtension` does not support adding documentation.
@@ -145,6 +155,8 @@ The text in the keys and values of a text group cannot contain multi-line string
 The entire text overlay can only be placed in one corner, unlike `DataGraphs`.
 
 [Frustum of Camera3D does not take into account the window size from ProjectSettings](https://github.com/godotengine/godot/issues/70362).
+
+[OpenGL: The last instance of MultiMesh incorrectly sets the color](https://github.com/godotengine/godot/issues/71897)
 
 **The version for Godot 4.0 requires explicitly specifying the exact data types, otherwise errors may occur.**
 
@@ -170,6 +182,8 @@ git apply --ignore-space-change --ignore-whitespace ../patches/1165.patch
 git apply --ignore-space-change --ignore-whitespace ../patches/godot_cpp_exclude_unused_classes.patch
 ## Faster build
 git apply --ignore-space-change --ignore-whitespace ../patches/unity_build.patch
+## Fixes for JavaScript/Web support
+git apply --ignore-space-change --ignore-whitespace ../patches/fixed_javascript_build.patch
 ```
 
 Then you can just run scons as usual:
@@ -181,3 +195,13 @@ scons target=editor dev_build=yes debug_symbols=yes
 # build for the android. ANDROID_NDK_ROOT is required in your environment variables.
 scons platform=android target=template_release arch=arm64v8
 ```
+
+### JavaScript/Web build
+
+If you have problems running the Web version of your project, you can try using the scripts and tips from [this page](https://gist.github.com/DmitriySalnikov/ce12ff100df4e3352176768f5232abfa).
+
+If you too want to add an [Interactive Demo](https://dmitriysalnikov.github.io/godot_debug_draw_3d/) to your GitHub repository, then you can see how Nick Maltbie ([nicholas-maltbie](https://github.com/nicholas-maltbie)) added this feature to this repository in PR [#24](https://github.com/DmitriySalnikov/godot_debug_draw_3d/pull/24)!
+
+In short, you need to activate `Extension Support` when exporting and add the [gzuidhof/coi-serviceworker](https://github.com/gzuidhof/coi-serviceworker) to the \<head\> and to the export folder. Then you will need to somehow publish a demo on the GitHub pages, as for example done in [#24](https://github.com/DmitriySalnikov/godot_debug_draw_3d/pull/24/files#diff-46a620e221376649fe75b0aaf2f607fee47f0d47db1d37bc08bb4a5f11b1af98).
+
+![export_web_for_github](images/export_web_for_github.png)

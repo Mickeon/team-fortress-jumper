@@ -1,12 +1,13 @@
 extends Area3D
 
 const HU = Player.HU
-const SCALE_SELF_SOLDIER_RJ = 10.0 * HU # On air
-const SCALE_SELF_SOLDIER_BADRJ = 5.0 * HU # On ground
+const ROCKET_JUMP_SCALE = 10.0 * HU # On air
+const ROCKET_JUMP_BAD_SCALE = 5.0 * HU # On ground
 
 
 const DEBUG_COLOR = Color.ORANGE
 const LIFETIME = 30.0
+
 static var debug_show_radius := false
 
 # For self-inflicted blasts, it seems like roughly 2.3 is actually way more accurate.
@@ -14,15 +15,14 @@ static var debug_show_radius := false
 # I know why, it's actually finding the closest point to a sphere. Not just a normal distance check.
 # I have solved it in the past and I may have to, again.
 @export_range(0, 5, 0.001, "hide_slider", "suffix:m")
-var splash_radius = 146 * HU:
+var splash_radius := 146 * HU:
 	set(new):
 #		print("from %s to %s" % [splash_radius, new])
 		splash_radius = new
 		
-		if not is_node_ready(): await ready
-		
-		$BlastShape.scale = Vector3.ONE * splash_radius / 2.0
-		$BlastDecal.size = (Vector3.ONE * 4) * splash_radius / 2.0
+		if is_node_ready():
+			_update_splash_radius()
+
 
 @export_range(0, 120, 1, "hide_slider", "or_greater")
 var base_damage := 90.0
@@ -32,9 +32,10 @@ var source: Player
 @onready var lifetimer := get_tree().create_timer(LIFETIME)
 
 func _ready() -> void:
-#	DebugDraw3D.draw_position(global_transform, Color.CHARTREUSE, LIFETIME)
 	if OS.is_debug_build() and debug_show_radius:
 		get_tree().physics_frame.connect(_debug_physics_process)
+	
+	_update_splash_radius()
 	
 	process_physics_priority = 100
 	lifetimer.timeout.connect(queue_free)
@@ -46,10 +47,14 @@ func _debug_physics_process():
 	var ratio := smoothstep(0, LIFETIME, lifetimer.time_left / 2)
 	var final_color := Color.BLACK.lerp(DEBUG_COLOR, ratio).srgb_to_linear()
 	
-	if ratio >= 0.49:
+	if ratio >= 0.3:
+		DebugDraw3D.draw_position(global_transform, Color.CHARTREUSE, delta)
 		DebugDraw3D.draw_sphere_hd(position, splash_radius, final_color, delta)
-	else:
-		DebugDraw3D.draw_sphere(position, splash_radius, final_color, delta)
+
+func _update_splash_radius():
+	# By default, these two are 2-4 meters wide.
+	$BlastShape.scale = Vector3.ONE / 2.0 * splash_radius 
+	$BlastDecal.size = (Vector3.ONE * 4) / 2.0 * splash_radius 
 
 
 func apply_knockback(player: Player):
@@ -59,20 +64,20 @@ func apply_knockback(player: Player):
 			global_position.distance_to(player_global_center))
 	if source == player:
 #		splash_radius -= 25 * HU
-		splash_radius -= 25.25 * HU # For some reason this works better.
+		splash_radius -= 25.25 * HU # For some reason this works better. for now.
 	
 	var edge_damage := base_damage * 0.5
-	var damage := maxf(
+	var damage := clampf(
 			remap(splash_distance, 0.0, splash_radius, base_damage, edge_damage),
-			edge_damage)
+			edge_damage, base_damage)
 	
 	var multiplier := 9.0 * HU
 	if source == player:
 		if not player.grounded:
 			damage *= 0.6
-			multiplier = SCALE_SELF_SOLDIER_RJ
+			multiplier = ROCKET_JUMP_SCALE
 		else:
-			multiplier = SCALE_SELF_SOLDIER_BADRJ
+			multiplier = ROCKET_JUMP_BAD_SCALE
 	
 	# Pretends that the knockback direction of attacks come from 10 Hu lower than they really do.
 	# It's part of why you're frequently pushed upwards when taking damage in the Vanilla game.
