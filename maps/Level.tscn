@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://dsyym2bcxma0k"]
+[gd_scene load_steps=15 format=3 uid="uid://dsyym2bcxma0k"]
 
 [ext_resource type="Script" path="res://maps/level.gd" id="1_mcdpx"]
 [ext_resource type="Material" uid="uid://bagj31aqo6y0f" path="res://maps/test_mat.tres" id="2_hlduo"]
 [ext_resource type="PackedScene" uid="uid://bp3faj46c64ck" path="res://player/Player.tscn" id="3_u5blx"]
+[ext_resource type="Texture2D" uid="uid://ciuqdaym61xuw" path="res://maps/tf-demoman.png" id="3_xpmct"]
 [ext_resource type="Script" path="res://player/player_debugger.gd" id="4_5vp0v"]
 [ext_resource type="FontFile" uid="uid://idu5r2kjc1sx" path="res://shared/fonts/SourceCodePro-Medium.ttf" id="4_lm2km"]
 
@@ -37,6 +38,52 @@ fog_sky_affect = 0.148
 adjustment_enabled = true
 adjustment_contrast = 1.25
 adjustment_saturation = 1.1
+
+[sub_resource type="Shader" id="Shader_nck53"]
+code = "shader_type spatial;
+
+uniform sampler2D tex: repeat_enable, filter_linear, hint_default_white;
+
+uniform int h_frames: hint_range(1, 128, 1);
+uniform int v_frames: hint_range(1, 128, 1);
+uniform int total_frames: hint_range(1, 256, 1);
+//uniform int current_frame_index: hint_range(1, 256, 1);
+//uniform vec2 current_frame = vec2(0, 0);
+
+uniform vec2 uv_scale = vec2(1, 1); 
+
+uniform float animation_scale = 1.0;
+
+void fragment() {
+	
+	int current_frame_index = int(TIME * animation_scale) % total_frames;
+	vec2 current_frame = vec2(
+		float(current_frame_index % h_frames), 
+		float( (current_frame_index / h_frames) % v_frames));
+//	if (uv_scale.x < 0.0) {
+//		current_frame.x += 1.0;
+//	}
+	// With negative uv_scale, add 1 extra frame for the edges.
+	current_frame += vec2(
+		lessThan(sign(uv_scale), vec2(0.0, 0.0))
+	);
+	
+	vec2 limit = vec2(ivec2(h_frames, v_frames));
+	vec2 base_uv = UV / limit * uv_scale;
+	base_uv += current_frame / limit;
+    ALBEDO = texture(tex, base_uv).rgb;
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_22i16"]
+resource_name = "gif_mat"
+render_priority = 0
+shader = SubResource("Shader_nck53")
+shader_parameter/h_frames = 5
+shader_parameter/v_frames = 14
+shader_parameter/total_frames = 69
+shader_parameter/uv_scale = Vector2(-1, 1.595)
+shader_parameter/animation_scale = 16.0
+shader_parameter/tex = ExtResource("3_xpmct")
 
 [sub_resource type="LabelSettings" id="LabelSettings_1bwkk"]
 font = ExtResource("4_lm2km")
@@ -97,26 +144,6 @@ transform = Transform3D(-0.00454122, 0.999644, 0.0262566, -0.420783, -0.0257294,
 use_collision = true
 size = Vector3(26.8049, 7.44525, 1)
 
-[node name="CSGBox3D3" type="CSGBox3D" parent="MainGround"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.685213, 3.69241, -16.2585)
-use_collision = true
-size = Vector3(9.683, 1.02, 4.2)
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="MainGround/CSGBox3D3"]
-transform = Transform3D(0.747647, -0.664096, 0, 0.664096, 0.747647, 0, 0, 0, 1, 6.39606, 1.29774, 0.038599)
-use_collision = true
-size = Vector3(4, 1.02, 4.2)
-
-[node name="CSGBox3D" type="CSGBox3D" parent="MainGround/CSGBox3D3"]
-transform = Transform3D(1, 0, 0, 0, 0.775132, 0.631799, 0, -0.631799, 0.775132, -0.685213, -2.69241, 4.0423)
-use_collision = true
-size = Vector3(12.053, 7.44525, 1)
-
-[node name="Ramp" type="CSGBox3D" parent="MainGround/CSGBox3D3"]
-transform = Transform3D(0.866025, -0.5, 0, 0.5, 0.866025, 0, 0, 0, 1, -8.77952, -2.35706, 0)
-use_collision = true
-size = Vector3(9.683, 1.02, 4.2)
-
 [node name="HighWall" type="CSGBox3D" parent="MainGround"]
 transform = Transform3D(3.55271e-15, 4.37114e-08, -1, 1, -2.98023e-08, 0, -2.98023e-08, -1, -4.37114e-08, 11.3163, 5.33535, 24.7994)
 use_collision = true
@@ -131,6 +158,34 @@ size = Vector3(12.0125, 1.02, 6.65666)
 transform = Transform3D(1.3027e-15, 1, -2.98023e-08, 4.37114e-08, -2.98023e-08, -1, -1, 2.25001e-15, -4.37114e-08, -0.421529, 0.653, -6.2159)
 use_collision = true
 size = Vector3(6, 8.839, 2)
+
+[node name="BunchOfRamps" type="Node3D" parent="MainGround"]
+
+[node name="Ramp2" type="CSGBox3D" parent="MainGround/BunchOfRamps"]
+transform = Transform3D(1.26666e-07, -3.394e-08, -1, 0.258819, 0.965926, 1.3027e-15, 0.965926, -0.258819, 1.31134e-07, 15.9125, 0.70933, -11.3449)
+use_collision = true
+size = Vector3(6.423, 1.02, 2)
+
+[node name="Ramp3" type="CSGBox3D" parent="MainGround/BunchOfRamps"]
+transform = Transform3D(1.13565e-07, -6.55671e-08, -1, 0.5, 0.866025, 1.3027e-15, 0.866025, -0.5, 1.31134e-07, 14.4156, 0.70933, -12.7)
+use_collision = true
+size = Vector3(6.423, 1.02, 2)
+
+[node name="Ramp4" type="CSGBox3D" parent="MainGround/BunchOfRamps"]
+transform = Transform3D(7.73841e-08, -2.93861e-08, -1, 0.707107, 0.707106, 3.39397e-08, 0.707106, -0.707107, 7.54979e-08, 12.4156, 0.70933, -13.0624)
+use_collision = true
+size = Vector3(6.423, 1.02, 2)
+material = SubResource("ShaderMaterial_22i16")
+
+[node name="Ramp5" type="CSGBox3D" parent="MainGround/BunchOfRamps"]
+transform = Transform3D(1.13565e-07, -6.55671e-08, -1, 0.866025, 0.5, 6.55671e-08, 0.5, -0.866025, 1.13566e-07, 10.4523, 0.70933, -13.0624)
+use_collision = true
+size = Vector3(6.423, 1.02, 2)
+
+[node name="Ramp6" type="CSGBox3D" parent="MainGround/BunchOfRamps"]
+transform = Transform3D(1.13565e-07, -6.55671e-08, -1, 0.965926, 0.258819, 9.27259e-08, 0.258819, -0.965926, 9.27259e-08, 9.02653, 0.70933, -13.0624)
+use_collision = true
+size = Vector3(6.423, 1.02, 2)
 
 [node name="Pillar" type="CSGBox3D" parent="MainGround"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.84132, 2.00902, 8.02845)
@@ -152,6 +207,28 @@ size = Vector3(1.372, 0.943, 1.372)
 [node name="ThinFence" type="CSGBox3D" parent="MainGround/JumpableBox"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1658, 0.129, 0.1447)
 size = Vector3(2.803, 0.29, 0.05)
+
+[node name="WeirdStructure" type="Node3D" parent="MainGround"]
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="MainGround/WeirdStructure"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.685213, 3.69241, -16.2585)
+use_collision = true
+size = Vector3(9.683, 1.02, 4.2)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="MainGround/WeirdStructure/CSGBox3D3"]
+transform = Transform3D(0.747647, -0.664096, 0, 0.664096, 0.747647, 0, 0, 0, 1, 6.39606, 1.29774, 0.038599)
+use_collision = true
+size = Vector3(4, 1.02, 4.2)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="MainGround/WeirdStructure/CSGBox3D3"]
+transform = Transform3D(1, 0, 0, 0, 0.775132, 0.631799, 0, -0.631799, 0.775132, -0.685213, -2.69241, 4.0423)
+use_collision = true
+size = Vector3(12.053, 7.44525, 1)
+
+[node name="Ascent" type="CSGBox3D" parent="MainGround/WeirdStructure/CSGBox3D3"]
+transform = Transform3D(0.866025, -0.5, 0, 0.5, 0.866025, 0, 0, 0, 1, -8.92476, -2.35706, 0)
+use_collision = true
+size = Vector3(9.683, 1.02, 4.2)
 
 [node name="Player" parent="." instance=ExtResource("3_u5blx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.7531, 1.26251, 0)

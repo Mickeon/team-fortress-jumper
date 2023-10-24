@@ -1,6 +1,6 @@
 # Team Fortress Jumper
 A small demo built in Godot 4.1 that attempts to recreate how it feels to rocket-jump around in **Team Fortress 2**.
-As it stands, it's pretty close. Collisions are almost entirely broken. Things like bunny-hopping is also intentionally allowed (it's pretty fun to mess around with).
+As it stands, it's pretty close. Collisions are almost entirely broken. Things like bunny-hopping may also be intentionally turned on (they're pretty fun to mess around with).
 
 <img width="45%" alt="Team Fortress Jumper Harvest preview" src="https://github.com/Mickeon/team-fortress-jumper/assets/66727710/2b6b756d-82e6-4af9-9e2f-8cf5a100eed8">
 <img width="45%" alt="Team Fortress Jumper Test map preview" src="https://github.com/Mickeon/team-fortress-jumper/assets/66727710/7846da8f-d52c-46cc-882e-41141fe12f63">
@@ -24,6 +24,7 @@ Alternatively, download a build from [the releases](https://github.com/Mickeon/t
 | **Jump** | Jump
 | **Shift** or **CTRL** | Crouch
 | **Left Click** | Shoot rocket
+| **Right Click** or **Q** | Charge!!
 
 #### Selection:
 | Key | Action | ... |
@@ -36,12 +37,13 @@ Alternatively, download a build from [the releases](https://github.com/Mickeon/t
 | Key | Action |
 | :-: | --- |
 | **F3** | Toggle debug screen
-| **F4** | Opens this very repository
+| **F4** | Toggle bunny hopping
 | **F5** | Toggle top-down view
+| **F6** | Open this very repository
 | **N** or **E** | Toggle noclip
 | **Page Up/Down** | Change time scale
-| **CTRL** + **F3** | Toggle Hammer Units/Meters.
-| **SHIFT** + **F3** | Toggle Explosion Radius display.
+| **CTRL** + **F3** | Toggle Hammer Units/Meters
+| **SHIFT** + **F3** | Toggle Explosion Radius display
 
 
 ## Credits

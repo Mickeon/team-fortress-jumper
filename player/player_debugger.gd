@@ -18,6 +18,10 @@ func _input(event):
 					Explosion.debug_show_radius = not Explosion.debug_show_radius
 				else:
 					visible = not visible
+			KEY_F4:
+				player.debug_allow_bunny_hopping = not player.debug_allow_bunny_hopping
+			KEY_F6:
+				OS.shell_open("https://github.com/Mickeon/team-fortress-jumper")
 			KEY_PAGEDOWN, KEY_PAGEUP:
 				var add := -0.1 if key == KEY_PAGEDOWN else 0.1
 				Engine.time_scale = clampf(snappedf(Engine.time_scale + add, 0.1), 0.001, 1.0)
@@ -28,7 +32,7 @@ func _physics_process(_delta):
 
 
 func update_debug_text():
-	var new_text := """F4 for controls, F3 to toggle. (%s)
+	var new_text := """F6 for controls, F3 to toggle. (%s)
 	POS: %9.3v
 	ANG: %6.2v
 	SPD: %9.4f
@@ -36,7 +40,7 @@ func update_debug_text():
 	"""
 	
 	new_text %= [
-		"Using Hu" if display_meters_as_hu else "",
+		"Using Hu" if display_meters_as_hu else "Using Meters",
 		adjust(player.global_position),
 		Vector2(player.cam_pivot.rotation_degrees.x, fmod(player.cam_pivot.rotation_degrees.y, 180.0)),
 		adjust(player.velocity.length()),
@@ -46,6 +50,8 @@ func update_debug_text():
 		new_text += "\nTime scale: %s" % Engine.time_scale
 	if player.crouching:
 		new_text += "\nCROUCHING"
+	if not player.grounded:
+		new_text += "\nAIRBORNE"
 	
 	text = new_text
 

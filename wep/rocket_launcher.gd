@@ -7,12 +7,14 @@ const SHOOT_OFFSET = Vector3(12.0, -3.0, -23.5) * HU # Vanilla coords: (23.5, 12
 const SHOOT_OFFSET_CROUCH = Vector3(12.0, 8.0, -23.5) * HU # Vanilla coords: (23.5, 12.0, 8.0)
 
 @export var attack_interval := 0.8
+@export_enum("player_primary", "player_secondary")
+var trigger_action := "player_primary"
 
 @onready var player_owner: Player = owner
 @onready var sfx: AudioStreamPlayer3D = $Shoot
 
-func _input(event):
-	if event.is_action_pressed("player_primary"):
+func _unhandled_input(event):
+	if event.is_action_pressed(trigger_action):
 		shoot()
 
 
@@ -37,7 +39,7 @@ func refresh_interval():
 	interval_timer = get_tree().create_timer(attack_interval)
 	interval_timer.timeout.connect(func():
 			# When holding down the button, shoot again as soon as possible.
-			if Input.is_action_pressed("player_primary"): shoot()
+			if Input.is_action_pressed(trigger_action): shoot()
 	)
 
 

@@ -12,8 +12,8 @@ const BACKPEDAL_SPEED_MULTIPLIER = 0.9
 @export var GROUND_SPEED := 240 * HU # (Soldier's speed) 
 @export var GROUND_ACCELERATION := 2400 * HU # 36 at 66.666 ticks
 @export var GROUND_DECELERATION := 400.0 # 6 at 66.666 ticks
-@export var AIR_SPEED := 0.5 # Doesn't seem to matter.
-@export var AIR_ACCELERATION := 100.0
+@export var AIR_SPEED := 75 * HU#12.0 * HU # Especially noticeable when moving backwards.
+@export var AIR_ACCELERATION := 2400 * HU * 0.85 #100.0
 
 @export var JUMP_FORCE := 283 * HU # not 271 * HU. Gravity applies the first frame in the air, too.
 @export var GRAVITY_FORCE := 800 * HU # 12 * 66.666
@@ -35,6 +35,7 @@ var MAX_SLOPE_ANGLE := deg_to_rad(46.0): # Should be 45.573 degrees
 
 @export_group("Debug", "debug_")
 @export var debug_simulate_vanilla_tickrate := false
+@export var debug_allow_bunny_hopping := false
 @export var debug_top_down_view := false:
 	set(new):
 		if debug_top_down_view == new:
@@ -90,10 +91,10 @@ var noclip_enabled := false:
 
 func _input(event):
 	if event.is_action_pressed("ui_cancel"):
-		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		get_viewport().set_input_as_handled()
-	elif event is InputEventMouseButton:
-		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	elif event is InputEventMouseButton and Input.mouse_mode != Input.MOUSE_MODE_CAPTURED:
+		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 		get_viewport().set_input_as_handled()
 	
 	elif event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
@@ -111,7 +112,10 @@ func _physics_process(delta: float):
 		delta = 0.015 # 1 / 66.666
 		
 	if _just_landed:
-		_apply_friction(delta) # Prevent carrying speed from bunny-hopping.
+		if debug_allow_bunny_hopping:
+			_apply_friction(delta) # Prevent carrying speed from bunny-hopping.
+		else:
+			_clamp_speed(1.1)
 #	DebugDraw3D.draw_sphere(get_global_center(), 0.2, Color.RED, delta)
 #	DebugDraw3D.draw_camera_frustum(cam_pivot.get_node("Camera"), Color.VIOLET, delta)
 	if noclip_enabled:
@@ -151,7 +155,7 @@ func _physics_process(delta: float):
 	
 	var max_speed := GROUND_SPEED if grounded else AIR_SPEED
 	var acceleration := GROUND_ACCELERATION if grounded else AIR_ACCELERATION
-	if crouching:
+	if crouching and grounded:
 		max_speed = GROUND_SPEED * CROUCH_SPEED_MULTIPLIER
 	
 	# The magic Source function.
@@ -193,13 +197,15 @@ func _handle_collision(delta: float):
 	var collision := move_and_collide(velocity * delta)
 	if collision:
 		# Slide the remaining movement and move.
-		move_and_collide(collision.get_remainder().slide(collision.get_normal()))
+		var normal := collision.get_normal()
+		move_and_collide(collision.get_remainder().slide(normal))
 		
 		if not grounded:
-			velocity = velocity.slide(collision.get_normal())
+			velocity = velocity.slide(normal)
 			
-			var slope_angle := get_slope_angle(collision.get_normal())
-			if slope_angle < MAX_SLOPE_ANGLE:
+			var slope_angle := get_slope_angle(normal)
+			# At fast speeds, even a gentle slope can launch you.
+			if slope_angle < max(MAX_SLOPE_ANGLE - velocity.length() * 0.02, 0.01):
 #				grounded = true
 				# Give one extra frame of just landed mercy. Vanilla TF2 does this.
 				# Allows keeping momentum with perfect bunny-hopping.
@@ -208,6 +214,7 @@ func _handle_collision(delta: float):
 				velocity.y = 0.0
 		# TODO: Step 18 Hu over small edges.
 	else:
+		return # Disable this part temporarily
 		var floor_collision := _floor_intersect_ray()
 #		var floor_collision := _floor_intersect_shape()
 		if grounded and floor_collision:
@@ -215,8 +222,8 @@ func _handle_collision(delta: float):
 #			move_and_collide(floor_collision.get_position() - global_position)
 			move_and_collide(floor_collision.position - global_position)
 
-func _clamp_speed():
-	var max_speed := GROUND_SPEED
+func _clamp_speed(multiplier := 1.0):
+	var max_speed := GROUND_SPEED * multiplier
 	var velocity_planar := Vector2(velocity.x, velocity.z)
 	
 	if velocity_planar.length() > max_speed:

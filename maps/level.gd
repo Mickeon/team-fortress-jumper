@@ -16,8 +16,7 @@ func _input(event):
 				get_tree().change_scene_to_file("res://maps/Harvest.tscn")
 			KEY_F2:
 				get_tree().change_scene_to_file("res://maps/Level.tscn")
-			KEY_F4:
-				OS.shell_open("https://github.com/Mickeon/team-fortress-jumper")
+
 
 
 var _cache := {} # { Mesh: Shape3D }
