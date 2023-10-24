@@ -42,10 +42,8 @@ floor_stop_on_slope = false
 floor_block_on_wall = false
 floor_max_angle = 0.802851
 script = ExtResource("1")
-FLOOR_RAY_POSITION = Vector3(0, 0.019, 0)
-FLOOR_RAY_REACH = 0.25
 cam_pivot = NodePath("Smoothing3D/Pivot")
-capsule = NodePath("CollisionShapeCylinder")
+capsule = NodePath("CollisionShapeBox")
 
 [node name="Smoothing3D" type="Node3D" parent="."]
 script = ExtResource("4_5fufl")
@@ -104,7 +102,6 @@ attenuation_filter_cutoff_hz = 18520.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.781, 0)
 visible = false
 shape = SubResource("BoxShape3D_301pk")
-disabled = true
 
 [node name="CollisionShapeCapsule" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.781, 0)
@@ -114,4 +111,6 @@ disabled = true
 
 [node name="CollisionShapeCylinder" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.781, 0)
+visible = false
 shape = SubResource("CylinderShape3D_el3cl")
+disabled = true

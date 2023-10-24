@@ -25,10 +25,9 @@ var MAX_SLOPE_ANGLE := deg_to_rad(46.0): # Should be 45.573 degrees
 		MAX_SLOPE_ANGLE = new
 		floor_max_angle = new 
 
-@export_group("Floor Ray", "FLOOR_RAY_")
-@export var FLOOR_RAY_POSITION := Vector3.ZERO ## The local position of the raycast used to check for the floor.
-@export var FLOOR_RAY_REACH := 0.2 ## How far down the floor raycast will reach out for collisions.
+@export var floor_ray_reach := 18 * HU ## How far down the floor raycast will reach out for collisions.
 
+@export_group("")
 @export var camera_sensitivity := 0.075
 @export var cam_pivot: Node3D
 @export var capsule: CollisionShape3D
@@ -36,6 +35,7 @@ var MAX_SLOPE_ANGLE := deg_to_rad(46.0): # Should be 45.573 degrees
 @export_group("Debug", "debug_")
 @export var debug_simulate_vanilla_tickrate := false
 @export var debug_allow_bunny_hopping := false
+@export var debug_show_collisions := false
 @export var debug_top_down_view := false:
 	set(new):
 		if debug_top_down_view == new:
@@ -76,7 +76,11 @@ var crouching := false:
 		crouching = new
 		
 		var height := HEIGHT_CROUCH if crouching else HEIGHT_BASE
-		capsule.shape.height = height
+		if capsule.shape is BoxShape3D:
+			capsule.shape.size.y = height
+		else:
+			capsule.shape.height = height
+			
 		capsule.position.y = height * 0.5
 		
 		cam_pivot.position.y = VIEW_CROUCH if crouching else VIEW_BASE
@@ -126,7 +130,7 @@ func _physics_process(delta: float):
 #		var floor_collision := _floor_intersect_ray()
 		var floor_collision := _floor_intersect_shape()
 		if floor_collision:
-#			var slope_angle := get_slope_angle(floor_collision.normal) 
+#			var slope_angle := get_slope_angle(floor_collision.normal)
 			var slope_angle := get_slope_angle(floor_collision.get_normal()) 
 			grounded = slope_angle < MAX_SLOPE_ANGLE
 		else:
@@ -181,46 +185,83 @@ func _apply_friction(delta: float):
 	var deceleration := GROUND_DECELERATION * delta
 	
 	# Stronger friction when speed is greater than 100 HU ("speed * 0.01" penalty)
-#	if speed > (100 * HU):
-#		speed -= deceleration * (speed * 0.01)
-#	else:
-#		speed = move_toward(speed, 0, deceleration * HU)
-	# The one line below is equal to the above.
 	speed = move_toward(speed, 0, deceleration * maxf(speed * 0.01, HU))
 	
 	velocity = velocity.normalized() * speed
 
+
 var _just_landed := false
 func _handle_collision(delta: float):
 	_just_landed = false
-	# We do our own sliding.
-	var collision := move_and_collide(velocity * delta)
-	if collision:
-		# Slide the remaining movement and move.
-		var normal := collision.get_normal()
-		move_and_collide(collision.get_remainder().slide(normal))
+	
+	var has_stepped_up := false
+	
+	var starting_velocity := velocity * delta
+	var remainder := Vector3.ZERO
+	var normal := Vector3.ZERO
+	for i in 5:
+		var collision := move_and_collide(remainder.slide(normal) if normal else starting_velocity)
+		if not collision:
+			break
+		
+		var pos := collision.get_position()
+		remainder = collision.get_remainder()
+		normal = collision.get_normal()
 		
 		if not grounded:
-			velocity = velocity.slide(normal)
-			
+			var adjusted_normal := normal
+#			if adjusted_normal.y > 0.0:
+#				adjusted_normal.y *= min(0.1 + velocity.length() * HU * 24, 0.5)#0.3333)
+##				print(adjusted_normal.y)
+#				adjusted_normal = adjusted_normal.normalized()
+			velocity = velocity.slide(adjusted_normal)
+		
 			var slope_angle := get_slope_angle(normal)
 			# At fast speeds, even a gentle slope can launch you.
-			if slope_angle < max(MAX_SLOPE_ANGLE - velocity.length() * 0.02, 0.01):
-#				grounded = true
+			if slope_angle < maxf(MAX_SLOPE_ANGLE - velocity.length() * 0.02, 0.01):
 				# Give one extra frame of just landed mercy. Vanilla TF2 does this.
 				# Allows keeping momentum with perfect bunny-hopping.
 				set_deferred("grounded", true)
 				_just_landed = true
 				velocity.y = 0.0
-		# TODO: Step 18 Hu over small edges.
-	else:
-		return # Disable this part temporarily
-		var floor_collision := _floor_intersect_ray()
-#		var floor_collision := _floor_intersect_shape()
-		if grounded and floor_collision:
-			# The player is on the ground, snap on top of it.
-#			move_and_collide(floor_collision.get_position() - global_position)
-			move_and_collide(floor_collision.position - global_position)
+		else:
+			var angle_difference = abs(rad_to_deg(normal.angle_to(up_direction)) - 90.0)
+			if angle_difference <= 1.0:
+				if _try_to_step_up(pos, remainder):
+					has_stepped_up = true
+		var debug_color := Color.RED
+		debug_color.h += i * 0.1
+		
+		if debug_show_collisions:
+			DebugDraw3D.draw_points([pos], 0.1 - i * 0.02, debug_color, 1)
+			DebugDraw3D.draw_ray(pos, normal, 0.5 - i * 0.05, debug_color, 1)
+	
+	if grounded and not has_stepped_up:
+		_snap_to_floor()
+
+func _handle_collision_with_slide(_delta: float): # Unused
+	_just_landed = false
+	floor_snap_length = 0
+	
+	move_and_slide()
+	for i in get_slide_collision_count():
+		var collision := get_slide_collision(i)
+		
+		var normal := collision.get_normal()
+		var angle := collision.get_angle()
+		if not grounded:
+			if angle < floor_max_angle:
+				_just_landed = true
+				set_deferred("grounded", true)
+				velocity.y = 0.0
+		
+		var debug_color := Color.RED
+		debug_color.h += i * 0.1
+		
+		DebugDraw3D.draw_points([collision.get_position()], 0.2 - i * 0.02, debug_color, 1)
+		DebugDraw3D.draw_ray(collision.get_position(), normal, 0.5 - i * 0.05, debug_color, 1)
+
+
 
 func _clamp_speed(multiplier := 1.0):
 	var max_speed := GROUND_SPEED * multiplier
@@ -269,19 +310,59 @@ func _handle_noclip(delta: float):
 
 
 func _floor_intersect_ray() -> Dictionary:
-	var origin := global_position + FLOOR_RAY_POSITION
-	var target := Vector3.DOWN * FLOOR_RAY_REACH
+	var origin := global_position
+	var target := origin + Vector3.DOWN * floor_ray_reach
 	
-	var query := PhysicsRayQueryParameters3D.create(origin, origin + target, 0xFFFFFFFF, [get_rid()])
+	if debug_show_collisions:
+		DebugDraw3D.draw_arrow_line(origin, target, Color.TOMATO, 1, false, 1)
+	
+	var query := PhysicsRayQueryParameters3D.create(origin, target, 0xFFFFFFFF, [get_rid()])
 	
 	return get_world_3d().direct_space_state.intersect_ray(query)
 
 func _floor_intersect_shape() -> KinematicCollision3D:
-	return move_and_collide(Vector3.DOWN * FLOOR_RAY_REACH, true)
+	return move_and_collide(Vector3.DOWN * floor_ray_reach, true, 0)
 
+func _snap_to_floor():
+	var floor_collision := _floor_intersect_shape()
+	if not floor_collision:
+		return
+	
+	var target_pos := Vector3(global_position.x, floor_collision.get_position().y, global_position.z)
+	if target_pos.y + HU < global_position.y:
+		if debug_show_collisions:
+			DebugDraw3D.draw_points([target_pos], 0.2, Color.ANTIQUE_WHITE, 1)
+		move_and_collide(target_pos - global_position)
+
+func _try_to_step_up(pos: Vector3, remainder: Vector3) -> bool:
+	var origin := Vector3(pos.x, global_position.y + floor_ray_reach, pos.z)
+	var target := Vector3(pos.x, global_position.y, pos.z)
+	
+	if debug_show_collisions:
+		DebugDraw3D.draw_line(origin, target, Color.MEDIUM_TURQUOISE, 1)
+
+	var query := PhysicsRayQueryParameters3D.create(origin, target, 0xFFFFFFFF, [get_rid()])
+	query.hit_from_inside = true
+	
+	# I assure, Source games do this in a way more complicated way.
+	# Trying to replicate it is not worth the effort right now.
+	var intersection := get_world_3d().direct_space_state.intersect_ray(query)
+	if intersection and intersection.normal != Vector3.ZERO:
+		var original_position := position
+		position.y = intersection.position.y + HU
+		if move_and_collide(remainder, true):
+#			print("Trying to step up, but nuh-uh.")
+			position = original_position
+			return false
+		
+		move_and_collide(remainder.normalized() * HU)
+		return true
+	
+	return false
 
 func get_slope_angle(normal: Vector3) -> float:
 	return normal.angle_to(up_direction)
+
 
 func get_global_center() -> Vector3:
 	var center := capsule.global_position
@@ -312,8 +393,12 @@ func _debug_draw():
 			Vector3(wish_dir.x, 0, wish_dir.y), 
 			wish_dir.length(), 
 			Color.DARK_CYAN, 0.25, false)
-	var radius: float = capsule.shape.radius
-	DebugDraw3D.draw_cylinder(global_transform.scaled_local(Vector3(radius, HU, radius)), Color.YELLOW)
+	if capsule.shape is BoxShape3D:
+		var size = capsule.shape.size
+		DebugDraw3D.draw_aabb(AABB(capsule.global_position - size * 0.5, size), Color.YELLOW)
+	else:
+		var radius: float = capsule.shape.radius
+		DebugDraw3D.draw_cylinder(global_transform.scaled_local(Vector3(radius, HU, radius)), Color.YELLOW)
 
 
 #const JUMP_HEIGHT = 72 * HU

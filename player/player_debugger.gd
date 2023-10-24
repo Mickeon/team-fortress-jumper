@@ -16,6 +16,7 @@ func _input(event):
 					display_meters_as_hu = not display_meters_as_hu
 				elif key_event.shift_pressed:
 					Explosion.debug_show_radius = not Explosion.debug_show_radius
+					player.debug_show_collisions = Explosion.debug_show_radius
 				else:
 					visible = not visible
 			KEY_F4:

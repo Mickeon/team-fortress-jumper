@@ -162,28 +162,33 @@ size = Vector3(6, 8.839, 2)
 [node name="BunchOfRamps" type="Node3D" parent="MainGround"]
 
 [node name="Ramp2" type="CSGBox3D" parent="MainGround/BunchOfRamps"]
-transform = Transform3D(1.26666e-07, -3.394e-08, -1, 0.258819, 0.965926, 1.3027e-15, 0.965926, -0.258819, 1.31134e-07, 15.9125, 0.70933, -11.3449)
+transform = Transform3D(1.26666e-07, -3.394e-08, -1, 0.258819, 0.965926, 1.3027e-15, 0.965926, -0.258819, 1.31134e-07, 16.2373, 0.70933, -11.3449)
 use_collision = true
 size = Vector3(6.423, 1.02, 2)
 
 [node name="Ramp3" type="CSGBox3D" parent="MainGround/BunchOfRamps"]
-transform = Transform3D(1.13565e-07, -6.55671e-08, -1, 0.5, 0.866025, 1.3027e-15, 0.866025, -0.5, 1.31134e-07, 14.4156, 0.70933, -12.7)
+transform = Transform3D(1.13565e-07, -6.55671e-08, -1, 0.5, 0.866025, 1.3027e-15, 0.866025, -0.5, 1.31134e-07, 14.7404, 0.70933, -12.7)
 use_collision = true
 size = Vector3(6.423, 1.02, 2)
 
 [node name="Ramp4" type="CSGBox3D" parent="MainGround/BunchOfRamps"]
-transform = Transform3D(7.73841e-08, -2.93861e-08, -1, 0.707107, 0.707106, 3.39397e-08, 0.707106, -0.707107, 7.54979e-08, 12.4156, 0.70933, -13.0624)
+transform = Transform3D(7.73841e-08, -2.93861e-08, -1, 0.707107, 0.707106, 3.39397e-08, 0.707106, -0.707107, 7.54979e-08, 12.7404, 0.70933, -13.0624)
 use_collision = true
 size = Vector3(6.423, 1.02, 2)
 material = SubResource("ShaderMaterial_22i16")
 
 [node name="Ramp5" type="CSGBox3D" parent="MainGround/BunchOfRamps"]
-transform = Transform3D(1.13565e-07, -6.55671e-08, -1, 0.866025, 0.5, 6.55671e-08, 0.5, -0.866025, 1.13566e-07, 10.4523, 0.70933, -13.0624)
+transform = Transform3D(1.13565e-07, -6.55671e-08, -1, 0.866025, 0.5, 6.55671e-08, 0.5, -0.866025, 1.13566e-07, 10.7771, 0.70933, -13.0624)
 use_collision = true
 size = Vector3(6.423, 1.02, 2)
 
 [node name="Ramp6" type="CSGBox3D" parent="MainGround/BunchOfRamps"]
 transform = Transform3D(1.13565e-07, -6.55671e-08, -1, 0.965926, 0.258819, 9.27259e-08, 0.258819, -0.965926, 9.27259e-08, 9.02653, 0.70933, -13.0624)
+use_collision = true
+size = Vector3(6.423, 1.02, 2)
+
+[node name="Ramp7" type="CSGBox3D" parent="MainGround/BunchOfRamps"]
+transform = Transform3D(-7.62868e-10, 4.37047e-08, -1, 0.999848, 0.0174524, 0, 0.0174524, -0.999848, -4.37114e-08, 7.01997, 0.70933, -13.0624)
 use_collision = true
 size = Vector3(6.423, 1.02, 2)
 
@@ -196,18 +201,6 @@ size = Vector3(1.33834, 3.73146, 0.682947)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.13368, -0.31702, 1.01855)
 size = Vector3(1.372, 0.019, 1.372)
 
-[node name="JumpableBox" type="CSGBox3D" parent="MainGround"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0.843, 12)
-size = Vector3(1.372, 0.686, 1.372)
-
-[node name="JumpableBoxWithCrouch" type="CSGBox3D" parent="MainGround/JumpableBox"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.129, 1.3716)
-size = Vector3(1.372, 0.943, 1.372)
-
-[node name="ThinFence" type="CSGBox3D" parent="MainGround/JumpableBox"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1658, 0.129, 0.1447)
-size = Vector3(2.803, 0.29, 0.05)
-
 [node name="WeirdStructure" type="Node3D" parent="MainGround"]
 
 [node name="CSGBox3D3" type="CSGBox3D" parent="MainGround/WeirdStructure"]
@@ -216,9 +209,9 @@ use_collision = true
 size = Vector3(9.683, 1.02, 4.2)
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="MainGround/WeirdStructure/CSGBox3D3"]
-transform = Transform3D(0.747647, -0.664096, 0, 0.664096, 0.747647, 0, 0, 0, 1, 6.39606, 1.29774, 0.038599)
+transform = Transform3D(0.747647, -0.664096, 0, 0.664096, 0.747647, 0, 0, 0, 1, 6.39606, 1.29774, -0.431437)
 use_collision = true
-size = Vector3(4, 1.02, 4.2)
+size = Vector3(4, 1.02, 3)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="MainGround/WeirdStructure/CSGBox3D3"]
 transform = Transform3D(1, 0, 0, 0, 0.775132, 0.631799, 0, -0.631799, 0.775132, -0.685213, -2.69241, 4.0423)
@@ -229,6 +222,33 @@ size = Vector3(12.053, 7.44525, 1)
 transform = Transform3D(0.866025, -0.5, 0, 0.5, 0.866025, 0, 0, 0, 1, -8.92476, -2.35706, 0)
 use_collision = true
 size = Vector3(9.683, 1.02, 4.2)
+
+[node name="JumpableBoxes" type="Node3D" parent="MainGround"]
+
+[node name="JumpableBox" type="CSGBox3D" parent="MainGround/JumpableBoxes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0.843, 12)
+use_collision = true
+size = Vector3(1.372, 0.686, 1.372)
+
+[node name="JumpableBoxWithCrouch" type="CSGBox3D" parent="MainGround/JumpableBoxes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0.972, 13.3716)
+use_collision = true
+size = Vector3(1.372, 0.943, 1.372)
+
+[node name="StepUp" type="CSGBox3D" parent="MainGround/JumpableBoxes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0.972, 14.7475)
+use_collision = true
+size = Vector3(1.372, 1.34831, 1.372)
+
+[node name="StepUp2" type="CSGBox3D" parent="MainGround/JumpableBoxes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0.972, 16.0858)
+use_collision = true
+size = Vector3(1.372, 1.82116, 1.372)
+
+[node name="ThinFence" type="CSGBox3D" parent="MainGround/JumpableBoxes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.1658, 0.972, 12.1447)
+use_collision = true
+size = Vector3(2.803, 0.29, 0.05)
 
 [node name="Player" parent="." instance=ExtResource("3_u5blx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.7531, 1.26251, 0)
