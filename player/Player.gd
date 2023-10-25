@@ -20,7 +20,7 @@ const BACKPEDAL_SPEED_MULTIPLIER = 0.9
 @export var TERMINAL_SPEED := 3500 * HU
 
 @export_range(0, 90, 0.001, "radians")
-var MAX_SLOPE_ANGLE := deg_to_rad(46.0): # Should be 45.573 degrees
+var MAX_SLOPE_ANGLE := deg_to_rad(45.573):
 	set(new): # This is really stupid by the way.
 		MAX_SLOPE_ANGLE = new
 		floor_max_angle = new 
@@ -93,6 +93,8 @@ var noclip_enabled := false:
 		noclip_enabled = new
 		grounded = false
 
+var forced_wishdir := Vector2.ZERO
+
 func _input(event):
 	if event.is_action_pressed("ui_cancel"):
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
@@ -126,17 +128,10 @@ func _physics_process(delta: float):
 		_handle_noclip(delta)
 		return
 	
-	if grounded:
-#		var floor_collision := _floor_intersect_ray()
-		var floor_collision := _floor_intersect_shape()
-		if floor_collision:
-#			var slope_angle := get_slope_angle(floor_collision.normal)
-			var slope_angle := get_slope_angle(floor_collision.get_normal()) 
-			grounded = slope_angle < MAX_SLOPE_ANGLE
-		else:
-			grounded = false
-	
 	var wish_dir := Input.get_vector("player_left", "player_right", "player_forward", "player_back")
+	if forced_wishdir.y != 0:
+		wish_dir.y = forced_wishdir.y
+		wish_dir = wish_dir.normalized()
 	wish_dir = wish_dir.rotated(-cam_pivot.rotation.y)
 	if debug_top_down_view:
 		set_meta("wish_dir", wish_dir)
@@ -219,16 +214,20 @@ func _handle_collision(delta: float):
 			var slope_angle := get_slope_angle(normal)
 			# At fast speeds, even a gentle slope can launch you.
 			if slope_angle < maxf(MAX_SLOPE_ANGLE - velocity.length() * 0.02, 0.01):
+#			if slope_angle < MAX_SLOPE_ANGLE:
 				# Give one extra frame of just landed mercy. Vanilla TF2 does this.
 				# Allows keeping momentum with perfect bunny-hopping.
 				set_deferred("grounded", true)
 				_just_landed = true
 				velocity.y = 0.0
 		else:
-			var angle_difference = abs(rad_to_deg(normal.angle_to(up_direction)) - 90.0)
-			if angle_difference <= 1.0:
+			var angle_difference = abs(normal.angle_to(up_direction) - TAU * 0.25)
+			if angle_difference <= TAU * 0.01:
 				if _try_to_step_up(pos, remainder):
 					has_stepped_up = true
+			
+			if not has_stepped_up:
+				velocity = velocity.slide(normal)
 		var debug_color := Color.RED
 		debug_color.h += i * 0.1
 		
@@ -236,8 +235,17 @@ func _handle_collision(delta: float):
 			DebugDraw3D.draw_points([pos], 0.1 - i * 0.02, debug_color, 1)
 			DebugDraw3D.draw_ray(pos, normal, 0.5 - i * 0.05, debug_color, 1)
 	
-	if grounded and not has_stepped_up:
-		_snap_to_floor()
+	if grounded:
+		if not has_stepped_up:
+			_snap_to_floor()
+		
+		var floor_collision := _floor_intersect_shape()
+		if floor_collision:
+			var slope_angle := get_slope_angle(floor_collision.get_normal()) 
+			grounded = slope_angle < MAX_SLOPE_ANGLE
+		else:
+			grounded = false
+	
 
 func _handle_collision_with_slide(_delta: float): # Unused
 	_just_landed = false
@@ -348,14 +356,13 @@ func _try_to_step_up(pos: Vector3, remainder: Vector3) -> bool:
 	# Trying to replicate it is not worth the effort right now.
 	var intersection := get_world_3d().direct_space_state.intersect_ray(query)
 	if intersection and intersection.normal != Vector3.ZERO:
-		var original_position := position
-		position.y = intersection.position.y + HU
-		if move_and_collide(remainder, true):
+		var test_transform := global_transform
+		test_transform.origin.y = intersection.position.y + HU
+		if test_move(test_transform, remainder):
 #			print("Trying to step up, but nuh-uh.")
-			position = original_position
 			return false
+		position.y = test_transform.origin.y
 		
-		move_and_collide(remainder.normalized() * HU)
 		return true
 	
 	return false

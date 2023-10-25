@@ -38,10 +38,13 @@ var interval_timer: SceneTreeTimer
 func refresh_interval():
 	interval_timer = get_tree().create_timer(attack_interval)
 	interval_timer.timeout.connect(func():
+			_interval_timeout()
 			# When holding down the button, shoot again as soon as possible.
 			if Input.is_action_pressed(trigger_action): shoot()
 	)
 
+func _interval_timeout():
+	pass
 
 func setup_projectile(rocket: Rocket, shoot_offset: Vector3):
 	var origin := global_position
