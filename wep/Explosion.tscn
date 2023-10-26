@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dro1lx1y42eja"]
+[gd_scene load_steps=15 format=3 uid="uid://dro1lx1y42eja"]
 
 [ext_resource type="Script" path="res://wep/explosion.gd" id="1_u2aqr"]
 [ext_resource type="PackedScene" uid="uid://xnor1ir3y6j6" path="res://wep/BlastDecal.tscn" id="3_bgour"]
@@ -23,6 +23,7 @@ metadata/_snap_enabled = true
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t44uc"]
 transparency = 1
 diffuse_mode = 2
+vertex_color_use_as_albedo = true
 albedo_color = Color(2.5, 2, 0.75, 0.5)
 albedo_texture = SubResource("GradientTexture2D_onu2f")
 texture_filter = 2
@@ -32,6 +33,14 @@ billboard_keep_scale = true
 particles_anim_h_frames = 1
 particles_anim_v_frames = 1
 particles_anim_loop = false
+
+[sub_resource type="Gradient" id="Gradient_njs5o"]
+offsets = PackedFloat32Array(0, 0.140921, 1)
+colors = PackedColorArray(0.721493, 0.109236, 0.174589, 1, 0.580346, 0.309637, 3.85046e-07, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_eq1gw"]
+gradient = SubResource("Gradient_njs5o")
+width = 16
 
 [sub_resource type="Curve" id="Curve_t58pu"]
 _data = [Vector2(0, 1), -0.372456, -0.538305, 0, 0, Vector2(0.7, 0), 0.0, 0.0, 0, 0]
@@ -53,6 +62,7 @@ linear_accel_min = -3.0
 damping_max = 2.0
 scale_min = 0.25
 scale_curve = SubResource("CurveTexture_j4xaj")
+color_ramp = SubResource("GradientTexture1D_eq1gw")
 hue_variation_min = -0.1
 hue_variation_max = 0.1
 
@@ -66,22 +76,26 @@ stream_0/weight = 1.0
 
 [node name="Explosion" type="Area3D"]
 top_level = true
+collision_layer = 0
+collision_mask = 256
+monitorable = false
 script = ExtResource("1_u2aqr")
 
 [node name="BlastShape" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_r7on5")
 
 [node name="BlastDecal" parent="." instance=ExtResource("3_bgour")]
+cull_mask = 1048565
 
 [node name="BlastParticles" type="GPUParticles3D" parent="."]
 process_thread_group = 1
 process_thread_group_order = 0
 process_thread_messages = 0
+layers = 8
 material_override = SubResource("StandardMaterial3D_t44uc")
 cast_shadow = 0
 amount = 16
 lifetime = 2.0
-one_shot = true
 explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_pn7dq")
 draw_pass_1 = SubResource("QuadMesh_osaed")
@@ -104,4 +118,3 @@ visible = false
 cone = true
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
-[connection signal="ready" from="BlastParticles" to="BlastParticles" method="set_one_shot" binds= [true]]

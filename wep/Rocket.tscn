@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://dnn6dus4lvweg"]
+[gd_scene load_steps=8 format=3 uid="uid://dnn6dus4lvweg"]
 
-[ext_resource type="Script" path="res://wep/rocket.gd" id="1_uh251"]
+[ext_resource type="Script" path="res://wep/rocket.gd" id="1_a44w1"]
+[ext_resource type="PackedScene" uid="uid://fd3o8skf15np" path="res://wep/models/rocket.glb" id="2_5ru8u"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dqyvw"]
 transparency = 3
@@ -29,7 +30,7 @@ lifetime_randomness = 0.2
 flatness = 0.25
 gravity = Vector3(0, -1, 0)
 initial_velocity_max = 1.0
-color = Color(0.533333, 0.941176, 1, 1)
+color = Color(1, 0.537255, 0.329412, 1)
 color_ramp = SubResource("GradientTexture1D_xi33m")
 turbulence_noise_speed = Vector3(2.365, 0, 0)
 
@@ -42,10 +43,11 @@ process_thread_group_order = 0
 process_thread_messages = 0
 exclude_parent = false
 target_position = Vector3(0, 0, -1)
+collision_mask = 257
 hit_from_inside = true
 debug_shape_custom_color = Color(1, 0.396078, 0.792157, 1)
 debug_shape_thickness = 5
-script = ExtResource("1_uh251")
+script = ExtResource("1_a44w1")
 speed = 20.995
 
 [node name="Lifetime" type="Timer" parent="."]
@@ -54,11 +56,14 @@ autostart = true
 
 [node name="Box" type="CSGBox3D" parent="."]
 transform = Transform3D(0.707107, -0.707107, 0, 0.707107, 0.707107, 0, 0, 0, 1, 0, 0, 0.5)
+visible = false
 size = Vector3(0.25, 0.25, 1)
 
 [node name="Trail" type="GPUParticles3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.706818)
+layers = 8
 material_override = SubResource("StandardMaterial3D_dqyvw")
+extra_cull_margin = 8.0
 lifetime = 0.5
 visibility_aabb = AABB(-1, -1.014, -4.048, 2, 2.027, 5.081)
 process_material = SubResource("ParticleProcessMaterial_xhuh6")
@@ -67,5 +72,8 @@ draw_pass_1 = SubResource("QuadMesh_sm6mi")
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(0.358368, 0, -0.93358, 0, 1, 0, 0.93358, 0, 0.358368, -1.5, 0, 2.567)
 visible = false
+
+[node name="rocket" parent="." instance=ExtResource("2_5ru8u")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0.301185)
 
 [connection signal="timeout" from="Lifetime" to="." method="queue_free"]

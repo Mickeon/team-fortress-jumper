@@ -12,6 +12,7 @@ var trigger_action := "player_primary"
 
 @onready var player_owner: Player = owner
 @onready var sfx: AudioStreamPlayer3D = $Shoot
+@export var first_person_player: AnimationPlayer
 
 func _unhandled_input(event):
 	if event.is_action_pressed(trigger_action):
@@ -24,8 +25,6 @@ func shoot():
 	
 	refresh_interval()
 	
-	sfx.play()
-	
 	var shoot_offset = SHOOT_OFFSET_CROUCH if player_owner.crouching else SHOOT_OFFSET
 	
 	var rocket: Rocket = preload("./Rocket.tscn").instantiate()
@@ -33,6 +32,11 @@ func shoot():
 	rocket.source = player_owner
 	rocket.add_exception(player_owner)
 	owner.add_sibling(rocket)
+	
+	sfx.play()
+	first_person_player.stop()
+	first_person_player.play("rocket_launcher_fire")
+
 
 var interval_timer: SceneTreeTimer
 func refresh_interval():
@@ -65,4 +69,10 @@ func setup_projectile(rocket: Rocket, shoot_offset: Vector3):
 #	DebugDraw3D.draw_line(rocket.position, target, Color.RED, 10.0)
 #	DebugDraw3D.draw_sphere(rocket.position, 0.05, Color.BLUE, 10.0)
 	pass
+
+
+func _on_FirstPersonPlayer_animation_finished(anim_name: StringName) -> void:
+	match anim_name:
+		&"rocket_launcher_fire", &"rocket_launcher_draw":
+			first_person_player.play(&"rocket_launcher_idle")
 

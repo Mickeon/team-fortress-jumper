@@ -1,0 +1,36 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+uid="uid://c1x4p4guw7bb3"
+path.bptc="res://.godot/imported/soldier_red.png-1c083edca5454ee52cc350664f7f31dc.bptc.ctex"
+path.astc="res://.godot/imported/soldier_red.png-1c083edca5454ee52cc350664f7f31dc.astc.ctex"
+metadata={
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"vram_texture": true
+}
+
+[deps]
+
+source_file="res://player/soldier/soldier_red.png"
+dest_files=["res://.godot/imported/soldier_red.png-1c083edca5454ee52cc350664f7f31dc.bptc.ctex", "res://.godot/imported/soldier_red.png-1c083edca5454ee52cc350664f7f31dc.astc.ctex"]
+
+[params]
+
+compress/mode=2
+compress/high_quality=true
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/normal_map=0
+compress/channel_pack=0
+mipmaps/generate=true
+mipmaps/limit=3
+roughness/mode=0
+roughness/src_normal=""
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=0

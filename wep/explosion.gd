@@ -53,8 +53,9 @@ func _debug_physics_process():
 
 func _update_splash_radius():
 	# By default, these two are 2-4 meters wide.
-	$BlastShape.scale = Vector3.ONE / 2.0 * splash_radius 
-	$BlastDecal.size = (Vector3.ONE * 4) / 2.0 * splash_radius 
+	$BlastShape.scale = Vector3.ONE / 2.0 * splash_radius
+	$BlastDecal.size = (Vector3.ONE * 4) / 2.0 * splash_radius
+	$BlastParticles.one_shot = true # In the editor, it is not one-shot.
 
 
 func apply_knockback(player: Player):
@@ -94,7 +95,7 @@ func apply_knockback(player: Player):
 func is_valid_target(player: Player) -> bool:
 	var query := PhysicsRayQueryParameters3D.create(
 			global_position, player.get_global_center(),
-			0xFFFFFFFF, [player.get_rid()])
+			0b1, [player.get_rid()])
 	
 	# Check for any obstruction between the player and the blast.
 	return get_world_3d().direct_space_state.intersect_ray(query).is_empty()

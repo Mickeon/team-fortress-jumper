@@ -1,11 +1,22 @@
-[gd_scene load_steps=20 format=3 uid="uid://bp3faj46c64ck"]
+[gd_scene load_steps=33 format=3 uid="uid://bp3faj46c64ck"]
 
 [ext_resource type="Script" path="res://player/Player.gd" id="1"]
 [ext_resource type="Script" path="res://wep/rocket_launcher.gd" id="2_eytv3"]
+[ext_resource type="PackedScene" uid="uid://cinr8vnvlck8b" path="res://player/soldier/soldier_fp.glb" id="2_q83su"]
 [ext_resource type="AudioStream" uid="uid://cl0o43vfjhoqo" path="res://sfx/rocket_jumper_shoot.wav" id="3_jfsrj"]
 [ext_resource type="Script" path="res://addons/smoothing/smoothing.gd" id="4_5fufl"]
+[ext_resource type="PackedScene" uid="uid://dnev3pycp5dyd" path="res://wep/models/rocket_launcher.glb" id="4_fpnlp"]
 [ext_resource type="Script" path="res://wep/charging_shield.gd" id="5_k3wqx"]
+[ext_resource type="Material" uid="uid://bcyjpdmg18bqa" path="res://wep/models/rocket_launcher_mat.tres" id="5_w6h5j"]
 [ext_resource type="AudioStream" uid="uid://cssshdan1cmba" path="res://sfx/charging_shield_windup_no_voice.wav" id="6_83htm"]
+[ext_resource type="PackedScene" uid="uid://dd6xa26xijbfc" path="res://player/soldier/soldier.glb" id="7_u83eq"]
+[ext_resource type="Material" uid="uid://c67e1bprtx6g6" path="res://player/soldier/hands_mat.tres" id="10_axakk"]
+[ext_resource type="Texture2D" uid="uid://bm4pc4wm5dccw" path="res://player/soldier/soldier_sleeves_red.png" id="11_aj8ur"]
+[ext_resource type="Material" uid="uid://6ow1u4ur6s03" path="res://player/soldier/coat_mat.tres" id="11_i7qop"]
+[ext_resource type="Texture2D" uid="uid://dfct0pgm1idvk" path="res://player/soldier/soldier_sleeves_normal.png" id="12_wfo7e"]
+[ext_resource type="Material" uid="uid://dsyli0q6u4vy" path="res://player/soldier/eyes_mat.tres" id="15_e062c"]
+[ext_resource type="Material" uid="uid://dayfb14k5kwp" path="res://player/soldier/head_mat.tres" id="16_8d1ru"]
+[ext_resource type="Material" uid="uid://cuc8qbquctc7i" path="res://player/soldier/tongue_mat.tres" id="17_yfvvi"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1tjpu"]
 no_depth_test = true
@@ -75,6 +86,34 @@ color_ramp = SubResource("GradientTexture1D_awufh")
 [sub_resource type="QuadMesh" id="QuadMesh_gh0ur"]
 size = Vector2(1.4, 1)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i7x3j"]
+resource_name = "coat"
+albedo_texture = ExtResource("11_aj8ur")
+metallic_specular = 0.2
+roughness = 0.75
+normal_enabled = true
+normal_texture = ExtResource("12_wfo7e")
+rim_enabled = true
+rim = 0.3
+rim_tint = 0.9
+backlight = Color(0.784314, 0.54902, 0.270588, 1)
+
+[sub_resource type="Skin" id="Skin_37hr0"]
+resource_name = "Skin"
+bind_count = 4
+bind/0/name = &"weapon_bone"
+bind/0/bone = -1
+bind/0/pose = Transform3D(52.4934, 0, 0, 0, 52.4934, -8.55227e-06, 0, 8.55227e-06, 52.4934, 0, 2.24543, 2.10987)
+bind/1/name = &"vm_weapon_bone_1"
+bind/1/bone = -1
+bind/1/pose = Transform3D(1.61522e-05, 46.2953, 24.7447, -2.00992e-06, 24.7447, -46.2953, -52.4934, 1.45329e-05, 7.76778e-06, -14.1995, 10.3593, 2.08272)
+bind/2/name = &"vm_weapon_bone_2"
+bind/2/bone = -1
+bind/2/pose = Transform3D(-9.06898e-06, 51.8248, -8.35214, 1.72555e-06, 8.35212, 51.8247, 52.4934, 7.44366e-06, -1.52775e-06, -8.36767, -19.3895, -2.09028)
+bind/3/name = &"c_weapon_stattrack"
+bind/3/bone = -1
+bind/3/pose = Transform3D(51.5036, 10.0947, -1.02009, -1.03836, -0.005782, -52.4832, -10.0928, 51.5137, 0.194012, -3.79051, 4.92592, -4.5772)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_301pk"]
 resource_local_to_scene = true
 size = Vector3(0.914, 1.562, 0.914)
@@ -93,6 +132,7 @@ radius = 0.457
 process_thread_group = 1
 process_thread_group_order = 0
 process_thread_messages = 0
+collision_layer = 256
 floor_stop_on_slope = false
 floor_block_on_wall = false
 floor_max_angle = 0.802851
@@ -108,13 +148,16 @@ target = NodePath("..")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2954, 0)
 
 [node name="Camera" type="Camera3D" parent="Smoothing3D/Pivot"]
+cull_mask = 1048571
 fov = 85.0
 
-[node name="RocketLauncher" type="Node3D" parent="Smoothing3D/Pivot"]
+[node name="RocketLauncher" type="Node3D" parent="Smoothing3D/Pivot" node_paths=PackedStringArray("first_person_player")]
 script = ExtResource("2_eytv3")
+first_person_player = NodePath("../FirstPersonModel/AnimationPlayer")
 
 [node name="Cylinder" type="CSGCylinder3D" parent="Smoothing3D/Pivot/RocketLauncher"]
 transform = Transform3D(-0.988228, -0.152958, -0.00293694, -1.67829e-09, -0.0191974, 0.999816, -0.152986, 0.988046, 0.0189714, 0.197063, -0.217942, -0.175458)
+visible = false
 sorting_offset = 66.265
 sorting_use_aabb_center = false
 radius = 0.0950297
@@ -138,6 +181,7 @@ trigger_action = "player_secondary"
 
 [node name="Trail" type="GPUParticles3D" parent="Smoothing3D/Pivot/ChargingShield"]
 material_override = SubResource("StandardMaterial3D_7u7yu")
+emitting = false
 amount = 192
 lifetime = 5.0
 speed_scale = 1.5
@@ -152,6 +196,102 @@ volume_db = -20.0
 max_db = -20.0
 max_polyphony = 10
 attenuation_filter_cutoff_hz = 18520.0
+
+[node name="FirstPersonModel" parent="Smoothing3D/Pivot" instance=ExtResource("2_q83su")]
+transform = Transform3D(-1, 0, -9.81473e-08, 0, 1, 0, 1.50996e-07, 0, -0.65, 0, 0, 0)
+
+[node name="Skeleton3D" parent="Smoothing3D/Pivot/FirstPersonModel/Arms" index="0"]
+bones/2/position = Vector3(-3.4066, -0.468442, 0)
+bones/2/rotation = Quaternion(-2.69995e-07, 0, 0, 1)
+bones/3/position = Vector3(-0.861092, -13.3363, 2.26179)
+bones/3/rotation = Quaternion(-0.532747, -0.107155, 0.0858424, 0.835063)
+bones/4/position = Vector3(-1.188, -14.0583, -3.26346)
+bones/4/rotation = Quaternion(-0.539713, 0.0083649, -0.0205646, 0.841556)
+bones/5/position = Vector3(-8.71723e-07, -12.3754, -1.35067e-05)
+bones/6/rotation = Quaternion(0.183318, 0.0757875, 0.0131896, 0.980039)
+bones/12/rotation = Quaternion(-0.270379, -0.0297311, -0.353441, 0.895037)
+bones/13/rotation = Quaternion(0.554678, 1.5734e-07, 1.08331e-07, 0.832065)
+bones/14/position = Vector3(-3.69548e-06, -1.64941, 3.08357e-06)
+bones/14/rotation = Quaternion(0.139119, -1.69856e-08, 9.75262e-08, 0.990276)
+bones/16/position = Vector3(1.85235e-06, -3.30729, 8.95508e-07)
+bones/16/rotation = Quaternion(0.274312, 0.0586107, 0.30374, 0.910527)
+bones/17/position = Vector3(2.38418e-06, -2.89288, 1.46134e-07)
+bones/17/rotation = Quaternion(0.561346, 1.28482e-07, 7.58913e-08, 0.827581)
+bones/20/rotation = Quaternion(0.401801, 0.00386846, 0.174454, 0.898948)
+bones/21/position = Vector3(1.43051e-06, -2.79951, 3.93187e-06)
+bones/21/rotation = Quaternion(0.602618, -2.51437e-07, -1.37618e-07, 0.79803)
+bones/22/position = Vector3(2.38399e-07, -1.82245, -4.54528e-06)
+bones/22/rotation = Quaternion(0.420244, 1.87305e-07, 2.53953e-07, 0.907411)
+bones/24/rotation = Quaternion(0.481692, 0.0564772, -0.00184271, 0.874517)
+bones/25/rotation = Quaternion(0.427094, 2.54419e-07, 1.90916e-07, 0.904207)
+bones/26/rotation = Quaternion(0.320205, -1.21408e-07, 1.93861e-07, 0.947348)
+bones/28/position = Vector3(5.22395e-06, -3.29754, 1.79564e-06)
+bones/28/rotation = Quaternion(0.495501, 0.0881671, -0.176717, 0.845858)
+bones/29/position = Vector3(1.2517e-06, -1.95185, 6.71333e-06)
+bones/29/rotation = Quaternion(0.371242, -2.46935e-07, -7.41225e-08, 0.928536)
+bones/30/rotation = Quaternion(0.261524, 3.83473e-07, 1.42982e-07, 0.965197)
+bones/31/position = Vector3(-16.0144, -5.9767, -8.58229)
+bones/31/rotation = Quaternion(0.838895, -0.147064, -0.29838, 0.430809)
+bones/32/position = Vector3(1.18795, 14.0584, 3.26346)
+bones/32/rotation = Quaternion(-0.401587, 0.006175, -0.0266143, 0.915413)
+bones/34/position = Vector3(5.05052e-05, 1.05885, 1.49011e-07)
+bones/34/rotation = Quaternion(-0.048477, 0.19129, 0.197848, 0.960164)
+bones/36/position = Vector3(14.675, -5.27856, -19.4091)
+bones/36/rotation = Quaternion(3.22303e-05, -5.51902e-06, 3.59095e-05, -1)
+bones/37/position = Vector3(1.83128, 23.1056, -10.0956)
+bones/37/rotation = Quaternion(0.64124, 0.230947, -0.702983, -0.2032)
+bones/38/position = Vector3(1.43673, 25.5549, -13.4926)
+bones/38/rotation = Quaternion(0.0321393, -0.731074, -0.0138536, -0.6814)
+bones/39/position = Vector3(6.03971, 2.69475, 1.13533)
+bones/40/position = Vector3(6.46406, 3.59923, 1.46289)
+bones/44/position = Vector3(1.50563, 3.93007, -2.61159)
+bones/44/rotation = Quaternion(0.657478, -0.00563457, -0.047535, -0.751952)
+bones/48/position = Vector3(4.81458, 2.7311, 1.19043)
+bones/48/rotation = Quaternion(0.963014, -0.200186, -0.0522706, -0.172619)
+bones/49/rotation = Quaternion(0.963014, -0.200186, -0.0522709, -0.172619)
+bones/50/rotation = Quaternion(0.963014, -0.200186, -0.0522703, -0.172619)
+bones/51/rotation = Quaternion(-0.178619, -0.0115269, -0.209606, 0.961264)
+bones/52/position = Vector3(1.23976e-05, 3.09957, 1.48867e-05)
+bones/52/rotation = Quaternion(0.277534, 4.95543e-08, -9.06148e-08, 0.960716)
+bones/53/rotation = Quaternion(0.236207, -3.88818e-06, 1.38335e-07, 0.971703)
+bones/55/position = Vector3(1.10964e-05, 3.30726, 1.56839e-05)
+bones/55/rotation = Quaternion(0.150219, 0.0424141, 0.316565, 0.93564)
+bones/56/rotation = Quaternion(0.650423, 1.9542e-07, -4.91647e-07, 0.759572)
+bones/57/position = Vector3(-2.7895e-05, 1.78928, -4.41099e-05)
+bones/57/rotation = Quaternion(0.484525, 2.14273e-07, -3.54342e-07, 0.874778)
+bones/59/rotation = Quaternion(0.304938, 0.0288017, 0.255868, 0.916905)
+bones/60/position = Vector3(-6.61635e-06, 2.79957, -4.8018e-06)
+bones/60/rotation = Quaternion(0.610572, 1.15542e-05, -9.40216e-06, 0.791961)
+bones/61/position = Vector3(1.62125e-05, 1.82241, 9.48756e-06)
+bones/61/rotation = Quaternion(0.529254, -1.55521e-07, 6.51883e-08, 0.848463)
+bones/63/position = Vector3(-2.30992e-05, 3.38824, -4.31996e-06)
+bones/63/rotation = Quaternion(0.427461, 0.160906, 0.127657, 0.880392)
+bones/64/rotation = Quaternion(0.571263, 2.30431e-06, -1.196e-06, 0.820767)
+bones/65/rotation = Quaternion(0.452531, -7.80342e-07, 7.07538e-07, 0.891749)
+bones/67/position = Vector3(-7.83023e-06, 3.29759, 1.81632e-05)
+bones/67/rotation = Quaternion(0.522349, 0.248967, -0.00221283, 0.815575)
+bones/68/rotation = Quaternion(0.509227, -1.29156e-07, -1.35684e-07, 0.860632)
+bones/69/rotation = Quaternion(0.385204, 5.47721e-07, -4.54478e-07, 0.922831)
+bones/70/position = Vector3(-16.4263, -33.1215, 27.603)
+bones/70/rotation = Quaternion(0.133277, 0.177765, 0.0240062, 0.974711)
+
+[node name="mesh" parent="Smoothing3D/Pivot/FirstPersonModel/Arms/Skeleton3D" index="0"]
+layers = 2
+gi_mode = 0
+surface_material_override/0 = ExtResource("10_axakk")
+surface_material_override/1 = SubResource("StandardMaterial3D_i7x3j")
+
+[node name="AnimationPlayer" parent="Smoothing3D/Pivot/FirstPersonModel" index="1"]
+autoplay = "rocket_launcher_draw"
+
+[node name="rocket_launcher_mdl" parent="Smoothing3D/Pivot/FirstPersonModel" instance=ExtResource("4_fpnlp")]
+
+[node name="c_rocketlauncher" parent="Smoothing3D/Pivot/FirstPersonModel/rocket_launcher_mdl/c_rocketlauncher_qc_skeleton/Skeleton3D" index="0"]
+layers = 2
+gi_mode = 0
+skin = SubResource("Skin_37hr0")
+skeleton = NodePath("../../../../Arms/Skeleton3D")
+surface_material_override/0 = ExtResource("5_w6h5j")
 
 [node name="CollisionShapeBox" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.781, 0)
@@ -169,3 +309,50 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.781, 0)
 visible = false
 shape = SubResource("CylinderShape3D_el3cl")
 disabled = true
+
+[node name="soldier" parent="." instance=ExtResource("7_u83eq")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="Skeleton3D" parent="soldier/Body" index="0"]
+bones/9/rotation = Quaternion(0.81081, -0.557869, 0.172073, -0.0419501)
+bones/10/position = Vector3(-8.67555e-06, -9.80005, 1.12383e-05)
+bones/10/rotation = Quaternion(-0.251657, 0.782885, 0.508399, -0.255518)
+bones/11/position = Vector3(14.481, -0.00015572, -0.00179538)
+bones/17/position = Vector3(4.05312e-06, -2.44685, -1.53184e-05)
+bones/32/position = Vector3(-1.22046e-05, 9.80003, -9.11122e-06)
+bones/34/rotation = Quaternion(0.499804, 0.500195, 0.499824, -0.500178)
+bones/38/rotation = Quaternion(-0.783337, 0.0802305, 0.186218, 0.587596)
+bones/44/position = Vector3(-1.31131e-05, 2.40567, -4.28025e-05)
+bones/54/position = Vector3(-1.48997e-07, 1.32228, -1.59296e-05)
+bones/55/rotation = Quaternion(0.836072, -0.230977, 0.493101, -0.0669651)
+bones/56/rotation = Quaternion(0.87642, 0.215093, -0.43021, -0.0232815)
+bones/60/rotation = Quaternion(0.902114, 0.414089, -0.121169, -0.00626222)
+bones/61/rotation = Quaternion(0.709973, 0.688985, 0.145729, -0.00112578)
+bones/70/rotation = Quaternion(0.989204, -0.106361, 0.0789955, -0.0626277)
+bones/78/rotation = Quaternion(0.838274, -0.0753744, 0.539596, -0.021249)
+bones/81/position = Vector3(-2.57418e-14, -1.55857e-06, 8.12112e-07)
+bones/82/position = Vector3(-2.57418e-14, -1.55857e-06, 8.12112e-07)
+bones/83/position = Vector3(-2.57418e-14, -1.55857e-06, 8.12112e-07)
+bones/84/position = Vector3(-2.57418e-14, -1.55857e-06, 8.12112e-07)
+bones/85/position = Vector3(-2.57418e-14, -1.55857e-06, 8.12112e-07)
+bones/86/position = Vector3(-2.57418e-14, -1.55857e-06, 8.12112e-07)
+bones/87/position = Vector3(-2.57418e-14, -1.55857e-06, 8.12112e-07)
+
+[node name="mesh" parent="soldier/Body/Skeleton3D" index="0"]
+layers = 4
+lod_bias = 2.0
+surface_material_override/0 = ExtResource("11_i7qop")
+surface_material_override/1 = ExtResource("15_e062c")
+surface_material_override/2 = ExtResource("16_8d1ru")
+surface_material_override/3 = ExtResource("15_e062c")
+surface_material_override/4 = ExtResource("17_yfvvi")
+surface_material_override/5 = ExtResource("10_axakk")
+
+[node name="AnimationPlayer" parent="soldier" index="1"]
+autoplay = "soldier_qc_skeleton|forcedapose"
+
+[connection signal="animation_finished" from="Smoothing3D/Pivot/FirstPersonModel/AnimationPlayer" to="Smoothing3D/Pivot/RocketLauncher" method="_on_FirstPersonPlayer_animation_finished"]
+
+[editable path="Smoothing3D/Pivot/FirstPersonModel"]
+[editable path="Smoothing3D/Pivot/FirstPersonModel/rocket_launcher_mdl"]
+[editable path="soldier"]

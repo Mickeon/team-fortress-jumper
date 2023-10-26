@@ -18,6 +18,10 @@ func _ready():
 	# Alternatively, we push the rocket back, then move it forward to update the raycast at the beginning.
 	target_position.z = -speed * get_physics_process_delta_time()
 	translate_object_local(-target_position)
+	
+	# The rocket's model is not is visible for few split seconds, likely not to cover your face.
+	$rocket.hide()
+	get_tree().create_timer(0.05).timeout.connect($rocket.show)
 
 func _physics_process(delta):
 	if is_colliding():
@@ -45,4 +49,12 @@ func explode():
 	add_sibling(explosion)
 	
 	queue_free()
+
+func _exit_tree():
+	var trail = $Trail
+	
+	trail.emitting = false
+	remove_child(trail)
+	get_parent().add_child.call_deferred(trail)
+	get_tree().create_timer(1).timeout.connect(trail.queue_free)
 

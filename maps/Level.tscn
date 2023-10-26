@@ -206,6 +206,7 @@ size = Vector3(1.33834, 3.73146, 0.682947)
 
 [node name="CrouchUnder" type="CSGBox3D" parent="MainGround/Slender"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.13368, -0.31702, 1.01855)
+use_collision = true
 size = Vector3(1.372, 0.019, 1.372)
 
 [node name="WeirdStructure" type="Node3D" parent="MainGround"]
