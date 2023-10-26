@@ -2,6 +2,6 @@
 
 [resource]
 resource_name = "fire_extinguisher_cabinet01"
-cull_mode = 2
-vertex_color_use_as_albedo = true
-metallic = 1.0
+albedo_color = Color(0.886275, 0.6, 0.854902, 1)
+metallic = 0.58
+metallic_specular = 0.76

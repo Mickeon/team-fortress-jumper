@@ -1,4 +1,18 @@
-[gd_resource type="StandardMaterial3D" format=3 uid="uid://1b85cxqfwnog"]
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://1b85cxqfwnog"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_5nxpf"]
+seed = 375
+fractal_lacunarity = 4.59
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ht6vd"]
+width = 32
+height = 32
+in_3d_space = true
+seamless = true
+seamless_blend_skirt = 0.5
+as_normal_map = true
+bump_strength = 4.5
+noise = SubResource("FastNoiseLite_5nxpf")
 
 [resource]
 resource_name = "rock_worn001"
@@ -8,3 +22,5 @@ albedo_color = Color(0.627451, 0.627451, 0.627451, 1)
 metallic = 0.19
 metallic_specular = 0.64
 roughness = 0.84
+normal_enabled = true
+normal_texture = SubResource("NoiseTexture2D_ht6vd")

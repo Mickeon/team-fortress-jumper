@@ -3,5 +3,7 @@
 [resource]
 resource_name = "lights"
 cull_mode = 2
-vertex_color_use_as_albedo = true
-metallic = 1.0
+albedo_color = Color(0.631373, 0.694118, 0.764706, 1)
+metallic = 0.62
+metallic_specular = 0.7
+roughness = 0.51

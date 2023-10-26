@@ -194,6 +194,10 @@ _subresources={
 "use_external/enabled": true,
 "use_external/path": "res://maps/harvest/mat/miningcrate002.tres"
 },
+"models/props_halloween/pumpkin": {
+"use_external/enabled": true,
+"use_external/path": "res://maps/harvest/mat/pumpkin.tres"
+},
 "pallet001": {
 "use_external/enabled": true,
 "use_external/path": "res://maps/harvest/mat/pallet001.tres"
@@ -253,10 +257,6 @@ _subresources={
 "sun_ray1": {
 "use_external/enabled": true,
 "use_external/path": "res://maps/harvest/mat/sun_ray1.tres"
-},
-"sun_sheet": {
-"use_external/enabled": true,
-"use_external/path": "res://maps/harvest/mat/sun_sheet.tres"
 },
 "terminal_chair": {
 "use_external/enabled": true,

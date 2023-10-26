@@ -124,37 +124,42 @@ use_collision = true
 size = Vector3(42, 1, 48)
 material = ExtResource("2_hlduo")
 
-[node name="CSGBox3D4" type="CSGBox3D" parent="MainGround"]
+[node name="SurfingRamps" type="Node3D" parent="MainGround"]
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="MainGround/SurfingRamps"]
 transform = Transform3D(-4.37114e-08, -0.632029, 0.774944, 0, 0.774944, 0.632029, -1, 2.76269e-08, -3.38739e-08, -23.0581, 3.03092, 14.4054)
 use_collision = true
 size = Vector3(39.3993, 7.44525, 1)
 
-[node name="CSGBox3D5" type="CSGBox3D" parent="MainGround/CSGBox3D4"]
+[node name="CSGBox3D5" type="CSGBox3D" parent="MainGround/SurfingRamps/CSGBox3D4"]
 transform = Transform3D(0.971076, -0.15091, 0.185034, 0.15091, 0.988446, 0.0141666, -0.185034, 0.0141667, 0.98263, -25.188, -1.97571, 2.42246)
 use_collision = true
 size = Vector3(26.8049, 7.44525, 1)
 
-[node name="CSGBox3D6" type="CSGBox3D" parent="MainGround/CSGBox3D4"]
+[node name="CSGBox3D6" type="CSGBox3D" parent="MainGround/SurfingRamps/CSGBox3D4"]
 transform = Transform3D(0.592154, -0.509305, 0.62447, 0.509305, 0.837082, 0.199758, -0.62447, 0.199758, 0.755072, -39.1601, -7.09486, 8.69915)
 use_collision = true
 size = Vector3(26.8049, 7.44525, 1)
 
-[node name="CSGBox3D7" type="CSGBox3D" parent="MainGround/CSGBox3D4/CSGBox3D6"]
+[node name="CSGBox3D7" type="CSGBox3D" parent="MainGround/SurfingRamps/CSGBox3D4/CSGBox3D6"]
 transform = Transform3D(-0.00454122, 0.999644, 0.0262566, -0.420783, -0.0257294, 0.906795, 0.90715, -0.00693038, 0.420751, -9.74442, -9.19768, 11.2775)
 use_collision = true
 size = Vector3(26.8049, 7.44525, 1)
 
-[node name="HighWall" type="CSGBox3D" parent="MainGround"]
+[node name="BunchOfWalls" type="Node3D" parent="MainGround"]
 transform = Transform3D(3.55271e-15, 4.37114e-08, -1, 1, -2.98023e-08, 0, -2.98023e-08, -1, -4.37114e-08, 11.3163, 5.33535, 24.7994)
+
+[node name="HighWall" type="CSGBox3D" parent="MainGround/BunchOfWalls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 3.17637e-22, 0, 1, 0, 0, 0)
 use_collision = true
 size = Vector3(12.0125, 3.34849, 6.65666)
 
-[node name="VerySteep" type="CSGBox3D" parent="MainGround/HighWall"]
+[node name="VerySteep" type="CSGBox3D" parent="MainGround/BunchOfWalls"]
 transform = Transform3D(0.965926, 0.258819, -3.09086e-08, -0.258819, 0.965926, -1.28028e-08, 2.65419e-08, 2.03663e-08, 1, 9.53674e-07, -0.1714, 6.63225)
 use_collision = true
 size = Vector3(12.0125, 1.02, 6.65666)
 
-[node name="RJWall" type="CSGBox3D" parent="MainGround/HighWall"]
+[node name="RJWall" type="CSGBox3D" parent="MainGround/BunchOfWalls"]
 transform = Transform3D(1.3027e-15, 1, -2.98023e-08, 4.37114e-08, -2.98023e-08, -1, -1, 2.25001e-15, -4.37114e-08, -0.421529, 0.653, -6.2159)
 use_collision = true
 size = Vector3(6, 8.839, 2)
@@ -192,12 +197,14 @@ transform = Transform3D(-7.62868e-10, 4.37047e-08, -1, 0.999848, 0.0174524, 0, 0
 use_collision = true
 size = Vector3(6.423, 1.02, 2)
 
-[node name="Pillar" type="CSGBox3D" parent="MainGround"]
+[node name="Slender" type="Node3D" parent="MainGround"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.84132, 2.00902, 8.02845)
+
+[node name="Pillar" type="CSGBox3D" parent="MainGround/Slender"]
 use_collision = true
 size = Vector3(1.33834, 3.73146, 0.682947)
 
-[node name="CrouchUnder" type="CSGBox3D" parent="MainGround/Pillar"]
+[node name="CrouchUnder" type="CSGBox3D" parent="MainGround/Slender"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.13368, -0.31702, 1.01855)
 size = Vector3(1.372, 0.019, 1.372)
 
@@ -208,18 +215,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.685213, 3.69241, -16.2585)
 use_collision = true
 size = Vector3(9.683, 1.02, 4.2)
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="MainGround/WeirdStructure/CSGBox3D3"]
-transform = Transform3D(0.747647, -0.664096, 0, 0.664096, 0.747647, 0, 0, 0, 1, 6.39606, 1.29774, -0.431437)
+[node name="CSGBox3D2" type="CSGBox3D" parent="MainGround/WeirdStructure"]
+transform = Transform3D(0.747647, -0.664096, 0, 0.664096, 0.747647, 0, 0, 0, 1, 7.08127, 4.99015, -16.6899)
 use_collision = true
 size = Vector3(4, 1.02, 3)
 
-[node name="CSGBox3D" type="CSGBox3D" parent="MainGround/WeirdStructure/CSGBox3D3"]
-transform = Transform3D(1, 0, 0, 0, 0.775132, 0.631799, 0, -0.631799, 0.775132, -0.685213, -2.69241, 4.0423)
+[node name="CSGBox3D" type="CSGBox3D" parent="MainGround/WeirdStructure"]
+transform = Transform3D(1, 0, 0, 0, 0.775132, 0.631799, 0, -0.631799, 0.775132, 0, 1, -12.2162)
 use_collision = true
 size = Vector3(12.053, 7.44525, 1)
 
-[node name="Ascent" type="CSGBox3D" parent="MainGround/WeirdStructure/CSGBox3D3"]
-transform = Transform3D(0.866025, -0.5, 0, 0.5, 0.866025, 0, 0, 0, 1, -8.92476, -2.35706, 0)
+[node name="Ascent" type="CSGBox3D" parent="MainGround/WeirdStructure"]
+transform = Transform3D(0.866025, -0.5, 0, 0.5, 0.866025, 0, 0, 0, 1, -8.23955, 1.33535, -16.2585)
 use_collision = true
 size = Vector3(9.683, 1.02, 4.2)
 

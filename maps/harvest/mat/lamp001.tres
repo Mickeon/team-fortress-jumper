@@ -2,6 +2,6 @@
 
 [resource]
 resource_name = "lamp001"
-cull_mode = 2
-vertex_color_use_as_albedo = true
-metallic = 1.0
+albedo_color = Color(0.772549, 0.611765, 0.615686, 1)
+metallic = 0.86
+roughness = 0.76

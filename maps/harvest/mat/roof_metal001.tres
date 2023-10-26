@@ -2,6 +2,6 @@
 
 [resource]
 resource_name = "roof_metal001"
-cull_mode = 2
-vertex_color_use_as_albedo = true
-metallic = 1.0
+albedo_color = Color(0.72549, 0.588235, 0.639216, 1)
+metallic = 0.8
+roughness = 0.55

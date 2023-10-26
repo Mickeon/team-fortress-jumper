@@ -36,31 +36,6 @@ var MAX_SLOPE_ANGLE := deg_to_rad(45.573):
 @export var debug_simulate_vanilla_tickrate := false
 @export var debug_allow_bunny_hopping := false
 @export var debug_show_collisions := false
-@export var debug_top_down_view := false:
-	set(new):
-		if debug_top_down_view == new:
-			return
-		
-		debug_top_down_view = new
-		
-		if debug_top_down_view:
-			_debug_top_down_camera = Camera3D.new()
-			var tw := create_tween().set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_OUT).set_parallel()
-			tw.tween_property(_debug_top_down_camera, "position:y", 10.0, 0.75).from(cam_pivot.position.y)
-			tw.tween_property(_debug_top_down_camera, "rotation:x", PI / -2, 0.75).from(cam_pivot.rotation.x)
-			
-			if not is_node_ready(): await ready
-			
-			_debug_top_down_camera.rotation.y = cam_pivot.rotation.y
-			_debug_top_down_camera.make_current()
-			add_child(_debug_top_down_camera)
-			get_tree().process_frame.connect(_debug_draw)
-			
-		else:
-			_debug_top_down_camera.queue_free()
-			if not is_node_ready(): await ready
-			get_tree().process_frame.disconnect(_debug_draw)
-var _debug_top_down_camera: Camera3D
 
 var grounded := false
 var crouching := false:
@@ -110,8 +85,6 @@ func _input(event):
 	
 	if event.is_action_pressed("debug_noclip"):
 		noclip_enabled = not noclip_enabled
-	if event.is_action_pressed("debug_top_down_view"):
-		debug_top_down_view = not debug_top_down_view
 
 func _physics_process(delta: float):
 	if debug_simulate_vanilla_tickrate:
@@ -133,8 +106,7 @@ func _physics_process(delta: float):
 		wish_dir.y = forced_wishdir.y
 		wish_dir = wish_dir.normalized()
 	wish_dir = wish_dir.rotated(-cam_pivot.rotation.y)
-	if debug_top_down_view:
-		set_meta("wish_dir", wish_dir)
+	set_meta("wish_dir", wish_dir) # I don't want to expose this directly now.
 	
 	if grounded and Input.is_action_pressed("player_jump"):
 		grounded = false
@@ -292,10 +264,6 @@ func _handle_camera_rotation(event: InputEventMouseMotion):
 	cam_pivot.rotation.y -= event.relative.x * deg_to_rad(camera_sensitivity)
 	cam_pivot.rotation.x -= event.relative.y * deg_to_rad(camera_sensitivity)
 	cam_pivot.rotation.x = clampf(cam_pivot.rotation.x, -1.55334 , 1.55334) # 89 degrees up and down.
-	
-	if debug_top_down_view:
-		# The debug camera does not rotate on its own.
-		_debug_top_down_camera.rotation.y = cam_pivot.rotation.y
 
 func _handle_noclip(delta: float):
 	const NOCLIP_SPEED = 15.0
@@ -385,27 +353,6 @@ func get_height() -> float:
 
 func get_width() -> float: # Not used anywhere, actually.
 	return capsule.shape.radius
-
-
-func _debug_draw():
-	var velocity_planar := Vector3(velocity.x, 0, velocity.z)
-	var wish_dir: Vector2 = get_meta("wish_dir", Vector2.ZERO)
-	DebugDraw3D.draw_arrow_ray(
-			global_position + Vector3.UP * HU, 
-			velocity_planar, 
-			velocity_planar.length() * 0.25, 
-			Color.DARK_BLUE, velocity_planar.length() * 0.2, true)
-	DebugDraw3D.draw_arrow_ray(
-			global_position + Vector3.UP * HU, 
-			Vector3(wish_dir.x, 0, wish_dir.y), 
-			wish_dir.length(), 
-			Color.DARK_CYAN, 0.25, false)
-	if capsule.shape is BoxShape3D:
-		var size = capsule.shape.size
-		DebugDraw3D.draw_aabb(AABB(capsule.global_position - size * 0.5, size), Color.YELLOW)
-	else:
-		var radius: float = capsule.shape.radius
-		DebugDraw3D.draw_cylinder(global_transform.scaled_local(Vector3(radius, HU, radius)), Color.YELLOW)
 
 
 #const JUMP_HEIGHT = 72 * HU

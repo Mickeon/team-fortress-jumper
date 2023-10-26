@@ -2,6 +2,5 @@
 
 [resource]
 resource_name = "window005"
-cull_mode = 2
-vertex_color_use_as_albedo = true
+albedo_color = Color(0.72549, 0.513726, 0.505882, 1)
 metallic = 1.0

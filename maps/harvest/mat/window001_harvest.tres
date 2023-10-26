@@ -2,6 +2,5 @@
 
 [resource]
 resource_name = "window001_harvest"
-cull_mode = 2
-vertex_color_use_as_albedo = true
-metallic = 1.0
+albedo_color = Color(0.639216, 0.501961, 0.482353, 1)
+metallic = 0.4

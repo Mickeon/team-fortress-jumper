@@ -64,26 +64,34 @@ directional_shadow_mode = 0
 directional_shadow_max_distance = 55.0
 directional_shadow_pancake_size = 8.6
 
-[node name="CSGBox" type="CSGBox3D" parent="."]
+[node name="BunchOfBoxes" type="Node3D" parent="."]
+
+[node name="CSGBox" type="CSGBox3D" parent="BunchOfBoxes"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 use_collision = true
 size = Vector3(42, 1, 48)
 material = ExtResource("2_3i6ty")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="CSGBox"]
-transform = Transform3D(1, 0, 0, 0, 0.775132, 0.631799, 0, -0.631799, 0.775132, 0, 1, -6.21441)
+[node name="CSGBox3D" type="CSGBox3D" parent="BunchOfBoxes"]
+transform = Transform3D(1, 0, 0, 0, 0.775132, 0.631799, 0, -0.631799, 0.775132, 0, 0, -6.21441)
 use_collision = true
 size = Vector3(12.053, 7.44525, 1)
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="CSGBox"]
-transform = Transform3D(0.747647, -0.664096, 0, 0.664096, 0.747647, 0, 0, 0, 1, 7.08127, 4.99015, -10.2181)
+[node name="CSGBox3D2" type="CSGBox3D" parent="BunchOfBoxes"]
+transform = Transform3D(0.747647, -0.664096, 0, 0.664096, 0.747647, 0, 0, 0, 1, 7.08127, 3.99015, -10.2181)
 use_collision = true
 size = Vector3(4, 1.02, 4.2)
 
-[node name="CSGBox3D3" type="CSGBox3D" parent="CSGBox"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.685213, 3.69241, -10.2567)
+[node name="CSGBox3D3" type="CSGBox3D" parent="BunchOfBoxes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.685213, 2.69241, -10.2567)
 use_collision = true
 size = Vector3(9.683, 1.02, 4.2)
+
+[node name="ControlPointFloor" type="CSGBox3D" parent="BunchOfBoxes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0893606, 0)
+use_collision = true
+size = Vector3(12, 1, 7)
+material = ExtResource("2_3i6ty")
 
 [node name="Player" parent="." instance=ExtResource("1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.7531, 1.26251, 0)

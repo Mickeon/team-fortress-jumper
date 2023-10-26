@@ -104,6 +104,8 @@ debug_top_down_view={
 
 [rendering]
 
+textures/vram_compression/import_s3tc_bptc=true
+textures/vram_compression/import_etc2_astc=true
 textures/webp_compression/compression_method=4
 textures/webp_compression/lossless_compression_factor=100.0
 mesh_lod/lod_change/threshold_pixels.web=2.0

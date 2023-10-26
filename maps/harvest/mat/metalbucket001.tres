@@ -3,5 +3,7 @@
 [resource]
 resource_name = "metalbucket001"
 cull_mode = 2
-vertex_color_use_as_albedo = true
-metallic = 1.0
+albedo_color = Color(0.752941, 0.796078, 0.819608, 1)
+metallic = 0.89
+metallic_specular = 0.73
+roughness = 0.61
