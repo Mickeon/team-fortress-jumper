@@ -3,34 +3,39 @@ extends Label
 const HU = Player.HU
 const Explosion = preload("res://wep/explosion.gd")
 
+enum ViewMode { FIRST_PERSON, THIRD_PERSON, TOP_DOWN }
+
 @export var player: Player
 @export var display_meters_as_hu := false
-@export var top_down_view := false:
+@export var view_mode := ViewMode.FIRST_PERSON:
 	set(new):
-		if top_down_view == new:
+		if view_mode == new:
 			return
 		
-		top_down_view = new
+		view_mode = new
 		
-		if top_down_view:
+		if view_mode != ViewMode.FIRST_PERSON:
 			var cam_pivot = player.cam_pivot
-			top_down_camera = Camera3D.new()
-			var tw := create_tween().set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_OUT).set_parallel()
-			tw.tween_property(top_down_camera, "position:y", 10.0, 0.75).from(cam_pivot.position.y)
-			tw.tween_property(top_down_camera, "rotation:x", PI / -2, 0.75).from(cam_pivot.rotation.x)
+			camera = Camera3D.new()
+			
+			if view_mode == ViewMode.TOP_DOWN:
+				var tw := create_tween().set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_OUT).set_parallel()
+				tw.tween_property(camera, "position:y", 10.0, 0.75).from(cam_pivot.position.y)
+				tw.tween_property(camera, "rotation:x", PI / -2, 0.75).from(cam_pivot.rotation.x)
 			
 			if not is_node_ready(): await ready
 			
-			top_down_camera.rotation.y = cam_pivot.rotation.y
-			top_down_camera.make_current()
-			player.add_child(top_down_camera)
-			get_tree().process_frame.connect(_debug_draw)
+			camera.set_cull_mask_value(2, false) # Hide First Person model.
+			camera.make_current()
+			player.add_child(camera)
+			if not get_tree().process_frame.is_connected(_debug_draw):
+				get_tree().process_frame.connect(_debug_draw, CONNECT_DEFERRED)
 			
 		else:
-			top_down_camera.queue_free()
+			camera.queue_free()
 			if not is_node_ready(): await ready
 			get_tree().process_frame.disconnect(_debug_draw)
-var top_down_camera: Camera3D
+var camera: Camera3D
 
 func _input(event):
 	var key_event := event as InputEventKey
@@ -53,8 +58,8 @@ func _input(event):
 				var add := -0.1 if key == KEY_PAGEDOWN else 0.1
 				Engine.time_scale = clampf(snappedf(Engine.time_scale + add, 0.1), 0.001, 1.0)
 	
-	if event.is_action_pressed("debug_top_down_view"):
-		top_down_view = not top_down_view
+	if event.is_action_pressed("debug_view_mode"):
+		view_mode = (view_mode + 1) % ViewMode.size() as ViewMode
 
 func _physics_process(_delta):
 	if player:
@@ -82,8 +87,9 @@ func _debug_draw():
 		var radius: float = capsule.shape.radius
 		DebugDraw3D.draw_cylinder(player.global_transform.scaled_local(Vector3(radius, HU, radius)), Color.YELLOW)
 	
-	top_down_camera.rotation.y = player.cam_pivot.rotation.y
-
+	camera.rotation.y = player.cam_pivot.rotation.y
+	if view_mode == ViewMode.THIRD_PERSON:
+		camera.transform = player.cam_pivot.transform.translated_local(Vector3(0, 0, 2.0))
 
 func update_debug_text():
 	var new_text := """F6 for controls, F3 to toggle. (%s)
