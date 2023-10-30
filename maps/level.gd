@@ -6,16 +6,26 @@ extends Node3D
 func _ready() -> void:
 	for mesh_instance in collider_mesh_instances:
 		create_shape_sibling(mesh_instance, false)
+	
+	if OS.has_feature("web"):
+		var env: Environment = $WorldEnvironment.environment
+		
+		env.fog_enabled = false # Fog doesn't look great in web builds right now.
+		env.ssil_enabled = false
+		env.glow_enabled = false
+		env.adjustment_enabled = false
 
 func _input(event):
 	if event is InputEventKey and event.pressed and not event.echo:
 		match event.physical_keycode:
 			KEY_QUOTELEFT:
 				get_tree().reload_current_scene()
-			KEY_F1:
-				get_tree().change_scene_to_file("res://maps/Harvest.tscn")
 			KEY_F2:
-				get_tree().change_scene_to_file("res://maps/Level.tscn")
+				if (event.is_command_or_control_pressed() 
+				and ResourceLoader.exists("res://maps/Harvest.tscn")):
+					get_tree().change_scene_to_file("res://maps/Harvest.tscn")
+				else:
+					get_tree().change_scene_to_file("res://maps/Level.tscn")
 
 
 

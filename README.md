@@ -30,8 +30,8 @@ Alternatively, download a build from [the releases](https://github.com/Mickeon/t
 | Key | Action | ... |
 | :-: | --- | --- |
 | **\\** | Restart current scene | ... _It's the button below **ESC**_
-| **F1** | Change map to test Level 
-| **F2** | Change map to Harvest | This will take a while to load
+| **F2** | Change map to test Level 
+| **CTRL** + **F2** | Change map to Harvest | Not available in web demo.[br]This can take a while to load.
 
 #### Debugging:
 | Key | Action |
@@ -57,5 +57,5 @@ This project is primarily based off the work of aneacsu [in this blog](https://a
 	[br]at the [Source Resource](https://www.sounds-resource.com/pc_computer/tf2/sound/18547/);
 - [Godot Engine](https://godotengine.org/) for allowing this;
 - The [Team Fortress 2](https://www.teamfortress.com/) development team for creating a masterpiece;
-- [Valve Software](https://www.valvesoftware.com/it/) for... owning most of the assets, __yeah__;
+- [Valve Software](https://www.valvesoftware.com/it/) for... owning a lot of the used assets.
 

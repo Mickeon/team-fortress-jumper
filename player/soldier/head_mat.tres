@@ -1,10 +1,10 @@
 [gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://dayfb14k5kwp"]
 
-[ext_resource type="Texture2D" uid="uid://brlnjpx7datg0" path="res://player/soldier/soldier_head.png" id="1_cye8h"]
+[ext_resource type="Texture2D" uid="uid://brlnjpx7datg0" path="res://player/soldier/soldier_head.png" id="1_k8drc"]
 
 [resource]
-resource_name = "skin"
-albedo_texture = ExtResource("1_cye8h")
+resource_name = "head"
+albedo_texture = ExtResource("1_k8drc")
 metallic_specular = 0.2
 roughness = 0.95
 rim_enabled = true
