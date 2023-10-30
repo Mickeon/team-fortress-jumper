@@ -1,9 +1,10 @@
-[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://c67e1bprtx6g6"]
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://nrs81kxpekfb"]
 
 [ext_resource type="Texture2D" uid="uid://dbkl5fhftww8c" path="res://player/soldier/mat/soldier_hands.png" id="1_kv7ii"]
 
 [resource]
 resource_name = "skin"
+albedo_color = Color(1, 1, 0.886275, 1)
 albedo_texture = ExtResource("1_kv7ii")
 rim_enabled = true
 rim = 0.1

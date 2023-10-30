@@ -6,6 +6,8 @@ const HU = Player.HU
 const SHOOT_OFFSET = Vector3(12.0, -3.0, -23.5) * HU # Vanilla coords: (23.5, 12.0, -3.0)
 const SHOOT_OFFSET_CROUCH = Vector3(12.0, 8.0, -23.5) * HU # Vanilla coords: (23.5, 12.0, 8.0)
 
+signal shot
+
 @export var attack_interval := 0.8
 @export_enum("player_primary", "player_secondary")
 var trigger_action := "player_primary"
@@ -36,6 +38,8 @@ func shoot():
 	sfx.play()
 	first_person_player.stop()
 	first_person_player.play("rocket_launcher_fire")
+	
+	emit_signal("shot")
 
 
 var interval_timer: SceneTreeTimer

@@ -42,6 +42,9 @@ func _input(event):
 	if key_event and key_event.pressed:
 		var key := key_event.keycode
 		match key:
+			KEY_F1:
+				var first_person_model := player.cam_pivot.get_node("FirstPersonModel")
+				first_person_model.visible = not first_person_model.visible
 			KEY_F3:
 				if key_event.is_command_or_control_pressed():
 					display_meters_as_hu = not display_meters_as_hu

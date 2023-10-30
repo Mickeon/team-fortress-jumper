@@ -62,6 +62,7 @@ var crouching := false:
 		
 		if not grounded:
 			position.y += 27 * HU if crouching else -27 * HU
+var just_jumped := false
 
 var noclip_enabled := false:
 	set(new):
@@ -89,7 +90,8 @@ func _input(event):
 func _physics_process(delta: float):
 	if debug_simulate_vanilla_tickrate:
 		delta = 0.015 # 1 / 66.666
-		
+	
+	just_jumped = false
 	if _just_landed:
 		if debug_allow_bunny_hopping:
 			_apply_friction(delta) # Prevent carrying speed from bunny-hopping.
@@ -110,6 +112,7 @@ func _physics_process(delta: float):
 	
 	if grounded and Input.is_action_pressed("player_jump"):
 		grounded = false
+		just_jumped = true
 		velocity.y = JUMP_FORCE
 	
 	_apply_friction(delta)

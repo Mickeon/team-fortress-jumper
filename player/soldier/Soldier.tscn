@@ -1,12 +1,28 @@
-[gd_scene load_steps=8 format=3 uid="uid://d3tlxp1tfmuf8"]
+[gd_scene load_steps=12 format=3 uid="uid://d3tlxp1tfmuf8"]
 
 [ext_resource type="PackedScene" uid="uid://dd6xa26xijbfc" path="res://player/soldier/soldier.glb" id="1_up20u"]
 [ext_resource type="Material" uid="uid://6ow1u4ur6s03" path="res://player/soldier/mat/coat_mat.tres" id="2_wqvld"]
 [ext_resource type="Material" uid="uid://dsyli0q6u4vy" path="res://player/soldier/mat/eyes_mat.tres" id="3_nhegp"]
 [ext_resource type="Material" uid="uid://dayfb14k5kwp" path="res://player/soldier/mat/head_mat.tres" id="4_ofv37"]
 [ext_resource type="Material" uid="uid://cuc8qbquctc7i" path="res://player/soldier/mat/tongue_mat.tres" id="5_vl3c4"]
-[ext_resource type="Material" uid="uid://c67e1bprtx6g6" path="res://player/soldier/mat/hands_mat.tres" id="6_aelk0"]
-[ext_resource type="Script" path="res://player/soldier/soldier_anim_manager.gd" id="7_77kry"]
+[ext_resource type="Material" uid="uid://nrs81kxpekfb" path="res://player/soldier/mat/hands_mat.tres" id="6_aelk0"]
+[ext_resource type="Material" uid="uid://bcyjpdmg18bqa" path="res://wep/models/rocket_launcher_mat.tres" id="8_yrs7y"]
+[ext_resource type="AnimationNodeBlendTree" uid="uid://babqdhmbrx55u" path="res://player/soldier/anims/base_blend_root.tres" id="9_foqwd"]
+[ext_resource type="Script" path="res://player/soldier/anims/soldier_anim_manager.gd" id="10_ro42a"]
+[ext_resource type="PackedScene" uid="uid://dnev3pycp5dyd" path="res://wep/models/rocket_launcher.glb" id="11_w6e2f"]
+
+[sub_resource type="Skin" id="Skin_0hbjr"]
+resource_name = "Skin"
+bind_count = 3
+bind/0/name = &"weapon_bone"
+bind/0/bone = -1
+bind/0/pose = Transform3D(52.4934, 0, 0, 0, 52.4934, -8.55227e-06, 0, 8.55227e-06, 52.4934, 0, 2.24543, 2.10987)
+bind/1/name = &"weapon_bone"
+bind/1/bone = -1
+bind/1/pose = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+bind/2/name = &"weapon_bone"
+bind/2/bone = 7
+bind/2/pose = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="Soldier" instance=ExtResource("1_up20u")]
 
@@ -46,6 +62,50 @@ surface_material_override/3 = ExtResource("3_nhegp")
 surface_material_override/4 = ExtResource("5_vl3c4")
 surface_material_override/5 = ExtResource("6_aelk0")
 
-[node name="AnimationPlayer" parent="." index="1" node_paths=PackedStringArray("model")]
-script = ExtResource("7_77kry")
-model = NodePath("../Body")
+[node name="Rocket Launcher" parent="Body" index="1" instance=ExtResource("11_w6e2f")]
+transform = Transform3D(52.4934, 0, 0, 0, 52.4934, 0, 0, 0, 52.4934, 0, 0, 0)
+
+[node name="Skeleton3D" parent="Body/Rocket Launcher/c_rocketlauncher_qc_skeleton" index="0"]
+bones/0/scale = Vector3(1.00048, 1.00048, 1.00048)
+
+[node name="c_rocketlauncher" parent="Body/Rocket Launcher/c_rocketlauncher_qc_skeleton/Skeleton3D" index="0"]
+layers = 4
+gi_mode = 0
+skin = SubResource("Skin_0hbjr")
+skeleton = NodePath("../../../../Skeleton3D")
+surface_material_override/0 = ExtResource("8_yrs7y")
+
+[node name="AnimationTree" type="AnimationTree" parent="." index="2"]
+tree_root = ExtResource("9_foqwd")
+anim_player = NodePath("../AnimationPlayer")
+active = true
+parameters/Sub2/sub_amount = 1.0
+parameters/TimeScale/scale = 0.0
+parameters/add_facing/add_amount = 1.0
+parameters/based/scale = 0.0
+"parameters/based 2/scale" = 0.0
+"parameters/based 3/scale" = 0.0
+parameters/crouch_walk/blend_amount = 0.0
+parameters/facing_direction/blend_position = Vector2(0.0221403, -0.866044)
+parameters/facing_direction/4/blend_position = 0
+parameters/ground/current_state = "crouched"
+parameters/ground/transition_request = ""
+parameters/ground/current_index = 2
+parameters/jump_start/active = false
+parameters/jump_start/internal_active = false
+parameters/jump_start/request = 0
+parameters/land/active = false
+parameters/land/internal_active = false
+parameters/land/request = 0
+parameters/move_blend/blend_position = Vector2(0.007, -0.73)
+parameters/move_crouch_blend/blend_position = Vector2(1, 0)
+parameters/shoot/active = false
+parameters/shoot/internal_active = false
+parameters/shoot/request = 0
+parameters/subtract_stand/sub_amount = 1.0
+"parameters/subtract_stand 2/sub_amount" = 1.0
+"parameters/subtract_stand 3/sub_amount" = 1.0
+parameters/walk/blend_amount = 0.0
+script = ExtResource("10_ro42a")
+
+[editable path="Body/Rocket Launcher"]
