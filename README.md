@@ -31,7 +31,7 @@ Alternatively, download a build from [the releases](https://github.com/Mickeon/t
 | :-: | --- | --- |
 | **\\** | Restart current scene | ... _It's the button below **ESC**_
 | **F2** | Change map to test Level 
-| **CTRL** + **F2** | Change map to Harvest | Not available in web demo.[br]This can take a while to load.
+| **CTRL** + **F2** | Change map to Harvest | Not available in web demo.<br>This can take a while to load.
 
 #### Debugging:
 | Key | Action |
@@ -54,7 +54,7 @@ This project is primarily based off the work of aneacsu [in this blog](https://a
 
 - Harvest map originally ported to Blender by [hisanimations](https://www.youtube.com/@hisanimations).
 - Sound effects ripped and organized by [Broly9990](https://www.sounds-resource.com/submitter/Broly9990/), [Cooper B. Chance](https://www.sounds-resource.com/submitter/Cooper+B.+Chance/), [Irockz](https://www.sounds-resource.com/submitter/Irockz/), [KIZ](https://www.sounds-resource.com/submitter/KIZ/), [Undeadbraindead](https://www.sounds-resource.com/submitter/Undeadbraindead/):
-	[br]at the [Source Resource](https://www.sounds-resource.com/pc_computer/tf2/sound/18547/);
+	<br>at the [Source Resource](https://www.sounds-resource.com/pc_computer/tf2/sound/18547/);
 - [Godot Engine](https://godotengine.org/) for allowing this;
 - The [Team Fortress 2](https://www.teamfortress.com/) development team for creating a masterpiece;
 - [Valve Software](https://www.valvesoftware.com/it/) for... owning a lot of the used assets.

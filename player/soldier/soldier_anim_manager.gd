@@ -38,12 +38,12 @@ func _handle_animations():
 		
 		if player.crouching:
 			if player_speed > 0:
-				play(&"a_crouch_walk_n_primary", 0.5)
+				play(&"crouch_walk_n_PRIMARY", 0.5)
 			else:
 				play(&"crouch_PRIMARY")
 		elif current_animation != &"jump_land_PRIMARY":
 			if player_speed > 0:
-				play(&"a_run_n_primary")
+				play(&"run_n_PRIMARY")
 			else:
 				play(&"stand_PRIMARY")
 	else:

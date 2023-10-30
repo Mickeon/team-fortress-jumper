@@ -1,5 +1,0 @@
-[gd_resource type="StandardMaterial3D" format=3 uid="uid://cuc8qbquctc7i"]
-
-[resource]
-resource_name = "tongue"
-albedo_color = Color(0.435294, 0.219608, 0.172549, 1)

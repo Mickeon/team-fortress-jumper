@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://bp3faj46c64ck"]
+[gd_scene load_steps=29 format=3 uid="uid://bp3faj46c64ck"]
 
 [ext_resource type="Script" path="res://player/Player.gd" id="1"]
 [ext_resource type="Script" path="res://wep/rocket_launcher.gd" id="2_eytv3"]
@@ -9,15 +9,10 @@
 [ext_resource type="Script" path="res://wep/charging_shield.gd" id="5_k3wqx"]
 [ext_resource type="Material" uid="uid://bcyjpdmg18bqa" path="res://wep/models/rocket_launcher_mat.tres" id="5_w6h5j"]
 [ext_resource type="AudioStream" uid="uid://cssshdan1cmba" path="res://sfx/charging_shield_windup_no_voice.wav" id="6_83htm"]
-[ext_resource type="PackedScene" uid="uid://dd6xa26xijbfc" path="res://player/soldier/soldier.glb" id="7_u83eq"]
-[ext_resource type="Material" uid="uid://c67e1bprtx6g6" path="res://player/soldier/hands_mat.tres" id="10_axakk"]
-[ext_resource type="Texture2D" uid="uid://bm4pc4wm5dccw" path="res://player/soldier/soldier_sleeves_red.png" id="11_aj8ur"]
-[ext_resource type="Material" uid="uid://6ow1u4ur6s03" path="res://player/soldier/coat_mat.tres" id="11_i7qop"]
-[ext_resource type="Texture2D" uid="uid://dfct0pgm1idvk" path="res://player/soldier/soldier_sleeves_normal.png" id="12_wfo7e"]
-[ext_resource type="Material" uid="uid://dsyli0q6u4vy" path="res://player/soldier/eyes_mat.tres" id="15_e062c"]
-[ext_resource type="Material" uid="uid://dayfb14k5kwp" path="res://player/soldier/head_mat.tres" id="16_8d1ru"]
-[ext_resource type="Material" uid="uid://cuc8qbquctc7i" path="res://player/soldier/tongue_mat.tres" id="17_yfvvi"]
-[ext_resource type="Script" path="res://player/soldier/soldier_anim_manager.gd" id="18_o0g43"]
+[ext_resource type="Material" uid="uid://c67e1bprtx6g6" path="res://player/soldier/mat/hands_mat.tres" id="8_hvnrs"]
+[ext_resource type="Texture2D" uid="uid://bm4pc4wm5dccw" path="res://player/soldier/mat/soldier_sleeves_red.png" id="9_mqgwv"]
+[ext_resource type="Texture2D" uid="uid://dfct0pgm1idvk" path="res://player/soldier/mat/soldier_sleeves_normal.png" id="10_028hp"]
+[ext_resource type="PackedScene" uid="uid://d3tlxp1tfmuf8" path="res://player/soldier/Soldier.tscn" id="13_k6b1l"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1tjpu"]
 no_depth_test = true
@@ -89,11 +84,11 @@ size = Vector2(1.4, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i7x3j"]
 resource_name = "coat"
-albedo_texture = ExtResource("11_aj8ur")
+albedo_texture = ExtResource("9_mqgwv")
 metallic_specular = 0.2
 roughness = 0.75
 normal_enabled = true
-normal_texture = ExtResource("12_wfo7e")
+normal_texture = ExtResource("10_028hp")
 rim_enabled = true
 rim = 0.3
 rim_tint = 0.9
@@ -279,7 +274,7 @@ bones/70/rotation = Quaternion(0.133277, 0.177765, 0.0240062, 0.974711)
 [node name="mesh" parent="Smoothing3D/Pivot/FirstPersonModel/Arms/Skeleton3D" index="0"]
 layers = 2
 gi_mode = 0
-surface_material_override/0 = ExtResource("10_axakk")
+surface_material_override/0 = ExtResource("8_hvnrs")
 surface_material_override/1 = SubResource("StandardMaterial3D_i7x3j")
 
 [node name="AnimationPlayer" parent="Smoothing3D/Pivot/FirstPersonModel" index="1"]
@@ -311,39 +306,39 @@ visible = false
 shape = SubResource("CylinderShape3D_el3cl")
 disabled = true
 
-[node name="soldier" parent="." instance=ExtResource("7_u83eq")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+[node name="Soldier" parent="." instance=ExtResource("13_k6b1l")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
 
-[node name="Skeleton3D" parent="soldier/Body" index="0"]
+[node name="Skeleton3D" parent="Soldier/Body" index="0"]
 bones/9/rotation = Quaternion(0.81081, -0.557869, 0.172073, -0.0419501)
+bones/10/position = Vector3(-8.67555e-06, -9.80005, 1.12383e-05)
 bones/10/rotation = Quaternion(-0.251657, 0.782885, 0.508399, -0.255518)
-bones/34/rotation = Quaternion(0.499984, 0.500014, 0.500005, -0.499997)
+bones/11/position = Vector3(14.481, -0.00015572, -0.00179538)
+bones/17/position = Vector3(4.05312e-06, -2.44685, -1.53184e-05)
+bones/32/position = Vector3(-1.22046e-05, 9.80003, -9.11122e-06)
+bones/34/rotation = Quaternion(0.499804, 0.500195, 0.499824, -0.500178)
+bones/38/rotation = Quaternion(-0.783337, 0.0802305, 0.186218, 0.587596)
+bones/44/position = Vector3(-1.31131e-05, 2.40567, -4.28025e-05)
+bones/54/position = Vector3(-1.48997e-07, 1.32228, -1.59296e-05)
 bones/55/rotation = Quaternion(0.836072, -0.230977, 0.493101, -0.0669651)
 bones/56/rotation = Quaternion(0.87642, 0.215093, -0.43021, -0.0232815)
 bones/60/rotation = Quaternion(0.902114, 0.414089, -0.121169, -0.00626222)
 bones/61/rotation = Quaternion(0.709973, 0.688985, 0.145729, -0.00112578)
 bones/70/rotation = Quaternion(0.989204, -0.106361, 0.0789955, -0.0626277)
 bones/78/rotation = Quaternion(0.838274, -0.0753744, 0.539596, -0.021249)
+bones/81/position = Vector3(-2.57418e-14, -1.55857e-06, 8.12112e-07)
+bones/82/position = Vector3(-2.57418e-14, -1.55857e-06, 8.12112e-07)
+bones/83/position = Vector3(-2.57418e-14, -1.55857e-06, 8.12112e-07)
+bones/84/position = Vector3(-2.57418e-14, -1.55857e-06, 8.12112e-07)
+bones/85/position = Vector3(-2.57418e-14, -1.55857e-06, 8.12112e-07)
+bones/86/position = Vector3(-2.57418e-14, -1.55857e-06, 8.12112e-07)
+bones/87/position = Vector3(-2.57418e-14, -1.55857e-06, 8.12112e-07)
 
-[node name="mesh" parent="soldier/Body/Skeleton3D" index="0"]
-layers = 4
-lod_bias = 2.0
-surface_material_override/0 = ExtResource("11_i7qop")
-surface_material_override/1 = ExtResource("15_e062c")
-surface_material_override/2 = ExtResource("16_8d1ru")
-surface_material_override/3 = ExtResource("15_e062c")
-surface_material_override/4 = ExtResource("17_yfvvi")
-surface_material_override/5 = ExtResource("10_axakk")
-
-[node name="AnimationPlayer" parent="soldier" index="1" node_paths=PackedStringArray("player", "model")]
-autoplay = "soldier_qc_skeleton|forcedapose"
-playback_default_blend_time = 0.2
-script = ExtResource("18_o0g43")
+[node name="AnimationPlayer" parent="Soldier" index="1" node_paths=PackedStringArray("player")]
 player = NodePath("../..")
-model = NodePath("../Body")
 
 [connection signal="animation_finished" from="Smoothing3D/Pivot/FirstPersonModel/AnimationPlayer" to="Smoothing3D/Pivot/RocketLauncher" method="_on_FirstPersonPlayer_animation_finished"]
 
 [editable path="Smoothing3D/Pivot/FirstPersonModel"]
 [editable path="Smoothing3D/Pivot/FirstPersonModel/rocket_launcher_mdl"]
-[editable path="soldier"]
+[editable path="Soldier"]
