@@ -1,39 +1,23 @@
-extends Node3D
+extends WeaponNode
 
 const Rocket = preload("./rocket.gd")
 
-const HU = Player.HU
 const SHOOT_OFFSET = Vector3(12.0, -3.0, -23.5) * HU # Vanilla coords: (23.5, 12.0, -3.0)
 const SHOOT_OFFSET_CROUCH = Vector3(12.0, 8.0, -23.5) * HU # Vanilla coords: (23.5, 12.0, 8.0)
 
 signal shot
 
-@export var attack_interval := 0.8
-@export_enum("player_primary", "player_secondary")
-var trigger_action := "player_primary"
-
-@onready var player_owner: Player = owner
-@onready var sfx: AudioStreamPlayer3D = $Shoot
 @export var first_person_player: AnimationPlayer
 
-func _unhandled_input(event):
-	if event.is_action_pressed(trigger_action):
-		shoot()
 
-
-func shoot():
-	if interval_timer and interval_timer.time_left > 0.0:
-		return
-	
-	refresh_interval()
-	
-	var shoot_offset = SHOOT_OFFSET_CROUCH if player_owner.crouching else SHOOT_OFFSET
+func _shoot():
+	var shoot_offset := SHOOT_OFFSET_CROUCH if player_owner.crouching else SHOOT_OFFSET
 	
 	var rocket: Rocket = preload("./Rocket.tscn").instantiate()
 	setup_projectile(rocket, shoot_offset)
 	rocket.source = player_owner
 	rocket.add_exception(player_owner)
-	owner.add_sibling(rocket)
+	player_owner.add_sibling(rocket)
 	
 	sfx.play()
 	first_person_player.stop()
@@ -41,18 +25,6 @@ func shoot():
 	
 	emit_signal("shot")
 
-
-var interval_timer: SceneTreeTimer
-func refresh_interval():
-	interval_timer = get_tree().create_timer(attack_interval)
-	interval_timer.timeout.connect(func():
-			_interval_timeout()
-			# When holding down the button, shoot again as soon as possible.
-			if Input.is_action_pressed(trigger_action): shoot()
-	)
-
-func _interval_timeout():
-	pass
 
 func setup_projectile(rocket: Rocket, shoot_offset: Vector3):
 	var origin := global_position

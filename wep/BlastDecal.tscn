@@ -1,14 +1,42 @@
-[gd_scene load_steps=4 format=3 uid="uid://xnor1ir3y6j6"]
+[gd_scene load_steps=9 format=3 uid="uid://xnor1ir3y6j6"]
 
 [sub_resource type="Gradient" id="Gradient_ilr3l"]
 interpolation_mode = 2
-offsets = PackedFloat32Array(0.0538117, 0.26009, 0.399103, 0.587444, 0.753363)
-colors = PackedColorArray(0, 0, 0, 0.941176, 0, 0, 0, 0.831373, 0, 0, 0, 0.831373, 0, 0, 0, 0.568627, 0, 0, 0, 0)
+offsets = PackedFloat32Array(0.0538117, 0.26009, 0.399103, 0.583643, 0.72119)
+colors = PackedColorArray(0, 0, 0, 0.913725, 0, 0, 0, 0.870588, 0, 0, 0, 0.988235, 0, 0, 0, 0.756863, 0, 0, 0, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_mvuq3"]
 gradient = SubResource("Gradient_ilr3l")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_0eoj5"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_1yce4"]
+width = 128
+height = 128
+in_3d_space = true
+as_normal_map = true
+bump_strength = 2.0
+noise = SubResource("FastNoiseLite_0eoj5")
+
+[sub_resource type="Gradient" id="Gradient_akf71"]
+interpolation_color_space = 1
+offsets = PackedFloat32Array(0, 0.524164, 1)
+colors = PackedColorArray(0, 0.592223, 0.653833, 1, 0, 0.121569, 0.890196, 1, 0.671132, 0.540913, 0, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_q83wr"]
+noise_type = 2
+seed = 5480
+frequency = 0.0302
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_v0sok"]
+width = 64
+height = 64
+in_3d_space = true
+normalize = false
+color_ramp = SubResource("Gradient_akf71")
+noise = SubResource("FastNoiseLite_q83wr")
 
 [sub_resource type="GDScript" id="GDScript_4gn02"]
 resource_name = "test_ground"
@@ -22,7 +50,9 @@ func _init() -> void:
 [node name="BlastDecal" type="Decal"]
 size = Vector3(4, 4, 4)
 texture_albedo = SubResource("GradientTexture2D_mvuq3")
-albedo_mix = 0.65
+texture_normal = SubResource("NoiseTexture2D_1yce4")
+texture_orm = SubResource("NoiseTexture2D_v0sok")
+modulate = Color(1, 1, 1, 0.627451)
 normal_fade = 0.01
 lower_fade = 3.27847
 

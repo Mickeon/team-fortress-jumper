@@ -1,4 +1,4 @@
-extends "rocket_launcher.gd"
+extends WeaponNode
 
 const CHARGE_SPEED = 750 * HU
 
@@ -12,12 +12,7 @@ var previous_air_acceleration := 0.0
 func _ready():
 	trail.emitting = false
 
-func shoot():
-	if interval_timer and interval_timer.time_left > 0.0:
-		return
-	
-	refresh_interval()
-	
+func _shoot():
 	_modify_attributes()
 	player_owner.forced_wishdir.y = -1
 	if not player_owner.grounded:
@@ -30,9 +25,10 @@ func shoot():
 	sfx.play()
 	trail.emitting = true
 
-func _interval_timeout():
+func _ready_to_shoot():
 	_restore_attributes()
 	trail.emitting = false
+
 
 func _modify_attributes():
 	previous_ground_speed = player_owner.GROUND_SPEED

@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://ik63ulx21ixn"
-path="res://.godot/imported/rocket_blackbox_explode3.wav-844f2a334997b289cb55288781cf73d0.sample"
+path="res://.godot/imported/rocket_blackbox_explode3.wav-ac76ed10343ec1de936d4f0d593bb258.sample"
 
 [deps]
 
-source_file="res://sfx/rocket_blackbox_explode3.wav"
-dest_files=["res://.godot/imported/rocket_blackbox_explode3.wav-844f2a334997b289cb55288781cf73d0.sample"]
+source_file="res://sfx/primary/rocket_blackbox_explode3.wav"
+dest_files=["res://.godot/imported/rocket_blackbox_explode3.wav-ac76ed10343ec1de936d4f0d593bb258.sample"]
 
 [params]
 

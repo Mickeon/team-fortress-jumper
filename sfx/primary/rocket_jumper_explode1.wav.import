@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://dks5r3sh7vryc"
-path="res://.godot/imported/rocket_jumper_explode1.wav-40975de4e442f73fcb4f34339c04a315.sample"
+path="res://.godot/imported/rocket_jumper_explode1.wav-2b51bd44bf5a4a05a274ca6a0f2d7012.sample"
 
 [deps]
 
-source_file="res://sfx/rocket_jumper_explode1.wav"
-dest_files=["res://.godot/imported/rocket_jumper_explode1.wav-40975de4e442f73fcb4f34339c04a315.sample"]
+source_file="res://sfx/primary/rocket_jumper_explode1.wav"
+dest_files=["res://.godot/imported/rocket_jumper_explode1.wav-2b51bd44bf5a4a05a274ca6a0f2d7012.sample"]
 
 [params]
 

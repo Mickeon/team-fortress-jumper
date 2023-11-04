@@ -1,0 +1,86 @@
+[gd_scene load_steps=11 format=3 uid="uid://cvascdi686gvo"]
+
+[sub_resource type="Gradient" id="Gradient_ilr3l"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0.0538117, 0.189591, 0.360595, 0.587444, 0.753363)
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 0.831373, 0, 0, 0, 0.831373, 0, 0, 0, 0.568627, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_mvuq3"]
+gradient = SubResource("Gradient_ilr3l")
+width = 32
+height = 32
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6m3ep"]
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.941176, 0.733333, 0.329412, 1)
+disable_receive_shadows = true
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+use_particle_trails = true
+
+[sub_resource type="Gradient" id="Gradient_iytng"]
+offsets = PackedFloat32Array(0, 0.287402, 1)
+colors = PackedColorArray(0.270588, 0.309804, 0.313726, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_4rxvg"]
+gradient = SubResource("Gradient_iytng")
+width = 16
+
+[sub_resource type="Curve" id="Curve_rdasd"]
+_data = [Vector2(0.158582, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_hmo1i"]
+width = 32
+curve = SubResource("Curve_rdasd")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_f60ev"]
+direction = Vector3(0, 1, 0)
+initial_velocity_min = 4.0
+initial_velocity_max = 6.0
+damping_min = 4.442
+damping_max = 7.524
+scale_min = 0.9
+scale_max = 1.1
+scale_curve = SubResource("CurveTexture_hmo1i")
+color_ramp = SubResource("GradientTexture1D_4rxvg")
+
+[sub_resource type="Curve" id="Curve_2ojl0"]
+_data = [Vector2(0, 0.967871), 0.0, 0.0, 0, 0, Vector2(0.85689, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="RibbonTrailMesh" id="RibbonTrailMesh_tgmrr"]
+shape = 0
+size = 0.05
+sections = 3
+section_length = 0.05
+curve = SubResource("Curve_2ojl0")
+
+[node name="BulletDecal" type="Decal"]
+size = Vector3(0.25, 0.25, 0.25)
+texture_albedo = SubResource("GradientTexture2D_mvuq3")
+albedo_mix = 0.5
+upper_fade = 2.0
+lower_fade = 2.4
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+visible = false
+size = Vector3(0.3, 0.005, 0.3)
+
+[node name="Sparks" type="GPUParticles3D" parent="."]
+top_level = true
+material_override = SubResource("StandardMaterial3D_6m3ep")
+cast_shadow = 0
+amount = 1
+explosiveness = 1.0
+transform_align = 1
+trail_enabled = true
+process_material = SubResource("ParticleProcessMaterial_f60ev")
+draw_pass_1 = SubResource("RibbonTrailMesh_tgmrr")
