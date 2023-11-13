@@ -18,16 +18,26 @@ var air_crouching := false:
 			model.position.y += 27 * player.HU
 
 
+var _primary_blend_tree_root: AnimationNodeBlendTree
+var _secondary_blend_tree_root: AnimationNodeBlendTree
+
 func _ready():
 	active = true
+	_primary_blend_tree_root = tree_root
+	_secondary_blend_tree_root = _create_secondary_blend_tree()
+
+func _process(_delta: float) -> void:
+	model.rotation.y = player.cam_pivot.rotation.y
+	var facing_blend_pos := Vector2(
+			0, # remap(player.cam_pivot.rotation.y, -PI / 2, PI / 2, -1, 1),
+			remap(player.cam_pivot.rotation.x, -PI / 2, PI / 2, -1, 1))
+	set(&"parameters/look_blend/blend_position", facing_blend_pos)
 
 func _physics_process(_delta: float) -> void:
-	var cam_pivot := player.cam_pivot
-	model.rotation.y = cam_pivot.rotation.y
-	
 	_handle_animations()
 	
 	_previously_grounded = player.grounded
+
 
 func _handle_animations():
 	var velocity_planar := Vector2(player.velocity.x, player.velocity.z).rotated(model.rotation.y)
@@ -53,21 +63,69 @@ func _handle_animations():
 	else:
 		set(&"parameters/ground/transition_request", "airborne")
 	
-	if player._just_landed:
-		set(&"parameters/land/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+	if player.just_landed:
+		set(&"parameters/jump_land/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 	if player.just_jumped and not player.grounded:
 		set(&"parameters/jump_start/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 	
 	air_crouching = not player.grounded and player.crouching
+
+
+
+func _create_secondary_blend_tree():
+	var r := tree_root.duplicate(true) # Short alias.
 	
+	r.get_node("Stand").animation = &"stand_SECONDARY"
+	# Unfortunately these become individual after being duplicated. Yeah...
+	r.get_node("StandBase1").get_node("Stand").animation = &"stand_SECONDARY"
+	r.get_node("StandBase2").get_node("Stand").animation = &"stand_SECONDARY"
+	r.get_node("StandBase3").get_node("Stand").animation = &"stand_SECONDARY"
+	r.get_node("StandBase4").get_node("Stand").animation = &"stand_SECONDARY"
 	
-	var facing_blend_pos := Vector2(
-#			remap(player.cam_pivot.rotation.y, -PI / 2, PI / 2, -1, 1),
-			0,
-			remap(player.cam_pivot.rotation.x, -PI / 2, PI / 2, -1, 1))
-	set(&"parameters/facing_direction/blend_position", facing_blend_pos)
+	r.get_node("Float").animation = &"jump_float_SECONDARY"
+	r.get_node("Crouch").animation = &"crouch_SECONDARY"
+	
+	r.get_node("JumpLand").animation = &"jump_land_SECONDARY"
+	r.get_node("JumpStart").animation = &"jump_start_SECONDARY"
+	r.get_node("Attack").animation = &"attack_SECONDARY"
+	
+	_blend_space_animations_replace(r.get_node("move_blend"), "PRIMARY", "SECONDARY")
+	_blend_space_animations_replace(r.get_node("move_crouch_blend"), "PRIMARY", "SECONDARY")
+	_blend_space_animations_replace(r.get_node("look_blend"), "PRIMARY", "SECONDARY")
+	
+	return r
+
+static func _blend_space_animations_replace(blend_space: AnimationNodeBlendSpace2D, what: String, forwhat: String):
+	for index in blend_space.get_blend_point_count():
+		var node := blend_space.get_blend_point_node(index) as AnimationNodeAnimation
+		if node is AnimationNodeAnimation:
+			node.animation = node.animation.replace(what, forwhat)
+
+
+#
+#func _change_held_type(to: StringName):
+#	var root := tree_root as AnimationNodeBlendTree
+#
+#	for animation_node in [root.get_node("Stand"), root.get_node("Stand")]:
+#		animation_node.animation = &"crouch_PRIMARY"
+#
+#
+#static func _replace_suffix(string: String, prev_suffix: String, new_suffix: String):
+#	return string.trim_suffix(prev_suffix) + new_suffix
+#
+#
 
 
 
 func _on_RocketLauncher_shot() -> void:
 	set(&"parameters/shoot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+	tree_root = _primary_blend_tree_root
+	get_parent().get_node("Body/Rocket Launcher").show()
+	get_parent().get_node("Body/Shotgun").hide()
+
+func _on_Shotgun_shot() -> void:
+	set(&"parameters/shoot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+	tree_root = _secondary_blend_tree_root
+	get_parent().get_node("Body/Rocket Launcher").hide()
+	get_parent().get_node("Body/Shotgun").show()
+

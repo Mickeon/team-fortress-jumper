@@ -3,7 +3,7 @@ extends Label
 const HU = Player.HU
 const Explosion = preload("res://wep/explosion.gd")
 
-enum ViewMode { FIRST_PERSON, THIRD_PERSON, TOP_DOWN }
+enum ViewMode { FIRST_PERSON, THIRD_PERSON, FRONT, TOP_DOWN }
 
 @export var player: Player
 @export var display_meters_as_hu := false
@@ -15,6 +15,8 @@ enum ViewMode { FIRST_PERSON, THIRD_PERSON, TOP_DOWN }
 		view_mode = new
 		
 		if view_mode != ViewMode.FIRST_PERSON:
+			if not is_node_ready(): await ready
+			
 			var cam_pivot = player.cam_pivot
 			camera = Camera3D.new()
 			
@@ -22,8 +24,6 @@ enum ViewMode { FIRST_PERSON, THIRD_PERSON, TOP_DOWN }
 				var tw := create_tween().set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_OUT).set_parallel()
 				tw.tween_property(camera, "position:y", 10.0, 0.75).from(cam_pivot.position.y)
 				tw.tween_property(camera, "rotation:x", PI / -2, 0.75).from(cam_pivot.rotation.x)
-			
-			if not is_node_ready(): await ready
 			
 			camera.set_cull_mask_value(2, false) # Hide First Person model.
 			camera.make_current()
@@ -93,6 +93,10 @@ func _debug_draw():
 	camera.rotation.y = player.cam_pivot.rotation.y
 	if view_mode == ViewMode.THIRD_PERSON:
 		camera.transform = player.cam_pivot.transform.translated_local(Vector3(0, 0, 2.0))
+	elif view_mode == ViewMode.FRONT:
+		camera.transform = player.cam_pivot.transform.translated_local(Vector3(0, 0, -2.0)
+				).rotated_local(Vector3.UP, PI)
+		
 
 func update_debug_text():
 	var new_text := """F6 for controls, F3 to toggle. (%s)

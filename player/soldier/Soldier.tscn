@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://d3tlxp1tfmuf8"]
+[gd_scene load_steps=15 format=3 uid="uid://d3tlxp1tfmuf8"]
 
 [ext_resource type="PackedScene" uid="uid://dd6xa26xijbfc" path="res://player/soldier/soldier.glb" id="1_up20u"]
 [ext_resource type="Material" uid="uid://6ow1u4ur6s03" path="res://player/soldier/mat/coat_mat.tres" id="2_wqvld"]
@@ -8,6 +8,8 @@
 [ext_resource type="Material" uid="uid://nrs81kxpekfb" path="res://player/soldier/mat/hands_mat.tres" id="6_aelk0"]
 [ext_resource type="Material" uid="uid://bcyjpdmg18bqa" path="res://wep/models/rocket_launcher_mat.tres" id="8_yrs7y"]
 [ext_resource type="AnimationNodeBlendTree" uid="uid://babqdhmbrx55u" path="res://player/soldier/anims/base_blend_root.tres" id="9_foqwd"]
+[ext_resource type="PackedScene" uid="uid://csp0d7462puxm" path="res://wep/models/shotgun.glb" id="9_lymci"]
+[ext_resource type="Material" uid="uid://cnmv8s17cp571" path="res://wep/models/shotgun_mat.tres" id="10_bpa3x"]
 [ext_resource type="Script" path="res://player/soldier/anims/soldier_anim_manager.gd" id="10_ro42a"]
 [ext_resource type="PackedScene" uid="uid://dnev3pycp5dyd" path="res://wep/models/rocket_launcher.glb" id="11_w6e2f"]
 
@@ -16,13 +18,35 @@ resource_name = "Skin"
 bind_count = 3
 bind/0/name = &"weapon_bone"
 bind/0/bone = -1
-bind/0/pose = Transform3D(52.4934, 0, 0, 0, 52.4934, -8.55227e-06, 0, 8.55227e-06, 52.4934, 0, 2.24543, 2.10987)
+bind/0/pose = Transform3D(52.493, 0, 0, 0, 52.493, 0, 0, 0, 52.493, 0, 0, 0)
 bind/1/name = &"weapon_bone"
 bind/1/bone = -1
 bind/1/pose = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 bind/2/name = &"weapon_bone"
-bind/2/bone = 7
+bind/2/bone = -1
 bind/2/pose = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[sub_resource type="Skin" id="Skin_pd4m1"]
+resource_name = "Skin"
+bind_count = 6
+bind/0/name = &"weapon_bone"
+bind/0/bone = -1
+bind/0/pose = Transform3D(52.4934, 0, 0, 0, -8.55227e-06, -52.4934, 0, 52.4934, -8.55227e-06, 0, 0, 0)
+bind/1/name = &"weapon_bone"
+bind/1/bone = -1
+bind/1/pose = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 17.115, -11.809, -25.966)
+bind/2/name = &"weapon_bone"
+bind/2/bone = -1
+bind/2/pose = Transform3D(52.493, 0, 0, 0, 0, -52.493, 0, 52.493, 0, 0, -1.445, -25.966)
+bind/3/name = &"weapon_bone"
+bind/3/bone = -1
+bind/3/pose = Transform3D(52.493, 0, 0, 0, 0, -52.493, 0, 52.493, 0, -0.109, -2.61, -5.589)
+bind/4/name = &"weapon_bone"
+bind/4/bone = -1
+bind/4/pose = Transform3D(52.493, 0, 0, 0, 0, -52.493, 0, 52.493, 0, 0.711, -2.661, -5.589)
+bind/5/name = &"weapon_bone"
+bind/5/bone = -1
+bind/5/pose = Transform3D(52.493, 0, 0, 0, 0, -51.263, 0, 52.493, 0, -0.377, -2.242, -8.121)
 
 [node name="Soldier" instance=ExtResource("1_up20u")]
 
@@ -64,48 +88,76 @@ surface_material_override/5 = ExtResource("6_aelk0")
 
 [node name="Rocket Launcher" parent="Body" index="1" instance=ExtResource("11_w6e2f")]
 transform = Transform3D(52.4934, 0, 0, 0, 52.4934, 0, 0, 0, 52.4934, 0, 0, 0)
+visible = false
 
 [node name="Skeleton3D" parent="Body/Rocket Launcher/c_rocketlauncher_qc_skeleton" index="0"]
 bones/0/scale = Vector3(1.00048, 1.00048, 1.00048)
 
 [node name="c_rocketlauncher" parent="Body/Rocket Launcher/c_rocketlauncher_qc_skeleton/Skeleton3D" index="0"]
 layers = 4
-gi_mode = 0
 skin = SubResource("Skin_0hbjr")
 skeleton = NodePath("../../../../Skeleton3D")
 surface_material_override/0 = ExtResource("8_yrs7y")
+
+[node name="Shotgun" parent="Body" index="2" instance=ExtResource("9_lymci")]
+transform = Transform3D(52.4934, 0, 0, 0, 52.4934, 0, 0, 0, 52.4934, 0, 0, 0)
+
+[node name="Skeleton3D" parent="Body/Shotgun/c_shotgun_skeleton" index="0"]
+bones/0/enabled = false
+bones/1/enabled = false
+bones/1/position = Vector3(0.000474975, 0.000474975, 0.000474975)
+bones/1/scale = Vector3(1.00048, 1.00048, 1.00048)
+bones/2/enabled = false
+bones/2/position = Vector3(0.000474975, 0.000474975, 0.000474975)
+bones/3/enabled = false
+bones/3/position = Vector3(1.12448, 7.20448, 5.58848)
+bones/3/scale = Vector3(1.00048, 1.00048, 1.00048)
+bones/4/enabled = false
+bones/5/enabled = false
+bones/5/scale = Vector3(1.00048, 1.00048, 1.00048)
+bones/6/enabled = false
+bones/6/scale = Vector3(1.00048, 1.00048, 1.00048)
+bones/7/enabled = false
+bones/8/enabled = false
+
+[node name="c_shotgun" parent="Body/Shotgun/c_shotgun_skeleton/Skeleton3D" index="0"]
+layers = 4
+skin = SubResource("Skin_pd4m1")
+skeleton = NodePath("../../../../Skeleton3D")
+surface_material_override/0 = ExtResource("10_bpa3x")
 
 [node name="AnimationTree" type="AnimationTree" parent="." index="2"]
 tree_root = ExtResource("9_foqwd")
 anim_player = NodePath("../AnimationPlayer")
 active = true
-parameters/Sub2/sub_amount = 1.0
-parameters/TimeScale/scale = 0.0
-parameters/add_facing/add_amount = 1.0
-parameters/based/scale = 0.0
-"parameters/based 2/scale" = 0.0
-"parameters/based 3/scale" = 0.0
+parameters/StandBase1/TimeScale/scale = 1.0
+parameters/StandBase2/TimeScale/scale = 0.0
+parameters/StandBase3/TimeScale/scale = 1.0
+parameters/StandBase4/TimeScale/scale = 0.0
 parameters/crouch_walk/blend_amount = 0.0
-parameters/facing_direction/blend_position = Vector2(0.0221403, -0.866044)
-parameters/facing_direction/4/blend_position = 0
 parameters/ground/current_state = "crouched"
 parameters/ground/transition_request = ""
 parameters/ground/current_index = 2
+parameters/jump_land/active = false
+parameters/jump_land/internal_active = false
+parameters/jump_land/request = 0
 parameters/jump_start/active = false
 parameters/jump_start/internal_active = false
 parameters/jump_start/request = 0
-parameters/land/active = false
-parameters/land/internal_active = false
-parameters/land/request = 0
+parameters/look_blend/blend_position = Vector2(0.0221403, -0.866044)
+parameters/look_blend/4/blend_position = 0
 parameters/move_blend/blend_position = Vector2(0.007, -0.73)
 parameters/move_crouch_blend/blend_position = Vector2(1, 0)
 parameters/shoot/active = false
 parameters/shoot/internal_active = false
 parameters/shoot/request = 0
-parameters/subtract_stand/sub_amount = 1.0
-"parameters/subtract_stand 2/sub_amount" = 1.0
-"parameters/subtract_stand 3/sub_amount" = 1.0
 parameters/walk/blend_amount = 0.0
+parameters/{add_look/add_amount = 1.0
+parameters/{subtract_stand/sub_amount = 1.0
+"parameters/{subtract_stand 2/sub_amount" = 1.0
+"parameters/{subtract_stand 3/sub_amount" = 1.0
+"parameters/{subtract_stand 4/sub_amount" = 1.0
 script = ExtResource("10_ro42a")
 
 [editable path="Body/Rocket Launcher"]
+[editable path="Body/Shotgun"]

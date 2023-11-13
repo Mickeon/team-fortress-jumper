@@ -63,6 +63,7 @@ var crouching := false:
 		if not grounded:
 			position.y += 27 * HU if crouching else -27 * HU
 var just_jumped := false
+var just_landed := false
 
 var noclip_enabled := false:
 	set(new):
@@ -92,7 +93,7 @@ func _physics_process(delta: float):
 		delta = 0.015 # 1 / 66.666
 	
 	just_jumped = false
-	if _just_landed:
+	if just_landed:
 		if debug_allow_bunny_hopping:
 			_apply_friction(delta) # Prevent carrying speed from bunny-hopping.
 		else:
@@ -160,9 +161,8 @@ func _apply_friction(delta: float):
 	velocity = velocity.normalized() * speed
 
 
-var _just_landed := false
 func _handle_collision(delta: float):
-	_just_landed = false
+	just_landed = false
 	
 	var has_stepped_up := false
 	
@@ -193,7 +193,7 @@ func _handle_collision(delta: float):
 				# Give one extra frame of just landed mercy. Vanilla TF2 does this.
 				# Allows keeping momentum with perfect bunny-hopping.
 				set_deferred("grounded", true)
-				_just_landed = true
+				just_landed = true
 				velocity.y = 0.0
 		else:
 			var angle_difference = abs(normal.angle_to(up_direction) - TAU * 0.25)
@@ -223,7 +223,7 @@ func _handle_collision(delta: float):
 	
 
 func _handle_collision_with_slide(_delta: float): # Unused
-	_just_landed = false
+	just_landed = false
 	floor_snap_length = 0
 	
 	move_and_slide()
@@ -234,7 +234,7 @@ func _handle_collision_with_slide(_delta: float): # Unused
 		var angle := collision.get_angle()
 		if not grounded:
 			if angle < floor_max_angle:
-				_just_landed = true
+				just_landed = true
 				set_deferred("grounded", true)
 				velocity.y = 0.0
 		

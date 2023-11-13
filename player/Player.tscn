@@ -404,6 +404,7 @@ player = NodePath("../..")
 model = NodePath("../Body")
 
 [connection signal="shot" from="Smoothing3D/Pivot/RocketLauncher" to="Soldier/AnimationTree" method="_on_RocketLauncher_shot"]
+[connection signal="shot" from="Smoothing3D/Pivot/Shotgun" to="Soldier/AnimationTree" method="_on_Shotgun_shot"]
 [connection signal="animation_finished" from="Smoothing3D/Pivot/FirstPersonModel/AnimationPlayer" to="Smoothing3D/Pivot/RocketLauncher" method="_on_FirstPersonPlayer_animation_finished"]
 
 [editable path="Smoothing3D/Pivot/FirstPersonModel"]

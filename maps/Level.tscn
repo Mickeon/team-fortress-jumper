@@ -115,7 +115,7 @@ light_bake_mode = 1
 shadow_enabled = true
 directional_shadow_mode = 0
 directional_shadow_max_distance = 55.0
-directional_shadow_pancake_size = 8.6
+directional_shadow_pancake_size = 130.0
 
 [node name="MainGround" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
@@ -271,6 +271,7 @@ label_settings = SubResource("LabelSettings_1bwkk")
 script = ExtResource("4_5vp0v")
 player = NodePath("../Player")
 display_meters_as_hu = true
+view_mode = 2
 
 [node name="Crosshair" type="TextureRect" parent="."]
 modulate = Color(1, 1, 1, 0.501961)
