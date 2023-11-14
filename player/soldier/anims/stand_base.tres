@@ -1,0 +1,11 @@
+[gd_resource type="AnimationNodeBlendTree" load_steps=2 format=3 uid="uid://b10axaw5hope3"]
+
+[ext_resource type="AnimationNodeStateMachine" uid="uid://bmkf5e4deif5l" path="res://player/soldier/anims/machines/base_pose_machine.tres" id="1_avllx"]
+
+[resource]
+resource_name = "stand_base"
+graph_offset = Vector2(-393.333, 12.6667)
+nodes/BasePose/node = ExtResource("1_avllx")
+nodes/BasePose/position = Vector2(-87.9997, 157.333)
+nodes/output/position = Vector2(453.333, 160)
+node_connections = [&"output", 0, &"BasePose"]

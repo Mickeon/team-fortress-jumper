@@ -1,0 +1,31 @@
+[gd_resource type="AnimationNodeStateMachine" load_steps=7 format=3 uid="uid://bqvns2qey6k8c"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_n2opi"]
+animation = &"attack_PRIMARY"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mi1c1"]
+animation = &"attack_SECONDARY"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_pph0i"]
+advance_mode = 2
+advance_expression = "held_type == Type.PRIMARY"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1ada2"]
+advance_mode = 2
+advance_expression = "held_type == Type.SECONDARY"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ae2pd"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_uvf8m"]
+switch_mode = 2
+advance_mode = 2
+
+[resource]
+states/attack_PRIMARY/node = SubResource("AnimationNodeAnimation_n2opi")
+states/attack_PRIMARY/position = Vector2(529.333, 88.6667)
+states/attack_SECONDARY/node = SubResource("AnimationNodeAnimation_mi1c1")
+states/attack_SECONDARY/position = Vector2(528.889, 174)
+transitions = ["Start", "attack_PRIMARY", SubResource("AnimationNodeStateMachineTransition_pph0i"), "Start", "attack_SECONDARY", SubResource("AnimationNodeStateMachineTransition_1ada2"), "attack_PRIMARY", "End", SubResource("AnimationNodeStateMachineTransition_ae2pd"), "attack_SECONDARY", "End", SubResource("AnimationNodeStateMachineTransition_uvf8m")]
+graph_offset = Vector2(-180, -73)

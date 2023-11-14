@@ -4,6 +4,22 @@ extends AnimationTree
 @export var player: Player
 @export var model: Node3D
 
+enum Type { PRIMARY, SECONDARY }
+@export var held_type := Type.PRIMARY:
+	set(new):
+		if held_type == new:
+			return
+		
+		held_type = new
+		
+		if not is_node_ready(): await ready
+		if held_type == Type.PRIMARY:
+			$"../Body/Rocket Launcher".show()
+			$"../Body/Shotgun".hide()
+		elif held_type == Type.SECONDARY:
+			$"../Body/Rocket Launcher".hide()
+			$"../Body/Shotgun".show()
+
 var _previously_grounded := false
 var air_crouching := false:
 	set(new):
@@ -18,13 +34,14 @@ var air_crouching := false:
 			model.position.y += 27 * player.HU
 
 
-var _primary_blend_tree_root: AnimationNodeBlendTree
-var _secondary_blend_tree_root: AnimationNodeBlendTree
+#var _primary_blend_tree_root: AnimationNodeBlendTree
+#var _secondary_blend_tree_root: AnimationNodeBlendTree
 
 func _ready():
 	active = true
-	_primary_blend_tree_root = tree_root
-	_secondary_blend_tree_root = _create_secondary_blend_tree()
+#	_primary_blend_tree_root = tree_root
+#	_secondary_blend_tree_root = _create_secondary_blend_tree()
+	pass
 
 func _process(_delta: float) -> void:
 	model.rotation.y = player.cam_pivot.rotation.y
@@ -71,6 +88,10 @@ func _handle_animations():
 	air_crouching = not player.grounded and player.crouching
 
 
+
+
+
+# === The cutting room floor
 
 func _create_secondary_blend_tree():
 	var r := tree_root.duplicate(true) # Short alias.
@@ -119,13 +140,11 @@ static func _blend_space_animations_replace(blend_space: AnimationNodeBlendSpace
 
 func _on_RocketLauncher_shot() -> void:
 	set(&"parameters/shoot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
-	tree_root = _primary_blend_tree_root
-	get_parent().get_node("Body/Rocket Launcher").show()
-	get_parent().get_node("Body/Shotgun").hide()
+#	tree_root = _primary_blend_tree_root
+	held_type = Type.PRIMARY
 
 func _on_Shotgun_shot() -> void:
 	set(&"parameters/shoot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
-	tree_root = _secondary_blend_tree_root
-	get_parent().get_node("Body/Rocket Launcher").hide()
-	get_parent().get_node("Body/Shotgun").show()
+#	tree_root = _secondary_blend_tree_root
+	held_type = Type.SECONDARY
 

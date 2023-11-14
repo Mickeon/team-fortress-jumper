@@ -1,0 +1,186 @@
+[gd_resource type="AnimationNodeStateMachine" load_steps=31 format=3 uid="uid://bbrvx2je5js5q"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7uwxi"]
+animation = &"stand_PRIMARY_LookDown"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fpuve"]
+animation = &"stand_SECONDARY_LookDown"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mwm10"]
+animation = &"stand_PRIMARY_LookLeft"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7r7aw"]
+animation = &"stand_SECONDARY_LookLeft"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_56r0w"]
+animation = &"stand_PRIMARY_LookRight"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_f4aal"]
+animation = &"stand_SECONDARY_LookRight"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_yff8g"]
+animation = &"stand_PRIMARY_LookUp"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_orqc8"]
+animation = &"stand_SECONDARY_LookUp"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8by20"]
+animation = &"run_center_PRIMARY"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ne8yh"]
+animation = &"run_center_SECONDARY"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qj2ee"]
+reset = false
+advance_mode = 2
+advance_condition = &"up"
+advance_expression = "held_type == Type.PRIMARY"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_tu3d8"]
+xfade_time = 0.2
+reset = false
+switch_mode = 1
+advance_mode = 2
+advance_expression = "held_type == Type.SECONDARY"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6nd3n"]
+xfade_time = 0.2
+reset = false
+switch_mode = 1
+advance_mode = 2
+advance_expression = "held_type == Type.PRIMARY"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dyl7f"]
+reset = false
+advance_mode = 2
+advance_condition = &"down"
+advance_expression = "held_type == Type.PRIMARY"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8gyyd"]
+reset = false
+advance_mode = 2
+advance_condition = &"right"
+advance_expression = "held_type == Type.PRIMARY"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_nr711"]
+reset = false
+advance_mode = 2
+advance_condition = &"left"
+advance_expression = "held_type == Type.PRIMARY"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_4c5rn"]
+xfade_time = 0.2
+reset = false
+switch_mode = 1
+advance_mode = 2
+advance_expression = "held_type == Type.SECONDARY"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xx1cc"]
+xfade_time = 0.2
+reset = false
+switch_mode = 1
+advance_mode = 2
+advance_expression = "held_type == Type.PRIMARY"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gfwp8"]
+xfade_time = 0.2
+reset = false
+switch_mode = 1
+advance_mode = 2
+advance_expression = "held_type == Type.SECONDARY"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_wslot"]
+xfade_time = 0.2
+reset = false
+switch_mode = 1
+advance_mode = 2
+advance_expression = "held_type == Type.PRIMARY"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_evxj4"]
+xfade_time = 0.2
+reset = false
+switch_mode = 1
+advance_mode = 2
+advance_expression = "held_type == Type.SECONDARY"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_skkky"]
+xfade_time = 0.2
+reset = false
+switch_mode = 1
+advance_mode = 2
+advance_expression = "held_type == Type.PRIMARY"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_djend"]
+reset = false
+advance_mode = 2
+advance_condition = &"right"
+advance_expression = "held_type == Type.SECONDARY"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2pag4"]
+reset = false
+advance_mode = 2
+advance_condition = &"up"
+advance_expression = "held_type == Type.SECONDARY"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_rw0xl"]
+reset = false
+advance_mode = 2
+advance_condition = &"down"
+advance_expression = "held_type == Type.SECONDARY"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_4dsnr"]
+reset = false
+advance_mode = 2
+advance_condition = &"left"
+advance_expression = "held_type == Type.SECONDARY"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_lteik"]
+reset = false
+advance_mode = 2
+advance_condition = &"center"
+advance_expression = "held_type == Type.SECONDARY"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xqbwb"]
+reset = false
+advance_mode = 2
+advance_condition = &"center"
+advance_expression = "held_type == Type.PRIMARY"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3o3xs"]
+xfade_time = 0.2
+reset = false
+switch_mode = 1
+advance_mode = 2
+advance_expression = "held_type == Type.PRIMARY"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_n7lhb"]
+xfade_time = 0.2
+reset = false
+switch_mode = 1
+advance_mode = 2
+advance_expression = "held_type == Type.SECONDARY"
+
+[resource]
+states/End/position = Vector2(857.333, -61.3333)
+states/LookDown_PRIMARY/node = SubResource("AnimationNodeAnimation_7uwxi")
+states/LookDown_PRIMARY/position = Vector2(76.9859, 293.166)
+states/LookDown_SECONDARY/node = SubResource("AnimationNodeAnimation_fpuve")
+states/LookDown_SECONDARY/position = Vector2(347.664, 293.32)
+states/LookLeft_PRIMARY/node = SubResource("AnimationNodeAnimation_mwm10")
+states/LookLeft_PRIMARY/position = Vector2(-130.778, 52.0494)
+states/LookLeft_SECONDARY/node = SubResource("AnimationNodeAnimation_7r7aw")
+states/LookLeft_SECONDARY/position = Vector2(-130.778, 134.716)
+states/LookRight_PRIMARY/node = SubResource("AnimationNodeAnimation_56r0w")
+states/LookRight_PRIMARY/position = Vector2(540.686, 51.7037)
+states/LookRight_SECONDARY/node = SubResource("AnimationNodeAnimation_f4aal")
+states/LookRight_SECONDARY/position = Vector2(540.415, 133.704)
+states/LookUp_PRIMARY/node = SubResource("AnimationNodeAnimation_yff8g")
+states/LookUp_PRIMARY/position = Vector2(77.2225, -125.656)
+states/LookUp_SECONDARY/node = SubResource("AnimationNodeAnimation_orqc8")
+states/LookUp_SECONDARY/position = Vector2(346.407, -127.054)
+states/center_PRIMARY/node = SubResource("AnimationNodeAnimation_8by20")
+states/center_PRIMARY/position = Vector2(707.141, 386.667)
+states/center_SECONDARY/node = SubResource("AnimationNodeAnimation_ne8yh")
+states/center_SECONDARY/position = Vector2(707.819, 298.667)
+transitions = ["Start", "LookUp_PRIMARY", SubResource("AnimationNodeStateMachineTransition_qj2ee"), "LookUp_PRIMARY", "LookUp_SECONDARY", SubResource("AnimationNodeStateMachineTransition_tu3d8"), "LookUp_SECONDARY", "LookUp_PRIMARY", SubResource("AnimationNodeStateMachineTransition_6nd3n"), "Start", "LookDown_PRIMARY", SubResource("AnimationNodeStateMachineTransition_dyl7f"), "Start", "LookRight_PRIMARY", SubResource("AnimationNodeStateMachineTransition_8gyyd"), "Start", "LookLeft_PRIMARY", SubResource("AnimationNodeStateMachineTransition_nr711"), "LookRight_PRIMARY", "LookRight_SECONDARY", SubResource("AnimationNodeStateMachineTransition_4c5rn"), "LookRight_SECONDARY", "LookRight_PRIMARY", SubResource("AnimationNodeStateMachineTransition_xx1cc"), "LookLeft_PRIMARY", "LookLeft_SECONDARY", SubResource("AnimationNodeStateMachineTransition_gfwp8"), "LookLeft_SECONDARY", "LookLeft_PRIMARY", SubResource("AnimationNodeStateMachineTransition_wslot"), "LookDown_PRIMARY", "LookDown_SECONDARY", SubResource("AnimationNodeStateMachineTransition_evxj4"), "LookDown_SECONDARY", "LookDown_PRIMARY", SubResource("AnimationNodeStateMachineTransition_skkky"), "Start", "LookRight_SECONDARY", SubResource("AnimationNodeStateMachineTransition_djend"), "Start", "LookUp_SECONDARY", SubResource("AnimationNodeStateMachineTransition_2pag4"), "Start", "LookDown_SECONDARY", SubResource("AnimationNodeStateMachineTransition_rw0xl"), "Start", "LookLeft_SECONDARY", SubResource("AnimationNodeStateMachineTransition_4dsnr"), "Start", "center_SECONDARY", SubResource("AnimationNodeStateMachineTransition_lteik"), "Start", "center_PRIMARY", SubResource("AnimationNodeStateMachineTransition_xqbwb"), "center_SECONDARY", "center_PRIMARY", SubResource("AnimationNodeStateMachineTransition_3o3xs"), "center_PRIMARY", "center_SECONDARY", SubResource("AnimationNodeStateMachineTransition_n7lhb")]
+graph_offset = Vector2(-527, -238)

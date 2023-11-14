@@ -7,10 +7,10 @@
 [ext_resource type="Material" uid="uid://cuc8qbquctc7i" path="res://player/soldier/mat/tongue_mat.tres" id="5_vl3c4"]
 [ext_resource type="Material" uid="uid://nrs81kxpekfb" path="res://player/soldier/mat/hands_mat.tres" id="6_aelk0"]
 [ext_resource type="Material" uid="uid://bcyjpdmg18bqa" path="res://wep/models/rocket_launcher_mat.tres" id="8_yrs7y"]
-[ext_resource type="AnimationNodeBlendTree" uid="uid://babqdhmbrx55u" path="res://player/soldier/anims/base_blend_root.tres" id="9_foqwd"]
 [ext_resource type="PackedScene" uid="uid://csp0d7462puxm" path="res://wep/models/shotgun.glb" id="9_lymci"]
 [ext_resource type="Material" uid="uid://cnmv8s17cp571" path="res://wep/models/shotgun_mat.tres" id="10_bpa3x"]
 [ext_resource type="Script" path="res://player/soldier/anims/soldier_anim_manager.gd" id="10_ro42a"]
+[ext_resource type="AnimationNodeBlendTree" uid="uid://babqdhmbrx55u" path="res://player/soldier/anims/root.tres" id="11_nn7aa"]
 [ext_resource type="PackedScene" uid="uid://dnev3pycp5dyd" path="res://wep/models/rocket_launcher.glb" id="11_w6e2f"]
 
 [sub_resource type="Skin" id="Skin_0hbjr"]
@@ -127,37 +127,90 @@ skeleton = NodePath("../../../../Skeleton3D")
 surface_material_override/0 = ExtResource("10_bpa3x")
 
 [node name="AnimationTree" type="AnimationTree" parent="." index="2"]
-tree_root = ExtResource("9_foqwd")
+tree_root = ExtResource("11_nn7aa")
 anim_player = NodePath("../AnimationPlayer")
 active = true
-parameters/StandBase1/TimeScale/scale = 1.0
-parameters/StandBase2/TimeScale/scale = 0.0
-parameters/StandBase3/TimeScale/scale = 1.0
-parameters/StandBase4/TimeScale/scale = 0.0
-parameters/crouch_walk/blend_amount = 0.0
-parameters/ground/current_state = "crouched"
+parameters/crouch_walk/blend_amount = 1.0
+parameters/ground/current_state = "airborne"
 parameters/ground/transition_request = ""
-parameters/ground/current_index = 2
+parameters/ground/current_index = 1
 parameters/jump_land/active = false
 parameters/jump_land/internal_active = false
 parameters/jump_land/request = 0
 parameters/jump_start/active = false
 parameters/jump_start/internal_active = false
 parameters/jump_start/request = 0
-parameters/look_blend/blend_position = Vector2(0.0221403, -0.866044)
-parameters/look_blend/4/blend_position = 0
-parameters/move_blend/blend_position = Vector2(0.007, -0.73)
-parameters/move_crouch_blend/blend_position = Vector2(1, 0)
+parameters/look_blend/blend_position = Vector2(-0.00548446, -0.0117995)
+parameters/look_blend/0/conditions/center = true
+parameters/look_blend/0/conditions/down = false
+parameters/look_blend/0/conditions/left = false
+parameters/look_blend/0/conditions/right = false
+parameters/look_blend/0/conditions/up = false
+parameters/look_blend/1/conditions/center = false
+parameters/look_blend/1/conditions/down = false
+parameters/look_blend/1/conditions/left = false
+parameters/look_blend/1/conditions/right = false
+parameters/look_blend/1/conditions/up = true
+parameters/look_blend/2/conditions/center = false
+parameters/look_blend/2/conditions/down = false
+parameters/look_blend/2/conditions/left = false
+parameters/look_blend/2/conditions/right = true
+parameters/look_blend/2/conditions/up = false
+parameters/look_blend/3/conditions/center = false
+parameters/look_blend/3/conditions/down = true
+parameters/look_blend/3/conditions/left = false
+parameters/look_blend/3/conditions/right = false
+parameters/look_blend/3/conditions/up = false
+parameters/look_blend/4/conditions/center = false
+parameters/look_blend/4/conditions/down = false
+parameters/look_blend/4/conditions/left = true
+parameters/look_blend/4/conditions/right = false
+parameters/look_blend/4/conditions/up = false
+parameters/move_blend/blend_position = Vector2(1.00562, -0.012959)
+parameters/move_blend/0/conditions/go_east = false
+parameters/move_blend/0/conditions/go_north = true
+parameters/move_blend/0/conditions/go_south = false
+parameters/move_blend/0/conditions/go_west = false
+parameters/move_blend/1/conditions/go_east = true
+parameters/move_blend/1/conditions/go_north = false
+parameters/move_blend/1/conditions/go_south = false
+parameters/move_blend/1/conditions/go_west = false
+parameters/move_blend/2/conditions/go_east = false
+parameters/move_blend/2/conditions/go_north = false
+parameters/move_blend/2/conditions/go_south = true
+parameters/move_blend/2/conditions/go_west = false
+parameters/move_blend/3/conditions/go_east = false
+parameters/move_blend/3/conditions/go_north = false
+parameters/move_blend/3/conditions/go_south = false
+parameters/move_blend/3/conditions/go_west = true
+parameters/move_crouch_blend/blend_position = Vector2(0.003, 0.971)
+parameters/move_crouch_blend/0/conditions/go_east = false
+parameters/move_crouch_blend/0/conditions/go_north = true
+parameters/move_crouch_blend/0/conditions/go_south = false
+parameters/move_crouch_blend/0/conditions/go_west = false
+parameters/move_crouch_blend/1/conditions/go_east = true
+parameters/move_crouch_blend/1/conditions/go_north = false
+parameters/move_crouch_blend/1/conditions/go_south = false
+parameters/move_crouch_blend/1/conditions/go_west = false
+parameters/move_crouch_blend/2/conditions/go_east = false
+parameters/move_crouch_blend/2/conditions/go_north = false
+parameters/move_crouch_blend/2/conditions/go_south = true
+parameters/move_crouch_blend/2/conditions/go_west = false
+parameters/move_crouch_blend/3/conditions/go_east = false
+parameters/move_crouch_blend/3/conditions/go_north = false
+parameters/move_crouch_blend/3/conditions/go_south = false
+parameters/move_crouch_blend/3/conditions/go_west = true
 parameters/shoot/active = false
 parameters/shoot/internal_active = false
 parameters/shoot/request = 0
-parameters/walk/blend_amount = 0.0
+parameters/walk/blend_amount = 1.0
 parameters/{add_look/add_amount = 1.0
-parameters/{subtract_stand/sub_amount = 1.0
-"parameters/{subtract_stand 2/sub_amount" = 1.0
-"parameters/{subtract_stand 3/sub_amount" = 1.0
-"parameters/{subtract_stand 4/sub_amount" = 1.0
+parameters/{subtract_base/sub_amount = 1.0
+"parameters/{subtract_base 2/sub_amount" = 1.0
+"parameters/{subtract_base 3/sub_amount" = 1.0
+"parameters/{subtract_base 4/sub_amount" = 1.0
 script = ExtResource("10_ro42a")
+held_type = 1
 
 [editable path="Body/Rocket Launcher"]
 [editable path="Body/Shotgun"]
