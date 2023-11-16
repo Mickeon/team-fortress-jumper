@@ -95,13 +95,13 @@ autorestart_delay = 0.5
 
 [sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_c232n"]
 
+[sub_resource type="AnimationNodeSub2" id="AnimationNodeSub2_wehc2"]
+
 [sub_resource type="AnimationNodeSub2" id="AnimationNodeSub2_yf26m"]
 
 [sub_resource type="AnimationNodeSub2" id="AnimationNodeSub2_pegnu"]
 
 [sub_resource type="AnimationNodeSub2" id="AnimationNodeSub2_fwpij"]
-
-[sub_resource type="AnimationNodeSub2" id="AnimationNodeSub2_wehc2"]
 
 [resource]
 graph_offset = Vector2(-150.667, 198.667)
@@ -152,10 +152,10 @@ nodes/{Base1/node = ExtResource("3_fnjmk")
 nodes/{Base1/position = Vector2(1733.33, -106.667)
 nodes/{Base2/node = ExtResource("3_fnjmk")
 nodes/{Base2/position = Vector2(2266.67, 1013.33)
-nodes/{Base4/node = ExtResource("3_fnjmk")
-nodes/{Base4/position = Vector2(480, 853.333)
 nodes/{Base3/node = ExtResource("3_fnjmk")
 nodes/{Base3/position = Vector2(960, -106.667)
+nodes/{Base4/node = ExtResource("3_fnjmk")
+nodes/{Base4/position = Vector2(480, 853.333)
 nodes/{add_look/node = SubResource("AnimationNodeAdd2_c232n")
 nodes/{add_look/position = Vector2(2826.67, 453.333)
 nodes/{subtract_base/node = SubResource("AnimationNodeSub2_wehc2")

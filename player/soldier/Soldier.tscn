@@ -206,9 +206,9 @@ parameters/shoot/request = 0
 parameters/walk/blend_amount = 1.0
 parameters/{add_look/add_amount = 1.0
 parameters/{subtract_base/sub_amount = 1.0
-"parameters/{subtract_base 2/sub_amount" = 1.0
-"parameters/{subtract_base 3/sub_amount" = 1.0
-"parameters/{subtract_base 4/sub_amount" = 1.0
+parameters/{subtract_base2/sub_amount = 1.0
+parameters/{subtract_base3/sub_amount = 1.0
+parameters/{subtract_base4/sub_amount = 1.0
 script = ExtResource("10_ro42a")
 held_type = 1
 
