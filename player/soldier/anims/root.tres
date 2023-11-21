@@ -104,7 +104,6 @@ autorestart_delay = 0.5
 [sub_resource type="AnimationNodeSub2" id="AnimationNodeSub2_fwpij"]
 
 [resource]
-graph_offset = Vector2(-150.667, 198.667)
 nodes/Attack/node = SubResource("AnimationNodeAnimation_7rys0")
 nodes/Attack/position = Vector2(453.333, 693.333)
 nodes/AttackMachine/node = ExtResource("1_egy54")

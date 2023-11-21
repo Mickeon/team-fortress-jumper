@@ -23,7 +23,8 @@ Alternatively, download a build from [the releases](https://github.com/Mickeon/t
 | **WASD** | Move
 | **Jump** | Jump
 | **Shift** or **CTRL** | Crouch
-| **Left Click** | Shoot rocket
+| **Left Click** | Use Rocket Launcher
+| **Right Click** | Use Shotgun
 | **Q** | Charge!!
 
 #### Selection:
@@ -36,10 +37,10 @@ Alternatively, download a build from [the releases](https://github.com/Mickeon/t
 #### Debugging:
 | Key | Action |
 | :-: | --- |
-| **F3** | Toggle debug screen
+| **F1** | Toggle first person model
+| **F3** | Toggle debug label
 | **F4** | Toggle bunny hopping
-| **F5** | Toggle top-down view
-| **F6** | Open this very repository
+| **F5** | Change camera mode
 | **N** or **E** | Toggle noclip
 | **Page Up/Down** | Change time scale
 | **CTRL** + **F3** | Toggle Hammer Units/Meters

@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://bf71q8x45pv03"]
+
+[ext_resource type="FontFile" uid="uid://idu5r2kjc1sx" path="res://shared/fonts/SourceCodePro-Medium.ttf" id="1_0jd0t"]
+[ext_resource type="Script" path="res://player/player_debugger.gd" id="2_gd2o7"]
+
+[node name="PlayerDebugger" type="RichTextLabel"]
+clip_contents = false
+offset_left = 4.0
+offset_right = 609.0
+offset_bottom = 264.0
+mouse_filter = 1
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/line_separation = 2
+theme_override_constants/outline_size = 8
+theme_override_fonts/normal_font = ExtResource("1_0jd0t")
+bbcode_enabled = true
+text = "POS:
+VEL:
+SPD: "
+fit_content = true
+scroll_active = false
+shortcut_keys_enabled = false
+meta_underlined = false
+script = ExtResource("2_gd2o7")
+display_meters_as_hu = true
+view_mode = 2

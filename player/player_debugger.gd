@@ -1,4 +1,4 @@
-extends Label
+extends RichTextLabel
 
 const HU = Player.HU
 const Explosion = preload("res://wep/explosion.gd")
@@ -36,8 +36,21 @@ enum ViewMode { FIRST_PERSON, THIRD_PERSON, FRONT, TOP_DOWN }
 			if not is_node_ready(): await ready
 			get_tree().process_frame.disconnect(_debug_draw)
 var camera: Camera3D
+var hovered_meta
+
+func _ready():
+	# Jank needed because the mouse input needs to go through the Label.
+	meta_hover_started.connect(func _on_meta_hover_started(meta): hovered_meta = meta)
+	meta_hover_ended.connect(func _on_meta_hover_ended(_meta): hovered_meta = null)
 
 func _input(event):
+	if hovered_meta and event is InputEventMouseButton and event.is_pressed():
+		var url := String(hovered_meta)
+		if url.begins_with("github"):
+			OS.shell_open("https://github.com/Mickeon/team-fortress-jumper")
+			accept_event()
+			return
+	
 	var key_event := event as InputEventKey
 	if key_event and key_event.pressed:
 		var key := key_event.keycode
@@ -55,18 +68,20 @@ func _input(event):
 					visible = not visible
 			KEY_F4:
 				player.debug_allow_bunny_hopping = not player.debug_allow_bunny_hopping
-			KEY_F6:
-				OS.shell_open("https://github.com/Mickeon/team-fortress-jumper")
 			KEY_PAGEDOWN, KEY_PAGEUP:
-				var add := -0.1 if key == KEY_PAGEDOWN else 0.1
-				Engine.time_scale = clampf(snappedf(Engine.time_scale + add, 0.1), 0.001, 1.0)
+				var mult := 0.5 if key == KEY_PAGEDOWN else 2.0
+				Engine.time_scale = clampf(snappedf(Engine.time_scale * mult, 0.015625), 0.001, 1.0)
+				update_debug_text()
 	
 	if event.is_action_pressed("debug_view_mode"):
 		view_mode = (view_mode + 1) % ViewMode.size() as ViewMode
 
 func _physics_process(_delta):
-	if player:
-		update_debug_text()
+	if player and visible:
+		# When slowed down, update less frequently.
+		var frequency := maxi(Engine.get_frames_per_second() * (1 - Engine.time_scale), 1)
+		if (Engine.get_physics_frames() % frequency) == 0:
+			update_debug_text()
 
 func _debug_draw():
 	var velocity_planar := Vector3(player.velocity.x, 0, player.velocity.z)
@@ -96,25 +111,30 @@ func _debug_draw():
 	elif view_mode == ViewMode.FRONT:
 		camera.transform = player.cam_pivot.transform.translated_local(Vector3(0, 0, -2.0)
 				).rotated_local(Vector3.UP, PI)
-		
+
 
 func update_debug_text():
-	var new_text := """F6 for controls, F3 to toggle. (%s)
-	POS: %9.3v
-	ANG: %6.2v
-	SPD: %9.4f
-	HSP: %9.4f
-	"""
+	var new_text := """[color=gray]F3 to toggle, [color=cyan][url="github"]Click here for controls[/url][/color]. (%s)
+POS: %s
+ANG: %s
+SPD: %s
+HSP: %s
+[/color]"""
+	var angles := Vector2(player.cam_pivot.rotation_degrees.x, fmod(player.cam_pivot.rotation_degrees.y, 180.0))
+	var velocity_planar := Vector2(player.velocity.x, player.velocity.z)
 	
 	new_text %= [
 		"Using Hu" if display_meters_as_hu else "Using Meters",
-		adjust(player.global_position),
-		Vector2(player.cam_pivot.rotation_degrees.x, fmod(player.cam_pivot.rotation_degrees.y, 180.0)),
-		adjust(player.velocity.length()),
-		adjust(Vector3(player.velocity.x, 0, player.velocity.z).length()),
+		prettify(adjust(player.global_position)),
+		prettify(angles),
+		prettify(adjust(player.velocity.length())),
+		prettify(adjust(velocity_planar.length())),
 	]
+#
 	if Engine.time_scale != 1.0:
 		new_text += "\nTime scale: %s" % Engine.time_scale
+	if player.debug_allow_bunny_hopping:
+		new_text += "\nBunny Hopping Enabled"
 	if player.crouching:
 		new_text += "\nCROUCHING"
 	if not player.grounded:
@@ -127,6 +147,17 @@ func adjust(value: Variant) -> Variant:
 	if display_meters_as_hu:
 		return m_to_hu(value)
 	return value
+
+static func prettify(value: Variant) -> String:
+	if value is Vector3:
+		return "([color=pink]%9.3f[/color], [color=lime]%9.3f[/color], [color=light_blue]%9.3f[/color])" % [
+				value.x, value.y, value.z]
+	elif value is Vector2:
+		return "([color=pink]%6.2f[/color], [color=lime]%6.2f[/color])" % [value.x, value.y]
+	elif value is float:
+		return "[color=white]%9.4f[/color]" % [value]
+	
+	return str(value)
 
 static func m_to_hu(value: Variant) -> Variant:
 	if value is float:

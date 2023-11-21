@@ -27,6 +27,7 @@ buses/default_bus_layout="res://sfx/default_bus_layout.tres"
 [debug]
 
 gdscript/warnings/static_called_on_instance=0
+gdscript/warnings/narrowing_conversion=0
 
 [display]
 
@@ -41,6 +42,10 @@ naming/scene_name_casing=1
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/glteamfortress/plugin.cfg", "res://addons/plugin_refresher/plugin.cfg", "res://addons/smoothing/plugin.cfg")
+
+[gui]
+
+timers/tooltip_delay_sec=0.2
 
 [input]
 
