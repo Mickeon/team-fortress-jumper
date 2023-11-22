@@ -1,16 +1,13 @@
 extends RayCast3D
 
-# "16 Hammer units = 1 foot"
-# "1 Hammer unit is equal to exactly 0.01905 metres."
-
-# Should actually be 1100 Hu, or 20.955 m
-@export var speed = 12.5
+@export var speed = 1100 * Player.HU
 
 var source: Player
 
 func _ready():
 	if get_tree().current_scene == self:
 		$Lifetime.stop()
+		add_child(preload("./TestCamera.tscn").instantiate())
 	
 #	hit_from_inside = true
 #	set_deferred("hit_from_inside", false)
@@ -20,8 +17,8 @@ func _ready():
 	translate_object_local(-target_position)
 	
 	# The rocket's model is not is visible for few split seconds, likely not to cover your face.
-	$rocket.hide()
-	get_tree().create_timer(0.05).timeout.connect($rocket.show)
+	$Model.hide()
+	get_tree().create_timer(0.05).timeout.connect($Model.show)
 
 func _physics_process(delta):
 	if is_colliding():
@@ -34,7 +31,7 @@ func _physics_process(delta):
 
 
 func explode():
-	var explosion: Node3D = preload("res://wep/Explosion.tscn").instantiate()
+	var explosion: Node3D = preload("./Explosion.tscn").instantiate()
 	
 	explosion.source = source
 	explosion.position = global_position
@@ -51,7 +48,7 @@ func explode():
 	queue_free()
 
 func _exit_tree():
-	var trail = $Trail
+	var trail: GPUParticles3D = $Trail
 	
 	trail.emitting = false
 	remove_child(trail)

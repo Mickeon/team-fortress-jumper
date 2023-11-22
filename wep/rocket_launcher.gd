@@ -1,6 +1,6 @@
 extends WeaponNode
 
-const Rocket = preload("./rocket.gd")
+const Rocket = preload("./other/rocket.gd")
 
 const SHOOT_OFFSET = Vector3(12.0, -3.0, -23.5) * HU # Vanilla coords: (23.5, 12.0, -3.0)
 const SHOOT_OFFSET_CROUCH = Vector3(12.0, 8.0, -23.5) * HU # Vanilla coords: (23.5, 12.0, 8.0)
@@ -13,7 +13,7 @@ signal shot
 func _shoot():
 	var shoot_offset := SHOOT_OFFSET_CROUCH if player_owner.crouching else SHOOT_OFFSET
 	
-	var rocket: Rocket = preload("./Rocket.tscn").instantiate()
+	var rocket: Rocket = preload("./other/Rocket.tscn").instantiate()
 	setup_projectile(rocket, shoot_offset)
 	rocket.source = player_owner
 	rocket.add_exception(player_owner)

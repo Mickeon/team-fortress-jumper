@@ -52,7 +52,7 @@ func _create_bullet(base_offset := Vector2.ZERO):
 	var hit_point := to
 	if result:
 		hit_point = result.position
-		var decal: Decal = preload("./BulletDecal.tscn").instantiate()
+		var decal: Decal = preload("./other/BulletDecal.tscn").instantiate()
 		_setup_decal(decal, hit_point, result.normal)
 		
 		player_owner.add_sibling(decal)

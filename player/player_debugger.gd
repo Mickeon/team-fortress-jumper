@@ -1,7 +1,7 @@
 extends RichTextLabel
 
 const HU = Player.HU
-const Explosion = preload("res://wep/explosion.gd")
+const Explosion = preload("res://wep/other/explosion.gd")
 
 enum ViewMode { FIRST_PERSON, THIRD_PERSON, FRONT, TOP_DOWN }
 

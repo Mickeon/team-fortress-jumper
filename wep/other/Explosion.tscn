@@ -1,8 +1,8 @@
 [gd_scene load_steps=15 format=3 uid="uid://dro1lx1y42eja"]
 
-[ext_resource type="Script" path="res://wep/explosion.gd" id="1_u2aqr"]
-[ext_resource type="PackedScene" uid="uid://xnor1ir3y6j6" path="res://wep/BlastDecal.tscn" id="3_bgour"]
-[ext_resource type="AudioStream" uid="uid://dks5r3sh7vryc" path="res://sfx/rocket_jumper_explode1.wav" id="3_mq40r"]
+[ext_resource type="Script" path="res://wep/other/explosion.gd" id="1_u2aqr"]
+[ext_resource type="PackedScene" uid="uid://xnor1ir3y6j6" path="res://wep/other/BlastDecal.tscn" id="3_bgour"]
+[ext_resource type="AudioStream" uid="uid://dks5r3sh7vryc" path="res://sfx/primary/rocket_jumper_explode1.wav" id="3_mq40r"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_r7on5"]
 radius = 2.0
