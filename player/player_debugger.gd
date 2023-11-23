@@ -9,7 +9,7 @@ enum ViewMode { FIRST_PERSON, THIRD_PERSON, FRONT, TOP_DOWN }
 @export var display_meters_as_hu := false
 @export var view_mode := ViewMode.FIRST_PERSON:
 	set(new):
-		if view_mode == new:
+		if view_mode == new or not player:
 			return
 		
 		view_mode = new
@@ -32,8 +32,8 @@ enum ViewMode { FIRST_PERSON, THIRD_PERSON, FRONT, TOP_DOWN }
 				get_tree().process_frame.connect(_debug_draw, CONNECT_DEFERRED)
 			
 		else:
-			camera.queue_free()
 			if not is_node_ready(): await ready
+			camera.queue_free()
 			get_tree().process_frame.disconnect(_debug_draw)
 var camera: Camera3D
 var hovered_meta
@@ -114,7 +114,7 @@ func _debug_draw():
 
 
 func update_debug_text():
-	var new_text := """[color=gray]F3 to toggle, [color=cyan][url="github"]Click here for controls[/url][/color]. (%s)
+	var new_text := """[color=gray]F3 to toggle, [color=cyan][url="github"]Click here for controls[/url][/color]. (%s) (%s)
 POS: %s
 ANG: %s
 SPD: %s
@@ -125,6 +125,7 @@ HSP: %s
 	
 	new_text %= [
 		"Using Hu" if display_meters_as_hu else "Using Meters",
+		"[color=blue]Server[/color]" if multiplayer.get_unique_id() == 1 else "Client",
 		prettify(adjust(player.global_position)),
 		prettify(angles),
 		prettify(adjust(player.velocity.length())),

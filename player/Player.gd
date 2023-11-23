@@ -104,14 +104,15 @@ func _physics_process(delta: float):
 		_handle_noclip(delta)
 		return
 	
-	var wish_dir := Input.get_vector("player_left", "player_right", "player_forward", "player_back")
+	var wish_dir := (Input.get_vector("player_left", "player_right", "player_forward", "player_back") 
+			if is_processing_unhandled_input() else Vector2.ZERO)
 	if forced_wishdir.y != 0:
 		wish_dir.y = forced_wishdir.y
 		wish_dir = wish_dir.normalized()
 	wish_dir = wish_dir.rotated(-cam_pivot.rotation.y)
 	set_meta("wish_dir", wish_dir) # I don't want to expose this directly now.
 	
-	if grounded and Input.is_action_pressed("player_jump"):
+	if grounded and is_processing_unhandled_input() and Input.is_action_pressed("player_jump"):
 		grounded = false
 		just_jumped = true
 		velocity.y = JUMP_FORCE
@@ -352,11 +353,15 @@ func get_global_center() -> Vector3:
 	return center
 
 func get_height() -> float:
-	return capsule.shape.height
+	return capsule.shape.height if capsule.shape is CapsuleShape3D else capsule.shape.size.y
 
 func get_width() -> float: # Not used anywhere, actually.
 	return capsule.shape.radius
 
+
+signal hurt(amount: float)
+func take_damage(amount: float, inflictor: Player = null):
+	emit_signal("hurt", amount, inflictor)
 
 #const JUMP_HEIGHT = 72 * HU
 #func _get_jump_force(height: float):

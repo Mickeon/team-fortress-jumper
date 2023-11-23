@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://ddl2hvuyg0djc"]
+
+[ext_resource type="Script" path="res://maps/mp_game.gd" id="1_f7p4g"]
+[ext_resource type="PackedScene" uid="uid://dsyym2bcxma0k" path="res://maps/Level.tscn" id="2_jfik2"]
+[ext_resource type="PackedScene" uid="uid://bf71q8x45pv03" path="res://player/PlayerDebugger.tscn" id="3_4tyrb"]
+
+[sub_resource type="Gradient" id="Gradient_ppgpi"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.221154, 0.306034, 0.431034)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 0.148018, 0.380562, 0.27681, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_b4g3n"]
+gradient = SubResource("Gradient_ppgpi")
+width = 32
+height = 32
+fill = 2
+fill_from = Vector2(0.5, 0.5)
+
+[node name="MPGame" type="Node"]
+script = ExtResource("1_f7p4g")
+
+[node name="Level" parent="." instance=ExtResource("2_jfik2")]
+
+[node name="PlayerDebugger" parent="." instance=ExtResource("3_4tyrb")]
+view_mode = 0
+
+[node name="Crosshair" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0.501961)
+texture_filter = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 0
+texture = SubResource("GradientTexture2D_b4g3n")
+stretch_mode = 3

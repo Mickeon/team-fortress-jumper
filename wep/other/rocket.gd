@@ -33,17 +33,18 @@ func _physics_process(delta):
 func explode():
 	var explosion: Node3D = preload("./Explosion.tscn").instantiate()
 	
-	explosion.source = source
+	explosion.inflictor = source
 	explosion.position = global_position
+	explosion.directly_hit_player = get_collider() as Player
 	# Tansform mumbo jumbo, to ensure the blast node is looking AWAY from the point of impact.
 	var normal := get_collision_normal()
 	if normal.is_equal_approx(Vector3.DOWN):
 		explosion.rotation.x += PI
-	elif not normal.is_equal_approx(Vector3.UP):
+	elif not normal.is_equal_approx(Vector3.UP) and not normal == Vector3.ZERO:
 		explosion.look_at_from_position(position, position + normal)
 		explosion.transform = explosion.transform.rotated_local(Vector3.RIGHT, TAU * -0.25)
 	
-	add_sibling(explosion)
+	add_sibling(explosion, true)
 	
 	queue_free()
 

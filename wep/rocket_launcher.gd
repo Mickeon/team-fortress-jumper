@@ -9,7 +9,6 @@ signal shot
 
 @export var first_person_player: AnimationPlayer
 
-
 func _shoot():
 	var shoot_offset := SHOOT_OFFSET_CROUCH if player_owner.crouching else SHOOT_OFFSET
 	
@@ -17,7 +16,7 @@ func _shoot():
 	setup_projectile(rocket, shoot_offset)
 	rocket.source = player_owner
 	rocket.add_exception(player_owner)
-	player_owner.add_sibling(rocket)
+	player_owner.add_sibling(rocket, true)
 	
 	sfx.play()
 	first_person_player.stop()

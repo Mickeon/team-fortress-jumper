@@ -1,10 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://dsyym2bcxma0k"]
+[gd_scene load_steps=9 format=3 uid="uid://dsyym2bcxma0k"]
 
 [ext_resource type="Script" path="res://maps/level.gd" id="1_mcdpx"]
 [ext_resource type="Material" uid="uid://bagj31aqo6y0f" path="res://maps/test_mat.tres" id="2_hlduo"]
-[ext_resource type="PackedScene" uid="uid://bp3faj46c64ck" path="res://player/Player.tscn" id="3_u5blx"]
 [ext_resource type="Texture2D" uid="uid://ciuqdaym61xuw" path="res://maps/tf-demoman.png" id="3_xpmct"]
-[ext_resource type="PackedScene" uid="uid://bf71q8x45pv03" path="res://player/PlayerDebugger.tscn" id="5_6r752"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_rtpvj"]
 sky_horizon_color = Color(0.624681, 0.637029, 0.654167, 1)
@@ -83,18 +81,6 @@ shader_parameter/total_frames = 69
 shader_parameter/uv_scale = Vector2(-1, 1.595)
 shader_parameter/animation_scale = 16.0
 shader_parameter/tex = ExtResource("3_xpmct")
-
-[sub_resource type="Gradient" id="Gradient_ppgpi"]
-interpolation_mode = 1
-offsets = PackedFloat32Array(0, 0.221154, 0.306034, 0.431034)
-colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 0.148018, 0.380562, 0.27681, 1, 1, 1, 1, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_02c5r"]
-gradient = SubResource("Gradient_ppgpi")
-width = 32
-height = 32
-fill = 2
-fill_from = Vector2(0.5, 0.5)
 
 [node name="Level" type="Node3D"]
 script = ExtResource("1_mcdpx")
@@ -251,27 +237,3 @@ size = Vector3(1.372, 1.82116, 1.372)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.1658, 0.972, 12.1447)
 use_collision = true
 size = Vector3(2.803, 0.29, 0.05)
-
-[node name="Player" parent="." instance=ExtResource("3_u5blx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.7531, 1.26251, 0)
-
-[node name="PlayerDebugger" parent="." node_paths=PackedStringArray("player") instance=ExtResource("5_6r752")]
-player = NodePath("../Player")
-
-[node name="Crosshair" type="TextureRect" parent="."]
-modulate = Color(1, 1, 1, 0.501961)
-texture_filter = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_vertical = 0
-texture = SubResource("GradientTexture2D_02c5r")
-stretch_mode = 3

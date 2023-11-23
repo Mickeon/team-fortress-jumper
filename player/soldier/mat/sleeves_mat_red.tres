@@ -1,0 +1,16 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://blvflicat0g82"]
+
+[ext_resource type="Texture2D" uid="uid://bm4pc4wm5dccw" path="res://player/soldier/mat/soldier_sleeves_red.png" id="1_islet"]
+[ext_resource type="Texture2D" uid="uid://dfct0pgm1idvk" path="res://player/soldier/mat/soldier_sleeves_normal.png" id="2_0vroq"]
+
+[resource]
+resource_name = "coat"
+albedo_texture = ExtResource("1_islet")
+metallic_specular = 0.2
+roughness = 0.75
+normal_enabled = true
+normal_texture = ExtResource("2_0vroq")
+rim_enabled = true
+rim = 0.3
+rim_tint = 0.9
+backlight = Color(0.784314, 0.54902, 0.270588, 1)

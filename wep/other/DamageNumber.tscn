@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://c0qhcxtaau6gc"]
+
+[ext_resource type="Script" path="res://wep/other/damage_number.gd" id="1_ngdck"]
+
+[node name="DamageNumber" type="Label3D"]
+layers = 8
+pixel_size = 0.003
+offset = Vector2(0, 8)
+billboard = 1
+double_sided = false
+no_depth_test = true
+fixed_size = true
+texture_filter = 1
+modulate = Color(1, 1, 0, 1)
+text = "12"
+font_size = 24
+script = ExtResource("1_ngdck")

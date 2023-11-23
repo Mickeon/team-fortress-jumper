@@ -27,7 +27,8 @@ var splash_radius := 146 * HU:
 @export_range(0, 120, 1, "hide_slider", "or_greater")
 var base_damage := 90.0
 
-var source: Player
+var inflictor: Player
+var directly_hit_player: Player
 
 @onready var lifetimer := get_tree().create_timer(LIFETIME)
 
@@ -60,25 +61,31 @@ func _update_splash_radius():
 
 func apply_knockback(player: Player):
 	var player_global_center := player.get_global_center()
-	var splash_distance := minf(
-			global_position.distance_to(player.global_position), 
-			global_position.distance_to(player_global_center))
-	if source == player:
-#		splash_radius -= 25 * HU
-		splash_radius -= 25.25 * HU # For some reason this works better. for now.
+	var splash_distance = 0.0
+	if directly_hit_player != player:
+		splash_distance = minf(
+				global_position.distance_to(player.global_position), 
+				global_position.distance_to(player_global_center))
+	
+	var radius := splash_radius
+	if inflictor == player:
+#		radius -= 25 * HU
+		radius -= 25.25 * HU # For some reason this works better. for now.
 	
 	var edge_damage := base_damage * 0.5
 	var damage := clampf(
-			remap(splash_distance, 0.0, splash_radius, base_damage, edge_damage),
+			remap(splash_distance, 0.0, radius, base_damage, edge_damage),
 			edge_damage, base_damage)
 	
-	var multiplier := 9.0 * HU
-	if source == player:
+	var multiplier := 6.0 * HU
+	if inflictor == player:
 		if not player.grounded:
 			damage *= 0.6
 			multiplier = ROCKET_JUMP_SCALE
 		else:
 			multiplier = ROCKET_JUMP_BAD_SCALE
+	else:
+		damage *= get_damage_falloff(inflictor.global_position.distance_to(player.global_position))
 	
 	# Pretends that the knockback direction of attacks come from 10 Hu lower than they really do.
 	# It's part of why you're frequently pushed upwards when taking damage in the Vanilla game.
@@ -89,8 +96,10 @@ func apply_knockback(player: Player):
 	var add_velocity := knockback_force * direction
 	player.velocity += add_velocity
 	player.grounded = false
+	player.take_damage(damage, inflictor)
 	
-	print("Damage: %4.2f | Speed: %5.2f" % [damage, player.velocity.length() / HU])
+	if inflictor == player:
+		print("Damage: %4.2f | Speed: %5.2f" % [damage, player.velocity.length() / HU])
 
 func is_valid_target(player: Player) -> bool:
 	var query := PhysicsRayQueryParameters3D.create(
@@ -104,4 +113,13 @@ func is_valid_target(player: Player) -> bool:
 func _on_body_entered(body: Node3D) -> void:
 	if body is Player and is_valid_target(body):
 		apply_knockback(body)
+
+
+static func get_damage_falloff(distance: float) -> float:
+#	const FALLOFF_CURVE = preload("res://wep/other/falloff_damage_curve_rocket.tres")
+#	return FALLOFF_CURVE.sample(unit)
+	
+	var unit := clampf(remap(distance, 0.0, 1024 * HU, 0.0, 1.0), 0.0, 1.0)
+	
+	return cubic_interpolate(1.25, 0.5, 0.25, 0.0, unit)
 

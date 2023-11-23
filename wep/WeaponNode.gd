@@ -13,8 +13,9 @@ var trigger_action := "player_primary"
 
 func _unhandled_input(event):
 	if event.is_action_pressed(trigger_action):
-		shoot()
+		shoot.rpc()
 
+@rpc("authority", "call_local")
 func shoot():
 	if _interval_timer and _interval_timer.time_left > 0.0:
 		return
@@ -28,7 +29,7 @@ func refresh_interval():
 	_interval_timer.timeout.connect(func():
 			_ready_to_shoot()
 			# When holding down the button, shoot again as soon as possible.
-			if Input.is_action_pressed(trigger_action): shoot()
+			if Input.is_action_pressed(trigger_action): shoot.rpc()
 	)
 
 
