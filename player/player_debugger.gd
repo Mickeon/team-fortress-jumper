@@ -131,7 +131,14 @@ HSP: %s
 		prettify(adjust(player.velocity.length())),
 		prettify(adjust(velocity_planar.length())),
 	]
-#
+	
+	var weapon_manager := player.get_node("WeaponManager")
+	if weapon_manager:
+		if weapon_manager.held_weapon:
+			new_text += "\n Holding %s" % weapon_manager.held_weapon.name
+		
+		new_text += "\n Deploy time %2.2f" % weapon_manager.deploy_timer.time_left
+	
 	if Engine.time_scale != 1.0:
 		new_text += "\nTime scale: %s" % Engine.time_scale
 	if player.debug_allow_bunny_hopping:

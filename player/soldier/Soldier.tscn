@@ -1,7 +1,7 @@
 [gd_scene load_steps=15 format=3 uid="uid://d3tlxp1tfmuf8"]
 
 [ext_resource type="PackedScene" uid="uid://dd6xa26xijbfc" path="res://player/soldier/soldier.glb" id="1_up20u"]
-[ext_resource type="Material" uid="uid://6ow1u4ur6s03" path="res://player/soldier/mat/coat_mat.tres" id="2_wqvld"]
+[ext_resource type="Material" uid="uid://6ow1u4ur6s03" path="res://player/soldier/mat/coat_mat_red.tres" id="2_wqvld"]
 [ext_resource type="Material" uid="uid://dsyli0q6u4vy" path="res://player/soldier/mat/eyes_mat.tres" id="3_nhegp"]
 [ext_resource type="Material" uid="uid://dayfb14k5kwp" path="res://player/soldier/mat/head_mat.tres" id="4_ofv37"]
 [ext_resource type="Material" uid="uid://cuc8qbquctc7i" path="res://player/soldier/mat/tongue_mat.tres" id="5_vl3c4"]

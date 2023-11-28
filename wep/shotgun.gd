@@ -106,3 +106,9 @@ static func get_damage_falloff(distance: float) -> float:
 	var unit := clampf(remap(distance, 0.0, 1024 * HU, 0.0, 1.0), 0.0, 1.0)
 	
 	return cubic_interpolate(1.5, 0.5, 0.0, 0.0, unit)
+
+
+func _on_FirstPersonPlayer_animation_finished(anim_name: StringName) -> void:
+	match anim_name:
+		&"shotgun_fire", &"shotgun_draw_pump":
+			first_person_player.play(&"shotgun_idle")

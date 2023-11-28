@@ -1,6 +1,6 @@
 extends Node
 
-const PlayerScene := preload("res://player/Player.tscn")
+const PlayerScene = preload("res://player/Player.tscn")
 
 const PORT = 8002
 const SERVER_ADDRESS = "localhost"

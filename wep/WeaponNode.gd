@@ -6,6 +6,15 @@ const HU = Player.HU
 @export var attack_interval := 0.8
 @export_enum("player_primary", "player_secondary", "player_charge")
 var trigger_action := "player_primary"
+var active := false:
+	set(new):
+		if active == new:
+			return
+		
+		active = new
+		# When holding down the button, shoot again as soon as possible.
+		if active and Input.is_action_pressed(trigger_action):
+			shoot.rpc()
 
 @onready var player_owner: Player = owner
 @onready var sfx: AudioStreamPlayer3D = $Shoot
@@ -17,7 +26,7 @@ func _unhandled_input(event):
 
 @rpc("authority", "call_local")
 func shoot():
-	if _interval_timer and _interval_timer.time_left > 0.0:
+	if not active or (_interval_timer and _interval_timer.time_left > 0.0):
 		return
 	
 	refresh_interval()

@@ -83,12 +83,12 @@ func _handle_animations():
 
 
 func _on_RocketLauncher_shot() -> void:
-	set(&"parameters/shoot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 #	tree_root = _primary_blend_tree_root
-	held_type = Type.PRIMARY
+#	held_type = Type.PRIMARY
+	set(&"parameters/shoot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 
 func _on_Shotgun_shot() -> void:
-	set(&"parameters/shoot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 #	tree_root = _secondary_blend_tree_root
-	held_type = Type.SECONDARY
+#	held_type = Type.SECONDARY
+	set(&"parameters/shoot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 

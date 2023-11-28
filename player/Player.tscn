@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://bp3faj46c64ck"]
+[gd_scene load_steps=38 format=3 uid="uid://bp3faj46c64ck"]
 
 [ext_resource type="Script" path="res://player/Player.gd" id="1"]
 [ext_resource type="Script" path="res://wep/rocket_launcher.gd" id="2_eytv3"]
@@ -14,19 +14,39 @@
 [ext_resource type="AudioStream" uid="uid://c20n8so5kl01u" path="res://sfx/secondary/shotgun_shoot.wav" id="8_hpyut"]
 [ext_resource type="Material" uid="uid://blvflicat0g82" path="res://player/soldier/mat/sleeves_mat_red.tres" id="11_0ojm0"]
 [ext_resource type="PackedScene" uid="uid://d3tlxp1tfmuf8" path="res://player/soldier/Soldier.tscn" id="13_k6b1l"]
+[ext_resource type="PackedScene" uid="uid://csp0d7462puxm" path="res://wep/models/shotgun.glb" id="14_2bunr"]
+[ext_resource type="Material" uid="uid://cnmv8s17cp571" path="res://wep/models/shotgun_mat.tres" id="15_lowst"]
+[ext_resource type="Script" path="res://player/weapon_manager.gd" id="15_m23wc"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1tjpu"]
-no_depth_test = true
-diffuse_mode = 3
-specular_mode = 1
-albedo_color = Color(0.209462, 0.125347, 7.21961e-08, 1)
-metallic = 0.45
-roughness = 0.0
-emission_enabled = true
-emission = Color(0.180392, 0.0901961, 0, 1)
-rim_enabled = true
-clearcoat = 0.37
-clearcoat_roughness = 0.67
+[sub_resource type="Gradient" id="Gradient_q8p6q"]
+offsets = PackedFloat32Array(0, 0.0748032, 0.161417, 0.929134)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_wmvs3"]
+gradient = SubResource("Gradient_q8p6q")
+width = 3
+height = 16
+fill_to = Vector2(0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mjbim"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.980392, 1, 0.415686, 1)
+albedo_texture = SubResource("GradientTexture2D_wmvs3")
+disable_receive_shadows = true
+use_particle_trails = true
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_02281"]
+direction = Vector3(0, 0, -1)
+spread = 0.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 10.0
+initial_velocity_max = 10.0
+
+[sub_resource type="RibbonTrailMesh" id="RibbonTrailMesh_g472k"]
+shape = 0
+size = 0.05
 
 [sub_resource type="Gradient" id="Gradient_bi0mt"]
 interpolation_mode = 1
@@ -83,36 +103,6 @@ color_ramp = SubResource("GradientTexture1D_awufh")
 [sub_resource type="QuadMesh" id="QuadMesh_gh0ur"]
 size = Vector2(1.4, 1)
 
-[sub_resource type="Gradient" id="Gradient_q8p6q"]
-offsets = PackedFloat32Array(0, 0.0748032, 0.161417, 0.929134)
-colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_wmvs3"]
-gradient = SubResource("Gradient_q8p6q")
-width = 3
-height = 16
-fill_to = Vector2(0, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mjbim"]
-transparency = 1
-shading_mode = 0
-vertex_color_use_as_albedo = true
-albedo_color = Color(0.980392, 1, 0.415686, 1)
-albedo_texture = SubResource("GradientTexture2D_wmvs3")
-disable_receive_shadows = true
-use_particle_trails = true
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_02281"]
-direction = Vector3(0, 0, -1)
-spread = 0.0
-gravity = Vector3(0, 0, 0)
-initial_velocity_min = 10.0
-initial_velocity_max = 10.0
-
-[sub_resource type="RibbonTrailMesh" id="RibbonTrailMesh_g472k"]
-shape = 0
-size = 0.05
-
 [sub_resource type="Skin" id="Skin_37hr0"]
 resource_name = "Skin"
 bind_count = 4
@@ -128,6 +118,28 @@ bind/2/pose = Transform3D(-9.06898e-06, 51.8248, -8.35214, 1.72555e-06, 8.35212,
 bind/3/name = &"c_weapon_stattrack"
 bind/3/bone = -1
 bind/3/pose = Transform3D(51.5036, 10.0947, -1.02009, -1.03836, -0.005782, -52.4832, -10.0928, 51.5137, 0.194012, -3.79051, 4.92592, -4.5772)
+
+[sub_resource type="Skin" id="Skin_lvlaq"]
+resource_name = "Skin"
+bind_count = 6
+bind/0/name = &"weapon_bone"
+bind/0/bone = -1
+bind/0/pose = Transform3D(52.4934, 0, 0, 0, -8.55227e-06, -52.4934, 0, 52.4934, -8.55227e-06, 0, 0, 0)
+bind/1/name = &"weapon_bone"
+bind/1/bone = -1
+bind/1/pose = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 17.115, -11.809, -25.966)
+bind/2/name = &"weapon_bone"
+bind/2/bone = -1
+bind/2/pose = Transform3D(52.493, 0, 0, 0, 0, -52.493, 0, 52.493, 0, 0, -1.445, -25.966)
+bind/3/name = &"weapon_bone"
+bind/3/bone = -1
+bind/3/pose = Transform3D(52.493, 0, 0, 0, 0, -52.493, 0, 52.493, 0, -0.109, -2.61, -5.589)
+bind/4/name = &"weapon_bone"
+bind/4/bone = -1
+bind/4/pose = Transform3D(52.493, 0, 0, 0, 0, -52.493, 0, 52.493, 0, 0.711, -2.661, -5.589)
+bind/5/name = &"weapon_bone"
+bind/5/bone = -1
+bind/5/pose = Transform3D(52.493, 0, 0, 0, 0, -51.263, 0, 52.493, 0, -0.377, -2.242, -8.121)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_301pk"]
 resource_local_to_scene = true
@@ -189,43 +201,9 @@ fov = 85.0
 script = ExtResource("2_eytv3")
 first_person_player = NodePath("../FirstPersonModel/AnimationPlayer")
 
-[node name="Cylinder" type="CSGCylinder3D" parent="Smoothing3D/Pivot/RocketLauncher"]
-transform = Transform3D(-0.988228, -0.152958, -0.00293694, -1.67829e-09, -0.0191974, 0.999816, -0.152986, 0.988046, 0.0189714, 0.197063, -0.217942, -0.175458)
-visible = false
-sorting_offset = 66.265
-sorting_use_aabb_center = false
-radius = 0.0950297
-height = 0.6
-sides = 12
-material = SubResource("StandardMaterial3D_1tjpu")
-
 [node name="Shoot" type="AudioStreamPlayer3D" parent="Smoothing3D/Pivot/RocketLauncher"]
 transform = Transform3D(-0.988228, -0.152958, -0.00293694, -2.60944e-09, -0.0191974, 0.999816, -0.152986, 0.988046, 0.0189714, 0, 0, 0)
 stream = ExtResource("4_ngnbn")
-volume_db = -20.0
-max_db = -20.0
-max_polyphony = 10
-attenuation_filter_cutoff_hz = 18520.0
-
-[node name="ChargingShield" type="Node3D" parent="Smoothing3D/Pivot"]
-process_physics_priority = -1
-script = ExtResource("5_k3wqx")
-attack_interval = 1.5
-trigger_action = "player_charge"
-
-[node name="Trail" type="GPUParticles3D" parent="Smoothing3D/Pivot/ChargingShield"]
-material_override = SubResource("StandardMaterial3D_7u7yu")
-emitting = false
-amount = 192
-lifetime = 5.0
-speed_scale = 1.5
-draw_order = 1
-process_material = SubResource("ParticleProcessMaterial_nhp4v")
-draw_pass_1 = SubResource("QuadMesh_gh0ur")
-
-[node name="Shoot" type="AudioStreamPlayer3D" parent="Smoothing3D/Pivot/ChargingShield"]
-transform = Transform3D(-0.988228, -0.152958, -0.00293694, -2.60944e-09, -0.0191974, 0.999816, -0.152986, 0.988046, 0.0189714, 0, 0, 0)
-stream = ExtResource("6_fa8f2")
 volume_db = -20.0
 max_db = -20.0
 max_polyphony = 10
@@ -236,7 +214,6 @@ process_physics_priority = -1
 script = ExtResource("7_3qfhg")
 first_person_player = NodePath("../FirstPersonModel/AnimationPlayer")
 attack_interval = 0.625
-trigger_action = "player_secondary"
 
 [node name="Shoot" type="AudioStreamPlayer3D" parent="Smoothing3D/Pivot/Shotgun"]
 transform = Transform3D(-0.988228, -0.152958, -0.00293694, -2.60944e-09, -0.0191974, 0.999816, -0.152986, 0.988046, 0.0189714, 0, 0, 0)
@@ -261,6 +238,30 @@ trail_enabled = true
 trail_lifetime = 0.1
 process_material = SubResource("ParticleProcessMaterial_02281")
 draw_pass_1 = SubResource("RibbonTrailMesh_g472k")
+
+[node name="ChargingShield" type="Node3D" parent="Smoothing3D/Pivot"]
+process_physics_priority = -1
+script = ExtResource("5_k3wqx")
+attack_interval = 1.5
+trigger_action = "player_charge"
+
+[node name="Trail" type="GPUParticles3D" parent="Smoothing3D/Pivot/ChargingShield"]
+material_override = SubResource("StandardMaterial3D_7u7yu")
+emitting = false
+amount = 192
+lifetime = 5.0
+speed_scale = 1.5
+draw_order = 1
+process_material = SubResource("ParticleProcessMaterial_nhp4v")
+draw_pass_1 = SubResource("QuadMesh_gh0ur")
+
+[node name="Shoot" type="AudioStreamPlayer3D" parent="Smoothing3D/Pivot/ChargingShield"]
+transform = Transform3D(-0.988228, -0.152958, -0.00293694, -2.60944e-09, -0.0191974, 0.999816, -0.152986, 0.988046, 0.0189714, 0, 0, 0)
+stream = ExtResource("6_fa8f2")
+volume_db = -20.0
+max_db = -20.0
+max_polyphony = 10
+attenuation_filter_cutoff_hz = 18520.0
 
 [node name="FirstPersonModel" parent="Smoothing3D/Pivot" instance=ExtResource("2_q83su")]
 transform = Transform3D(-1, 0, -9.81473e-08, 0, 1, 0, 1.50996e-07, 0, -0.65, 0, 0, 0)
@@ -349,13 +350,41 @@ surface_material_override/1 = ExtResource("11_0ojm0")
 [node name="AnimationPlayer" parent="Smoothing3D/Pivot/FirstPersonModel" index="1"]
 autoplay = "rocket_launcher_draw"
 
-[node name="rocket_launcher_mdl" parent="Smoothing3D/Pivot/FirstPersonModel" instance=ExtResource("4_fpnlp")]
+[node name="Rocket Launcher" parent="Smoothing3D/Pivot/FirstPersonModel" instance=ExtResource("4_fpnlp")]
 
-[node name="c_rocketlauncher" parent="Smoothing3D/Pivot/FirstPersonModel/rocket_launcher_mdl/c_rocketlauncher_qc_skeleton/Skeleton3D" index="0"]
+[node name="c_rocketlauncher" parent="Smoothing3D/Pivot/FirstPersonModel/Rocket Launcher/c_rocketlauncher_qc_skeleton/Skeleton3D" index="0"]
 layers = 2
+extra_cull_margin = 100.0
 skin = SubResource("Skin_37hr0")
 skeleton = NodePath("../../../../Arms/Skeleton3D")
 surface_material_override/0 = ExtResource("5_w6h5j")
+
+[node name="Shotgun" parent="Smoothing3D/Pivot/FirstPersonModel" instance=ExtResource("14_2bunr")]
+
+[node name="Skeleton3D" parent="Smoothing3D/Pivot/FirstPersonModel/Shotgun/c_shotgun_skeleton" index="0"]
+bones/0/enabled = false
+bones/1/enabled = false
+bones/1/position = Vector3(0.000474975, 0.000474975, 0.000474975)
+bones/1/scale = Vector3(1.00048, 1.00048, 1.00048)
+bones/2/enabled = false
+bones/2/position = Vector3(0.000474975, 0.000474975, 0.000474975)
+bones/3/enabled = false
+bones/3/position = Vector3(1.12448, 7.20448, 5.58848)
+bones/3/scale = Vector3(1.00048, 1.00048, 1.00048)
+bones/4/enabled = false
+bones/5/enabled = false
+bones/5/scale = Vector3(1.00048, 1.00048, 1.00048)
+bones/6/enabled = false
+bones/6/scale = Vector3(1.00048, 1.00048, 1.00048)
+bones/7/enabled = false
+bones/8/enabled = false
+
+[node name="c_shotgun" parent="Smoothing3D/Pivot/FirstPersonModel/Shotgun/c_shotgun_skeleton/Skeleton3D" index="0"]
+layers = 2
+extra_cull_margin = 100.0
+skin = SubResource("Skin_lvlaq")
+skeleton = NodePath("../../../../Arms/Skeleton3D")
+surface_material_override/0 = ExtResource("15_lowst")
 
 [node name="CollisionShapeBox" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.781, 0)
@@ -412,12 +441,23 @@ model = NodePath("../Body")
 replication_config = SubResource("SceneReplicationConfig_6x33i")
 visibility_update_mode = 1
 
+[node name="WeaponManager" type="Node3D" parent="." node_paths=PackedStringArray("primary_weapon", "secondary_weapon", "held_weapon")]
+script = ExtResource("15_m23wc")
+primary_weapon = NodePath("../Smoothing3D/Pivot/RocketLauncher")
+secondary_weapon = NodePath("../Smoothing3D/Pivot/Shotgun")
+held_weapon = NodePath("../Smoothing3D/Pivot/RocketLauncher")
+
+[node name="Deploy" type="Timer" parent="WeaponManager"]
+one_shot = true
+
 [connection signal="shot" from="Smoothing3D/Pivot/RocketLauncher" to="Soldier/AnimationTree" method="_on_RocketLauncher_shot"]
 [connection signal="shot" from="Smoothing3D/Pivot/Shotgun" to="Soldier/AnimationTree" method="_on_Shotgun_shot"]
 [connection signal="animation_finished" from="Smoothing3D/Pivot/FirstPersonModel/AnimationPlayer" to="Smoothing3D/Pivot/RocketLauncher" method="_on_FirstPersonPlayer_animation_finished"]
+[connection signal="animation_finished" from="Smoothing3D/Pivot/FirstPersonModel/AnimationPlayer" to="Smoothing3D/Pivot/Shotgun" method="_on_FirstPersonPlayer_animation_finished"]
 
 [editable path="Smoothing3D/Pivot/FirstPersonModel"]
-[editable path="Smoothing3D/Pivot/FirstPersonModel/rocket_launcher_mdl"]
+[editable path="Smoothing3D/Pivot/FirstPersonModel/Rocket Launcher"]
+[editable path="Smoothing3D/Pivot/FirstPersonModel/Shotgun"]
 [editable path="Soldier"]
 [editable path="Soldier/Body/Rocket Launcher"]
 [editable path="Soldier/Body/Shotgun"]

@@ -23,9 +23,11 @@ Alternatively, download a build from [the releases](https://github.com/Mickeon/t
 | **WASD** | Move
 | **Jump** | Jump
 | **Shift** or **CTRL** | Crouch
-| **Left Click** | Use Rocket Launcher
-| **Right Click** | Use Shotgun
+| **Left Click** | Use Weapon
 | **Q** | Charge!!
+| **1** | Switch to Rocket Launcher
+| **2** | Switch to Shotgun
+
 
 #### Selection:
 | Key | Action | ... |
@@ -45,6 +47,7 @@ Alternatively, download a build from [the releases](https://github.com/Mickeon/t
 | **Page Up/Down** | Change time scale
 | **CTRL** + **F3** | Toggle Hammer Units/Meters
 | **SHIFT** + **F3** | Toggle explosion radius & collisions display
+| **F** | Spawn fake player
 
 
 ## Credits
