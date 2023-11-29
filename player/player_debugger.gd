@@ -30,11 +30,11 @@ enum ViewMode { FIRST_PERSON, THIRD_PERSON, FRONT, TOP_DOWN }
 			player.add_child(camera)
 			if not get_tree().process_frame.is_connected(_debug_draw):
 				get_tree().process_frame.connect(_debug_draw, CONNECT_DEFERRED)
-			
 		else:
 			if not is_node_ready(): await ready
 			camera.queue_free()
 			get_tree().process_frame.disconnect(_debug_draw)
+			player.debug_show_bounding_box = false
 var camera: Camera3D
 var hovered_meta
 
@@ -64,6 +64,7 @@ func _input(event):
 				elif key_event.shift_pressed:
 					Explosion.debug_show_radius = not Explosion.debug_show_radius
 					player.debug_show_collisions = Explosion.debug_show_radius
+					player.debug_show_bounding_box = Explosion.debug_show_radius
 				else:
 					visible = not visible
 			KEY_F4:
@@ -97,14 +98,6 @@ func _debug_draw():
 			wish_dir.length(), 
 			Color.DARK_CYAN, 0.25, false)
 	
-	var capsule = player.capsule
-	if capsule.shape is BoxShape3D:
-		var shape_size = player.capsule.shape.size
-		DebugDraw3D.draw_aabb(AABB(capsule.global_position - shape_size * 0.5, shape_size), Color.YELLOW)
-	else:
-		var radius: float = capsule.shape.radius
-		DebugDraw3D.draw_cylinder(player.global_transform.scaled_local(Vector3(radius, HU, radius)), Color.YELLOW)
-	
 	camera.rotation.y = player.cam_pivot.rotation.y
 	if view_mode == ViewMode.THIRD_PERSON:
 		camera.transform = player.cam_pivot.transform.translated_local(Vector3(0, 0, 2.0))
@@ -134,10 +127,12 @@ HSP: %s
 	
 	var weapon_manager := player.get_node("WeaponManager")
 	if weapon_manager:
+		new_text += "\n[color=gray]"
 		if weapon_manager.held_weapon:
-			new_text += "\n Holding %s" % weapon_manager.held_weapon.name
-		
-		new_text += "\n Deploy time %2.2f" % weapon_manager.deploy_timer.time_left
+			new_text += "Holding %s" % weapon_manager.held_weapon.name
+		if weapon_manager.deploy_timer.time_left > 0.0:
+			new_text += " (Deploying %2.2f)" % weapon_manager.deploy_timer.time_left
+		new_text += "[/color]"
 	
 	if Engine.time_scale != 1.0:
 		new_text += "\nTime scale: %s" % Engine.time_scale

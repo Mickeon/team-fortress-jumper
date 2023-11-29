@@ -36,6 +36,7 @@ var MAX_SLOPE_ANGLE := deg_to_rad(45.573):
 @export var debug_simulate_vanilla_tickrate := false
 @export var debug_allow_bunny_hopping := false
 @export var debug_show_collisions := false
+@export var debug_show_bounding_box := false
 
 var grounded := false
 var crouching := false:
@@ -146,8 +147,16 @@ func _physics_process(delta: float):
 	if grounded:
 		_clamp_speed()
 	
-	if position.y <= -2000 * HU:
+	if position.y <= -1000 * HU:
 		position = Vector3(0, 100 * HU, 0) # Back to the origin for falling into the void.
+	if debug_show_bounding_box:
+		if capsule.shape is BoxShape3D:
+			var shape_size = capsule.shape.size
+			DebugDraw3D.draw_aabb(AABB(capsule.global_position - shape_size * 0.5, shape_size), Color.YELLOW)
+		else:
+			var radius: float = capsule.shape.radius
+			DebugDraw3D.draw_cylinder(global_transform.scaled_local(Vector3(radius, HU, radius)), Color.YELLOW)
+	
 
 func _apply_friction(delta: float):
 	if not grounded:

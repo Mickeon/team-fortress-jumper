@@ -82,13 +82,6 @@ func _handle_animations():
 	air_crouching = not player.grounded and player.crouching
 
 
-func _on_RocketLauncher_shot() -> void:
-#	tree_root = _primary_blend_tree_root
-#	held_type = Type.PRIMARY
-	set(&"parameters/shoot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
-
-func _on_Shotgun_shot() -> void:
-#	tree_root = _secondary_blend_tree_root
-#	held_type = Type.SECONDARY
+func _on_any_weapon_shot() -> void:
 	set(&"parameters/shoot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 

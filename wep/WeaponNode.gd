@@ -3,6 +3,8 @@ class_name WeaponNode
 
 const HU = Player.HU
 
+signal shot
+
 @export var attack_interval := 0.8
 @export_enum("player_primary", "player_secondary", "player_charge")
 var trigger_action := "player_primary"
@@ -18,6 +20,7 @@ var active := false:
 
 @onready var player_owner: Player = owner
 @onready var sfx: AudioStreamPlayer3D = $Shoot
+@onready var fp_model: Node3D = get_node_or_null("Model")
 
 
 func _unhandled_input(event):
@@ -31,6 +34,12 @@ func shoot():
 	
 	refresh_interval()
 	_shoot()
+	emit_signal("shot")
+
+func deploy():
+	if fp_model:
+		fp_model.show()
+	_deploy()
 
 var _interval_timer: SceneTreeTimer
 func refresh_interval():
@@ -41,12 +50,15 @@ func refresh_interval():
 			if Input.is_action_pressed(trigger_action): shoot.rpc()
 	)
 
+## Overridable. Called when deploying this weapon.
+func _deploy():
+	pass
 
 ## Overridable. Called when using this weapon.
 func _shoot():
 	pass
 
-## Overridable. Called when the weapon is ready to shoot again.
+## Overridable. Called after shooting, when the weapon is ready to shoot again.
 func _ready_to_shoot():
 	pass
 

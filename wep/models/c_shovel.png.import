@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dh3imuutsnvnw"
-path="res://.godot/imported/c_shotgun.png-12652f8d02d520f2d373fbaa1b979990.ctex"
+uid="uid://ch100c1rf53eo"
+path="res://.godot/imported/c_shovel.png-b6ee9e3f9aed09681ae7dab3197e2109.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://wep/models/c_shotgun.png"
-dest_files=["res://.godot/imported/c_shotgun.png-12652f8d02d520f2d373fbaa1b979990.ctex"]
+source_file="res://wep/models/c_shovel.png"
+dest_files=["res://.godot/imported/c_shovel.png-b6ee9e3f9aed09681ae7dab3197e2109.ctex"]
 
 [params]
 

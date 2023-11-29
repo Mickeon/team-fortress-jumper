@@ -76,14 +76,14 @@ func tweak_other(player: Player):
 	player.propagate_call("set_process_unhandled_input", [false])
 	
 	player.cam_pivot.get_node("Camera").queue_free()
-	player.cam_pivot.get_node("FirstPersonModel").hide()
+	player.cam_pivot.hide()
 	
 	# Show TP model all the time.
 	for mesh in [
 		player.get_node("Soldier/Body/Skeleton3D/mesh"),
 		player.get_node("Soldier/Body/Rocket Launcher/c_rocketlauncher_qc_skeleton/Skeleton3D/c_rocketlauncher"),
 		player.get_node("Soldier/Body/Shotgun/c_shotgun_skeleton/Skeleton3D/c_shotgun")
-	]: 
+	]:
 		mesh.layers = 6
 	
 	player.hurt.connect(_on_player_hurt.bind(player))
@@ -118,7 +118,7 @@ func _on_player_hurt(amount: float, inflictor: Player, player: Player):
 		_queued_damage_numbers[player] += amount
 	
 func create_damage_label(for_player: Player):
-	const DamageNumberScene := preload("res://wep/other/DamageNumber.tscn")
+	const DamageNumberScene = preload("res://wep/other/DamageNumber.tscn")
 	var damage_label: Label3D = DamageNumberScene.instantiate()
 	damage_label.damage = _queued_damage_numbers[for_player]
 	damage_label.position = for_player.position

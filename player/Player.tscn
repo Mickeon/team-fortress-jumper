@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://bp3faj46c64ck"]
+[gd_scene load_steps=51 format=3 uid="uid://bp3faj46c64ck"]
 
 [ext_resource type="Script" path="res://player/Player.gd" id="1"]
 [ext_resource type="Script" path="res://wep/rocket_launcher.gd" id="2_eytv3"]
@@ -13,10 +13,35 @@
 [ext_resource type="Material" uid="uid://c67e1bprtx6g6" path="res://player/soldier/mat/hands_fp_mat.tres" id="8_be5vy"]
 [ext_resource type="AudioStream" uid="uid://c20n8so5kl01u" path="res://sfx/secondary/shotgun_shoot.wav" id="8_hpyut"]
 [ext_resource type="Material" uid="uid://blvflicat0g82" path="res://player/soldier/mat/sleeves_mat_red.tres" id="11_0ojm0"]
+[ext_resource type="PackedScene" uid="uid://k43nu6i4pm32" path="res://wep/models/shovel.glb" id="11_4qh4n"]
+[ext_resource type="Script" path="res://wep/shovel.gd" id="11_durgm"]
+[ext_resource type="Texture2D" uid="uid://ch100c1rf53eo" path="res://wep/models/c_shovel.png" id="12_g0xoo"]
+[ext_resource type="AudioStream" uid="uid://digp1s6vrw5jh" path="res://sfx/melee/shovel_swing.wav" id="12_hluvi"]
+[ext_resource type="AudioStream" uid="uid://ilddo54ecak3" path="res://sfx/melee/axe_hit_flesh1.wav" id="13_07aax"]
 [ext_resource type="PackedScene" uid="uid://d3tlxp1tfmuf8" path="res://player/soldier/Soldier.tscn" id="13_k6b1l"]
+[ext_resource type="AudioStream" uid="uid://dudfs1p3u8pvb" path="res://sfx/melee/axe_hit_flesh2.wav" id="13_o7weq"]
 [ext_resource type="PackedScene" uid="uid://csp0d7462puxm" path="res://wep/models/shotgun.glb" id="14_2bunr"]
+[ext_resource type="AudioStream" uid="uid://cb3athmu8cxqa" path="res://sfx/melee/axe_hit_flesh3.wav" id="15_dxpvn"]
 [ext_resource type="Material" uid="uid://cnmv8s17cp571" path="res://wep/models/shotgun_mat.tres" id="15_lowst"]
 [ext_resource type="Script" path="res://player/weapon_manager.gd" id="15_m23wc"]
+[ext_resource type="AudioStream" uid="uid://dar6b1j65hfwo" path="res://sfx/melee/cbar_hit1.wav" id="16_rtb2f"]
+[ext_resource type="AudioStream" uid="uid://c0w6xyt4kavda" path="res://sfx/melee/cbar_hit2.wav" id="17_dvgj0"]
+
+[sub_resource type="Skin" id="Skin_37hr0"]
+resource_name = "Skin"
+bind_count = 4
+bind/0/name = &"weapon_bone"
+bind/0/bone = -1
+bind/0/pose = Transform3D(52.4934, 0, 0, 0, 52.4934, -8.55227e-06, 0, 8.55227e-06, 52.4934, 0, 2.24543, 2.10987)
+bind/1/name = &"vm_weapon_bone_1"
+bind/1/bone = -1
+bind/1/pose = Transform3D(1.61522e-05, 46.2953, 24.7447, -2.00992e-06, 24.7447, -46.2953, -52.4934, 1.45329e-05, 7.76778e-06, -14.1995, 10.3593, 2.08272)
+bind/2/name = &"vm_weapon_bone_2"
+bind/2/bone = -1
+bind/2/pose = Transform3D(-9.06898e-06, 51.8248, -8.35214, 1.72555e-06, 8.35212, 51.8247, 52.4934, 7.44366e-06, -1.52775e-06, -8.36767, -19.3895, -2.09028)
+bind/3/name = &"c_weapon_stattrack"
+bind/3/bone = -1
+bind/3/pose = Transform3D(51.5036, 10.0947, -1.02009, -1.03836, -0.005782, -52.4832, -10.0928, 51.5137, 0.194012, -3.79051, 4.92592, -4.5772)
 
 [sub_resource type="Gradient" id="Gradient_q8p6q"]
 offsets = PackedFloat32Array(0, 0.0748032, 0.161417, 0.929134)
@@ -47,6 +72,78 @@ initial_velocity_max = 10.0
 [sub_resource type="RibbonTrailMesh" id="RibbonTrailMesh_g472k"]
 shape = 0
 size = 0.05
+
+[sub_resource type="Skin" id="Skin_fhrgw"]
+resource_name = "Skin"
+bind_count = 9
+bind/0/name = &"weapon_bone"
+bind/0/bone = -1
+bind/0/pose = Transform3D(52.4934, 0, 0, 0, -8.55227e-06, -52.4934, 0, 52.4934, -8.55227e-06, 0, 0, 0)
+bind/1/name = &"weapon_bone_1"
+bind/1/bone = -1
+bind/1/pose = Transform3D(52.4934, 0, 0, 0, -8.55227e-06, -52.4934, 0, 52.4934, -8.55227e-06, 0, -1.39409, -25.9658)
+bind/2/name = &""
+bind/2/bone = 1
+bind/2/pose = Transform3D(52.4934, 0, 0, 0, -8.55227e-06, -52.4934, 0, 52.4934, -8.55227e-06, 0, -1.44503, -25.9658)
+bind/3/name = &"vm_weapon_bone"
+bind/3/bone = -1
+bind/3/pose = Transform3D(52.4934, 0, 0, 0, -8.55227e-06, -52.4934, 0, 52.4934, -8.55227e-06, -0.109113, -2.60987, -5.58891)
+bind/4/name = &""
+bind/4/bone = 1
+bind/4/pose = Transform3D(52.4934, 0, 0, 0, -8.55227e-06, -52.4934, 0, 52.4934, -8.55227e-06, -0.109113, -2.66081, -5.58891)
+bind/5/name = &"vm_weapon_bone_1"
+bind/5/bone = -1
+bind/5/pose = Transform3D(52.4934, 0, 0, 0, -8.55227e-06, -52.4934, 0, 52.4934, -8.55227e-06, -1.20714, -3.10209, -8.74143)
+bind/6/name = &""
+bind/6/bone = 1
+bind/6/pose = Transform3D(52.4934, 0, 0, 0, -8.55227e-06, -52.4934, 0, 52.4934, -8.55227e-06, -1.20714, -3.15302, -8.74143)
+bind/7/name = &"c_weapon_stattrack"
+bind/7/bone = -1
+bind/7/pose = Transform3D(52.4789, 0.0115601, 1.23475, 0.0705155, -52.4335, -2.50612, 1.23279, 2.50708, -52.419, -1.4523, 7.73628, -2.27039)
+bind/8/name = &""
+bind/8/bone = 1
+bind/8/pose = Transform3D(52.4789, 0.0115601, 1.23475, 0.0705155, -52.4335, -2.50612, 1.23279, 2.50708, -52.419, -1.4523, 7.68534, -2.27039)
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_3uodw"]
+streams_count = 3
+stream_0/stream = ExtResource("13_07aax")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("13_o7weq")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("15_dxpvn")
+stream_2/weight = 1.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_yjt7f"]
+streams_count = 2
+playback_mode = 1
+random_pitch = 1.05
+random_volume_offset_db = 2.0
+stream_0/stream = ExtResource("16_rtb2f")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("17_dvgj0")
+stream_1/weight = 1.0
+
+[sub_resource type="Skin" id="Skin_80etw"]
+resource_name = "Skin"
+bind_count = 3
+bind/0/name = &"weapon_bone"
+bind/0/bone = -1
+bind/0/pose = Transform3D(52.4934, 0, 0, 0, -8.55227e-06, -52.4934, 0, 52.4934, -8.55227e-06, 0, 0, 0)
+bind/1/name = &"vm_weapon_bone"
+bind/1/bone = -1
+bind/1/pose = Transform3D(52.493, 0, 0, 0, 0, -52.493, 0, 52.493, 0, 0, -16.757, 0.061)
+bind/2/name = &""
+bind/2/bone = 1
+bind/2/pose = Transform3D(52.493, 0, 0, 0, 0, -52.493, 0, 52.493, 0, 0, 0, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oyqe4"]
+albedo_texture = ExtResource("12_g0xoo")
+roughness = 0.6
+roughness_texture = ExtResource("12_g0xoo")
+roughness_texture_channel = 3
+rim_enabled = true
+backlight_enabled = true
+backlight = Color(0.392157, 0.392157, 0.392157, 1)
 
 [sub_resource type="Gradient" id="Gradient_bi0mt"]
 interpolation_mode = 1
@@ -102,44 +199,6 @@ color_ramp = SubResource("GradientTexture1D_awufh")
 
 [sub_resource type="QuadMesh" id="QuadMesh_gh0ur"]
 size = Vector2(1.4, 1)
-
-[sub_resource type="Skin" id="Skin_37hr0"]
-resource_name = "Skin"
-bind_count = 4
-bind/0/name = &"weapon_bone"
-bind/0/bone = -1
-bind/0/pose = Transform3D(52.4934, 0, 0, 0, 52.4934, -8.55227e-06, 0, 8.55227e-06, 52.4934, 0, 2.24543, 2.10987)
-bind/1/name = &"vm_weapon_bone_1"
-bind/1/bone = -1
-bind/1/pose = Transform3D(1.61522e-05, 46.2953, 24.7447, -2.00992e-06, 24.7447, -46.2953, -52.4934, 1.45329e-05, 7.76778e-06, -14.1995, 10.3593, 2.08272)
-bind/2/name = &"vm_weapon_bone_2"
-bind/2/bone = -1
-bind/2/pose = Transform3D(-9.06898e-06, 51.8248, -8.35214, 1.72555e-06, 8.35212, 51.8247, 52.4934, 7.44366e-06, -1.52775e-06, -8.36767, -19.3895, -2.09028)
-bind/3/name = &"c_weapon_stattrack"
-bind/3/bone = -1
-bind/3/pose = Transform3D(51.5036, 10.0947, -1.02009, -1.03836, -0.005782, -52.4832, -10.0928, 51.5137, 0.194012, -3.79051, 4.92592, -4.5772)
-
-[sub_resource type="Skin" id="Skin_lvlaq"]
-resource_name = "Skin"
-bind_count = 6
-bind/0/name = &"weapon_bone"
-bind/0/bone = -1
-bind/0/pose = Transform3D(52.4934, 0, 0, 0, -8.55227e-06, -52.4934, 0, 52.4934, -8.55227e-06, 0, 0, 0)
-bind/1/name = &"weapon_bone"
-bind/1/bone = -1
-bind/1/pose = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 17.115, -11.809, -25.966)
-bind/2/name = &"weapon_bone"
-bind/2/bone = -1
-bind/2/pose = Transform3D(52.493, 0, 0, 0, 0, -52.493, 0, 52.493, 0, 0, -1.445, -25.966)
-bind/3/name = &"weapon_bone"
-bind/3/bone = -1
-bind/3/pose = Transform3D(52.493, 0, 0, 0, 0, -52.493, 0, 52.493, 0, -0.109, -2.61, -5.589)
-bind/4/name = &"weapon_bone"
-bind/4/bone = -1
-bind/4/pose = Transform3D(52.493, 0, 0, 0, 0, -52.493, 0, 52.493, 0, 0.711, -2.661, -5.589)
-bind/5/name = &"weapon_bone"
-bind/5/bone = -1
-bind/5/pose = Transform3D(52.493, 0, 0, 0, 0, -51.263, 0, 52.493, 0, -0.377, -2.242, -8.121)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_301pk"]
 resource_local_to_scene = true
@@ -209,6 +268,17 @@ max_db = -20.0
 max_polyphony = 10
 attenuation_filter_cutoff_hz = 18520.0
 
+[node name="Model" parent="Smoothing3D/Pivot/RocketLauncher" instance=ExtResource("4_fpnlp")]
+transform = Transform3D(-1, 0, -9.81473e-08, 0, 1, 0, 1.50996e-07, 0, -0.65, 0, 0, 0)
+
+[node name="c_rocketlauncher" parent="Smoothing3D/Pivot/RocketLauncher/Model/c_rocketlauncher_qc_skeleton/Skeleton3D" index="0"]
+layers = 2
+extra_cull_margin = 100.0
+lod_bias = 2.0
+skin = SubResource("Skin_37hr0")
+skeleton = NodePath("../../../../../FirstPersonModel/Arms/Skeleton3D")
+surface_material_override/0 = ExtResource("5_w6h5j")
+
 [node name="Shotgun" type="Node3D" parent="Smoothing3D/Pivot" node_paths=PackedStringArray("first_person_player")]
 process_physics_priority = -1
 script = ExtResource("7_3qfhg")
@@ -238,6 +308,75 @@ trail_enabled = true
 trail_lifetime = 0.1
 process_material = SubResource("ParticleProcessMaterial_02281")
 draw_pass_1 = SubResource("RibbonTrailMesh_g472k")
+
+[node name="Model" parent="Smoothing3D/Pivot/Shotgun" instance=ExtResource("14_2bunr")]
+transform = Transform3D(-1, 0, -9.81473e-08, 0, 1, 0, 1.50996e-07, 0, -0.65, 0, 0, 0)
+
+[node name="Skeleton3D" parent="Smoothing3D/Pivot/Shotgun/Model/c_shotgun_skeleton" index="0"]
+bones/0/enabled = false
+bones/1/enabled = false
+bones/1/position = Vector3(0.000474975, 0.000474975, 0.000474975)
+bones/1/scale = Vector3(1.00048, 1.00048, 1.00048)
+bones/2/enabled = false
+bones/2/position = Vector3(0.000474975, 0.000474975, 0.000474975)
+bones/3/enabled = false
+bones/3/position = Vector3(1.12448, 7.20448, 5.58848)
+bones/3/scale = Vector3(1.00048, 1.00048, 1.00048)
+bones/4/enabled = false
+bones/5/enabled = false
+bones/5/scale = Vector3(1.00048, 1.00048, 1.00048)
+bones/6/enabled = false
+bones/6/scale = Vector3(1.00048, 1.00048, 1.00048)
+bones/7/enabled = false
+bones/8/enabled = false
+
+[node name="c_shotgun" parent="Smoothing3D/Pivot/Shotgun/Model/c_shotgun_skeleton/Skeleton3D" index="0"]
+layers = 2
+extra_cull_margin = 100.0
+lod_bias = 2.0
+skin = SubResource("Skin_fhrgw")
+skeleton = NodePath("../../../../../FirstPersonModel/Arms/Skeleton3D")
+surface_material_override/0 = ExtResource("15_lowst")
+
+[node name="Shovel" type="Node3D" parent="Smoothing3D/Pivot" node_paths=PackedStringArray("first_person_player")]
+process_physics_priority = -1
+script = ExtResource("11_durgm")
+first_person_player = NodePath("../FirstPersonModel/AnimationPlayer")
+
+[node name="Shoot" type="AudioStreamPlayer3D" parent="Smoothing3D/Pivot/Shovel"]
+transform = Transform3D(-0.988228, -0.152958, -0.00293694, -2.60944e-09, -0.0191974, 0.999816, -0.152986, 0.988046, 0.0189714, 0, 0, 0)
+stream = ExtResource("12_hluvi")
+volume_db = -20.0
+max_db = -20.0
+max_polyphony = 10
+attenuation_filter_cutoff_hz = 18520.0
+
+[node name="Hurt" type="AudioStreamPlayer3D" parent="Smoothing3D/Pivot/Shovel"]
+transform = Transform3D(-0.988228, -0.152958, -0.00293694, -2.60944e-09, -0.0191974, 0.999816, -0.152986, 0.988046, 0.0189714, 0, 0, 0)
+stream = SubResource("AudioStreamRandomizer_3uodw")
+volume_db = -20.0
+max_db = -20.0
+max_polyphony = 10
+attenuation_filter_cutoff_hz = 18520.0
+
+[node name="Hit" type="AudioStreamPlayer3D" parent="Smoothing3D/Pivot/Shovel"]
+transform = Transform3D(-0.988228, -0.152958, -0.00293694, -2.60944e-09, -0.0191974, 0.999816, -0.152986, 0.988046, 0.0189714, 0, 0, 0)
+stream = SubResource("AudioStreamRandomizer_yjt7f")
+volume_db = -20.0
+max_db = -20.0
+max_polyphony = 10
+attenuation_filter_cutoff_hz = 18520.0
+
+[node name="Model" parent="Smoothing3D/Pivot/Shovel" instance=ExtResource("11_4qh4n")]
+transform = Transform3D(-1, 0, 5.68248e-08, 0, 1, 0, -8.74228e-08, 0, -0.65, 0, 0, 0)
+
+[node name="c_shovel" parent="Smoothing3D/Pivot/Shovel/Model/c_shovel_skeleton/Skeleton3D" index="0"]
+layers = 6
+extra_cull_margin = 100.0
+lod_bias = 2.0
+skin = SubResource("Skin_80etw")
+skeleton = NodePath("../../../../../FirstPersonModel/Arms/Skeleton3D")
+surface_material_override/0 = SubResource("StandardMaterial3D_oyqe4")
 
 [node name="ChargingShield" type="Node3D" parent="Smoothing3D/Pivot"]
 process_physics_priority = -1
@@ -350,45 +489,8 @@ surface_material_override/1 = ExtResource("11_0ojm0")
 [node name="AnimationPlayer" parent="Smoothing3D/Pivot/FirstPersonModel" index="1"]
 autoplay = "rocket_launcher_draw"
 
-[node name="Rocket Launcher" parent="Smoothing3D/Pivot/FirstPersonModel" instance=ExtResource("4_fpnlp")]
-
-[node name="c_rocketlauncher" parent="Smoothing3D/Pivot/FirstPersonModel/Rocket Launcher/c_rocketlauncher_qc_skeleton/Skeleton3D" index="0"]
-layers = 2
-extra_cull_margin = 100.0
-skin = SubResource("Skin_37hr0")
-skeleton = NodePath("../../../../Arms/Skeleton3D")
-surface_material_override/0 = ExtResource("5_w6h5j")
-
-[node name="Shotgun" parent="Smoothing3D/Pivot/FirstPersonModel" instance=ExtResource("14_2bunr")]
-
-[node name="Skeleton3D" parent="Smoothing3D/Pivot/FirstPersonModel/Shotgun/c_shotgun_skeleton" index="0"]
-bones/0/enabled = false
-bones/1/enabled = false
-bones/1/position = Vector3(0.000474975, 0.000474975, 0.000474975)
-bones/1/scale = Vector3(1.00048, 1.00048, 1.00048)
-bones/2/enabled = false
-bones/2/position = Vector3(0.000474975, 0.000474975, 0.000474975)
-bones/3/enabled = false
-bones/3/position = Vector3(1.12448, 7.20448, 5.58848)
-bones/3/scale = Vector3(1.00048, 1.00048, 1.00048)
-bones/4/enabled = false
-bones/5/enabled = false
-bones/5/scale = Vector3(1.00048, 1.00048, 1.00048)
-bones/6/enabled = false
-bones/6/scale = Vector3(1.00048, 1.00048, 1.00048)
-bones/7/enabled = false
-bones/8/enabled = false
-
-[node name="c_shotgun" parent="Smoothing3D/Pivot/FirstPersonModel/Shotgun/c_shotgun_skeleton/Skeleton3D" index="0"]
-layers = 2
-extra_cull_margin = 100.0
-skin = SubResource("Skin_lvlaq")
-skeleton = NodePath("../../../../Arms/Skeleton3D")
-surface_material_override/0 = ExtResource("15_lowst")
-
 [node name="CollisionShapeBox" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.781, 0)
-visible = false
 shape = SubResource("BoxShape3D_301pk")
 
 [node name="CollisionShapeCapsule" type="CollisionShape3D" parent="."]
@@ -441,23 +543,26 @@ model = NodePath("../Body")
 replication_config = SubResource("SceneReplicationConfig_6x33i")
 visibility_update_mode = 1
 
-[node name="WeaponManager" type="Node3D" parent="." node_paths=PackedStringArray("primary_weapon", "secondary_weapon", "held_weapon")]
+[node name="WeaponManager" type="Node3D" parent="." node_paths=PackedStringArray("primary_weapon", "secondary_weapon", "melee_weapon", "held_weapon")]
 script = ExtResource("15_m23wc")
 primary_weapon = NodePath("../Smoothing3D/Pivot/RocketLauncher")
 secondary_weapon = NodePath("../Smoothing3D/Pivot/Shotgun")
+melee_weapon = NodePath("../Smoothing3D/Pivot/Shovel")
 held_weapon = NodePath("../Smoothing3D/Pivot/RocketLauncher")
 
 [node name="Deploy" type="Timer" parent="WeaponManager"]
 one_shot = true
 
-[connection signal="shot" from="Smoothing3D/Pivot/RocketLauncher" to="Soldier/AnimationTree" method="_on_RocketLauncher_shot"]
-[connection signal="shot" from="Smoothing3D/Pivot/Shotgun" to="Soldier/AnimationTree" method="_on_Shotgun_shot"]
+[connection signal="shot" from="Smoothing3D/Pivot/RocketLauncher" to="Soldier/AnimationTree" method="_on_any_weapon_shot"]
+[connection signal="shot" from="Smoothing3D/Pivot/Shotgun" to="Soldier/AnimationTree" method="_on_any_weapon_shot"]
+[connection signal="shot" from="Smoothing3D/Pivot/Shovel" to="Soldier/AnimationTree" method="_on_any_weapon_shot"]
 [connection signal="animation_finished" from="Smoothing3D/Pivot/FirstPersonModel/AnimationPlayer" to="Smoothing3D/Pivot/RocketLauncher" method="_on_FirstPersonPlayer_animation_finished"]
 [connection signal="animation_finished" from="Smoothing3D/Pivot/FirstPersonModel/AnimationPlayer" to="Smoothing3D/Pivot/Shotgun" method="_on_FirstPersonPlayer_animation_finished"]
 
+[editable path="Smoothing3D/Pivot/RocketLauncher/Model"]
+[editable path="Smoothing3D/Pivot/Shotgun/Model"]
+[editable path="Smoothing3D/Pivot/Shovel/Model"]
 [editable path="Smoothing3D/Pivot/FirstPersonModel"]
-[editable path="Smoothing3D/Pivot/FirstPersonModel/Rocket Launcher"]
-[editable path="Smoothing3D/Pivot/FirstPersonModel/Shotgun"]
 [editable path="Soldier"]
 [editable path="Soldier/Body/Rocket Launcher"]
 [editable path="Soldier/Body/Shotgun"]
