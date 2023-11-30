@@ -18,11 +18,11 @@ func _unhandled_input(event):
 	if event is InputEventKey and event.pressed and not event.echo:
 		match event.keycode:
 			KEY_1:
-				switch_to(primary_weapon)
+				switch_to_by_path.rpc(primary_weapon.get_path())
 			KEY_2:
-				switch_to(secondary_weapon)
+				switch_to_by_path.rpc(secondary_weapon.get_path())
 			KEY_3:
-				switch_to(melee_weapon)
+				switch_to_by_path.rpc(melee_weapon.get_path())
 
 
 func _ready() -> void:
@@ -31,6 +31,10 @@ func _ready() -> void:
 		if wep.fp_model:
 			wep.fp_model.hide()
 
+# You cannot pass a whole Object remotely, hence why this exists.
+@rpc("authority", "call_local", "reliable")
+func switch_to_by_path(path: NodePath):
+	switch_to(get_node(path))
 
 func switch_to(wep: WeaponNode):
 #	print("From ", held_weapon, " to ", wep)
@@ -47,12 +51,14 @@ func switch_to(wep: WeaponNode):
 		await ready # At the beginning, the timer isn't quite inside the tree.
 	deploy_timer.start(DEPLOY_TIME)
 	
-	held_weapon.deploy()
-	
-	# TODO: Decouple this shit EVEN more.
-	match held_weapon.name:
-		&"RocketLauncher": $"../Soldier/AnimationTree".held_type = 0
-		&"Shotgun", &"Shovel": $"../Soldier/AnimationTree".held_type = 1
+	if held_weapon:
+		held_weapon.deploy()
+		
+		# TODO: Decouple this shit EVEN more.
+		match held_weapon.name:
+			&"RocketLauncher": $"../Soldier/AnimationTree".held_type = 0
+			&"Shotgun": $"../Soldier/AnimationTree".held_type = 1
+			&"Shovel": $"../Soldier/AnimationTree".held_type = 2
 	
 
 func activate_held_weapon():

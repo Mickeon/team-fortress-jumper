@@ -27,7 +27,7 @@ func _unhandled_input(event):
 	if event.is_action_pressed(trigger_action):
 		shoot.rpc()
 
-@rpc("authority", "call_local")
+@rpc("authority", "call_local", "reliable")
 func shoot():
 	if not active or (_interval_timer and _interval_timer.time_left > 0.0):
 		return
@@ -36,6 +36,7 @@ func shoot():
 	_shoot()
 	emit_signal("shot")
 
+@rpc("authority", "call_local", "reliable")
 func deploy():
 	if fp_model:
 		fp_model.show()

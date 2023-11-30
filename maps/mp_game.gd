@@ -107,15 +107,15 @@ func tweak_client(player: Player):
 
 
 var _queued_damage_numbers := {} # { Player: float }
-func _on_player_hurt(amount: float, inflictor: Player, player: Player):
-	if inflictor == player:
+func _on_player_hurt(amount: float, inflictor: Player, victim: Player):
+	if inflictor == victim:
 		return # Don't care about self-inflicted damage.
 	
-	if not _queued_damage_numbers.has(player):
-		create_damage_label.call_deferred(player)
-		_queued_damage_numbers[player] = amount
+	if not _queued_damage_numbers.has(victim):
+		create_damage_label.call_deferred(victim)
+		_queued_damage_numbers[victim] = amount
 	else:
-		_queued_damage_numbers[player] += amount
+		_queued_damage_numbers[victim] += amount
 	
 func create_damage_label(for_player: Player):
 	const DamageNumberScene = preload("res://wep/other/DamageNumber.tscn")
@@ -124,6 +124,11 @@ func create_damage_label(for_player: Player):
 	damage_label.position = for_player.position
 	damage_label.position.y += for_player.get_height()
 	add_child(damage_label)
+	
+	# Likely because this whole method is "deferred", the label shows up at the origin for a single frame.
+	# to mitigate this, we fully show the label on the very next frame.
+	damage_label.hide()
+	get_tree().process_frame.connect(damage_label.show)
 	
 	_queued_damage_numbers.erase(for_player)
 

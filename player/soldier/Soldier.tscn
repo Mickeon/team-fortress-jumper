@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://d3tlxp1tfmuf8"]
+[gd_scene load_steps=18 format=3 uid="uid://d3tlxp1tfmuf8"]
 
 [ext_resource type="PackedScene" uid="uid://dd6xa26xijbfc" path="res://player/soldier/soldier.glb" id="1_up20u"]
 [ext_resource type="Material" uid="uid://6ow1u4ur6s03" path="res://player/soldier/mat/coat_mat_red.tres" id="2_wqvld"]
@@ -10,43 +10,58 @@
 [ext_resource type="PackedScene" uid="uid://csp0d7462puxm" path="res://wep/models/shotgun.glb" id="9_lymci"]
 [ext_resource type="Material" uid="uid://cnmv8s17cp571" path="res://wep/models/shotgun_mat.tres" id="10_bpa3x"]
 [ext_resource type="Script" path="res://player/soldier/anims/soldier_anim_manager.gd" id="10_ro42a"]
+[ext_resource type="PackedScene" uid="uid://k43nu6i4pm32" path="res://wep/models/shovel.glb" id="11_47wd3"]
 [ext_resource type="AnimationNodeBlendTree" uid="uid://babqdhmbrx55u" path="res://player/soldier/anims/root.tres" id="11_nn7aa"]
 [ext_resource type="PackedScene" uid="uid://dnev3pycp5dyd" path="res://wep/models/rocket_launcher.glb" id="11_w6e2f"]
+[ext_resource type="Material" uid="uid://dfrd6lutgerj5" path="res://wep/models/shovel_mat.tres" id="12_r63hc"]
 
-[sub_resource type="Skin" id="Skin_0hbjr"]
+[sub_resource type="Skin" id="Skin_qpmxg"]
 resource_name = "Skin"
 bind_count = 3
 bind/0/name = &"weapon_bone"
 bind/0/bone = -1
-bind/0/pose = Transform3D(52.493, 0, 0, 0, 52.493, 0, 0, 0, 52.493, 0, 0, 0)
+bind/0/pose = Transform3D(52.4934, 0, 0, 0, 52.4934, -8.55227e-06, 0, 8.55227e-06, 52.4934, 0, 2.24543, 2.10987)
 bind/1/name = &"weapon_bone"
-bind/1/bone = -1
-bind/1/pose = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+bind/1/bone = 1
+bind/1/pose = Transform3D(52.4934, 0, 0, 0, 52.4934, -8.55227e-06, 0, 8.55227e-06, 52.4934, 0, 2.24543, 2.10987)
 bind/2/name = &"weapon_bone"
-bind/2/bone = -1
-bind/2/pose = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+bind/2/bone = 1
+bind/2/pose = Transform3D(52.4934, 0, 0, 0, 52.4934, -8.55227e-06, 0, 8.55227e-06, 52.4934, 0, 2.24543, 2.10987)
 
-[sub_resource type="Skin" id="Skin_pd4m1"]
+[sub_resource type="Skin" id="Skin_cmrye"]
 resource_name = "Skin"
 bind_count = 6
 bind/0/name = &"weapon_bone"
 bind/0/bone = -1
 bind/0/pose = Transform3D(52.4934, 0, 0, 0, -8.55227e-06, -52.4934, 0, 52.4934, -8.55227e-06, 0, 0, 0)
+bind/1/name = &"weapon_bone_1"
+bind/1/bone = -1
+bind/1/pose = Transform3D(52.4934, 0, 0, 0, -8.55227e-06, -52.4934, 0, 52.4934, -8.55227e-06, 0, -1.39409, -25.9658)
+bind/2/name = &""
+bind/2/bone = 1
+bind/2/pose = Transform3D(52.4934, 0, 0, 0, -8.55227e-06, -52.4934, 0, 52.4934, -8.55227e-06, 0, -1.44503, -25.9658)
+bind/3/name = &""
+bind/3/bone = 1
+bind/3/pose = Transform3D(52.4934, 0, 0, 0, -8.55227e-06, -52.4934, 0, 52.4934, -8.55227e-06, -0.109113, -2.60987, -5.58891)
+bind/4/name = &""
+bind/4/bone = 1
+bind/4/pose = Transform3D(52.4934, 0, 0, 0, -8.55227e-06, -52.4934, 0, 52.4934, -8.55227e-06, -0.109113, -2.66081, -5.58891)
+bind/5/name = &""
+bind/5/bone = 1
+bind/5/pose = Transform3D(52.4934, 0, 0, 0, -8.55227e-06, -52.4934, 0, 52.4934, -8.55227e-06, -1.20714, -3.10209, -8.74143)
+
+[sub_resource type="Skin" id="Skin_ssq02"]
+resource_name = "Skin"
+bind_count = 3
+bind/0/name = &"weapon_bone"
+bind/0/bone = -1
+bind/0/pose = Transform3D(52.4934, 0, 0, 0, -8.55227e-06, -52.4934, 0, 52.4934, -8.55227e-06, 0, 0, 0)
 bind/1/name = &"weapon_bone"
 bind/1/bone = -1
-bind/1/pose = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 17.115, -11.809, -25.966)
+bind/1/pose = Transform3D(52.493, 0, 0, 0, 0, -52.493, 0, 52.493, 0, 0, 0, 0)
 bind/2/name = &"weapon_bone"
-bind/2/bone = -1
-bind/2/pose = Transform3D(52.493, 0, 0, 0, 0, -52.493, 0, 52.493, 0, 0, -1.445, -25.966)
-bind/3/name = &"weapon_bone"
-bind/3/bone = -1
-bind/3/pose = Transform3D(52.493, 0, 0, 0, 0, -52.493, 0, 52.493, 0, -0.109, -2.61, -5.589)
-bind/4/name = &"weapon_bone"
-bind/4/bone = -1
-bind/4/pose = Transform3D(52.493, 0, 0, 0, 0, -52.493, 0, 52.493, 0, 0.711, -2.661, -5.589)
-bind/5/name = &"weapon_bone"
-bind/5/bone = -1
-bind/5/pose = Transform3D(52.493, 0, 0, 0, 0, -51.263, 0, 52.493, 0, -0.377, -2.242, -8.121)
+bind/2/bone = 1
+bind/2/pose = Transform3D(52.4934, 0, 0, 0, -8.55227e-06, -52.4934, 0, 52.4934, -8.55227e-06, 0, -16.7849, 0.061404)
 
 [node name="Soldier" instance=ExtResource("1_up20u")]
 
@@ -88,14 +103,13 @@ surface_material_override/5 = ExtResource("6_aelk0")
 
 [node name="Rocket Launcher" parent="Body" index="1" instance=ExtResource("11_w6e2f")]
 transform = Transform3D(52.4934, 0, 0, 0, 52.4934, 0, 0, 0, 52.4934, 0, 0, 0)
-visible = false
 
 [node name="Skeleton3D" parent="Body/Rocket Launcher/c_rocketlauncher_qc_skeleton" index="0"]
 bones/0/scale = Vector3(1.00048, 1.00048, 1.00048)
 
 [node name="c_rocketlauncher" parent="Body/Rocket Launcher/c_rocketlauncher_qc_skeleton/Skeleton3D" index="0"]
 layers = 4
-skin = SubResource("Skin_0hbjr")
+skin = SubResource("Skin_qpmxg")
 skeleton = NodePath("../../../../Skeleton3D")
 surface_material_override/0 = ExtResource("8_yrs7y")
 
@@ -122,9 +136,22 @@ bones/8/enabled = false
 
 [node name="c_shotgun" parent="Body/Shotgun/c_shotgun_skeleton/Skeleton3D" index="0"]
 layers = 4
-skin = SubResource("Skin_pd4m1")
+skin = SubResource("Skin_cmrye")
 skeleton = NodePath("../../../../Skeleton3D")
 surface_material_override/0 = ExtResource("10_bpa3x")
+
+[node name="Shovel" parent="Body" index="3" instance=ExtResource("11_47wd3")]
+transform = Transform3D(52.4934, 0, 0, 0, 52.4934, 0, 0, 0, 52.4934, 0, 0, 0)
+
+[node name="Skeleton3D" parent="Body/Shovel/c_shovel_skeleton" index="0"]
+bones/1/position = Vector3(0.000474975, 0.000474975, 0.000474975)
+bones/1/scale = Vector3(34.1655, 19.0255, 15.3855)
+
+[node name="c_shovel" parent="Body/Shovel/c_shovel_skeleton/Skeleton3D" index="0"]
+layers = 4
+skin = SubResource("Skin_ssq02")
+skeleton = NodePath("../../../../Skeleton3D")
+surface_material_override/0 = ExtResource("12_r63hc")
 
 [node name="AnimationTree" type="AnimationTree" parent="." index="2"]
 tree_root = ExtResource("11_nn7aa")
@@ -214,3 +241,4 @@ held_type = 1
 
 [editable path="Body/Rocket Launcher"]
 [editable path="Body/Shotgun"]
+[editable path="Body/Shovel"]

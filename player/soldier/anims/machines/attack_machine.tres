@@ -1,4 +1,7 @@
-[gd_resource type="AnimationNodeStateMachine" load_steps=7 format=3 uid="uid://bqvns2qey6k8c"]
+[gd_resource type="AnimationNodeStateMachine" load_steps=10 format=3 uid="uid://bqvns2qey6k8c"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3xmbf"]
+animation = &"attack_MELEE"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_n2opi"]
 animation = &"attack_PRIMARY"
@@ -22,10 +25,20 @@ advance_mode = 2
 switch_mode = 2
 advance_mode = 2
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0lins"]
+advance_mode = 2
+advance_expression = "held_type == Type.MELEE"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_fmiwi"]
+switch_mode = 2
+advance_mode = 2
+
 [resource]
+states/attack_MELEE/node = SubResource("AnimationNodeAnimation_3xmbf")
+states/attack_MELEE/position = Vector2(533.74, 262.667)
 states/attack_PRIMARY/node = SubResource("AnimationNodeAnimation_n2opi")
 states/attack_PRIMARY/position = Vector2(529.333, 88.6667)
 states/attack_SECONDARY/node = SubResource("AnimationNodeAnimation_mi1c1")
 states/attack_SECONDARY/position = Vector2(528.889, 174)
-transitions = ["Start", "attack_PRIMARY", SubResource("AnimationNodeStateMachineTransition_pph0i"), "Start", "attack_SECONDARY", SubResource("AnimationNodeStateMachineTransition_1ada2"), "attack_PRIMARY", "End", SubResource("AnimationNodeStateMachineTransition_ae2pd"), "attack_SECONDARY", "End", SubResource("AnimationNodeStateMachineTransition_uvf8m")]
-graph_offset = Vector2(-180, -73)
+transitions = ["Start", "attack_PRIMARY", SubResource("AnimationNodeStateMachineTransition_pph0i"), "Start", "attack_SECONDARY", SubResource("AnimationNodeStateMachineTransition_1ada2"), "attack_PRIMARY", "End", SubResource("AnimationNodeStateMachineTransition_ae2pd"), "attack_SECONDARY", "End", SubResource("AnimationNodeStateMachineTransition_uvf8m"), "Start", "attack_MELEE", SubResource("AnimationNodeStateMachineTransition_0lins"), "attack_MELEE", "End", SubResource("AnimationNodeStateMachineTransition_fmiwi")]
+graph_offset = Vector2(-220, 45)

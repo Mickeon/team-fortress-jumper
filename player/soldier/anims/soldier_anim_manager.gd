@@ -4,7 +4,7 @@ extends AnimationTree
 @export var player: Player
 @export var model: Node3D
 
-enum Type { PRIMARY, SECONDARY }
+enum Type { PRIMARY, SECONDARY, MELEE }
 @export var held_type := Type.PRIMARY:
 	set(new):
 		if held_type == new:
@@ -13,12 +13,16 @@ enum Type { PRIMARY, SECONDARY }
 		held_type = new
 		
 		if not is_node_ready(): await ready
+		
+		$"../Body/Rocket Launcher".hide()
+		$"../Body/Shotgun".hide()
+		$"../Body/Shovel".hide()
 		if held_type == Type.PRIMARY:
 			$"../Body/Rocket Launcher".show()
-			$"../Body/Shotgun".hide()
 		elif held_type == Type.SECONDARY:
-			$"../Body/Rocket Launcher".hide()
 			$"../Body/Shotgun".show()
+		elif held_type == Type.MELEE:
+			$"../Body/Shovel".show()
 
 var _previously_grounded := false
 var air_crouching := false:
