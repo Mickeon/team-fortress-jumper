@@ -15,14 +15,12 @@ const DEPLOY_TIME = 0.5
 
 
 func _unhandled_input(event):
-	if event is InputEventKey and event.pressed and not event.echo:
-		match event.keycode:
-			KEY_1:
-				switch_to_by_path.rpc(primary_weapon.get_path())
-			KEY_2:
-				switch_to_by_path.rpc(secondary_weapon.get_path())
-			KEY_3:
-				switch_to_by_path.rpc(melee_weapon.get_path())
+	if event.is_action_pressed("player_switch_to_primary"):
+		switch_to_by_path.rpc(primary_weapon.get_path())
+	if event.is_action_pressed("player_switch_to_secondary"):
+		switch_to_by_path.rpc(secondary_weapon.get_path())
+	if event.is_action_pressed("player_switch_to_melee"):
+		switch_to_by_path.rpc(melee_weapon.get_path())
 
 
 func _ready() -> void:
@@ -59,6 +57,8 @@ func switch_to(wep: WeaponNode):
 			&"RocketLauncher": $"../Soldier/AnimationTree".held_type = 0
 			&"Shotgun": $"../Soldier/AnimationTree".held_type = 1
 			&"Shovel": $"../Soldier/AnimationTree".held_type = 2
+	else:
+		printerr("Switched to holding no weapon!")
 	
 
 func activate_held_weapon():
