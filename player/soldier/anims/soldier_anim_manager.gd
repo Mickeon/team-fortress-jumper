@@ -40,6 +40,9 @@ var air_crouching := false:
 
 func _ready():
 	active = true
+	# HACK: to have this run in 4.2 without AnimationLibrary bloat.
+	# TODO: Remove this in a later version. This is extremely annoying.
+	anim_player = ^"../AnimationPlayer"
 
 func _process(_delta: float) -> void:
 	model.rotation.y = player.cam_pivot.rotation.y

@@ -22,6 +22,7 @@ meshes/generate_lods=false
 meshes/create_shadow_meshes=false
 meshes/light_baking=1
 meshes/lightmap_texel_size=1.0
+meshes/force_disable_compression=false
 skins/use_named_skins=true
 animation/import=true
 animation/fps=30
@@ -3630,4 +3631,5 @@ _subresources={
 }
 }
 }
+gltf/naming_version=1
 gltf/embedded_image_handling=0

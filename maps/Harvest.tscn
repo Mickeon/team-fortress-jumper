@@ -39,9 +39,6 @@ adjustment_contrast = 1.25
 adjustment_saturation = 1.1
 
 [node name="Harvest" type="Node3D" node_paths=PackedStringArray("map", "collider_mesh_instances")]
-process_thread_group = 2
-process_thread_group_order = 0
-process_thread_messages = 0
 script = ExtResource("1_ooair")
 map = NodePath("koth_harvest")
 collider_mesh_instances = [NodePath("koth_harvest/worldspawn_1")]

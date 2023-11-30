@@ -61,8 +61,9 @@ func _create_bullet(base_offset := Vector2.ZERO):
 			_add_decal(preload("./other/BulletDecal.tscn"), hit_point, result.normal)
 	
 	var particle_origin := bullet_trail.global_position
+	
 	bullet_trail.emit_particle(bullet_trail.global_transform,
-			particle_origin.direction_to(hit_point) * max(particle_origin.distance_to(hit_point) * 2, 20),
+			bullet_trail.to_local(particle_origin).direction_to(bullet_trail.to_local(hit_point)) * max(particle_origin.distance_to(hit_point) * 2, 20),
 			Color.WHITE, Color(),
 			GPUParticles3D.EMIT_FLAG_POSITION | GPUParticles3D.EMIT_FLAG_VELOCITY)
 	

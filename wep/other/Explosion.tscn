@@ -53,11 +53,11 @@ curve = SubResource("Curve_t58pu")
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_pn7dq"]
 lifetime_randomness = 0.5
 direction = Vector3(0, 1, 0)
-gravity = Vector3(0, -5, 0)
 initial_velocity_min = 3.0
 initial_velocity_max = 5.0
 angular_velocity_min = -300.0
 angular_velocity_max = 300.0
+gravity = Vector3(0, -5, 0)
 linear_accel_min = -3.0
 damping_max = 2.0
 scale_min = 0.25
@@ -70,7 +70,6 @@ hue_variation_max = 0.1
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_4c5hd"]
 streams_count = 1
-random_volume_offset_db = 0.0
 stream_0/stream = ExtResource("3_mq40r")
 stream_0/weight = 1.0
 

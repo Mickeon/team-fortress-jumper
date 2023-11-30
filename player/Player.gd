@@ -206,8 +206,8 @@ func _handle_collision(delta: float):
 				just_landed = true
 				velocity.y = 0.0
 		else:
-			var angle_difference = abs(normal.angle_to(up_direction) - TAU * 0.25)
-			if angle_difference <= TAU * 0.01:
+			var angle_diff = abs(normal.angle_to(up_direction) - TAU * 0.25)
+			if angle_diff <= TAU * 0.01:
 				if _try_to_step_up(pos, remainder):
 					has_stepped_up = true
 			
