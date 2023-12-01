@@ -28,8 +28,8 @@ width = 16
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_xhuh6"]
 lifetime_randomness = 0.2
 flatness = 0.25
-gravity = Vector3(0, -1, 0)
 initial_velocity_max = 1.0
+gravity = Vector3(0, -1, 0)
 color = Color(1, 0.537255, 0.329412, 1)
 color_ramp = SubResource("GradientTexture1D_xi33m")
 turbulence_noise_speed = Vector3(2.365, 0, 0)

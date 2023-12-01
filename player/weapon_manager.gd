@@ -51,12 +51,6 @@ func switch_to(wep: WeaponNode):
 	
 	if held_weapon:
 		held_weapon.deploy()
-		
-		# TODO: Decouple this shit EVEN more.
-		match held_weapon.name:
-			&"RocketLauncher": $"../Soldier/AnimationTree".held_type = 0
-			&"Shotgun": $"../Soldier/AnimationTree".held_type = 1
-			&"Shovel": $"../Soldier/AnimationTree".held_type = 2
 	else:
 		printerr("Switched to holding no weapon!")
 	

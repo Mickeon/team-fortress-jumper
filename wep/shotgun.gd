@@ -98,9 +98,6 @@ func deal_damage(player: Player):
 
 
 static func get_damage_falloff(distance: float) -> float:
-#	const FALLOFF_CURVE = preload("res://wep/other/falloff_damage_curve_rocket.tres")
-#	return FALLOFF_CURVE.sample(unit)
-	
 	var unit := clampf(remap(distance, 0.0, 1024 * HU, 0.0, 1.0), 0.0, 1.0)
 	
 	return cubic_interpolate(1.5, 0.5, 0.0, 0.0, unit)

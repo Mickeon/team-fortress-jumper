@@ -4,11 +4,12 @@ class_name WeaponNode
 const HU = Player.HU
 
 signal shot
+signal deployed
 
 @export var attack_interval := 0.8
 @export_enum("player_primary", "player_secondary", "player_charge")
 var trigger_action := "player_primary"
-var active := false:
+@export var active := false:
 	set(new):
 		if active == new:
 			return
@@ -41,6 +42,7 @@ func deploy():
 	if fp_model:
 		fp_model.show()
 	_deploy()
+	emit_signal("deployed")
 
 var _interval_timer: SceneTreeTimer
 func refresh_interval():

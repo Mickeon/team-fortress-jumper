@@ -1,3 +1,4 @@
+@tool
 extends AnimationTree
 
 
@@ -12,8 +13,12 @@ enum Type { PRIMARY, SECONDARY, MELEE }
 		
 		held_type = new
 		
+		if Engine.is_editor_hint():
+			return # I'd like git not to alarm me, thanks.
+		
 		if not is_node_ready(): await ready
 		
+		# TODO: Decouple this shit.
 		$"../Body/Rocket Launcher".hide()
 		$"../Body/Shotgun".hide()
 		$"../Body/Shovel".hide()
@@ -38,11 +43,24 @@ var air_crouching := false:
 			model.position.y += 27 * player.HU
 
 
-func _ready():
-	active = true
+func _notification(what: int) -> void:
 	# HACK: to have this run in 4.2 without AnimationLibrary bloat.
-	# TODO: Remove this in a later version. This is extremely annoying.
-	anim_player = ^"../AnimationPlayer"
+	if what == NOTIFICATION_EDITOR_PRE_SAVE:
+		anim_player = ^""
+	elif what == NOTIFICATION_EDITOR_POST_SAVE:
+		anim_player = ^"../AnimationPlayer"
+
+func _ready():
+	if Engine.is_editor_hint():
+		set_process(false)
+		set_physics_process(false)
+	else:
+		active = true
+		# HACK: to have this run in 4.2 without AnimationLibrary bloat.
+		# TODO: Remove this in a later version. This is extremely annoying.
+		anim_player = ^"../AnimationPlayer"
+
+
 
 func _process(_delta: float) -> void:
 	model.rotation.y = player.cam_pivot.rotation.y
@@ -89,6 +107,10 @@ func _handle_animations():
 	air_crouching = not player.grounded and player.crouching
 
 
+# These are connected inside the PackedScene.
 func _on_any_weapon_shot() -> void:
 	set(&"parameters/shoot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+
+func _on_any_weapon_deployed(weapon_type: Type) -> void:
+	held_type = weapon_type
 

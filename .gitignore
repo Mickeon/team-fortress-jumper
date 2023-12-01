@@ -7,6 +7,7 @@
 
 # Annoying .tmp files
 *.tmp
+addons/debug_draw_3d/libs/~libdd3d.windows.editor.x86_64.dll
 
 # File only used by me during testing.
 tf_notes.txt

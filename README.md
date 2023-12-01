@@ -24,9 +24,10 @@ Alternatively, download a build from [the releases](https://github.com/Mickeon/t
 | **Jump** | Jump
 | **Shift** or **CTRL** | Crouch
 | **Left Click** | Use Weapon
-| **Q** | Charge!!
+| **R** | Charge!!
 | **1** | Switch to Rocket Launcher
 | **2** | Switch to Shotgun
+| **3** | Switch to Shovel
 
 
 #### Selection:

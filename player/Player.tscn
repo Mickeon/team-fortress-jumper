@@ -370,6 +370,7 @@ process_physics_priority = -1
 script = ExtResource("5_k3wqx")
 attack_interval = 1.5
 trigger_action = "player_charge"
+active = true
 
 [node name="Trail" type="GPUParticles3D" parent="Smoothing3D/Pivot/ChargingShield"]
 material_override = SubResource("StandardMaterial3D_7u7yu")
@@ -566,6 +567,7 @@ bones/86/position = Vector3(-2.57418e-14, -1.55857e-06, 8.12112e-07)
 bones/87/position = Vector3(-2.57418e-14, -1.55857e-06, 8.12112e-07)
 
 [node name="AnimationTree" parent="Soldier" index="2" node_paths=PackedStringArray("player", "model")]
+active = false
 player = NodePath("../..")
 model = NodePath("../Body")
 
@@ -579,8 +581,11 @@ held_weapon = NodePath("../Smoothing3D/Pivot/RocketLauncher")
 [node name="Deploy" type="Timer" parent="WeaponManager"]
 one_shot = true
 
+[connection signal="deployed" from="Smoothing3D/Pivot/RocketLauncher" to="Soldier/AnimationTree" method="_on_any_weapon_deployed" binds= [0]]
 [connection signal="shot" from="Smoothing3D/Pivot/RocketLauncher" to="Soldier/AnimationTree" method="_on_any_weapon_shot"]
+[connection signal="deployed" from="Smoothing3D/Pivot/Shotgun" to="Soldier/AnimationTree" method="_on_any_weapon_deployed" binds= [1]]
 [connection signal="shot" from="Smoothing3D/Pivot/Shotgun" to="Soldier/AnimationTree" method="_on_any_weapon_shot"]
+[connection signal="deployed" from="Smoothing3D/Pivot/Shovel" to="Soldier/AnimationTree" method="_on_any_weapon_deployed" binds= [2]]
 [connection signal="shot" from="Smoothing3D/Pivot/Shovel" to="Soldier/AnimationTree" method="_on_any_weapon_shot"]
 [connection signal="animation_finished" from="Smoothing3D/Pivot/FirstPersonModel/AnimationPlayer" to="Smoothing3D/Pivot/RocketLauncher" method="_on_FirstPersonPlayer_animation_finished"]
 [connection signal="animation_finished" from="Smoothing3D/Pivot/FirstPersonModel/AnimationPlayer" to="Smoothing3D/Pivot/Shotgun" method="_on_FirstPersonPlayer_animation_finished"]
