@@ -7,7 +7,7 @@ var previous_ground_acceleration := 0.0
 var previous_air_speed := 0.0
 var previous_air_acceleration := 0.0
 
-@onready var trail: GPUParticles3D = $Trail
+@export var trail: GPUParticles3D
 
 func _ready():
 	trail.emitting = false

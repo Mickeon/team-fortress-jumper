@@ -9,7 +9,7 @@ const SHOOT_OFFSET_CROUCH = Vector3(12.0, 8.0, -23.5) * HU # Vanilla coords: (23
 
 
 func _deploy():
-	first_person_player.play("rocket_launcher_draw")
+	first_person_player.play(&"rocket_launcher_draw")
 
 func _shoot():
 	var shoot_offset := SHOOT_OFFSET_CROUCH if player_owner.crouching else SHOOT_OFFSET
@@ -22,7 +22,7 @@ func _shoot():
 	
 	sfx.play()
 	first_person_player.stop()
-	first_person_player.play("rocket_launcher_fire")
+	first_person_player.play(&"rocket_launcher_fire")
 
 func setup_projectile(rocket: Rocket, shoot_offset: Vector3):
 	var origin := global_position

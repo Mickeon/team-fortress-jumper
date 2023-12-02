@@ -96,6 +96,7 @@ func apply_knockback(player: Player):
 	var add_velocity := knockback_force * direction
 	player.velocity += add_velocity
 	player.grounded = false
+	player.rocket_jumping = true
 	player.take_damage(damage, inflictor)
 	
 	if inflictor == player:

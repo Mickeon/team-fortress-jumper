@@ -1,8 +1,8 @@
 [gd_scene load_steps=15 format=3 uid="uid://dro1lx1y42eja"]
 
 [ext_resource type="Script" path="res://wep/other/explosion.gd" id="1_u2aqr"]
+[ext_resource type="AudioStream" uid="uid://bihf52vgsi1b2" path="res://sfx/primary/rocket_jumper_explode1.ogg" id="3_7ywo0"]
 [ext_resource type="PackedScene" uid="uid://xnor1ir3y6j6" path="res://wep/other/BlastDecal.tscn" id="3_bgour"]
-[ext_resource type="AudioStream" uid="uid://dks5r3sh7vryc" path="res://sfx/primary/rocket_jumper_explode1.wav" id="3_mq40r"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_r7on5"]
 radius = 2.0
@@ -70,7 +70,7 @@ hue_variation_max = 0.1
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_4c5hd"]
 streams_count = 1
-stream_0/stream = ExtResource("3_mq40r")
+stream_0/stream = ExtResource("3_7ywo0")
 stream_0/weight = 1.0
 
 [node name="Explosion" type="Area3D"]

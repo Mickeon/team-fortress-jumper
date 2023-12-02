@@ -50,7 +50,9 @@ func _connect():
 		multiplayer.multiplayer_peer = peer
 	
 	get_window().title = "Team Fortress Jumper (Listening)"
-	get_window().size *= 0.75
+	get_window().size = 0.75 * Vector2(
+			ProjectSettings.get_setting("display/window/size/viewport_width"),
+			ProjectSettings.get_setting("display/window/size/viewport_height"))
 
 
 func spawn_player(id: int):
@@ -70,6 +72,7 @@ func remove_player(id: int):
 	get_node(str(id)).queue_free()
 
 
+#region Player Tweaks
 func tweak_other(player: Player):
 	# Disable input.
 	player.propagate_call("set_process_input", [false])
@@ -104,7 +107,7 @@ func tweak_client(player: Player):
 	
 	# All clients are shifted ahead on spawn
 	player.position.z += 5
-
+#endregion
 
 var _queued_damage_numbers := {} # { Player: float }
 func _on_player_hurt(amount: float, inflictor: Player, victim: Player):

@@ -1,8 +1,7 @@
 extends CharacterBody3D
 class_name Player
 
-## "16 Hammer units = 1 foot"
-## "1 Hammer unit is equal to exactly 0.01905 metres."
+## 16 Hammer units = 1 foot. 1 Hammer unit is equal to exactly 0.01905 metres.
 const HU = 0.01905
 
 const CROUCH_SPEED_MULTIPLIER = 0.333333
@@ -30,15 +29,22 @@ var MAX_SLOPE_ANGLE := deg_to_rad(45.573):
 @export_group("")
 @export var camera_sensitivity := 0.075
 @export var cam_pivot: Node3D
-@export var capsule: CollisionShape3D
+@export var hull: CollisionShape3D ## The collision hull, the bounding box.
 
 @export_group("Debug", "debug_")
 @export var debug_simulate_vanilla_tickrate := false
 @export var debug_allow_bunny_hopping := false
 @export var debug_show_collisions := false
-@export var debug_show_bounding_box := false
+@export var debug_show_collision_hull := false
 
-var grounded := false
+var grounded := false:
+	set(new):
+		if grounded == new:
+			return
+			
+		grounded = new
+		if grounded:
+			rocket_jumping = false
 var crouching := false:
 	set(new):
 		const HEIGHT_BASE = 82 * HU
@@ -52,12 +58,12 @@ var crouching := false:
 		crouching = new
 		
 		var height := HEIGHT_CROUCH if crouching else HEIGHT_BASE
-		if capsule.shape is BoxShape3D:
-			capsule.shape.size.y = height
+		if hull.shape is BoxShape3D:
+			hull.shape.size.y = height
 		else:
-			capsule.shape.height = height
+			hull.shape.height = height
 			
-		capsule.position.y = height * 0.5
+		hull.position.y = height * 0.5
 		
 		cam_pivot.position.y = VIEW_CROUCH if crouching else VIEW_BASE
 		
@@ -65,11 +71,24 @@ var crouching := false:
 			position.y += 27 * HU if crouching else -27 * HU
 var just_jumped := false
 var just_landed := false
+var rocket_jumping := false:
+	set(new):
+		if rocket_jumping == new:
+			return
+			
+		rocket_jumping = new
+		var sound: AudioStreamPlayer3D = $SFX/RocketJumpWind
+		if rocket_jumping:
+			sound.play()
+		else:
+			sound.stop()
 
 var noclip_enabled := false:
 	set(new):
 		noclip_enabled = new
 		grounded = false
+		
+		hull.disabled = noclip_enabled
 
 var forced_wishdir := Vector2.ZERO
 
@@ -149,14 +168,39 @@ func _physics_process(delta: float):
 	
 	if position.y <= -1000 * HU:
 		position = Vector3(0, 100 * HU, 0) # Back to the origin for falling into the void.
-	if debug_show_bounding_box:
-		if capsule.shape is BoxShape3D:
-			var shape_size = capsule.shape.size
-			DebugDraw3D.draw_aabb(AABB(capsule.global_position - shape_size * 0.5, shape_size), Color.YELLOW)
+	if debug_show_collision_hull:
+		if hull.shape is BoxShape3D:
+			var shape_size = hull.shape.size
+			DebugDraw3D.draw_aabb(AABB(hull.global_position - shape_size * 0.5, shape_size), Color.YELLOW)
 		else:
-			var radius: float = capsule.shape.radius
+			var radius: float = hull.shape.radius
 			DebugDraw3D.draw_cylinder(global_transform.scaled_local(Vector3(radius, HU, radius)), Color.YELLOW)
+
+
+func _handle_camera_rotation(event: InputEventMouseMotion):
+	cam_pivot.rotation.y -= event.relative.x * deg_to_rad(camera_sensitivity)
+	cam_pivot.rotation.x -= event.relative.y * deg_to_rad(camera_sensitivity)
+	cam_pivot.rotation.x = clampf(cam_pivot.rotation.x, -1.55334 , 1.55334) # 89 degrees up and down.
+
+func _handle_noclip(delta: float):
+	const NOCLIP_SPEED = 15.0
+	const NOCLIP_ACCELERATION = 60
 	
+	var wish_dir := Input.get_vector("player_left", "player_right", "player_forward", "player_back")
+	var flat_acceleration := Vector3(wish_dir.x, 0, wish_dir.y) * GROUND_ACCELERATION * delta
+	
+	var vertical_acceleration := Input.get_axis("player_crouch", "player_jump")
+	if vertical_acceleration:
+		velocity.y = move_toward(velocity.y, NOCLIP_SPEED * vertical_acceleration, NOCLIP_ACCELERATION * delta)
+	
+	if flat_acceleration:
+		velocity += cam_pivot.transform.translated_local(flat_acceleration).origin - cam_pivot.position
+		velocity = velocity.limit_length(NOCLIP_SPEED)
+	elif vertical_acceleration == 0.0:
+		velocity = velocity.move_toward(Vector3.ZERO, NOCLIP_ACCELERATION * delta) # Decelerate.
+	
+	position += velocity * delta
+
 
 func _apply_friction(delta: float):
 	if not grounded:
@@ -170,7 +214,24 @@ func _apply_friction(delta: float):
 	
 	velocity = velocity.normalized() * speed
 
+func _clamp_speed(multiplier := 1.0):
+	var max_speed := GROUND_SPEED * multiplier
+	var velocity_planar := Vector2(velocity.x, velocity.z)
+	
+	if velocity_planar.length() > max_speed:
+		var clamped_speed := velocity_planar.length() / max_speed
+		velocity_planar /= clamped_speed
+		
+		velocity.x = velocity_planar.x
+		velocity.z = velocity_planar.y
+	
+	var back_speed := velocity.cross(-cam_pivot.global_transform.basis.x)
+	var backpedal_walk_speed := max_speed * BACKPEDAL_SPEED_MULTIPLIER
+	if (back_speed.length() > backpedal_walk_speed and back_speed.y < 0.0):
+		velocity *= backpedal_walk_speed / back_speed.length()
 
+
+#region Collision handling
 func _handle_collision(delta: float):
 	just_landed = false
 	
@@ -230,7 +291,6 @@ func _handle_collision(delta: float):
 			grounded = slope_angle < MAX_SLOPE_ANGLE
 		else:
 			grounded = false
-	
 
 func _handle_collision_with_slide(_delta: float): # Unused
 	just_landed = false
@@ -253,49 +313,6 @@ func _handle_collision_with_slide(_delta: float): # Unused
 		
 		DebugDraw3D.draw_points([collision.get_position()], 0.2 - i * 0.02, debug_color, 1)
 		DebugDraw3D.draw_ray(collision.get_position(), normal, 0.5 - i * 0.05, debug_color, 1)
-
-
-
-func _clamp_speed(multiplier := 1.0):
-	var max_speed := GROUND_SPEED * multiplier
-	var velocity_planar := Vector2(velocity.x, velocity.z)
-	
-	if velocity_planar.length() > max_speed:
-		var clamped_speed := velocity_planar.length() / max_speed
-		velocity_planar /= clamped_speed
-		
-		velocity.x = velocity_planar.x
-		velocity.z = velocity_planar.y
-	
-	var back_speed := velocity.cross(-cam_pivot.global_transform.basis.x)
-	var backpedal_walk_speed := max_speed * BACKPEDAL_SPEED_MULTIPLIER
-	if (back_speed.length() > backpedal_walk_speed and back_speed.y < 0.0):
-		velocity *= backpedal_walk_speed / back_speed.length()
-
-
-func _handle_camera_rotation(event: InputEventMouseMotion):
-	cam_pivot.rotation.y -= event.relative.x * deg_to_rad(camera_sensitivity)
-	cam_pivot.rotation.x -= event.relative.y * deg_to_rad(camera_sensitivity)
-	cam_pivot.rotation.x = clampf(cam_pivot.rotation.x, -1.55334 , 1.55334) # 89 degrees up and down.
-
-func _handle_noclip(delta: float):
-	const NOCLIP_SPEED = 15.0
-	const NOCLIP_ACCELERATION = 60
-	
-	var wish_dir := Input.get_vector("player_left", "player_right", "player_forward", "player_back")
-	var flat_acceleration := Vector3(wish_dir.x, 0, wish_dir.y) * GROUND_ACCELERATION * delta
-	
-	var vertical_acceleration := Input.get_axis("player_crouch", "player_jump")
-	if vertical_acceleration:
-		velocity.y = move_toward(velocity.y, NOCLIP_SPEED * vertical_acceleration, NOCLIP_ACCELERATION * delta)
-	
-	if flat_acceleration:
-		velocity += cam_pivot.transform.translated_local(flat_acceleration).origin - cam_pivot.position
-		velocity = velocity.limit_length(NOCLIP_SPEED)
-	elif vertical_acceleration == 0.0:
-		velocity = velocity.move_toward(Vector3.ZERO, NOCLIP_ACCELERATION * delta) # Decelerate.
-	
-	position += velocity * delta
 
 
 func _floor_intersect_ray() -> Dictionary:
@@ -347,13 +364,14 @@ func _try_to_step_up(pos: Vector3, remainder: Vector3) -> bool:
 		return true
 	
 	return false
+#endregion
 
+#region Utility methods
 func get_slope_angle(normal: Vector3) -> float:
 	return normal.angle_to(up_direction)
 
-
 func get_global_center() -> Vector3:
-	var center := capsule.global_position
+	var center := hull.global_position
 	if crouching:
 		# Pretend the center is further down than it actually is.
 		# Makes rocket jumping even stronger. Halved because of the box extents.
@@ -362,10 +380,11 @@ func get_global_center() -> Vector3:
 	return center
 
 func get_height() -> float:
-	return capsule.shape.height if capsule.shape is CapsuleShape3D else capsule.shape.size.y
+	return hull.shape.height if hull.shape is CapsuleShape3D else hull.shape.size.y
 
 func get_width() -> float: # Not used anywhere, actually.
-	return capsule.shape.radius
+	return hull.shape.radius
+#endregion
 
 
 signal hurt(amount: float)

@@ -1,7 +1,7 @@
 extends WeaponNode
 
 const BULLET_SPREAD_DISTANCE_FROM_CENTER := 0.05
-const BULLET_SPREAD_BASE_OFFSETS = [
+const BULLET_SPREAD_BASE_OFFSETS: Array[Vector2] = [
 	Vector2( 0.0,  0.0),
 	
 	Vector2(-1.0, -1.0) * BULLET_SPREAD_DISTANCE_FROM_CENTER,
@@ -17,13 +17,13 @@ const BULLET_SPREAD_BASE_OFFSETS = [
 	Vector2( 1.0,  1.0) * BULLET_SPREAD_DISTANCE_FROM_CENTER,
 ]
 
-@export var inaccuracy := deg_to_rad(2.0)
+@export var inaccuracy := deg_to_rad(2.0) # Not really measured, based on a guess.
 
 @export_range(0, 120, 1, "hide_slider", "or_greater")
 var base_damage := 6.0
 
 @export var first_person_player: AnimationPlayer
-@onready var bullet_trail: GPUParticles3D = $BulletTrail
+@export var bullet_trail: GPUParticles3D
 
 
 func _deploy():
@@ -32,17 +32,18 @@ func _deploy():
 	first_person_player.play(DEPLOY_ANIMATIONS.pick_random())
 
 func _shoot():
-	const SHOOT_ANIMATIONS = [
-			&"shotgun_fire", &"shotgun_fire_nopump"]
+	const SHOOT_ANIMATIONS = [&"shotgun_fire", &"shotgun_fire_nopump"]
 	sfx.play()
 	first_person_player.stop()
 	first_person_player.play(SHOOT_ANIMATIONS.pick_random())
 	
-	for base_offset in BULLET_SPREAD_BASE_OFFSETS:
-		_create_bullet(base_offset)
+	for i in BULLET_SPREAD_BASE_OFFSETS.size():
+		_create_bullet(BULLET_SPREAD_BASE_OFFSETS[i], i == 0)
 
-func _create_bullet(base_offset := Vector2.ZERO):
-	var spread := Vector2(randf_range(-inaccuracy, inaccuracy), randf_range(-inaccuracy, inaccuracy))
+func _create_bullet(base_offset := Vector2.ZERO, first_bullet := false):
+	var spread := Vector2.ZERO if first_bullet else Vector2(
+			randf_range(-inaccuracy, inaccuracy), 
+			randf_range(-inaccuracy, inaccuracy))
 	var ahead := -global_transform.basis.z.rotated(
 			global_transform.basis.y, base_offset.y + spread.y).rotated(
 			global_transform.basis.x, base_offset.x + spread.x)
@@ -55,10 +56,17 @@ func _create_bullet(base_offset := Vector2.ZERO):
 	var hit_point := to
 	if result:
 		hit_point = result.position
+		var play_bullet_inpact_sfx = func(bullet_impact: AudioStreamPlayer3D):
+			if first_bullet:
+				bullet_impact.global_position = hit_point
+				bullet_impact.play()
+		
 		if result.collider is Player:
 			deal_damage(result.collider)
+			play_bullet_inpact_sfx.call($BulletImpactFlesh)
 		else:
-			_add_decal(preload("./other/BulletDecal.tscn"), hit_point, result.normal)
+			add_decal(preload("./other/BulletDecal.tscn"), hit_point, result.normal)
+			play_bullet_inpact_sfx.call($BulletImpact)
 	
 	var particle_origin := bullet_trail.global_position
 	
@@ -66,23 +74,6 @@ func _create_bullet(base_offset := Vector2.ZERO):
 			bullet_trail.to_local(particle_origin).direction_to(bullet_trail.to_local(hit_point)) * max(particle_origin.distance_to(hit_point) * 2, 20),
 			Color.WHITE, Color(),
 			GPUParticles3D.EMIT_FLAG_POSITION | GPUParticles3D.EMIT_FLAG_VELOCITY)
-	
-
-
-func _add_decal(decal_scene: PackedScene, hit_point: Vector3, normal: Vector3):
-	var decal: Decal = decal_scene.instantiate()
-	decal.position = hit_point
-	if normal.is_equal_approx(Vector3.DOWN):
-		decal.basis = decal.basis.rotated(Vector3.RIGHT, PI)
-	elif not normal.is_equal_approx(Vector3.UP):
-		decal.basis = decal.basis.looking_at(normal)
-		decal.transform = decal.transform.rotated_local(Vector3.RIGHT, TAU * -0.25)
-	
-	decal.get_node("Sparks").one_shot = true
-	player_owner.add_sibling(decal)
-	
-	get_tree().create_timer(60).timeout.connect(decal.queue_free)
-
 
 func deal_damage(player: Player):
 	var damage := base_damage
@@ -105,5 +96,13 @@ static func get_damage_falloff(distance: float) -> float:
 
 func _on_FirstPersonPlayer_animation_finished(anim_name: StringName) -> void:
 	match anim_name:
-		&"shotgun_fire", &"shotgun_draw_pump", &"shotgun_draw_no_pump", &"shotgun_draw_lastshot_reload":
+		&"shotgun_fire", &"shotgun_draw_pump", &"shotgun_draw_no_pump":
 			first_person_player.play(&"shotgun_idle")
+		
+		&"shotgun_draw_lastshot_reload":
+			first_person_player.set_blend_time(&"shotgun_draw_lastshot_reload", &"shotgun_reload_start", 0.2)
+			first_person_player.play(&"shotgun_reload_start")
+			first_person_player.queue(&"shotgun_reload")
+			create_tween().tween_interval(3).finished.connect(
+				first_person_player.play.bind(&"shotgun_reload_end"))
+

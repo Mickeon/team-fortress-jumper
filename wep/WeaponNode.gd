@@ -22,10 +22,12 @@ var trigger_action := "player_primary"
 @onready var player_owner: Player = owner
 @onready var sfx: AudioStreamPlayer3D = $Shoot
 @onready var fp_model: Node3D = get_node_or_null("Model")
+@onready var deploy_sfx: AudioStreamPlayer3D = get_node_or_null("Deploy")
 
 
 func _unhandled_input(event):
 	if event.is_action_pressed(trigger_action):
+		# TODO: Try testing rpc_id(1) with this.
 		shoot.rpc()
 
 @rpc("authority", "call_local", "reliable")
@@ -41,6 +43,9 @@ func shoot():
 func deploy():
 	if fp_model:
 		fp_model.show()
+	if deploy_sfx:
+		deploy_sfx.play()
+	
 	_deploy()
 	emit_signal("deployed")
 
@@ -65,3 +70,17 @@ func _shoot():
 func _ready_to_shoot():
 	pass
 
+
+func add_decal(decal_scene: PackedScene, hit_point: Vector3, normal: Vector3):
+	var decal: Decal = decal_scene.instantiate()
+	decal.position = hit_point
+	if normal.is_equal_approx(Vector3.DOWN):
+		decal.basis = decal.basis.rotated(Vector3.RIGHT, PI)
+	elif not normal.is_equal_approx(Vector3.UP):
+		decal.basis = decal.basis.looking_at(normal)
+		decal.transform = decal.transform.rotated_local(Vector3.RIGHT, TAU * -0.25)
+	
+	decal.get_node("Sparks").one_shot = true # May not exist, remember to fix.
+	player_owner.add_sibling(decal)
+	
+	get_tree().create_timer(60).timeout.connect(decal.queue_free)

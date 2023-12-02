@@ -46,6 +46,15 @@ naming/scene_name_casing=1
 
 enabled=PackedStringArray("res://addons/glteamfortress/plugin.cfg", "res://addons/multirun/plugin.cfg", "res://addons/plugin_refresher/plugin.cfg", "res://addons/smoothing/plugin.cfg")
 
+[file_customization]
+
+folder_colors={
+"res://addons/": "gray",
+"res://addons/glteamfortress/": "orange",
+"res://player/soldier/": "red",
+"res://wep/other/": "teal"
+}
+
 [gui]
 
 timers/tooltip_delay_sec=0.2

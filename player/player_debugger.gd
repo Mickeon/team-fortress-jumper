@@ -14,8 +14,9 @@ enum ViewMode { FIRST_PERSON, THIRD_PERSON, FRONT, TOP_DOWN }
 		
 		view_mode = new
 		
+		if not is_node_ready(): await ready
+		
 		if view_mode != ViewMode.FIRST_PERSON:
-			if not is_node_ready(): await ready
 			
 			var cam_pivot = player.cam_pivot
 			camera = Camera3D.new()
@@ -31,13 +32,13 @@ enum ViewMode { FIRST_PERSON, THIRD_PERSON, FRONT, TOP_DOWN }
 			if not get_tree().process_frame.is_connected(_debug_draw):
 				get_tree().process_frame.connect(_debug_draw, CONNECT_DEFERRED)
 		else:
-			if not is_node_ready(): await ready
 			camera.queue_free()
 			get_tree().process_frame.disconnect(_debug_draw)
-			player.debug_show_bounding_box = false
+			player.debug_show_collision_hull = false
 var camera: Camera3D
 var hovered_meta
 
+#region Overriden Methods
 func _ready():
 	# Jank needed because the mouse input needs to go through the Label.
 	meta_hover_started.connect(func _on_meta_hover_started(meta): hovered_meta = meta)
@@ -72,6 +73,11 @@ func _input(event):
 				var mult := 0.5 if key == KEY_PAGEDOWN else 2.0
 				Engine.time_scale = clampf(snappedf(Engine.time_scale * mult, 0.015625), 0.001, 1.0)
 				update_debug_text()
+			KEY_M:
+				AudioServer.set_bus_mute(0, not AudioServer.is_bus_mute(0))
+				var s := "  🔇"
+				var title := get_window().title
+				get_window().title = (title + s) if AudioServer.is_bus_mute(0) else title.trim_suffix(s)
 	
 	if event.is_action_pressed("debug_view_mode"):
 		view_mode = (view_mode + 1) % ViewMode.size() as ViewMode
@@ -103,7 +109,7 @@ func _debug_draw():
 	elif view_mode == ViewMode.FRONT:
 		camera.transform = player.cam_pivot.transform.translated_local(Vector3(0, 0, -2.0)
 				).rotated_local(Vector3.UP, PI)
-
+#endregion
 
 func update_debug_text():
 	var new_text := """[color=gray]F3 to toggle, [color=cyan][url="github"]Click here for controls[/url][/color]. (%s) (%s)
@@ -124,14 +130,14 @@ HSP: %s
 		prettify(adjust(velocity_planar.length())),
 	]
 	
-	var weapon_manager := player.get_node("WeaponManager")
-	if weapon_manager:
-		new_text += "\n[color=gray]"
-		if weapon_manager.held_weapon:
-			new_text += "Holding %s" % weapon_manager.held_weapon.name
-		if weapon_manager.deploy_timer.time_left > 0.0:
-			new_text += " (Deploying %2.2f)" % weapon_manager.deploy_timer.time_left
-		new_text += "[/color]"
+	#var weapon_manager := player.get_node("WeaponManager")
+	#if weapon_manager:
+		#new_text += "\n[color=gray]"
+		#if weapon_manager.held_weapon:
+			#new_text += "Holding %s" % weapon_manager.held_weapon.name
+		#if weapon_manager.deploy_timer.time_left > 0.0:
+			#new_text += " (Deploying %2.2f)" % weapon_manager.deploy_timer.time_left
+		#new_text += "[/color]"
 	
 	if Engine.time_scale != 1.0:
 		new_text += "\nTime scale: %s" % Engine.time_scale
@@ -144,7 +150,7 @@ HSP: %s
 	
 	text = new_text
 
-
+#region Utility Methods
 func adjust(value: Variant) -> Variant:
 	if display_meters_as_hu:
 		return m_to_hu(value)
@@ -168,4 +174,4 @@ static func m_to_hu(value: Variant) -> Variant:
 		return Vector3(value.x / HU, value.y / HU, value.z / HU)
 	
 	return null
-
+#endregion

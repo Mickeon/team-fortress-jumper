@@ -49,6 +49,7 @@ Alternatively, download a build from [the releases](https://github.com/Mickeon/t
 | **CTRL** + **F3** | Toggle Hammer Units/Meters
 | **SHIFT** + **F3** | Toggle explosion radius & collisions display
 | **F** | Spawn fake player
+| **M** | Mute audio
 
 
 ## Credits
@@ -60,6 +61,7 @@ This project is primarily based off the work of aneacsu [in this blog](https://a
 - Harvest map originally ported to Blender by [hisanimations](https://www.youtube.com/@hisanimations).
 - Sound effects ripped and organized by [Broly9990](https://www.sounds-resource.com/submitter/Broly9990/), [Cooper B. Chance](https://www.sounds-resource.com/submitter/Cooper+B.+Chance/), [Irockz](https://www.sounds-resource.com/submitter/Irockz/), [KIZ](https://www.sounds-resource.com/submitter/KIZ/), [Undeadbraindead](https://www.sounds-resource.com/submitter/Undeadbraindead/):
 	<br>at the [Source Resource](https://www.sounds-resource.com/pc_computer/tf2/sound/18547/);
+- Animations created/ported by [DJTHED](https://www.youtube.com/c/djthed);
 - [Godot Engine](https://godotengine.org/) for allowing this;
 - The [Team Fortress 2](https://www.teamfortress.com/) development team for creating a masterpiece;
 - [Valve Software](https://www.valvesoftware.com/it/) for... owning a lot of the used assets.
