@@ -1,4 +1,4 @@
-[gd_scene load_steps=66 format=3 uid="uid://bp3faj46c64ck"]
+[gd_scene load_steps=68 format=3 uid="uid://bp3faj46c64ck"]
 
 [ext_resource type="Script" path="res://player/Player.gd" id="1"]
 [ext_resource type="Script" path="res://wep/rocket_launcher.gd" id="2_eytv3"]
@@ -11,6 +11,8 @@
 [ext_resource type="Material" uid="uid://bcyjpdmg18bqa" path="res://wep/models/rocket_launcher_mat.tres" id="5_w6h5j"]
 [ext_resource type="Script" path="res://wep/shotgun.gd" id="7_3qfhg"]
 [ext_resource type="Material" uid="uid://c67e1bprtx6g6" path="res://player/soldier/mat/hands_fp_mat.tres" id="8_be5vy"]
+[ext_resource type="Script" path="res://wep/grenade_launcher.gd" id="8_txbp0"]
+[ext_resource type="AudioStream" uid="uid://c0mggatglgfkc" path="res://sfx/primary/rocket_ll_shoot.ogg" id="9_p0gcr"]
 [ext_resource type="AudioStream" uid="uid://dlpsi358ivubb" path="res://sfx/secondary/shotgun_shoot.ogg" id="9_u7nmh"]
 [ext_resource type="AudioStream" uid="uid://q7y100ioyoni" path="res://sfx/secondary/secondary_draw.ogg" id="10_gfrrk"]
 [ext_resource type="Material" uid="uid://blvflicat0g82" path="res://player/soldier/mat/sleeves_mat_red.tres" id="11_0ojm0"]
@@ -313,6 +315,26 @@ skin = SubResource("Skin_37hr0")
 skeleton = NodePath("../../../../../FirstPersonModel/Arms/Skeleton3D")
 surface_material_override/0 = ExtResource("5_w6h5j")
 
+[node name="GrenadeLauncher" type="Node3D" parent="Smoothing3D/Pivot" node_paths=PackedStringArray("first_person_player")]
+script = ExtResource("8_txbp0")
+first_person_player = NodePath("../FirstPersonModel/AnimationPlayer")
+attack_interval = 0.6
+
+[node name="Shoot" type="AudioStreamPlayer3D" parent="Smoothing3D/Pivot/GrenadeLauncher"]
+transform = Transform3D(-0.988228, -0.152958, -0.00293694, -2.60944e-09, -0.0191974, 0.999816, -0.152986, 0.988046, 0.0189714, 0, 0, 0)
+stream = ExtResource("9_p0gcr")
+volume_db = -20.0
+max_db = -20.0
+max_polyphony = 10
+attenuation_filter_cutoff_hz = 18520.0
+
+[node name="Deploy" type="AudioStreamPlayer3D" parent="Smoothing3D/Pivot/GrenadeLauncher"]
+transform = Transform3D(-0.988228, -0.152958, -0.00293694, -2.60944e-09, -0.0191974, 0.999816, -0.152986, 0.988046, 0.0189714, 0, 0, 0)
+stream = ExtResource("5_ud5jp")
+volume_db = -20.0
+max_db = -20.0
+attenuation_filter_cutoff_hz = 18520.0
+
 [node name="Shotgun" type="Node3D" parent="Smoothing3D/Pivot" node_paths=PackedStringArray("first_person_player", "bullet_trail")]
 process_physics_priority = -1
 script = ExtResource("7_3qfhg")
@@ -442,6 +464,7 @@ attenuation_filter_cutoff_hz = 18520.0
 
 [node name="Model" parent="Smoothing3D/Pivot/Shovel" instance=ExtResource("11_4qh4n")]
 transform = Transform3D(-1, 0, 5.68248e-08, 0, 1, 0, -8.74228e-08, 0, -0.65, 0, 0, 0)
+visible = false
 
 [node name="c_shovel" parent="Smoothing3D/Pivot/Shovel/Model/c_shovel_skeleton/Skeleton3D" index="0"]
 layers = 2
@@ -686,6 +709,8 @@ attenuation_filter_cutoff_hz = 18520.0
 
 [connection signal="deployed" from="Smoothing3D/Pivot/RocketLauncher" to="Soldier/AnimationTree" method="_on_any_weapon_deployed" binds= [0]]
 [connection signal="shot" from="Smoothing3D/Pivot/RocketLauncher" to="Soldier/AnimationTree" method="_on_any_weapon_shot"]
+[connection signal="deployed" from="Smoothing3D/Pivot/GrenadeLauncher" to="Soldier/AnimationTree" method="_on_any_weapon_deployed" binds= [0]]
+[connection signal="shot" from="Smoothing3D/Pivot/GrenadeLauncher" to="Soldier/AnimationTree" method="_on_any_weapon_shot"]
 [connection signal="deployed" from="Smoothing3D/Pivot/Shotgun" to="Soldier/AnimationTree" method="_on_any_weapon_deployed" binds= [1]]
 [connection signal="shot" from="Smoothing3D/Pivot/Shotgun" to="Soldier/AnimationTree" method="_on_any_weapon_shot"]
 [connection signal="deployed" from="Smoothing3D/Pivot/Shovel" to="Soldier/AnimationTree" method="_on_any_weapon_deployed" binds= [2]]

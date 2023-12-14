@@ -1,0 +1,106 @@
+[gd_scene load_steps=13 format=3 uid="uid://na0nnag5qudg"]
+
+[ext_resource type="Script" path="res://wep/other/grenade.gd" id="1_3arf6"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_yg74f"]
+rough = true
+bounce = 0.3
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_60qai"]
+radius = 0.09
+height = 0.335
+radial_segments = 8
+rings = 1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hasa8"]
+resource_local_to_scene = true
+albedo_color = Color(1, 0.0352941, 0.572549, 1)
+roughness = 0.5
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2fmmb"]
+margin = 0.0
+radius = 0.118589
+height = 0.448353
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3q7bu"]
+transparency = 3
+alpha_hash_scale = 1.0
+alpha_antialiasing_mode = 0
+blend_mode = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(1, 0, 0.278431, 1)
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_5be1r"]
+_data = [Vector2(0, 1), 0.0, -1.40436, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_6yvga"]
+width = 32
+texture_mode = 1
+curve = SubResource("Curve_5be1r")
+
+[sub_resource type="Curve" id="Curve_tgunr"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_happg"]
+width = 32
+curve = SubResource("Curve_tgunr")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_rv56n"]
+angle_min = -25.0
+angle_max = 25.0
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_happg")
+alpha_curve = SubResource("CurveTexture_6yvga")
+
+[sub_resource type="QuadMesh" id="QuadMesh_ejbpp"]
+size = Vector2(0.25, 0.25)
+
+[node name="Grenade" type="RigidBody3D"]
+process_thread_group = 1
+process_thread_group_order = 0
+process_thread_messages = 0
+collision_layer = 512
+collision_mask = 769
+mass = 30.0
+physics_material_override = SubResource("PhysicsMaterial_yg74f")
+gravity_scale = 1.1
+center_of_mass_mode = 1
+continuous_cd = true
+max_contacts_reported = 1
+contact_monitor = true
+linear_damp = 1.0
+script = ExtResource("1_3arf6")
+
+[node name="Lifetime" type="Timer" parent="."]
+process_callback = 0
+wait_time = 2.3
+autostart = true
+
+[node name="Model" type="CSGMesh3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+layers = 8
+mesh = SubResource("CapsuleMesh_60qai")
+material = SubResource("StandardMaterial3D_hasa8")
+
+[node name="Shape" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_2fmmb")
+
+[node name="Trail" type="GPUParticles3D" parent="."]
+layers = 8
+material_override = SubResource("StandardMaterial3D_3q7bu")
+amount = 16
+lifetime = 0.5
+process_material = SubResource("ParticleProcessMaterial_rv56n")
+draw_pass_1 = SubResource("QuadMesh_ejbpp")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Lifetime" to="." method="explode"]

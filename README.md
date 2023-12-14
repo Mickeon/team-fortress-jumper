@@ -28,6 +28,7 @@ Alternatively, download a build from [the releases](https://github.com/Mickeon/t
 | **1** | Switch to Rocket Launcher
 | **2** | Switch to Shotgun
 | **3** | Switch to Shovel
+| **4** | Switch to Grenade Launcher
 
 
 #### Selection:

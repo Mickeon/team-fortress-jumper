@@ -41,6 +41,7 @@ func _ready() -> void:
 	process_physics_priority = 100
 	lifetimer.timeout.connect(queue_free)
 	# Stay on, just for one frame, for the collisions to register.
+	assert(Engine.is_in_physics_frame(), "Not in physics frame, explosion will not register correctly")
 	get_tree().physics_frame.connect(set_monitoring.bind(false), CONNECT_DEFERRED)
 
 func _debug_physics_process():

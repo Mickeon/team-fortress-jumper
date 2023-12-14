@@ -17,10 +17,16 @@ const DEPLOY_TIME = 0.5
 func _unhandled_input(event):
 	if event.is_action_pressed("player_switch_to_primary"):
 		switch_to_by_path.rpc(primary_weapon.get_path())
-	if event.is_action_pressed("player_switch_to_secondary"):
+	elif event.is_action_pressed("player_switch_to_secondary"):
 		switch_to_by_path.rpc(secondary_weapon.get_path())
-	if event.is_action_pressed("player_switch_to_melee"):
+	elif event.is_action_pressed("player_switch_to_melee"):
 		switch_to_by_path.rpc(melee_weapon.get_path())
+	
+	# Additional weapons for further, funny testing.
+	if event is InputEventKey:
+		match event.keycode:
+			KEY_4:
+				switch_to_by_path.rpc("../Smoothing3D/Pivot/GrenadeLauncher")
 
 
 func _ready() -> void:
@@ -41,7 +47,8 @@ func switch_to(wep: WeaponNode):
 	
 	if held_weapon:
 		held_weapon.active = false
-		held_weapon.fp_model.hide()
+		if held_weapon.fp_model:
+			held_weapon.fp_model.hide()
 	
 	held_weapon = wep
 	
