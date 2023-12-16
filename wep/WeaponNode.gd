@@ -49,6 +49,10 @@ func deploy():
 	_deploy()
 	emit_signal("deployed")
 
+func holster():
+	if fp_model:
+		fp_model.hide()
+
 var _interval_timer: SceneTreeTimer
 func refresh_interval():
 	_interval_timer = get_tree().create_timer(attack_interval)

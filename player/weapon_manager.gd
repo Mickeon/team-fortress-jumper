@@ -31,9 +31,8 @@ func _unhandled_input(event):
 
 func _ready() -> void:
 	deploy_timer.timeout.connect(activate_held_weapon)
-	for wep in [primary_weapon, secondary_weapon, melee_weapon]:
-		if wep.fp_model:
-			wep.fp_model.hide()
+	for wep: WeaponNode in [primary_weapon, secondary_weapon, melee_weapon]:
+		wep.holster()
 
 # You cannot pass a whole Object remotely, hence why this exists.
 @rpc("authority", "call_local", "reliable")
@@ -47,8 +46,7 @@ func switch_to(wep: WeaponNode):
 	
 	if held_weapon:
 		held_weapon.active = false
-		if held_weapon.fp_model:
-			held_weapon.fp_model.hide()
+		held_weapon.holster()
 	
 	held_weapon = wep
 	

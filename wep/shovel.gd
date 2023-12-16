@@ -9,6 +9,7 @@ var base_damage := 65.0
 
 @export var first_person_player: AnimationPlayer
 
+var _attack_tween: Tween
 
 func _deploy():
 	first_person_player.play(&"shovel_draw")
@@ -20,9 +21,14 @@ func _shoot():
 	first_person_player.stop()
 	first_person_player.play(SWING_ANIMATIONS.pick_random())
 	
-	create_tween().tween_callback(_create_attack).set_delay(SWING_DELAY)
+	if _attack_tween: _attack_tween.kill()
+	_attack_tween = create_tween()
+	_attack_tween.tween_callback(_create_attack).set_delay(SWING_DELAY)
 
 func _create_attack():
+	if not active:
+		return
+	
 	var ahead := -global_transform.basis.z
 	
 	var from := global_position

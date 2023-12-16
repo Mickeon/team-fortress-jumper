@@ -4,6 +4,7 @@
 [ext_resource type="Material" uid="uid://d0gfkuuvgpoy0" path="res://wep/other/grenade_glow.tres" id="2_eayir"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_yg74f"]
+friction = 0.5
 rough = true
 bounce = 0.3
 
@@ -81,10 +82,12 @@ mass = 30.0
 physics_material_override = SubResource("PhysicsMaterial_yg74f")
 gravity_scale = 1.1
 center_of_mass_mode = 1
+inertia = Vector3(0, 0, 10)
 continuous_cd = true
 max_contacts_reported = 1
 contact_monitor = true
 linear_damp = 1.0
+angular_damp = 1.0
 script = ExtResource("1_3arf6")
 
 [node name="Lifetime" type="Timer" parent="."]
