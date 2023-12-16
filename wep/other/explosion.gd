@@ -4,7 +4,6 @@ const HU = Player.HU
 const ROCKET_JUMP_SCALE = 10.0 * HU # On air
 const ROCKET_JUMP_BAD_SCALE = 5.0 * HU # On ground
 
-
 const DEBUG_COLOR = Color.ORANGE
 const LIFETIME = 30.0
 
@@ -26,6 +25,7 @@ var splash_radius := 146 * HU:
 
 @export_range(0, 120, 1, "hide_slider", "or_greater")
 var base_damage := 90.0
+var damage_falloff_enabled := true
 
 var inflictor: Player
 var directly_hit_player: Player
@@ -86,7 +86,8 @@ func apply_knockback(player: Player):
 		else:
 			multiplier = ROCKET_JUMP_BAD_SCALE
 	else:
-		damage *= get_damage_falloff(inflictor.global_position.distance_to(player.global_position))
+		if damage_falloff_enabled:
+			damage *= get_damage_falloff(inflictor.global_position.distance_to(player.global_position))
 	
 	# Pretends that the knockback direction of attacks come from 10 Hu lower than they really do.
 	# It's part of why you're frequently pushed upwards when taking damage in the Vanilla game.

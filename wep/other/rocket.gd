@@ -1,5 +1,7 @@
 extends RayCast3D
 
+const Explosion = preload("./explosion.gd")
+
 @export var speed = 1100 * Player.HU
 
 var source: Player
@@ -31,7 +33,7 @@ func _physics_process(delta):
 
 
 func explode():
-	var explosion: Node3D = preload("./Explosion.tscn").instantiate()
+	var explosion: Explosion = preload("./Explosion.tscn").instantiate()
 	
 	explosion.inflictor = source
 	explosion.position = global_position

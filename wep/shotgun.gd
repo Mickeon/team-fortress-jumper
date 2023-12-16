@@ -95,14 +95,10 @@ static func get_damage_falloff(distance: float) -> float:
 
 
 func _on_FirstPersonPlayer_animation_finished(anim_name: StringName) -> void:
-	match anim_name:
-		&"shotgun_fire", &"shotgun_draw_pump", &"shotgun_draw_no_pump":
-			first_person_player.play(&"shotgun_idle")
-		
-		&"shotgun_draw_lastshot_reload":
-			first_person_player.set_blend_time(&"shotgun_draw_lastshot_reload", &"shotgun_reload_start", 0.2)
-			first_person_player.play(&"shotgun_reload_start")
-			first_person_player.queue(&"shotgun_reload")
-			create_tween().tween_interval(3).finished.connect(
+	# Mostly a cute, accurate reloading test.
+	if anim_name == &"shotgun_draw_lastshot_reload":
+		first_person_player.play(&"shotgun_reload_start")
+		first_person_player.queue(&"shotgun_reload")
+		create_tween().tween_interval(3).finished.connect(
 				first_person_player.play.bind(&"shotgun_reload_end"))
 

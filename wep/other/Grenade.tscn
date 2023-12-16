@@ -1,6 +1,7 @@
-[gd_scene load_steps=13 format=3 uid="uid://na0nnag5qudg"]
+[gd_scene load_steps=15 format=3 uid="uid://na0nnag5qudg"]
 
 [ext_resource type="Script" path="res://wep/other/grenade.gd" id="1_3arf6"]
+[ext_resource type="Material" uid="uid://d0gfkuuvgpoy0" path="res://wep/other/grenade_glow.tres" id="2_eayir"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_yg74f"]
 rough = true
@@ -12,15 +13,21 @@ height = 0.335
 radial_segments = 8
 rings = 1
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hasa8"]
-resource_local_to_scene = true
-albedo_color = Color(1, 0.0352941, 0.572549, 1)
-roughness = 0.5
-
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2fmmb"]
 margin = 0.0
 radius = 0.118589
 height = 0.448353
+
+[sub_resource type="Gradient" id="Gradient_2k2vr"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_sb38o"]
+gradient = SubResource("Gradient_2k2vr")
+width = 16
+height = 16
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0, 0)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3q7bu"]
 transparency = 3
@@ -29,7 +36,8 @@ alpha_antialiasing_mode = 0
 blend_mode = 1
 shading_mode = 0
 vertex_color_use_as_albedo = true
-albedo_color = Color(1, 0, 0.278431, 1)
+albedo_color = Color(0.2, 0, 0.0784314, 0.784314)
+albedo_texture = SubResource("GradientTexture2D_sb38o")
 billboard_mode = 3
 billboard_keep_scale = true
 particles_anim_h_frames = 1
@@ -87,8 +95,10 @@ autostart = true
 [node name="Model" type="CSGMesh3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
 layers = 8
+instance_shader_parameters/glow_color = Color(1.5, 0, 0, 1)
+instance_shader_parameters/weight = 0.5
 mesh = SubResource("CapsuleMesh_60qai")
-material = SubResource("StandardMaterial3D_hasa8")
+material = ExtResource("2_eayir")
 
 [node name="Shape" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)

@@ -43,9 +43,3 @@ func setup_projectile(rocket: Rocket, shoot_offset: Vector3):
 	#DebugDraw3D.draw_line(rocket.position, target, Color.RED, 10.0)
 	#DebugDraw3D.draw_sphere(rocket.position, 0.05, Color.BLUE, 10.0)
 
-
-func _on_FirstPersonPlayer_animation_finished(anim_name: StringName) -> void:
-	match anim_name:
-		&"rocket_launcher_fire", &"rocket_launcher_draw":
-			first_person_player.play(&"rocket_launcher_idle")
-

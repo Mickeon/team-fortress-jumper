@@ -55,9 +55,3 @@ func deal_damage(player: Player):
 	var add_velocity := knockback_force * direction
 	player.velocity += add_velocity
 
-
-func _on_FirstPersonPlayer_animation_finished(anim_name: StringName) -> void:
-	match anim_name:
-		&"shovel_swing_a", &"shovel_swing_b", &"shovel_draw":
-			first_person_player.play(&"shovel_idle")
-

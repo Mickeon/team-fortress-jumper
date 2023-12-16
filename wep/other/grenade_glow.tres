@@ -1,0 +1,35 @@
+[gd_resource type="ShaderMaterial" load_steps=5 format=3 uid="uid://d0gfkuuvgpoy0"]
+
+[ext_resource type="Material" uid="uid://dp8eqvlxlt3yv" path="res://wep/other/grenade_mat.tres" id="1_lym5w"]
+
+[sub_resource type="Shader" id="Shader_ta21n"]
+code = "shader_type spatial;
+render_mode blend_add;
+
+instance uniform float weight: hint_range(0.0, 1.0, 0.1) = 0.5;
+instance uniform vec3 glow_color: source_color = vec3(2.0, 0.0, 0.0);
+
+uniform sampler2D mask: source_color, hint_default_white;
+
+void fragment() {
+	float mult = texture(mask, UV).r;
+	ALBEDO = mix(vec3(0.0, 0.0, 0.0), glow_color, weight * mult);
+}
+"
+
+[sub_resource type="Gradient" id="Gradient_hu8sb"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0.00719424, 0.453237, 0.730216, 0.784173)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_eorrq"]
+gradient = SubResource("Gradient_hu8sb")
+width = 8
+fill_from = Vector2(0, 1)
+fill_to = Vector2(0, 0)
+
+[resource]
+render_priority = 1
+next_pass = ExtResource("1_lym5w")
+shader = SubResource("Shader_ta21n")
+shader_parameter/mask = SubResource("GradientTexture2D_eorrq")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=68 format=3 uid="uid://bp3faj46c64ck"]
+[gd_scene load_steps=69 format=3 uid="uid://bp3faj46c64ck"]
 
 [ext_resource type="Script" path="res://player/Player.gd" id="1"]
 [ext_resource type="Script" path="res://wep/rocket_launcher.gd" id="2_eytv3"]
@@ -232,6 +232,28 @@ color_ramp = SubResource("GradientTexture1D_awufh")
 
 [sub_resource type="QuadMesh" id="QuadMesh_gh0ur"]
 size = Vector2(1.4, 1)
+
+[sub_resource type="GDScript" id="GDScript_7vx8s"]
+resource_name = "first_person_anim_player"
+script/source = "extends AnimationPlayer
+
+
+func _ready() -> void:
+	# Primary.
+	for anim in [&\"rocket_launcher_fire\", &\"rocket_launcher_draw\"]:
+		animation_set_next(anim, &\"rocket_launcher_idle\")
+	
+	# Secondary.
+	for anim in [&\"shotgun_fire\", &\"shotgun_draw_pump\", &\"shotgun_draw_no_pump\"]:
+		animation_set_next(anim, &\"shotgun_idle\")
+	
+	set_blend_time(&\"shotgun_draw_lastshot_reload\", &\"shotgun_reload_start\", 0.2)
+	
+	# Melee.
+	for anim in [&\"shovel_swing_a\", &\"shovel_swing_b\", &\"shovel_draw\"]:
+		animation_set_next(anim, &\"shovel_idle\")
+
+"
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_301pk"]
 resource_local_to_scene = true
@@ -591,6 +613,7 @@ surface_material_override/1 = ExtResource("11_0ojm0")
 
 [node name="AnimationPlayer" parent="Smoothing3D/Pivot/FirstPersonModel" index="1"]
 autoplay = "rocket_launcher_draw"
+script = SubResource("GDScript_7vx8s")
 
 [node name="CollisionShapeBox" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.781, 0)
@@ -715,7 +738,6 @@ attenuation_filter_cutoff_hz = 18520.0
 [connection signal="shot" from="Smoothing3D/Pivot/Shotgun" to="Soldier/AnimationTree" method="_on_any_weapon_shot"]
 [connection signal="deployed" from="Smoothing3D/Pivot/Shovel" to="Soldier/AnimationTree" method="_on_any_weapon_deployed" binds= [2]]
 [connection signal="shot" from="Smoothing3D/Pivot/Shovel" to="Soldier/AnimationTree" method="_on_any_weapon_shot"]
-[connection signal="animation_finished" from="Smoothing3D/Pivot/FirstPersonModel/AnimationPlayer" to="Smoothing3D/Pivot/RocketLauncher" method="_on_FirstPersonPlayer_animation_finished"]
 [connection signal="animation_finished" from="Smoothing3D/Pivot/FirstPersonModel/AnimationPlayer" to="Smoothing3D/Pivot/Shotgun" method="_on_FirstPersonPlayer_animation_finished"]
 
 [editable path="Smoothing3D/Pivot/RocketLauncher/Model"]
