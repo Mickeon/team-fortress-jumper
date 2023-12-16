@@ -6,7 +6,7 @@
 [node name="PlayerDebugger" type="RichTextLabel"]
 clip_contents = false
 offset_left = 4.0
-offset_right = 609.0
+offset_right = 685.0
 offset_bottom = 264.0
 mouse_filter = 1
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)

@@ -1,0 +1,53 @@
+[gd_scene load_steps=5 format=3 uid="uid://sy4h74hem3tx"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e7gf6"]
+bg_color = Color(0.6, 0.670588, 0.694118, 1)
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+border_color = Color(0.372549, 0.533333, 0.8, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_610wv"]
+font_size = 32
+shadow_size = 4
+shadow_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Gradient" id="Gradient_cfi7w"]
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.607843)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_t803a"]
+gradient = SubResource("Gradient_cfi7w")
+width = 1
+height = 8
+fill_to = Vector2(0, 1)
+
+[node name="Options" type="ScrollContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 145.0
+offset_top = 41.0
+offset_right = -192.0
+offset_bottom = -55.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_e7gf6")
+
+[node name="BoxContainer" type="BoxContainer" parent="."]
+layout_mode = 2
+vertical = true
+
+[node name="Label" type="Label" parent="BoxContainer"]
+layout_mode = 2
+text = "Mouse Sensitivity"
+label_settings = SubResource("LabelSettings_610wv")
+
+[node name="HSlider" type="HSlider" parent="BoxContainer"]
+layout_mode = 2
+theme_override_icons/tick = SubResource("GradientTexture2D_t803a")
+value = 50.0
+allow_greater = true
+allow_lesser = true
+tick_count = 11
+ticks_on_borders = true

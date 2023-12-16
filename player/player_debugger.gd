@@ -51,6 +51,9 @@ func _input(event):
 			OS.shell_open("https://github.com/Mickeon/team-fortress-jumper")
 			accept_event()
 			return
+		elif url.is_valid_int():
+			DisplayServer.clipboard_set(url)
+			accept_event()
 	
 	var key_event := event as InputEventKey
 	if key_event and key_event.pressed:
@@ -120,10 +123,11 @@ HSP: %s
 [/color]"""
 	var angles := Vector2(player.cam_pivot.rotation_degrees.x, fmod(player.cam_pivot.rotation_degrees.y, 180.0))
 	var velocity_planar := Vector2(player.velocity.x, player.velocity.z)
+	var multiplayer_id := multiplayer.get_unique_id()
 	
 	new_text %= [
 		"Using Hu" if display_meters_as_hu else "Using Meters",
-		"[color=blue]Server[/color]" if multiplayer.get_unique_id() == 1 else "Client",
+		"[color=blue]Server[/color]" if multiplayer_id == 1 else "[color=cyan][url=%s]%s[/url][/color]" % [multiplayer_id, multiplayer_id],
 		prettify(adjust(player.global_position)),
 		prettify(angles),
 		prettify(adjust(player.velocity.length())),

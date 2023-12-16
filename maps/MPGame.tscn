@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://ddl2hvuyg0djc"]
+[gd_scene load_steps=7 format=3 uid="uid://ddl2hvuyg0djc"]
 
 [ext_resource type="Script" path="res://maps/mp_game.gd" id="1_f7p4g"]
 [ext_resource type="PackedScene" uid="uid://dsyym2bcxma0k" path="res://maps/Level.tscn" id="2_jfik2"]
 [ext_resource type="PackedScene" uid="uid://bf71q8x45pv03" path="res://player/PlayerDebugger.tscn" id="3_4tyrb"]
+[ext_resource type="PackedScene" uid="uid://dvq62dln05o5l" path="res://ui/chat/Chat.tscn" id="4_0p1jr"]
 
 [sub_resource type="Gradient" id="Gradient_ppgpi"]
 interpolation_mode = 1
@@ -41,3 +42,7 @@ grow_vertical = 2
 size_flags_vertical = 0
 texture = SubResource("GradientTexture2D_b4g3n")
 stretch_mode = 3
+
+[node name="Chat" parent="." instance=ExtResource("4_0p1jr")]
+chat_focused = false
+release_focus_on_submit = true

@@ -1,0 +1,66 @@
+[gd_resource type="Theme" load_steps=10 format=3 uid="uid://dhkoa5aepxj0j"]
+
+[sub_resource type="SystemFont" id="SystemFont_hhhkl"]
+resource_name = "chat_font"
+font_names = PackedStringArray("arial")
+multichannel_signed_distance_field = true
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_oh35i"]
+
+[sub_resource type="Gradient" id="Gradient_jaxkr"]
+offsets = PackedFloat32Array(0.665584, 1)
+colors = PackedColorArray(0.109804, 0.192157, 0.301961, 1, 0.680321, 0.680321, 0.680321, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_7cr6p"]
+gradient = SubResource("Gradient_jaxkr")
+width = 16
+height = 16
+fill = 2
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0, 0)
+
+[sub_resource type="Gradient" id="Gradient_gb63i"]
+offsets = PackedFloat32Array(0.665584, 1)
+colors = PackedColorArray(0.165758, 0.274121, 0.418679, 1, 0.680321, 0.680321, 0.680321, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_iqo62"]
+gradient = SubResource("Gradient_gb63i")
+width = 16
+height = 16
+fill = 2
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mcuct"]
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pxic7"]
+bg_color = Color(0.105882, 0.105882, 0.105882, 1)
+
+[sub_resource type="SystemFont" id="SystemFont_pmqf7"]
+resource_name = "chat_font"
+font_names = PackedStringArray("arial")
+multichannel_signed_distance_field = true
+
+[resource]
+resource_name = "chat_theme"
+default_font = SubResource("SystemFont_pmqf7")
+RichTextLabel/colors/default_color = Color(0.984314, 0.92549, 0.796078, 1)
+RichTextLabel/colors/font_shadow_color = Color(0.172549, 0.172549, 0.172549, 1)
+RichTextLabel/colors/selection_color = Color(0.172549, 0.356863, 0.909804, 0.8)
+RichTextLabel/constants/shadow_outline_size = 0
+RichTextLabel/font_sizes/normal_font_size = 15
+RichTextLabel/fonts/normal_font = SubResource("SystemFont_hhhkl")
+RichTextLabel/styles/focus = SubResource("StyleBoxEmpty_oh35i")
+RichTextLabel/styles/normal = SubResource("StyleBoxEmpty_oh35i")
+VScrollBar/icons/decrement = SubResource("GradientTexture2D_7cr6p")
+VScrollBar/icons/decrement_highlight = SubResource("GradientTexture2D_iqo62")
+VScrollBar/icons/decrement_pressed = SubResource("GradientTexture2D_7cr6p")
+VScrollBar/icons/increment = SubResource("GradientTexture2D_7cr6p")
+VScrollBar/icons/increment_highlight = SubResource("GradientTexture2D_iqo62")
+VScrollBar/icons/increment_pressed = SubResource("GradientTexture2D_7cr6p")
+VScrollBar/styles/grabber = SubResource("StyleBoxFlat_mcuct")
+VScrollBar/styles/scroll = SubResource("StyleBoxFlat_pxic7")

@@ -96,7 +96,10 @@ func _unhandled_input(event):
 	if event.is_action_pressed("ui_cancel"):
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		get_viewport().set_input_as_handled()
-	elif event is InputEventMouseButton and Input.mouse_mode != Input.MOUSE_MODE_CAPTURED and event.is_pressed():
+	elif (event is InputEventMouseButton 
+	and Input.mouse_mode != Input.MOUSE_MODE_CAPTURED 
+	and event.button_index != MOUSE_BUTTON_WHEEL_UP and event.button_index != MOUSE_BUTTON_WHEEL_DOWN
+	and event.is_pressed()):
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 		get_viewport().set_input_as_handled()
 	

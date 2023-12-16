@@ -1,0 +1,117 @@
+[gd_scene load_steps=6 format=3 uid="uid://ych0upqp71rl"]
+
+[sub_resource type="Gradient" id="Gradient_apnpr"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.679181, 0.733788)
+colors = PackedColorArray(1, 1, 1, 1, 0.529412, 1, 1, 0.501961, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_iihn7"]
+gradient = SubResource("Gradient_apnpr")
+width = 32
+height = 32
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="Gradient" id="Gradient_7vhha"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.4, 0.290667, 0.236, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_du7be"]
+gradient = SubResource("Gradient_7vhha")
+width = 16
+height = 16
+fill_from = Vector2(0, 1)
+fill_to = Vector2(0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_21d2f"]
+font_size = 24
+outline_size = 6
+outline_color = Color(0, 0, 0, 1)
+
+[node name="HUD" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Health" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 144.0
+offset_top = -198.0
+offset_right = 327.0
+offset_bottom = -47.0
+grow_vertical = 0
+
+[node name="LowHPFlash" type="TextureRect" parent="Health"]
+visible = false
+modulate = Color(1, 0, 0, 0.501961)
+clip_children = 2
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -53.5
+offset_top = -65.5
+offset_right = 74.5
+offset_bottom = 62.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.1, 1.1)
+pivot_offset = Vector2(64, 64)
+texture = SubResource("GradientTexture2D_iihn7")
+stretch_mode = 5
+
+[node name="Frame" type="TextureRect" parent="Health"]
+clip_children = 2
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -53.5
+offset_top = -65.5
+offset_right = 74.5
+offset_bottom = 62.5
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(64, 64)
+texture = SubResource("GradientTexture2D_iihn7")
+stretch_mode = 5
+
+[node name="MissingHealth" type="TextureRect" parent="Health/Frame"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -64.0
+offset_right = 65.0
+offset_bottom = 47.0
+grow_horizontal = 2
+texture = SubResource("GradientTexture2D_du7be")
+
+[node name="Label" type="Label" parent="Health/Frame"]
+texture_filter = 4
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -21.0
+offset_top = -17.0
+offset_right = 21.0
+offset_bottom = 17.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "200"
+label_settings = SubResource("LabelSettings_21d2f")

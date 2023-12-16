@@ -6,9 +6,9 @@ const PORT = 8002
 const SERVER_ADDRESS = "localhost"
 const SERVER_ID = 1
 
-func _input(event):
-	if event.is_action_pressed("debug_spawn_fake_player"):
-		spawn_player(randi_range(2, 100))
+func _unhandled_input(event):
+	if event.is_action_pressed("debug_spawn_fake_player") and multiplayer.is_server():
+		spawn_player(0)
 
 func _ready() -> void:
 	var args := OS.get_cmdline_args()
@@ -66,10 +66,13 @@ func spawn_player(id: int):
 	if id == SERVER_ID:
 		tweak_server(player)
 	else:
+		print("Client %s connected" % id)
 		tweak_client(player)
+		$Chat.send_message("Client %s connected" % id)
 
 func remove_player(id: int):
 	get_node(str(id)).queue_free()
+	print("Client %s disconnected" % id)
 
 
 #region Player Tweaks

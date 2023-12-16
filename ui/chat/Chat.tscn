@@ -1,0 +1,157 @@
+[gd_scene load_steps=9 format=3 uid="uid://dvq62dln05o5l"]
+
+[ext_resource type="Theme" uid="uid://dhkoa5aepxj0j" path="res://ui/chat/chat_theme.tres" id="1_dsfbt"]
+[ext_resource type="Script" path="res://ui/chat/chat.gd" id="1_wtviw"]
+[ext_resource type="AudioStream" uid="uid://bs4u86cdjx5ds" path="res://sfx/interface/fail.ogg" id="2_xvi77"]
+[ext_resource type="AudioStream" uid="uid://cp05pouwbvdae" path="res://sfx/interface/button_click.ogg" id="3_dxnua"]
+[ext_resource type="AudioStream" uid="uid://jm8yeamc344g" path="res://sfx/interface/button_click_release.ogg" id="4_qc5d2"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gq00a"]
+resource_name = "chat_window"
+bg_color = Color(0.6, 0.6, 0.6, 0.501961)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+shadow_color = Color(0, 0, 0, 0.207843)
+shadow_size = 6
+shadow_offset = Vector2(2, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_djpen"]
+resource_name = "text_background"
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+bg_color = Color(0.203922, 0.203922, 0.203922, 1)
+border_width_bottom = 6
+border_color = Color(0, 0, 0, 0)
+border_blend = true
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ddgdh"]
+resource_name = "say_label_background"
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.227451, 0.227451, 0.227451, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[node name="Chat" type="Panel" node_paths=PackedStringArray("text", "line_edit", "send_button")]
+custom_minimum_size = Vector2(256, 0)
+anchors_preset = -1
+anchor_top = 0.367
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 128.184
+offset_right = -33.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("1_dsfbt")
+theme_override_styles/panel = SubResource("StyleBoxFlat_gq00a")
+script = ExtResource("1_wtviw")
+text = NodePath("Margin/VBox/TextBackground/Text")
+line_edit = NodePath("Margin/VBox/HBox/LineEdit")
+send_button = NodePath("Margin/VBox/HBox/SendButton")
+metadata/_edit_use_anchors_ = true
+metadata/_edit_group_ = true
+
+[node name="Margin" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBox" type="VBoxContainer" parent="Margin"]
+layout_mode = 2
+
+[node name="TextBackground" type="PanelContainer" parent="Margin/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_djpen")
+
+[node name="Text" type="RichTextLabel" parent="Margin/VBox/TextBackground"]
+layout_mode = 2
+size_flags_vertical = 3
+focus_mode = 2
+mouse_filter = 1
+bbcode_enabled = true
+text = "[p]*DEAD* [color=FF3D3D]Rusty[/color] : on it[/p]
+[p][color=9ACDFF]rop.the.bop[/color] : let it fester[/p]
+[p]*DEAD* [color=FF3D3D]Rusty[/color] : like the addams family?[/p]
+[p]*DEAD* [color=9ACDFF]Vibin' in da Ritz Cah[/color] : gaming[/p]
+[p][/p][p][color=9ACDFF]Vibin' in da Ritz Cah[/color] : map sucks[/p]
+[p][color=9ACDFF]rop.the.bop[/color] : maps great[/p]
+[p]...[/p]
+[p]...[/p]
+[p]...[/p]
+[p]...[/p]
+[p]...[/p]
+[p]...[/p]
+[p]...[/p]
+[p]...[/p]
+[p]...[/p]
+[p]...[/p]"
+autowrap_mode = 1
+threaded = true
+progress_bar_delay = -1
+selection_enabled = true
+drag_and_drop_selection_enabled = false
+
+[node name="HBox" type="HBoxContainer" parent="Margin/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="Label" type="Label" parent="Margin/VBox/HBox"]
+visible = false
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_ddgdh")
+text = "Say:"
+
+[node name="LineEdit" type="LineEdit" parent="Margin/VBox/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "..."
+max_length = 96
+caret_blink = true
+
+[node name="SendButton" type="Button" parent="Margin/VBox/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.15
+focus_mode = 0
+disabled = true
+text = "Send"
+
+[node name="Click" type="AudioStreamPlayer" parent="Margin/VBox/HBox/SendButton"]
+stream = ExtResource("3_dxnua")
+
+[node name="Release" type="AudioStreamPlayer" parent="Margin/VBox/HBox/SendButton"]
+stream = ExtResource("4_qc5d2")
+
+[node name="Fail" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_xvi77")
+
+[connection signal="focus_exited" from="Margin/VBox/TextBackground/Text" to="." method="_on_LineEdit_or_Text_focus_exited"]
+[connection signal="focus_exited" from="Margin/VBox/HBox/LineEdit" to="." method="_on_LineEdit_or_Text_focus_exited"]
+[connection signal="text_change_rejected" from="Margin/VBox/HBox/LineEdit" to="." method="_on_LineEdit_text_change_rejected" unbinds=1]
+[connection signal="text_changed" from="Margin/VBox/HBox/LineEdit" to="." method="_on_LineEdit_text_changed" unbinds=1]
+[connection signal="text_submitted" from="Margin/VBox/HBox/LineEdit" to="." method="_on_LineEdit_text_submitted" unbinds=1]
+[connection signal="button_down" from="Margin/VBox/HBox/SendButton" to="Margin/VBox/HBox/SendButton/Click" method="play"]
+[connection signal="button_up" from="Margin/VBox/HBox/SendButton" to="Margin/VBox/HBox/SendButton/Release" method="play"]
+[connection signal="pressed" from="Margin/VBox/HBox/SendButton" to="." method="_on_LineEdit_text_submitted"]
