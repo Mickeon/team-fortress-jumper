@@ -7,6 +7,24 @@ const HU = 0.01905
 const CROUCH_SPEED_MULTIPLIER = 0.333333
 const BACKPEDAL_SPEED_MULTIPLIER = 0.9
 
+## The player you control, and see from.
+static var main: Player:
+	set(new):
+		if main == new:
+			return
+		
+		var previous_main := main
+		
+		main = new
+		
+		if previous_main:
+			# Undo changes to previous player.
+			previous_main._update_for_main_player()
+		
+		if main:
+			main._update_for_main_player()
+
+
 @export_group("Movement")
 @export var GROUND_SPEED := 240 * HU # (Soldier's speed) 
 @export var GROUND_ACCELERATION := 2400 * HU # 36 at 66.666 ticks
@@ -91,6 +109,9 @@ var noclip_enabled := false:
 		hull.disabled = noclip_enabled
 
 var forced_wishdir := Vector2.ZERO
+
+func _ready() -> void:
+	_update_for_main_player()
 
 func _unhandled_input(event):
 	if event.is_action_pressed("ui_cancel"):
@@ -393,6 +414,37 @@ func get_width() -> float: # Not used anywhere, actually.
 signal hurt(amount: float)
 func take_damage(amount: float, inflictor: Player = null):
 	emit_signal("hurt", amount, inflictor)
+
+
+func _update_for_main_player():
+	if self == Player.main:
+		propagate_call("set_process_input", [true])
+		propagate_call("set_process_unhandled_input", [true])
+		
+		cam_pivot.show()
+		cam_pivot.get_node("Camera").current = true
+		
+		for mesh: MeshInstance3D in [
+			get_node("Soldier/Body/Skeleton3D/mesh"),
+			get_node("Soldier/Body/Rocket Launcher/c_rocketlauncher_qc_skeleton/Skeleton3D/c_rocketlauncher"),
+			get_node("Soldier/Body/Shotgun/c_shotgun_skeleton/Skeleton3D/c_shotgun")
+		]:
+			mesh.layers = 4
+	else:
+		cam_pivot.hide()
+		cam_pivot.get_node("Camera").current = false
+		
+		propagate_call("set_process_input", [false])
+		propagate_call("set_process_unhandled_input", [false])
+		
+		# Show TP model all the time.
+		for mesh: MeshInstance3D in [
+			get_node("Soldier/Body/Skeleton3D/mesh"),
+			get_node("Soldier/Body/Rocket Launcher/c_rocketlauncher_qc_skeleton/Skeleton3D/c_rocketlauncher"),
+			get_node("Soldier/Body/Shotgun/c_shotgun_skeleton/Skeleton3D/c_shotgun")
+		]:
+			mesh.layers = 6
+
 
 #const JUMP_HEIGHT = 72 * HU
 #func _get_jump_force(height: float):

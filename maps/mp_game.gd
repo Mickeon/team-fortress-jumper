@@ -12,6 +12,13 @@ const Chat = preload("res://ui/chat/chat.gd")
 func _unhandled_input(event):
 	if event.is_action_pressed("debug_spawn_fake_player") and multiplayer.is_server():
 		spawn_player(0)
+	if event is InputEventKey and event.is_pressed() and not event.is_echo():
+		match event.keycode:
+			KEY_KP_SUBTRACT, KEY_KP_ADD:
+				var advance := 1 if event.keycode == KEY_KP_ADD else -1
+				var players: Array[Player] = []
+				players.assign(get_tree().get_nodes_in_group("players"))
+				Player.main = players[posmod(players.find(Player.main) + advance, players.size())]
 
 func _ready() -> void:
 	tweak_window()
@@ -44,7 +51,7 @@ func _host():
 		multiplayer.multiplayer_peer = peer
 
 func _connect():
-	await get_tree().create_timer(0.5).timeout
+	await get_tree().create_timer(0.25).timeout
 	
 	var peer := ENetMultiplayerPeer.new()
 	var err := peer.create_client(SERVER_ADDRESS, PORT)
@@ -63,8 +70,11 @@ func spawn_player(id: int):
 	player.set_multiplayer_authority(id)
 	
 	add_child(player, true)
-	if id != multiplayer.get_unique_id():
+	if id == multiplayer.get_unique_id():
+		Player.main = player
+	else:
 		tweak_other(player)
+	
 	if id == SERVER_ID:
 		tweak_server(player)
 	else:
@@ -76,21 +86,6 @@ func remove_player(id: int):
 
 #region Player Tweaks
 func tweak_other(player: Player):
-	# Disable input.
-	player.propagate_call("set_process_input", [false])
-	player.propagate_call("set_process_unhandled_input", [false])
-	
-	player.cam_pivot.get_node("Camera").queue_free()
-	player.cam_pivot.hide()
-	
-	# Show TP model all the time.
-	for mesh in [
-		player.get_node("Soldier/Body/Skeleton3D/mesh"),
-		player.get_node("Soldier/Body/Rocket Launcher/c_rocketlauncher_qc_skeleton/Skeleton3D/c_rocketlauncher"),
-		player.get_node("Soldier/Body/Shotgun/c_shotgun_skeleton/Skeleton3D/c_shotgun")
-	]:
-		mesh.layers = 6
-	
 	player.hurt.connect(_on_player_hurt.bind(player))
 
 func tweak_server(player: Player):
