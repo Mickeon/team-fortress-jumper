@@ -29,7 +29,7 @@ buses/default_bus_layout="res://sfx/default_bus_layout.tres"
 gdscript/warnings/static_called_on_instance=0
 gdscript/warnings/narrowing_conversion=0
 multirun/add_custom_args=true
-multirun/window_args=["listen", "join --order 2", "join --order 3"]
+multirun/window_args=["listen --name \"Micky\"", "join --order 2 --name \"Cave Johnson\"", "join --order 3 --name \"Lemonade\""]
 multirun/number_of_windows=2
 
 [display]

@@ -32,6 +32,7 @@ const COLOR_SYS = Color.LIME_GREEN
 			mouse_filter = Control.MOUSE_FILTER_STOP
 			
 			text.selection_enabled = true
+			text.context_menu_enabled = true
 			text.focus_mode = Control.FOCUS_ALL
 			
 			line_edit.focus_mode = Control.FOCUS_ALL
@@ -49,6 +50,7 @@ const COLOR_SYS = Color.LIME_GREEN
 			mouse_filter = Control.MOUSE_FILTER_IGNORE
 			
 			text.selection_enabled = false
+			text.context_menu_enabled = false
 			text.focus_mode = Control.FOCUS_NONE
 			
 			line_edit.focus_mode = Control.FOCUS_NONE
@@ -110,11 +112,11 @@ func _input(event: InputEvent):
 		text.release_focus()
 	
 	elif event is InputEventMouseMotion and event.button_mask == MOUSE_BUTTON_MASK_MB_XBUTTON1:
-		send_message.rpc_id(SERVER_ID, str(randi() % 1000)) # Quick debuggin.
+		send_message(str(randi() % 1000)) # Quick debuggin.
 
 
-func _on_LineEdit_text_submitted() -> void:
-	if release_focus_on_submit:
+func _submit_text(force_keep_focus := false) -> void:
+	if release_focus_on_submit and not force_keep_focus:
 		line_edit.release_focus()
 	
 	var message := line_edit.text.strip_edges()
@@ -124,10 +126,10 @@ func _on_LineEdit_text_submitted() -> void:
 	line_edit.clear()
 	if message.is_valid_int() and message.to_int() in multiplayer.get_peers():
 		# For testing, you shouldn't be able to do this.
-		send_message.rpc_id(message.to_int(), "Teehee")
+		server_receive_message.rpc_id(message.to_int(), "Teehee")
 		return
 	
-	send_message.rpc_id(SERVER_ID, message)
+	send_message(message)
 
 func _on_LineEdit_text_changed() -> void:
 	send_button.disabled = line_edit.text.is_empty()
@@ -143,12 +145,19 @@ func _on_LineEdit_or_Text_focus_exited() -> void:
 		chat_focused = false
 
 
-@rpc("any_peer", "call_local", "reliable", CHAT_CHANNEL)
+func broadcast(message: String):
+	if multiplayer.is_server():
+		server_receive_message(message)
+	else:
+		append("The client cannot call broadcast()")
+
 func send_message(message: String):
+	server_receive_message.rpc_id(SERVER_ID, message)
+
+@rpc("any_peer", "call_local", "reliable", CHAT_CHANNEL)
+func server_receive_message(message: String):
 	if multiplayer.get_remote_sender_id() != 0 and not multiplayer.is_server():
-		#modulate.s = randf_range(0.25, 0.75) # Some code to see that it actually works.
-		#modulate.h += randf_range(0.25, 0.75)
-		append_to_chat("Client %s sent a message directly (should be forbidden): '%s'" % [
+		append("Client %s sent a message directly (should be forbidden): '%s'" % [
 				multiplayer.get_remote_sender_id(), message])
 		return # Someone's being a lil' malicious.
 	
@@ -164,13 +173,16 @@ func send_message(message: String):
 			_get_username(sender_id),
 			strip_bbcode(message)
 		]
+		# Funny.
+		if adjusted_message.contains(":walter:"):
+			adjusted_message = adjusted_message.replace(":walter:", "[img=32]res://ui/chat/walter.png[/img]")
 	
-	append_to_chat.rpc(adjusted_message)
+	append.rpc(adjusted_message)
 
 @rpc("authority", "call_local", "reliable", CHAT_CHANNEL)
-func append_to_chat(additional: String):
+func append(what: String):
 	text.push_paragraph(HORIZONTAL_ALIGNMENT_LEFT)
-	text.append_text(additional)
+	text.append_text(what)
 	text.pop() #text.newline()
 	
 	if text.get_paragraph_count() > MAX_MESSAGES:

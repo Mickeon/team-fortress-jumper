@@ -5,8 +5,9 @@ const PlayerScene = preload("res://player/Player.tscn")
 const PORT = 8002
 const SERVER_ADDRESS = "localhost"
 const SERVER_ID = 1
+const Chat = preload("res://ui/chat/chat.gd")
 
-@onready var chat := $Chat
+@onready var chat: Chat = $Chat
 
 func _unhandled_input(event):
 	if event.is_action_pressed("debug_spawn_fake_player") and multiplayer.is_server():
@@ -19,8 +20,8 @@ func _ready() -> void:
 	
 	if args.has("listen"):
 		await _host()
-		multiplayer.peer_connected.connect(func(id): chat.send_message("Client %s connected" % id))
-		multiplayer.peer_disconnected.connect(func(id): chat.send_message("Client %s disconnected" % id))
+		multiplayer.peer_connected.connect(func(id): chat.broadcast("Client %s connected" % id))
+		multiplayer.peer_disconnected.connect(func(id): chat.broadcast("Client %s disconnected" % id))
 	
 	elif args.has("join"):
 		await _connect()
@@ -53,6 +54,7 @@ func _connect():
 		print("Successfully connected to server at ", SERVER_ADDRESS, ":", PORT)
 		multiplayer.multiplayer_peer = peer
 		#peer.set_target_peer(SERVER_ID)
+	chat.append("Hacker voice, I'm in.")
 
 
 func spawn_player(id: int):
@@ -141,6 +143,7 @@ func tweak_window():
 var _queued_damage_numbers := {} # { Player: float }
 func _on_player_hurt(amount: float, inflictor: Player, victim: Player):
 	if inflictor == victim:
+		#chat.send("%s took self-damage! %4.2f" % [inflictor.name, amount])
 		return # Don't care about self-inflicted damage.
 	
 	if not _queued_damage_numbers.has(victim):
