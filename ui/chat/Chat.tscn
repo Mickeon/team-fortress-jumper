@@ -86,6 +86,7 @@ mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_djpen")
 
 [node name="Text" type="RichTextLabel" parent="Margin/VBox/TextBackground"]
+custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_vertical = 3
 focus_mode = 2
@@ -107,7 +108,8 @@ text = "[p]*DEAD* [color=FF3D3D]Rusty[/color] : on it[/p]
 [p]...[/p]
 [p]...[/p]
 [p]...[/p]"
-autowrap_mode = 1
+autowrap_mode = 2
+context_menu_enabled = true
 threaded = true
 progress_bar_delay = -1
 selection_enabled = true

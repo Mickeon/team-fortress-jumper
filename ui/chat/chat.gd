@@ -89,6 +89,10 @@ func _ready():
 	
 	line_edit.max_length = MAX_MESSAGE_LENGTH
 	line_edit.focus_entered.connect(func(): chat_focused = true)
+	
+	var menu := line_edit.get_menu() # Remove redudant menu options.
+	menu.item_count = menu.get_item_index(LineEdit.MENU_REDO) + 1
+	
 	set_multiplayer_authority(multiplayer.get_unique_id())
 
 func _input(event: InputEvent):
@@ -118,10 +122,10 @@ func _on_LineEdit_text_submitted() -> void:
 		return
 	
 	line_edit.clear()
-	#if message.is_valid_int():
+	if message.is_valid_int() and message.to_int() in multiplayer.get_peers():
 		# For testing, you shouldn't be able to do this.
-		#send_message.rpc_id(message.to_int(), "Teehee")
-		#return
+		send_message.rpc_id(message.to_int(), "Teehee")
+		return
 	
 	send_message.rpc_id(SERVER_ID, message)
 
@@ -141,9 +145,11 @@ func _on_LineEdit_or_Text_focus_exited() -> void:
 
 @rpc("any_peer", "call_local", "reliable", CHAT_CHANNEL)
 func send_message(message: String):
-	if not multiplayer.is_server():
+	if multiplayer.get_remote_sender_id() != 0 and not multiplayer.is_server():
 		#modulate.s = randf_range(0.25, 0.75) # Some code to see that it actually works.
 		#modulate.h += randf_range(0.25, 0.75)
+		append_to_chat("Client %s sent a message directly (should be forbidden): '%s'" % [
+				multiplayer.get_remote_sender_id(), message])
 		return # Someone's being a lil' malicious.
 	
 	var adjusted_message := message
@@ -151,6 +157,7 @@ func send_message(message: String):
 	var sender_id := multiplayer.get_remote_sender_id()
 	if sender_id == 0:
 		adjusted_message = "[color=%s]%s[/color]" % [COLOR_SYS.to_html(), message]
+		print_rich(adjusted_message)
 	else:
 		adjusted_message = "[color=%s]%s[/color] : %s" % [
 			_get_team_color_html(sender_id),

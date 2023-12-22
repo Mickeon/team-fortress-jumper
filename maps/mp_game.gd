@@ -6,15 +6,21 @@ const PORT = 8002
 const SERVER_ADDRESS = "localhost"
 const SERVER_ID = 1
 
+@onready var chat := $Chat
+
 func _unhandled_input(event):
 	if event.is_action_pressed("debug_spawn_fake_player") and multiplayer.is_server():
 		spawn_player(0)
 
 func _ready() -> void:
+	tweak_window()
+	
 	var args := OS.get_cmdline_args()
 	
 	if args.has("listen"):
 		await _host()
+		multiplayer.peer_connected.connect(func(id): chat.send_message("Client %s connected" % id))
+		multiplayer.peer_disconnected.connect(func(id): chat.send_message("Client %s disconnected" % id))
 	
 	elif args.has("join"):
 		await _connect()
@@ -35,24 +41,18 @@ func _host():
 	else:
 		print("Hosting server at port ", PORT)
 		multiplayer.multiplayer_peer = peer
-	
-	get_window().title = "Team Fortress Jumper (Hosting)"
 
 func _connect():
 	await get_tree().create_timer(0.5).timeout
 	
-	var peer = ENetMultiplayerPeer.new()
+	var peer := ENetMultiplayerPeer.new()
 	var err := peer.create_client(SERVER_ADDRESS, PORT)
 	if err:
 		printerr("Could not connect to server at ", SERVER_ADDRESS, ":", PORT, " ", error_string(err))
 	else:
 		print("Successfully connected to server at ", SERVER_ADDRESS, ":", PORT)
 		multiplayer.multiplayer_peer = peer
-	
-	get_window().title = "Team Fortress Jumper (Listening)"
-	get_window().size = 0.75 * Vector2(
-			ProjectSettings.get_setting("display/window/size/viewport_width"),
-			ProjectSettings.get_setting("display/window/size/viewport_height"))
+		#peer.set_target_peer(SERVER_ID)
 
 
 func spawn_player(id: int):
@@ -66,13 +66,10 @@ func spawn_player(id: int):
 	if id == SERVER_ID:
 		tweak_server(player)
 	else:
-		print("Client %s connected" % id)
 		tweak_client(player)
-		$Chat.send_message("Client %s connected" % id)
 
 func remove_player(id: int):
 	get_node(str(id)).queue_free()
-	print("Client %s disconnected" % id)
 
 
 #region Player Tweaks
@@ -110,6 +107,35 @@ func tweak_client(player: Player):
 	
 	# All clients are shifted ahead on spawn
 	player.position.z += 5
+	player.position += Vector3(randf_range(-2, 2), 0, randf_range(-2, 2))
+
+func tweak_window():
+	var window := get_window()
+	var debug_window_count := int(ProjectSettings.get_setting("debug/multirun/number_of_windows", 0))
+	
+	if args_dict.has("listen"):
+		window.title = "Team Fortress Jumper (Hosting)"
+		if debug_window_count > 2:
+			window.size *= 0.75
+		
+		return
+	
+	if args_dict.has("join"):
+		window.title = "Team Fortress Jumper (Connected to host)"
+		
+		if debug_window_count <= 2:
+			window.size *= 0.75
+			return
+		
+		window.size *= 0.4#0.25
+		window.content_scale_factor = 0.75#0.5
+		
+		var order := int(args_dict.get("order", 1)) - 1
+		var screen_rect := DisplayServer.screen_get_usable_rect(1)
+		window.position.y = screen_rect.end.y - window.size.y
+		window.position.x = wrapi(screen_rect.end.x - window.size.x * order, 
+				screen_rect.position.x, screen_rect.end.x)
+
 #endregion
 
 var _queued_damage_numbers := {} # { Player: float }
@@ -122,7 +148,7 @@ func _on_player_hurt(amount: float, inflictor: Player, victim: Player):
 		_queued_damage_numbers[victim] = amount
 	else:
 		_queued_damage_numbers[victim] += amount
-	
+
 func create_damage_label(for_player: Player):
 	const DamageNumberScene = preload("res://wep/other/DamageNumber.tscn")
 	var damage_label: Label3D = DamageNumberScene.instantiate()
@@ -137,4 +163,24 @@ func create_damage_label(for_player: Player):
 	get_tree().process_frame.connect(damage_label.show)
 	
 	_queued_damage_numbers.erase(for_player)
+
+
+static var args_dict: Dictionary: # { String: Variant }
+	get:
+		if args_dict:
+			return args_dict
+		
+		var args := OS.get_cmdline_args()
+		var new_key := ""
+		for argument in args:
+			if new_key:
+				var value = str_to_var(argument)
+				args_dict[new_key] = value if value else argument
+				new_key = ""
+			elif argument.begins_with("-"):
+				new_key = argument.replace("-", "")
+			else:
+				args_dict[argument] = null
+		
+		return args_dict
 
