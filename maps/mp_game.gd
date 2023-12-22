@@ -11,7 +11,7 @@ const Chat = preload("res://ui/chat/chat.gd")
 
 func _unhandled_input(event):
 	if event.is_action_pressed("debug_spawn_fake_player") and multiplayer.is_server():
-		spawn_player(0)
+		spawn_player.rpc(0)
 	if event is InputEventKey and event.is_pressed() and not event.is_echo():
 		match event.keycode:
 			KEY_KP_SUBTRACT, KEY_KP_ADD:
@@ -63,11 +63,13 @@ func _connect():
 		#peer.set_target_peer(SERVER_ID)
 	chat.append("Hacker voice, I'm in.")
 
-
+@rpc("authority", "call_local", "reliable")
 func spawn_player(id: int):
+	var is_fake_player := id == 0
+	
 	var player: Player = PlayerScene.instantiate()
 	player.name = str(id)
-	player.set_multiplayer_authority(id)
+	player.set_multiplayer_authority(SERVER_ID if is_fake_player else id)
 	
 	add_child(player, true)
 	if id == multiplayer.get_unique_id():
