@@ -94,7 +94,7 @@ func _physics_process(_delta):
 
 func _debug_draw():
 	var velocity_planar := Vector3(player.velocity.x, 0, player.velocity.z)
-	var wish_dir: Vector2 = player.get_meta("wish_dir", Vector2.ZERO)
+	var wish_dir: Vector2 = player.wish_dir
 	DebugDraw3D.draw_arrow_ray(
 			player.global_position + Vector3.UP * HU, 
 			velocity_planar, 

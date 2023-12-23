@@ -96,6 +96,9 @@ func spawn_player(id: int):
 		tweak_server(player)
 	else:
 		tweak_client(player)
+		if multiplayer.is_server():
+			player.get_node("Synchronizer").synchronized.connect(
+				_synchronize_attributes.bind(player))
 
 func remove_player(id: int):
 	get_node(str(id)).queue_free()
@@ -105,7 +108,12 @@ func _start_close_countdown():
 	await get_tree().create_timer(0.5).timeout
 	get_tree().quit()
 
-#region Player Tweaks
+func _synchronize_attributes(_for_player: Player):
+	#print(for_player)
+	#for_player.position.y += 1
+	pass
+
+#region Player Tweaks 
 func tweak_other(player: Player):
 	player.hurt.connect(_on_player_hurt.bind(player))
 

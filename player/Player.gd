@@ -108,6 +108,7 @@ var noclip_enabled := false:
 		
 		hull.disabled = noclip_enabled
 
+var wish_dir := Vector2.ZERO
 var forced_wishdir := Vector2.ZERO
 
 func _ready() -> void:
@@ -148,18 +149,17 @@ func _physics_process(delta: float):
 		_handle_noclip(delta)
 		return
 	
-	var wish_dir := (Input.get_vector("player_left", "player_right", "player_forward", "player_back") 
-			if is_processing_unhandled_input() else Vector2.ZERO)
-	if forced_wishdir.y != 0:
-		wish_dir.y = forced_wishdir.y
-		wish_dir = wish_dir.normalized()
-	wish_dir = wish_dir.rotated(-cam_pivot.rotation.y)
-	set_meta("wish_dir", wish_dir) # I don't want to expose this directly now.
-	
-	if grounded and is_processing_unhandled_input() and Input.is_action_pressed("player_jump"):
-		grounded = false
-		just_jumped = true
-		velocity.y = JUMP_FORCE
+	if is_processing_unhandled_input():
+		wish_dir = Input.get_vector("player_left", "player_right", "player_forward", "player_back")
+		wish_dir = wish_dir.rotated(-cam_pivot.rotation.y)
+	#if forced_wishdir.y != 0:
+		#wish_dir.y = forced_wishdir.y
+		#wish_dir = wish_dir.normalized()
+		
+		if grounded and Input.is_action_pressed("player_jump"):
+			grounded = false
+			just_jumped = true
+			velocity.y = JUMP_FORCE
 	
 	_apply_friction(delta)
 	
@@ -210,7 +210,8 @@ func _handle_noclip(delta: float):
 	const NOCLIP_SPEED = 15.0
 	const NOCLIP_ACCELERATION = 60
 	
-	var wish_dir := Input.get_vector("player_left", "player_right", "player_forward", "player_back")
+	if is_processing_unhandled_input():
+		wish_dir = Input.get_vector("player_left", "player_right", "player_forward", "player_back")
 	var flat_acceleration := Vector3(wish_dir.x, 0, wish_dir.y) * GROUND_ACCELERATION * delta
 	
 	var vertical_acceleration := Input.get_axis("player_crouch", "player_jump")
