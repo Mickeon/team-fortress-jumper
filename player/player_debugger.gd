@@ -143,7 +143,7 @@ HSP: %s
 			#new_text += " (Deploying %2.2f)" % weapon_manager.deploy_timer.time_left
 		#new_text += "[/color]"
 	if Player.main:
-		new_text += "\nMain Player: %s" % Player.main.name
+		new_text += "\n[color=dark_gray]Looking from %s[/color]" % Player.main.name
 	
 	if Engine.time_scale != 1.0:
 		new_text += "\nTime scale: %s" % Engine.time_scale

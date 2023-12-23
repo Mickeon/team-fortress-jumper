@@ -19,6 +19,8 @@ func _unhandled_input(event):
 				var players: Array[Player] = []
 				players.assign(get_tree().get_nodes_in_group("players"))
 				Player.main = players[posmod(players.find(Player.main) + advance, players.size())]
+			KEY_KP_ENTER:
+				Player.main.get_node("Synchronizer").set_multiplayer_authority(SERVER_ID)
 
 func _ready() -> void:
 	tweak_window()
@@ -35,10 +37,14 @@ func _ready() -> void:
 	
 	multiplayer.peer_connected.connect(spawn_player)
 	multiplayer.peer_disconnected.connect(remove_player)
-	multiplayer.server_disconnected.connect(get_tree().quit)
+	multiplayer.server_disconnected.connect(_start_close_countdown)
 	
 	spawn_player(multiplayer.get_unique_id())
 	$PlayerDebugger.player = get_node(str(multiplayer.get_unique_id()))
+	
+	if not multiplayer.is_server():
+		await multiplayer.peer_connected
+	set_peer_name.rpc(args_dict.get("name", ""))
 
 
 func _host():
@@ -60,8 +66,17 @@ func _connect():
 	else:
 		print("Successfully connected to server at ", SERVER_ADDRESS, ":", PORT)
 		multiplayer.multiplayer_peer = peer
-		#peer.set_target_peer(SERVER_ID)
-	chat.append("Hacker voice, I'm in.")
+		#peer.set_target_peer(SERVER_ID) # I don't know.
+
+@rpc("any_peer", "call_local", "reliable")
+func set_peer_name(new_name: String):
+	if not multiplayer.is_server():
+		return
+	if new_name.is_empty():
+		return
+	
+	var sender_id := multiplayer.get_remote_sender_id()
+	Chat.name_dict[sender_id] = new_name
 
 @rpc("authority", "call_local", "reliable")
 func spawn_player(id: int):
@@ -85,6 +100,10 @@ func spawn_player(id: int):
 func remove_player(id: int):
 	get_node(str(id)).queue_free()
 
+func _start_close_countdown():
+	chat.append("Server has closed. Closing game, too.")
+	await get_tree().create_timer(0.5).timeout
+	get_tree().quit()
 
 #region Player Tweaks
 func tweak_other(player: Player):
@@ -134,6 +153,8 @@ func tweak_window():
 		window.position.y = screen_rect.end.y - window.size.y
 		window.position.x = wrapi(screen_rect.end.x - window.size.x * order, 
 				screen_rect.position.x, screen_rect.end.x)
+		
+		$PlayerDebugger.hide()
 
 #endregion
 

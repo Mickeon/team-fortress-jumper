@@ -12,6 +12,7 @@ const COLOR_BLU = Color("#9ACDFF") ## BLU Team
 const COLOR_YWL = Color("#F7DB26")
 const COLOR_SYS = Color.LIME_GREEN
 
+static var name_dict := {}
 
 @export var chat_focused := true:
 	set(new):
@@ -234,6 +235,9 @@ func _get_team_color_html(for_id: int) -> String:
 static func _get_username(for_id: int) -> String:
 	if for_id == 0:
 		return "System"
+	
+	if name_dict.has(for_id):
+		return name_dict[for_id]
 	
 	return "Host" if for_id == SERVER_ID else "C_" + String.num_int64(for_id, 32, true)
 

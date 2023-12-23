@@ -17,7 +17,7 @@ static var main: Player:
 		
 		main = new
 		
-		if previous_main:
+		if previous_main != null:
 			# Undo changes to previous player.
 			previous_main._update_for_main_player()
 		
