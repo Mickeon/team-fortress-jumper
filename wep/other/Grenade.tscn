@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://na0nnag5qudg"]
+[gd_scene load_steps=16 format=3 uid="uid://na0nnag5qudg"]
 
 [ext_resource type="Script" path="res://wep/other/grenade.gd" id="1_3arf6"]
 [ext_resource type="Material" uid="uid://d0gfkuuvgpoy0" path="res://wep/other/grenade_glow.tres" id="2_eayir"]
@@ -72,6 +72,20 @@ alpha_curve = SubResource("CurveTexture_6yvga")
 [sub_resource type="QuadMesh" id="QuadMesh_ejbpp"]
 size = Vector2(0.25, 0.25)
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_khovj"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath(".:linear_velocity")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+properties/3/path = NodePath(".:angular_velocity")
+properties/3/spawn = true
+properties/3/replication_mode = 1
+
 [node name="Grenade" type="RigidBody3D"]
 process_thread_group = 1
 process_thread_group_order = 0
@@ -114,6 +128,9 @@ amount = 16
 lifetime = 0.5
 process_material = SubResource("ParticleProcessMaterial_rv56n")
 draw_pass_1 = SubResource("QuadMesh_ejbpp")
+
+[node name="Synchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_khovj")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="timeout" from="Lifetime" to="." method="explode"]

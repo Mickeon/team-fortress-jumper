@@ -12,6 +12,7 @@ const Chat = preload("res://ui/chat/chat.gd")
 func _unhandled_input(event):
 	if event.is_action_pressed("debug_spawn_fake_player") and multiplayer.is_server():
 		spawn_player.rpc(0)
+	
 	if event is InputEventKey and event.is_pressed() and not event.is_echo():
 		match event.keycode:
 			KEY_KP_SUBTRACT, KEY_KP_ADD:
@@ -19,8 +20,6 @@ func _unhandled_input(event):
 				var players: Array[Player] = []
 				players.assign(get_tree().get_nodes_in_group("players"))
 				Player.main = players[posmod(players.find(Player.main) + advance, players.size())]
-			KEY_KP_ENTER:
-				Player.main.get_node("Synchronizer").set_multiplayer_authority(SERVER_ID)
 
 func _ready() -> void:
 	tweak_window()
@@ -96,9 +95,9 @@ func spawn_player(id: int):
 		tweak_server(player)
 	else:
 		tweak_client(player)
-		if multiplayer.is_server():
-			player.get_node("Synchronizer").synchronized.connect(
-				_synchronize_attributes.bind(player))
+		#if multiplayer.is_server():
+			#player.get_node("ClientSynchronizer").synchronized.connect(
+				#_synchronize_attributes.bind(player))
 
 func remove_player(id: int):
 	get_node(str(id)).queue_free()
@@ -107,11 +106,6 @@ func _start_close_countdown():
 	chat.append("Server has closed. Closing game, too.")
 	await get_tree().create_timer(0.5).timeout
 	get_tree().quit()
-
-func _synchronize_attributes(_for_player: Player):
-	#print(for_player)
-	#for_player.position.y += 1
-	pass
 
 #region Player Tweaks 
 func tweak_other(player: Player):
@@ -133,7 +127,7 @@ func tweak_client(player: Player):
 	
 	# All clients are shifted ahead on spawn
 	player.position.z += 5
-	player.position += Vector3(randf_range(-2, 2), 0, randf_range(-2, 2))
+	#player.position += Vector3(randf_range(-2, 2), 0, randf_range(-2, 2))
 
 func tweak_window():
 	var window := get_window()
@@ -159,8 +153,10 @@ func tweak_window():
 		var order := int(args_dict.get("order", 1)) - 1
 		var screen_rect := DisplayServer.screen_get_usable_rect(1)
 		window.position.y = screen_rect.end.y - window.size.y
-		window.position.x = wrapi(screen_rect.end.x - window.size.x * order, 
-				screen_rect.position.x, screen_rect.end.x)
+		window.position.x = wrapi(screen_rect.end.x - 1 - window.size.x * order, 
+				screen_rect.position.x - window.size.x * 0.5, screen_rect.end.x - window.size.x)
+		
+		get_viewport().scaling_3d_scale = maxf(1 - debug_window_count * 0.1, 0.5)
 		
 		$PlayerDebugger.hide()
 

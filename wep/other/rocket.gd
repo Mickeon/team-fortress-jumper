@@ -11,6 +11,9 @@ func _ready():
 		$Lifetime.stop()
 		add_child(preload("./TestCamera.tscn").instantiate())
 	
+	if not multiplayer.is_server():
+		speed = 0 # Testing.
+	
 #	hit_from_inside = true
 #	set_deferred("hit_from_inside", false)
 	# HACK: The code above should've prevented rockets from going through close geometry, but it does not.

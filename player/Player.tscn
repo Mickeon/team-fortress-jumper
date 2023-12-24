@@ -42,6 +42,7 @@
 [ext_resource type="AudioStream" uid="uid://dxaoxipsj8cnf" path="res://sfx/common/crit_hit1.ogg" id="30_p4trj"]
 [ext_resource type="AudioStream" uid="uid://c1k6nn541ywka" path="res://sfx/secondary/charging_shield_windup_no_voice.ogg" id="34_ti2ir"]
 [ext_resource type="AudioStream" uid="uid://cqwxehsek2xdy" path="res://sfx/common/rocket_jump_wind.ogg" id="40_4f14b"]
+[ext_resource type="Script" path="res://player/server_synchronizer.gd" id="40_icifs"]
 
 [sub_resource type="Skin" id="Skin_37hr0"]
 resource_name = "Skin"
@@ -268,23 +269,6 @@ height = 1.562
 resource_local_to_scene = true
 height = 1.562
 radius = 0.457
-
-[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_6x33i"]
-properties/0/path = NodePath(".:position")
-properties/0/spawn = true
-properties/0/replication_mode = 1
-properties/1/path = NodePath("Smoothing3D/Pivot:rotation")
-properties/1/spawn = true
-properties/1/replication_mode = 1
-properties/2/path = NodePath(".:crouching")
-properties/2/spawn = true
-properties/2/replication_mode = 1
-properties/3/path = NodePath(".:velocity")
-properties/3/spawn = true
-properties/3/replication_mode = 1
-properties/4/path = NodePath(".:wish_dir")
-properties/4/spawn = true
-properties/4/replication_mode = 1
 
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("cam_pivot", "hull") groups=["players"]]
 process_thread_group = 1
@@ -634,10 +618,8 @@ visible = false
 shape = SubResource("CylinderShape3D_el3cl")
 disabled = true
 
-[node name="Synchronizer" type="MultiplayerSynchronizer" parent="."]
-replication_interval = 1.0
-replication_config = SubResource("SceneReplicationConfig_6x33i")
-visibility_update_mode = 1
+[node name="Sync" type="Node" parent="."]
+script = ExtResource("40_icifs")
 
 [node name="Soldier" parent="." instance=ExtResource("25_vdsxv")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
