@@ -118,6 +118,7 @@ func _unhandled_input(event):
 	if event.is_action_pressed("ui_cancel"):
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		get_viewport().set_input_as_handled()
+	
 	elif (event is InputEventMouseButton 
 	and Input.mouse_mode != Input.MOUSE_MODE_CAPTURED 
 	and event.button_index != MOUSE_BUTTON_WHEEL_UP and event.button_index != MOUSE_BUTTON_WHEEL_DOWN
@@ -127,10 +128,11 @@ func _unhandled_input(event):
 	
 	elif event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 		_handle_camera_rotation(event)
-	if event.is_action("player_crouch"):
+	
+	elif event.is_action("player_crouch"):
 		crouching = event.is_pressed()
 	
-	if event.is_action_pressed("debug_noclip"):
+	elif event.is_action_pressed("debug_noclip"):
 		noclip_enabled = not noclip_enabled
 
 func _physics_process(delta: float):
@@ -140,9 +142,9 @@ func _physics_process(delta: float):
 	just_jumped = false
 	if just_landed:
 		if debug_allow_bunny_hopping:
-			_apply_friction(delta) # Prevent carrying speed from bunny-hopping.
+			_apply_friction(delta)
 		else:
-			_clamp_speed(1.1)
+			_clamp_speed(1.1) # Prevent carrying too much speed from bunny-hopping.
 #	DebugDraw3D.draw_sphere(get_global_center(), 0.2, Color.RED, delta)
 #	DebugDraw3D.draw_camera_frustum(cam_pivot.get_node("Camera"), Color.VIOLET, delta)
 	if noclip_enabled:
@@ -157,9 +159,8 @@ func _physics_process(delta: float):
 		#wish_dir = wish_dir.normalized()
 		
 		if grounded and Input.is_action_pressed("player_jump"):
-			grounded = false
-			just_jumped = true
-			velocity.y = JUMP_FORCE
+			# HACK: Ideally there should be a better way to send one-off inputs like these.
+			_jump.rpc_id(1)
 	
 	_apply_friction(delta)
 	
@@ -255,6 +256,12 @@ func _clamp_speed(multiplier := 1.0):
 	if (back_speed.length() > backpedal_walk_speed and back_speed.y < 0.0):
 		velocity *= backpedal_walk_speed / back_speed.length()
 
+@rpc("authority", "call_local", "reliable")
+func _jump():
+	if grounded:
+		grounded = false
+		just_jumped = true
+		velocity.y = JUMP_FORCE
 
 #region Collision handling
 func _handle_collision(delta: float):

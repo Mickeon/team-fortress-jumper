@@ -5,6 +5,13 @@ const Explosion = preload("res://wep/other/explosion.gd")
 
 enum ViewMode { FIRST_PERSON, THIRD_PERSON, FRONT, TOP_DOWN }
 
+const STRING = """[color=gray]F3 to toggle, [color=cyan][url="github"]Click here for controls[/url][/color]. (%s)
+POS: %s (%s)
+ANG: %s
+SPD: %s
+HSP: %s
+[/color]"""
+
 @export var player: Player
 @export var display_meters_as_hu := false
 @export var view_mode := ViewMode.FIRST_PERSON:
@@ -51,8 +58,8 @@ func _input(event):
 			OS.shell_open("https://github.com/Mickeon/team-fortress-jumper")
 			accept_event()
 			return
-		elif url.is_valid_int():
-			DisplayServer.clipboard_set(url)
+		elif url.begins_with("clipboard:"):
+			DisplayServer.clipboard_set(url.trim_prefix("clipboard"))
 			accept_event()
 	
 	var key_event := event as InputEventKey
@@ -115,20 +122,15 @@ func _debug_draw():
 #endregion
 
 func update_debug_text():
-	var new_text := """[color=gray]F3 to toggle, [color=cyan][url="github"]Click here for controls[/url][/color]. (%s) (%s)
-POS: %s
-ANG: %s
-SPD: %s
-HSP: %s
-[/color]"""
 	var angles := Vector2(player.cam_pivot.rotation_degrees.x, fmod(player.cam_pivot.rotation_degrees.y, 180.0))
 	var velocity_planar := Vector2(player.velocity.x, player.velocity.z)
 	var multiplayer_id := multiplayer.get_unique_id()
+	var is_server := multiplayer.is_server()
 	
-	new_text %= [
-		"Using Hu" if display_meters_as_hu else "Using Meters",
-		"[color=blue]Server[/color]" if multiplayer_id == 1 else "[color=cyan][url=%s]%s[/url][/color]" % [multiplayer_id, multiplayer_id],
+	var new_text = STRING % [
+		"[color=%s][url=clipboard:%s]%s[/url][/color]" % ["blue" if is_server else "cyan", multiplayer_id, multiplayer_id],
 		prettify(adjust(player.global_position)),
+		"Using Hu" if display_meters_as_hu else "Using Meters",
 		prettify(angles),
 		prettify(adjust(player.velocity.length())),
 		prettify(adjust(velocity_planar.length())),
@@ -142,7 +144,7 @@ HSP: %s
 		#if weapon_manager.deploy_timer.time_left > 0.0:
 			#new_text += " (Deploying %2.2f)" % weapon_manager.deploy_timer.time_left
 		#new_text += "[/color]"
-	if Player.main:
+	if Player.main and Player.main.name != str(multiplayer_id):
 		new_text += "\n[color=dark_gray]Looking from %s[/color]" % Player.main.name
 	
 	if Engine.time_scale != 1.0:
