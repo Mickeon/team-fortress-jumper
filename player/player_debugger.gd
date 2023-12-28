@@ -122,7 +122,7 @@ func _debug_draw():
 #endregion
 
 func update_debug_text():
-	var angles := Vector2(player.cam_pivot.rotation_degrees.x, fmod(player.cam_pivot.rotation_degrees.y, 180.0))
+	var angles := Vector2(player.cam_pivot.rotation_degrees.x, player.cam_pivot.rotation_degrees.y)
 	var velocity_planar := Vector2(player.velocity.x, player.velocity.z)
 	var multiplayer_id := multiplayer.get_unique_id()
 	var is_server := multiplayer.is_server()

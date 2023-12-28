@@ -203,7 +203,7 @@ func _physics_process(delta: float):
 
 
 func _handle_camera_rotation(event: InputEventMouseMotion):
-	cam_pivot.rotation.y -= event.relative.x * deg_to_rad(camera_sensitivity)
+	cam_pivot.rotation.y = wrapf(cam_pivot.rotation.y - event.relative.x * deg_to_rad(camera_sensitivity), -PI, PI)
 	cam_pivot.rotation.x -= event.relative.y * deg_to_rad(camera_sensitivity)
 	cam_pivot.rotation.x = clampf(cam_pivot.rotation.x, -1.55334 , 1.55334) # 89 degrees up and down.
 
