@@ -89,7 +89,7 @@ script = ExtResource("1_mcdpx")
 environment = SubResource("Environment_0m0w2")
 
 [node name="DirectionalLight" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.741328, -0.151473, -0.653826, 0.161477, -0.905325, 0.392825, -0.651427, -0.39679, -0.646684, 0, 3, 0)
+transform = Transform3D(0.392985, 0.863301, 0.316661, 0.589432, -0.500812, 0.633843, 0.705785, -0.0624407, -0.705669, 0, 3, 0)
 light_color = Color(0.992157, 0.964706, 0.972549, 1)
 light_bake_mode = 1
 shadow_enabled = true

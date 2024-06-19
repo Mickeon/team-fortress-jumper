@@ -245,6 +245,7 @@ surface_material_override/0 = ExtResource("12_r63hc")
 
 [node name="AnimationTree" type="AnimationTree" parent="." index="2"]
 tree_root = ExtResource("11_nn7aa")
+anim_player = NodePath("../AnimationPlayer")
 parameters/crouch_walk/blend_amount = 1.0
 parameters/ground/current_state = "airborne"
 parameters/ground/transition_request = ""

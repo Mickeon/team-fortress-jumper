@@ -59,7 +59,7 @@ func _input(event):
 			accept_event()
 			return
 		elif url.begins_with("clipboard:"):
-			DisplayServer.clipboard_set(url.trim_prefix("clipboard"))
+			DisplayServer.clipboard_set(url.trim_prefix("clipboard:"))
 			accept_event()
 	
 	var key_event := event as InputEventKey

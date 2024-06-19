@@ -42,23 +42,12 @@ var air_crouching := false:
 		else:
 			model.position.y += 27 * player.HU
 
-
-func _notification(what: int) -> void:
-	# HACK: to have this run in 4.2 without AnimationLibrary bloat.
-	if what == NOTIFICATION_EDITOR_PRE_SAVE:
-		anim_player = ^""
-	elif what == NOTIFICATION_EDITOR_POST_SAVE:
-		anim_player = ^"../AnimationPlayer"
-
 func _ready():
 	if Engine.is_editor_hint():
 		set_process(false)
 		set_physics_process(false)
 	else:
 		active = true
-		# HACK: to have this run in 4.2 without AnimationLibrary bloat.
-		# TODO: Remove this in a later version. This is extremely annoying.
-		anim_player = ^"../AnimationPlayer"
 
 
 

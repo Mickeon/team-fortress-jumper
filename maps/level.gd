@@ -16,8 +16,8 @@ func _ready() -> void:
 		env.adjustment_enabled = false
 		
 		# Make this material less reflective on web builds.
-		load("res://maps/test_mat.tres").roughness = 0
-		load("res://maps/test_mat.tres").albedo_color = Color.WHITE.darkened(0.2)
+		load("res://maps/test_mat.tres").roughness = 0.5
+		load("res://maps/test_mat.tres").albedo_color = Color.WHITE.darkened(0.5)
 
 func _input(event):
 	if event is InputEventKey and event.pressed and not event.echo:
