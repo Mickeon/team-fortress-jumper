@@ -64,27 +64,18 @@ bind/3/pose = Transform3D(51.5036, 10.0947, -1.02009, -1.03836, -0.005782, -52.4
 random_pitch = 1.1
 streams_count = 4
 stream_0/stream = ExtResource("11_gbcug")
-stream_0/weight = 1.0
 stream_1/stream = ExtResource("12_pgrf5")
-stream_1/weight = 1.0
 stream_2/stream = ExtResource("13_v6cfi")
-stream_2/weight = 1.0
 stream_3/stream = ExtResource("14_yq7mb")
-stream_3/weight = 1.0
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_dh614"]
 random_pitch = 1.1
 streams_count = 5
 stream_0/stream = ExtResource("15_rfuhu")
-stream_0/weight = 1.0
 stream_1/stream = ExtResource("16_ilqf4")
-stream_1/weight = 1.0
 stream_2/stream = ExtResource("17_ewx7u")
-stream_2/weight = 1.0
 stream_3/stream = ExtResource("18_h1qqc")
-stream_3/weight = 1.0
 stream_4/stream = ExtResource("19_drr5a")
-stream_4/weight = 1.0
 
 [sub_resource type="Gradient" id="Gradient_q8p6q"]
 offsets = PackedFloat32Array(0, 0.0748032, 0.161417, 0.929134)
@@ -150,11 +141,8 @@ bind/8/pose = Transform3D(52.4789, 0.0115601, 1.23475, 0.0705155, -52.4335, -2.5
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_3uodw"]
 streams_count = 3
 stream_0/stream = ExtResource("25_rodvj")
-stream_0/weight = 1.0
 stream_1/stream = ExtResource("26_7mqvn")
-stream_1/weight = 1.0
 stream_2/stream = ExtResource("27_cahkd")
-stream_2/weight = 1.0
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_yjt7f"]
 playback_mode = 1
@@ -162,9 +150,7 @@ random_pitch = 1.05
 random_volume_offset_db = 2.0
 streams_count = 2
 stream_0/stream = ExtResource("28_gnrln")
-stream_0/weight = 1.0
 stream_1/stream = ExtResource("29_lushe")
-stream_1/weight = 1.0
 
 [sub_resource type="Skin" id="Skin_80etw"]
 resource_name = "Skin"

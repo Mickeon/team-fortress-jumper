@@ -51,7 +51,7 @@ func _debug_physics_process():
 	
 	if ratio >= 0.3:
 		DebugDraw3D.draw_position(global_transform, Color.CHARTREUSE, delta)
-		DebugDraw3D.draw_sphere_hd(position, splash_radius, final_color, delta)
+		DebugDraw3D.draw_sphere(position, splash_radius, final_color, delta)
 
 func _update_splash_radius():
 	# By default, these two are 2-4 meters wide.

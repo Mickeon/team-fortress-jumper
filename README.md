@@ -1,5 +1,5 @@
 # Team Fortress Jumper
-A small demo built in Godot 4.1 that attempts to recreate how it feels to rocket-jump around in **Team Fortress 2**.
+A small demo built in Godot 4.1+ that attempts to recreate how it feels to rocket-jump around in **Team Fortress 2**.
 As it stands, it's pretty close. Collisions are almost entirely broken. Things like bunny-hopping may also be intentionally turned on (they're pretty fun to mess around with).
 
 <img width="45%" alt="Team Fortress Jumper Harvest preview" src="https://github.com/Mickeon/team-fortress-jumper/assets/66727710/2b6b756d-82e6-4af9-9e2f-8cf5a100eed8">
@@ -10,7 +10,7 @@ As it stands, it's pretty close. Collisions are almost entirely broken. Things l
 This repository has not been originally designed to be visible by the public, but I'm putting it out there. It could be useful as a general point of reference. 
 Full support for this demo, as well as additional features _(such as multiplayer)_ should **not** be taken for granted.
 
-You can try a **considerably** stripped out version of this project on a Chromium web browser by [clicking here](https://mickeon.netlify.app/team-fortress-jumper/).
+You can try a **considerably** stripped out version of this project on a Chromium web browser by [clicking here](https://mickeon.itch.io/team-fortress-jumper).
 Alternatively, download a build from [the releases](https://github.com/Mickeon/team-fortress-jumper/releases/tag/Demo).
 
 ## Controls

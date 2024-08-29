@@ -75,7 +75,6 @@ visible = false
 size = Vector3(0.3, 0.005, 0.3)
 
 [node name="Sparks" type="GPUParticles3D" parent="."]
-top_level = true
 material_override = SubResource("StandardMaterial3D_6m3ep")
 cast_shadow = 0
 amount = 1

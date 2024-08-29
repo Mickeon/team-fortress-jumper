@@ -310,7 +310,7 @@ func _handle_collision(delta: float):
 		debug_color.h += i * 0.1
 		
 		if debug_show_collisions:
-			DebugDraw3D.draw_points([pos], 0.1 - i * 0.02, debug_color, 1)
+			DebugDraw3D.draw_points([pos], DebugDraw3D.POINT_TYPE_SQUARE, 0.1 - i * 0.02, debug_color, 1)
 			DebugDraw3D.draw_ray(pos, normal, 0.5 - i * 0.05, debug_color, 1)
 	
 	if grounded:
@@ -343,7 +343,7 @@ func _handle_collision_with_slide(_delta: float): # Unused
 		var debug_color := Color.RED
 		debug_color.h += i * 0.1
 		
-		DebugDraw3D.draw_points([collision.get_position()], 0.2 - i * 0.02, debug_color, 1)
+		DebugDraw3D.draw_points([collision.get_position()], DebugDraw3D.POINT_TYPE_SQUARE, 0.2 - i * 0.02, debug_color, 1)
 		DebugDraw3D.draw_ray(collision.get_position(), normal, 0.5 - i * 0.05, debug_color, 1)
 
 
@@ -352,7 +352,7 @@ func _floor_intersect_ray() -> Dictionary:
 	var target := origin + Vector3.DOWN * floor_ray_reach
 	
 	if debug_show_collisions:
-		DebugDraw3D.draw_arrow_line(origin, target, Color.TOMATO, 1, false, 1)
+		DebugDraw3D.draw_arrow(origin, target, Color.TOMATO, 1, false, 1)
 	
 	var query := PhysicsRayQueryParameters3D.create(origin, target, 0xFFFFFFFF, [get_rid()])
 	
@@ -369,7 +369,7 @@ func _snap_to_floor():
 	var target_pos := Vector3(global_position.x, floor_collision.get_position().y, global_position.z)
 	if target_pos.y + HU < global_position.y:
 		if debug_show_collisions:
-			DebugDraw3D.draw_points([target_pos], 0.2, Color.ANTIQUE_WHITE, 1)
+			DebugDraw3D.draw_points([target_pos], DebugDraw3D.POINT_TYPE_SQUARE, 0.2, Color.ANTIQUE_WHITE, 1)
 		move_and_collide(target_pos - global_position)
 
 func _try_to_step_up(pos: Vector3, remainder: Vector3) -> bool:
