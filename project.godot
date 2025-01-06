@@ -40,6 +40,7 @@ settings/3d/volumetric_defaults/thickness=0.01
 [display]
 
 window/size/always_on_top.editor=true
+window/vsync/vsync_mode.editor=0
 
 [editor]
 
