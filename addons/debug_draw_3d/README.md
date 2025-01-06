@@ -14,9 +14,9 @@ Based on my previous addon, which was developed [only for C#](https://github.com
 
 Your support adds motivation to develop my public projects.
 
-<a href="https://boosty.to/dmitriysalnikov/donate"><img src="./docs/images/boosty.png" alt="Boosty" width=150px/></a>
+<a href="https://boosty.to/dmitriysalnikov/donate"><img src="/docs/images/boosty.png" alt="Boosty" width=150px/></a>
 
-<img src="./docs/images/USDT-TRC20.png" alt="USDT-TRC20" width=150px/>
+<img src="/docs/images/USDT-TRC20.png" alt="USDT-TRC20" width=150px/>
 
 <b>USDT-TRC20 TEw934PrsffHsAn5M63SoHYRuZo984EF6v</b>
 
@@ -61,6 +61,8 @@ Precompiled for:
 This addon supports working with several World3D and different Viewports.
 There is also a no depth test mode and other settings that can be changed for each instance.
 
+This library supports double-precision builds, for more information, [see the documentation](https://dd3d.dmitriysalnikov.ru/docs/1.4.5/md_docs_2DoublePrecision.html).
+
 ## [Interactive Web Demo](https://dd3d.dmitriysalnikov.ru/demo/)
 
 [![screenshot_web](/images/screenshot_web.png)](https://dd3d.dmitriysalnikov.ru/demo/)
@@ -71,7 +73,9 @@ There is also a no depth test mode and other settings that can be changed for ea
 
 ## Download
 
-To download, use the [Godot Asset Library](https://godotengine.org/asset-library/asset/1766) or download the archive by clicking the button at the top of the main repository page: `Code -> Download ZIP`, then unzip it to your project folder. Or use one of the stable versions from the [GitHub Releases](https://github.com/DmitriySalnikov/godot_debug_draw_3d/releases) page (just download one of the `Source Codes` in assets).
+To download, use the [Godot Asset Library](https://godotengine.org/asset-library/asset/1766) or use one of the stable versions from the [GitHub Releases](https://github.com/DmitriySalnikov/godot_debug_draw_3d/releases) page.
+
+For versions prior to `1.4.5`, just download one of the `source codes` in the assets. For newer versions, download `debug-draw-3d_[version].zip`.
 
 ### Installation
 
