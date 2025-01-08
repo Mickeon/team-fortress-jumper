@@ -24,6 +24,10 @@ run/max_fps.editor=75
 
 buses/default_bus_layout="res://sfx/default_bus_layout.tres"
 
+[autoload]
+
+VMFConfig="*res://addons/godotvmf/src/VMFConfig.gd"
+
 [debug]
 
 gdscript/warnings/unused_signal=0
@@ -50,7 +54,7 @@ naming/scene_name_casing=1
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/glteamfortress/plugin.cfg", "res://addons/multirun/plugin.cfg", "res://addons/plugin_refresher/plugin.cfg", "res://addons/smoothing/plugin.cfg")
+enabled=PackedStringArray("res://addons/glteamfortress/plugin.cfg", "res://addons/godotvmf/plugin.cfg", "res://addons/multirun/plugin.cfg", "res://addons/plugin_refresher/plugin.cfg", "res://addons/smoothing/plugin.cfg")
 
 [file_customization]
 
@@ -69,6 +73,54 @@ players=""
 
 timers/tooltip_delay_sec=0.2
 timers/tooltip_delay_sec.editor_hint=0.2
+
+[importer_defaults]
+
+bsp={
+"culling_textures_exclude": Array[StringName]([]),
+"entity_offsets_quake_units": {
+"example_offset_entity": Vector3(16, 16, 0)
+},
+"entity_path_pattern": "res://maps/entities/{classname}.tscn",
+"entity_remap": {
+"trigger_example": "res://triggers/trigger_example.tres"
+},
+"fullbright_range": PackedInt32Array(224, 255),
+"generate_occlusion_culling": true,
+"generate_texture_materials": true,
+"import_lights": true,
+"inverse_scale_factor": 36.0,
+"lava_scene_template": "res://addons/bsp_importer/lava_example_template.tscn",
+"material_path_pattern": "res://maps/materials/{texture_name}_material.tres",
+"mesh_separation_grid_size": 256.0,
+"overwrite_existing_materials": false,
+"overwrite_existing_textures": true,
+"post_import_script": "",
+"save_separate_materials": false,
+"separate_mesh_on_grid": false,
+"slime_scene_template": "res://addons/bsp_importer/slime_example_template.tscn",
+"texture_emission_path_pattern": "res://maps/textures/{texture_name}_emission.png",
+"texture_material_rename": {
+"sky1": "res://maps/transparent_mat.tres"
+},
+"texture_palette_path": "res://maps/textures/palette.lmp",
+"texture_path_pattern": "res://maps/textures/{texture_name}.png",
+"texture_path_remap": {
+"sky1": "res://maps/transparent.png"
+},
+"transparent_texture_prefix": "{",
+"use_triangle_collision": false,
+"water_scene_template": "res://addons/bsp_importer/water_example_template.tscn"
+}
+MDL={
+"additional_rotation": Vector3(0, 0, 0),
+"generate_occluder": true,
+"materials_root": "",
+"primitive_occluder": false,
+"primitive_occluder_scale": Vector3(1, 1, 1),
+"scale": 0.019,
+"use_global_scale": true
+}
 
 [input]
 
@@ -177,5 +229,6 @@ textures/vram_compression/import_s3tc_bptc=true
 textures/vram_compression/import_etc2_astc=true
 textures/webp_compression/compression_method=4
 textures/webp_compression/lossless_compression_factor=100.0
+occlusion_culling/use_occlusion_culling=true
 mesh_lod/lod_change/threshold_pixels.web=2.0
 anti_aliasing/screen_space_roughness_limiter/enabled.web=false

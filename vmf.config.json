@@ -1,0 +1,42 @@
+{
+	"gameinfo_path0": "res://maps",
+	"gameinfo_path1": "D:/SteamLibrary/steamapps/common/SourceFilmmaker/game/tf",
+	"gameinfo_path2": "C:/Program Files (x86)/Steam/steamapps/common/Team Fortress 2/tf",
+	"vtfcmd": "C:/Program Files/VTFEdit/aVTFCmd.exe",
+
+	"import": {
+		"scale": 0.01905,
+		"generate_collision": true,
+		"generate_lightmap_uv2": true,
+		"lightmap_texel_size": 0.4,
+		"instances_folder": "res://maps/instances",
+		"entities_folder": "res://maps/entities",
+		"geometry_folder": "res://maps/geometry",
+		"use_navigation_mesh": false,
+		"navigation_mesh_preset": "res://maps/presets/navigation_mesh.tres",
+		"entity_aliases": {
+			"npc_ghost": "res://maps/objects/npc_ghost/npc_ghost.tscn"
+		}
+	},
+
+	"models": {
+		"import": true,
+		"lightmap_texel_size": 0.4,
+		"target_folder": "res://maps"
+	},
+
+	"materials": {
+		"import_mode": 1,
+		"ignore": [
+			"tools/toolsnodraw",
+			"tools/toolsskybox",
+			"atools/toolsinvisible",
+			"atools/toolsplayerclip",
+			"tools/toolshint",
+			"tools/toolsskip"
+		],
+		"fallback_material": null,
+		"default_texture_size": 512,
+		"target_folder": "res://maps/materials"
+	}
+}
