@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://cc3t6pki3wm7w"
+path="res://.godot/imported/mcwater.vmt-3464370d408dd50984365fe0f13601a2.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/custom/mcwater.vmt"
+dest_files=["res://.godot/imported/mcwater.vmt-3464370d408dd50984365fe0f13601a2.vmt.res"]
+
+[params]
+

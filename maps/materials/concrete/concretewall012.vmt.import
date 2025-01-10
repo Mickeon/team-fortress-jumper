@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://ymimy8aq4gyv"
+path="res://.godot/imported/concretewall012.vmt-da9fdc8b798bca34daac365f7049568c.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/concrete/concretewall012.vmt"
+dest_files=["res://.godot/imported/concretewall012.vmt-da9fdc8b798bca34daac365f7049568c.vmt.res"]
+
+[params]
+

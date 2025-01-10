@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://7t73ptt4ymu8"
+path="res://.godot/imported/hanging_ceiling_lamp.vmt-6cad01b31391d3ad054b284d8bc95d0e.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/models/props_spytech/hanging_ceiling_lamp.vmt"
+dest_files=["res://.godot/imported/hanging_ceiling_lamp.vmt-6cad01b31391d3ad054b284d8bc95d0e.vmt.res"]
+
+[params]
+

@@ -1,0 +1,21 @@
+[remap]
+
+importer="MDL"
+type="PackedScene"
+uid="uid://conh841i7rhjk"
+path="res://.godot/imported/vent_system_vent01.mdl-7ae02b7a436e3c3973a88dd82038f7cd.scn"
+
+[deps]
+
+source_file="res://maps/models/props_spytech/vent_system_vent01.mdl"
+dest_files=["res://.godot/imported/vent_system_vent01.mdl-7ae02b7a436e3c3973a88dd82038f7cd.scn"]
+
+[params]
+
+use_global_scale=true
+scale=0.019
+additional_rotation=Vector3(0, 0, 0)
+materials_root=""
+generate_occluder=true
+primitive_occluder=false
+primitive_occluder_scale=Vector3(1, 1, 1)

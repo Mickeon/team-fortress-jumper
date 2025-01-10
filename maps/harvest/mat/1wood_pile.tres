@@ -1,8 +1,0 @@
-[gd_resource type="StandardMaterial3D" format=3 uid="uid://bupogr76ky070"]
-
-[resource]
-resource_name = "1wood_pile"
-vertex_color_use_as_albedo = true
-albedo_color = Color(0.870588, 0.380392, 0.243137, 1)
-metallic = 0.27
-metallic_specular = 0.19

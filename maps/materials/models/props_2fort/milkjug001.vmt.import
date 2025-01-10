@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://dl8crot5kddmf"
+path="res://.godot/imported/milkjug001.vmt-5cf69b2338392436efc31405c4cae254.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/models/props_2fort/milkjug001.vmt"
+dest_files=["res://.godot/imported/milkjug001.vmt-5cf69b2338392436efc31405c4cae254.vmt.res"]
+
+[params]
+

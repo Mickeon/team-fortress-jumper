@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://bbtg0g5spyprs"
+path="res://.godot/imported/white002.vmt-e80fcec1f4bdb2f05742094e0d3bbf6b.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/lights/white002.vmt"
+dest_files=["res://.godot/imported/white002.vmt-e80fcec1f4bdb2f05742094e0d3bbf6b.vmt.res"]
+
+[params]
+

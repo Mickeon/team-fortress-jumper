@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://cftwwyama8obw"
+path="res://.godot/imported/2pipe.vmt-235e5a19cc131b56c0df8fbbe64e06b2.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/models/props_hydro/2pipe.vmt"
+dest_files=["res://.godot/imported/2pipe.vmt-235e5a19cc131b56c0df8fbbe64e06b2.vmt.res"]
+
+[params]
+

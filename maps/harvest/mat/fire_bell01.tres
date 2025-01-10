@@ -1,8 +1,0 @@
-[gd_resource type="StandardMaterial3D" format=3 uid="uid://btrledtjdtw2b"]
-
-[resource]
-resource_name = "fire_bell01"
-cull_mode = 2
-albedo_color = Color(0.682353, 0.592157, 0.764706, 1)
-metallic = 0.75
-roughness = 0.5

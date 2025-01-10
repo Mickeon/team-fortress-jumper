@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://2r0aia0fs5bj"
+path="res://.godot/imported/ceiling_pipe01_skin2.vmt-9bcca5d36b5d198ad3a54a5d30681a90.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/models/props_mining/ceiling_pipe01_skin2.vmt"
+dest_files=["res://.godot/imported/ceiling_pipe01_skin2.vmt-9bcca5d36b5d198ad3a54a5d30681a90.vmt.res"]
+
+[params]
+

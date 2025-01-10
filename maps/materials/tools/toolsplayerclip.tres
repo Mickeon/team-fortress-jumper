@@ -1,0 +1,17 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://3678jx48flm8"]
+
+[resource]
+transparency = 1
+blend_mode = 1
+vertex_color_use_as_albedo = true
+disable_receive_shadows = true
+distance_fade_min_distance = 4.0
+distance_fade_max_distance = 8.0
+metadata/details = {
+"$basetexture": "Tools/toolsplayerclip",
+"$translucent": 1,
+"%compilenodraw": 1,
+"%compilepassbullets": 1,
+"%keywords": "airexchange,borealis,c17downtown,c17industrial,c17sewers,c17skyscraper,c17trainstation,combine,kraken,wasteland",
+"%playerclip": 1
+}

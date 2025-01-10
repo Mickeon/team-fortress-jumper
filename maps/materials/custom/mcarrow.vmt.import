@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://cj5rpi17ody1t"
+path="res://.godot/imported/mcarrow.vmt-7ecb5ebbddd5b3f8a2adc1cf2d3127d5.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/custom/mcarrow.vmt"
+dest_files=["res://.godot/imported/mcarrow.vmt-7ecb5ebbddd5b3f8a2adc1cf2d3127d5.vmt.res"]
+
+[params]
+

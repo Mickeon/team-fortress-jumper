@@ -1,0 +1,21 @@
+[remap]
+
+importer="MDL"
+type="PackedScene"
+uid="uid://ctu4aoaw0bwbg"
+path="res://.godot/imported/industrial_pipe01_128_01.mdl-69e0d0ed763cc4206f01284e06bc458f.scn"
+
+[deps]
+
+source_file="res://maps/models/props_mining/industrial_pipe01_128_01.mdl"
+dest_files=["res://.godot/imported/industrial_pipe01_128_01.mdl-69e0d0ed763cc4206f01284e06bc458f.scn"]
+
+[params]
+
+use_global_scale=true
+scale=0.019
+additional_rotation=Vector3(0, 0, 0)
+materials_root=""
+generate_occluder=true
+primitive_occluder=false
+primitive_occluder_scale=Vector3(1, 1, 1)

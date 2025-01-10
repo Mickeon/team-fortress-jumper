@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://danhe4gnudaex"
+path="res://.godot/imported/water_pipes.vmt-fb6daa44791146803b1eede95fd24902.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/models/props_hydro/water_pipes.vmt"
+dest_files=["res://.godot/imported/water_pipes.vmt-fb6daa44791146803b1eede95fd24902.vmt.res"]
+
+[params]
+

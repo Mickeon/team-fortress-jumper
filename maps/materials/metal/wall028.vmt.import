@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://ccpkxnartipqi"
+path="res://.godot/imported/wall028.vmt-4c0ca515ccd143920ff2b99b22d4016a.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/metal/wall028.vmt"
+dest_files=["res://.godot/imported/wall028.vmt-4c0ca515ccd143920ff2b99b22d4016a.vmt.res"]
+
+[params]
+

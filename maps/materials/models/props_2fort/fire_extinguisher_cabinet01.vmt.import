@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://d0scgic7en1sc"
+path="res://.godot/imported/fire_extinguisher_cabinet01.vmt-20ca70c61e848354be560d0d1764fff9.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/models/props_2fort/fire_extinguisher_cabinet01.vmt"
+dest_files=["res://.godot/imported/fire_extinguisher_cabinet01.vmt-20ca70c61e848354be560d0d1764fff9.vmt.res"]
+
+[params]
+

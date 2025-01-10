@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://j4je4o51k7y8"
+path="res://.godot/imported/mcblubrick.vmt-252fd51c74c1e1971213d9c357e93381.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/custom/mcblubrick.vmt"
+dest_files=["res://.godot/imported/mcblubrick.vmt-252fd51c74c1e1971213d9c357e93381.vmt.res"]
+
+[params]
+

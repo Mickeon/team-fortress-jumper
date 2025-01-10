@@ -1,0 +1,21 @@
+[remap]
+
+importer="MDL"
+type="PackedScene"
+uid="uid://v3vya8sb38rd"
+path="res://.godot/imported/hanging_ceiling_lamp.mdl-52cbc61fee3e205c04a9ab7592f635ed.scn"
+
+[deps]
+
+source_file="res://maps/models/props_spytech/hanging_ceiling_lamp.mdl"
+dest_files=["res://.godot/imported/hanging_ceiling_lamp.mdl-52cbc61fee3e205c04a9ab7592f635ed.scn"]
+
+[params]
+
+use_global_scale=true
+scale=0.019
+additional_rotation=Vector3(0, 0, 0)
+materials_root=""
+generate_occluder=true
+primitive_occluder=false
+primitive_occluder_scale=Vector3(1, 1, 1)

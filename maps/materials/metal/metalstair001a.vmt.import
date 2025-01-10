@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://dt0jfdecffx5n"
+path="res://.godot/imported/metalstair001a.vmt-eaa64683524a120f17cd9e6a7dd18d11.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/metal/metalstair001a.vmt"
+dest_files=["res://.godot/imported/metalstair001a.vmt-eaa64683524a120f17cd9e6a7dd18d11.vmt.res"]
+
+[params]
+

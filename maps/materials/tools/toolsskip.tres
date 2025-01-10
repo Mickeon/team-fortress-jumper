@@ -1,0 +1,19 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://s3x31f0rwrue"]
+
+[ext_resource type="Texture2D" uid="uid://cg87080wk6wfk" path="res://maps/materials/tools/toolsskip.vtf" id="1_86l8v"]
+
+[resource]
+transparency = 2
+alpha_scissor_threshold = 1.0
+alpha_antialiasing_mode = 1
+alpha_antialiasing_edge = 0.3
+shading_mode = 0
+disable_ambient_light = true
+albedo_texture = ExtResource("1_86l8v")
+disable_receive_shadows = true
+metadata/details = {
+"$basetexture": "Tools/toolsskip",
+"$translucent": 1,
+"%compileskip": 1,
+"%keywords": "airexchange,borealis,c17downtown,c17industrial,c17sewers,c17skyscraper,c17trainstation,combine,kraken,wasteland"
+}

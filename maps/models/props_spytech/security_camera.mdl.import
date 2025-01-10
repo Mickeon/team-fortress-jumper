@@ -1,0 +1,21 @@
+[remap]
+
+importer="MDL"
+type="PackedScene"
+uid="uid://cnf0rfckslojp"
+path="res://.godot/imported/security_camera.mdl-c5e411489444132fd01d546d2ed5e5bc.scn"
+
+[deps]
+
+source_file="res://maps/models/props_spytech/security_camera.mdl"
+dest_files=["res://.godot/imported/security_camera.mdl-c5e411489444132fd01d546d2ed5e5bc.scn"]
+
+[params]
+
+use_global_scale=true
+scale=0.019
+additional_rotation=Vector3(0, 0, 0)
+materials_root=""
+generate_occluder=true
+primitive_occluder=false
+primitive_occluder_scale=Vector3(1, 1, 1)

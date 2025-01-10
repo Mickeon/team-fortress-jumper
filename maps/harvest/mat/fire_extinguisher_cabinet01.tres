@@ -1,7 +1,0 @@
-[gd_resource type="StandardMaterial3D" format=3 uid="uid://eu3wpwmldjkl"]
-
-[resource]
-resource_name = "fire_extinguisher_cabinet01"
-albedo_color = Color(0.886275, 0.6, 0.854902, 1)
-metallic = 0.58
-metallic_specular = 0.76

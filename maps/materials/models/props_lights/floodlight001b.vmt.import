@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://3fjfh8nvbtp4"
+path="res://.godot/imported/floodlight001b.vmt-ac5107efb85fead793f8cb820d90eed7.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/models/props_lights/floodlight001b.vmt"
+dest_files=["res://.godot/imported/floodlight001b.vmt-ac5107efb85fead793f8cb820d90eed7.vmt.res"]
+
+[params]
+

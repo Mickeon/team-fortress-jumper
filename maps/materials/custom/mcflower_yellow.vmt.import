@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://hnadkdba1tg5"
+path="res://.godot/imported/mcflower_yellow.vmt-4ae13f385d7a06ca3cefeb478a88d7f6.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/custom/mcflower_yellow.vmt"
+dest_files=["res://.godot/imported/mcflower_yellow.vmt-4ae13f385d7a06ca3cefeb478a88d7f6.vmt.res"]
+
+[params]
+

@@ -1,0 +1,21 @@
+[remap]
+
+importer="MDL"
+type="PackedScene"
+uid="uid://dcwe2lnkun818"
+path="res://.godot/imported/tools_shovel.mdl-49e818198cbf974e09de9d0f9c0cca93.scn"
+
+[deps]
+
+source_file="res://maps/models/props_farm/tools_shovel.mdl"
+dest_files=["res://.godot/imported/tools_shovel.mdl-49e818198cbf974e09de9d0f9c0cca93.scn"]
+
+[params]
+
+use_global_scale=true
+scale=0.019
+additional_rotation=Vector3(0, 0, 0)
+materials_root=""
+generate_occluder=true
+primitive_occluder=false
+primitive_occluder_scale=Vector3(1, 1, 1)

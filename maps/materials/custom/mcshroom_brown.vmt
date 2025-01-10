@@ -1,0 +1,8 @@
+"LightmappedGeneric"
+{
+	"$basetexture" "custom/MCshroom_brown"
+	"$alphatest" 1
+	"$translucent" 1
+	"$nocull" 1
+
+}

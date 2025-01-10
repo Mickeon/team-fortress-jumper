@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://570ggp6o4v0s"
+path="res://.godot/imported/conduit_outdoor01.vmt-91a5bf7d83261b62d3540b9ab3c1c165.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/models/props_mining/conduit_outdoor01.vmt"
+dest_files=["res://.godot/imported/conduit_outdoor01.vmt-91a5bf7d83261b62d3540b9ab3c1c165.vmt.res"]
+
+[params]
+

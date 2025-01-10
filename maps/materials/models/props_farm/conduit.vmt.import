@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://dffb4qjfdxd1t"
+path="res://.godot/imported/conduit.vmt-1630b6c8969bd822254bfb466fd9264f.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/models/props_farm/conduit.vmt"
+dest_files=["res://.godot/imported/conduit.vmt-1630b6c8969bd822254bfb466fd9264f.vmt.res"]
+
+[params]
+

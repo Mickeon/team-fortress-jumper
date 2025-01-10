@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://danhjeeg52utg"
+path="res://.godot/imported/spawnroom_door_skin2.vmt-27ff61931da392a4ce2b675a0a5d95f3.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/models/props_farm/spawnroom_door_skin2.vmt"
+dest_files=["res://.godot/imported/spawnroom_door_skin2.vmt-27ff61931da392a4ce2b675a0a5d95f3.vmt.res"]
+
+[params]
+

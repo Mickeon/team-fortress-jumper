@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://j3o6s6kss3x0"
+path="res://.godot/imported/toolshint.vmt-c399833975c0aeb9d148bd2a1eef7552.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/tools/toolshint.vmt"
+dest_files=["res://.godot/imported/toolshint.vmt-c399833975c0aeb9d148bd2a1eef7552.vmt.res"]
+
+[params]
+

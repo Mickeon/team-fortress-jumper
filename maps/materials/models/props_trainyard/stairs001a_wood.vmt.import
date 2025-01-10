@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://p6rbc2kwnfo3"
+path="res://.godot/imported/stairs001a_wood.vmt-3562a2917c5db557dd81f33b33780e19.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/models/props_trainyard/stairs001a_wood.vmt"
+dest_files=["res://.godot/imported/stairs001a_wood.vmt-3562a2917c5db557dd81f33b33780e19.vmt.res"]
+
+[params]
+

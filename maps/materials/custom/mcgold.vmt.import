@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://c6bc0msirnwfx"
+path="res://.godot/imported/mcgold.vmt-b30394b2513d1657b175d84f9e022018.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/custom/mcgold.vmt"
+dest_files=["res://.godot/imported/mcgold.vmt-b30394b2513d1657b175d84f9e022018.vmt.res"]
+
+[params]
+

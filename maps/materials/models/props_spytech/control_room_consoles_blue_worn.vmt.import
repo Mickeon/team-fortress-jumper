@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://dbakgtm38nvac"
+path="res://.godot/imported/control_room_consoles_blue_worn.vmt-1c07c0678fe5e7d540ebf20edc679a09.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/models/props_spytech/control_room_consoles_blue_worn.vmt"
+dest_files=["res://.godot/imported/control_room_consoles_blue_worn.vmt-1c07c0678fe5e7d540ebf20edc679a09.vmt.res"]
+
+[params]
+

@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://dvgu7gx8186yn"
+path="res://.godot/imported/glasswindow001a.vmt-a06688a933f117f3b17c688a77d41de7.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/glass/glasswindow001a.vmt"
+dest_files=["res://.godot/imported/glasswindow001a.vmt-a06688a933f117f3b17c688a77d41de7.vmt.res"]
+
+[params]
+

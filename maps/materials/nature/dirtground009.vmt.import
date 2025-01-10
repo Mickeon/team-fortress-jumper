@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://dtwk813218oyc"
+path="res://.godot/imported/dirtground009.vmt-560d123b828b8fb4da4806dd7cb227db.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/nature/dirtground009.vmt"
+dest_files=["res://.godot/imported/dirtground009.vmt-560d123b828b8fb4da4806dd7cb227db.vmt.res"]
+
+[params]
+

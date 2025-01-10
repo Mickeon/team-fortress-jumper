@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://7ljh2exc3hnn"
+path="res://.godot/imported/mcredstone.vmt-e5ca600d8092713927f34b4f6e94423b.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/custom/mcredstone.vmt"
+dest_files=["res://.godot/imported/mcredstone.vmt-e5ca600d8092713927f34b4f6e94423b.vmt.res"]
+
+[params]
+

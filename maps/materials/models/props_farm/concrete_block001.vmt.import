@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://n63uw8vgiusp"
+path="res://.godot/imported/concrete_block001.vmt-5e134918187cd19b8521028bf354fb21.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/models/props_farm/concrete_block001.vmt"
+dest_files=["res://.godot/imported/concrete_block001.vmt-5e134918187cd19b8521028bf354fb21.vmt.res"]
+
+[params]
+

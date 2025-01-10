@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://8uf2dgbkp1yf"
+path="res://.godot/imported/brickwall001.vmt-217ba6b322e0bcae3746cf2a504733cd.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/brick/brickwall001.vmt"
+dest_files=["res://.godot/imported/brickwall001.vmt-217ba6b322e0bcae3746cf2a504733cd.vmt.res"]
+
+[params]
+

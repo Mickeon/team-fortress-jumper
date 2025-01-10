@@ -1,0 +1,21 @@
+[remap]
+
+importer="MDL"
+type="PackedScene"
+uid="uid://bvam8jtge2eh7"
+path="res://.godot/imported/box_cluster01.mdl-b8bbdac4a8f6f45814e62356523b8cd0.scn"
+
+[deps]
+
+source_file="res://maps/models/props_farm/box_cluster01.mdl"
+dest_files=["res://.godot/imported/box_cluster01.mdl-b8bbdac4a8f6f45814e62356523b8cd0.scn"]
+
+[params]
+
+use_global_scale=true
+scale=0.019
+additional_rotation=Vector3(0, 0, 0)
+materials_root=""
+generate_occluder=true
+primitive_occluder=false
+primitive_occluder_scale=Vector3(1, 1, 1)

@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://sps84l55wriv"
+path="res://.godot/imported/mccage.vmt-27457844149abdd4f8e0589e2f3864f7.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/custom/mccage.vmt"
+dest_files=["res://.godot/imported/mccage.vmt-27457844149abdd4f8e0589e2f3864f7.vmt.res"]
+
+[params]
+

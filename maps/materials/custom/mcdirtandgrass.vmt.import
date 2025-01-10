@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://bwp05qnhvm20d"
+path="res://.godot/imported/mcdirtandgrass.vmt-aea52e478fff9c5bc6f36213a0dd9c09.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/custom/mcdirtandgrass.vmt"
+dest_files=["res://.godot/imported/mcdirtandgrass.vmt-aea52e478fff9c5bc6f36213a0dd9c09.vmt.res"]
+
+[params]
+

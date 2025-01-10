@@ -1,0 +1,21 @@
+[remap]
+
+importer="MDL"
+type="PackedScene"
+uid="uid://b5hhc2amk48ct"
+path="res://.godot/imported/3pipe_straight_256.mdl-0eb325f13e84ee1b2f8cc7f4ec94b75a.scn"
+
+[deps]
+
+source_file="res://maps/models/props_hydro/3pipe_straight_256.mdl"
+dest_files=["res://.godot/imported/3pipe_straight_256.mdl-0eb325f13e84ee1b2f8cc7f4ec94b75a.scn"]
+
+[params]
+
+use_global_scale=true
+scale=0.019
+additional_rotation=Vector3(0, 0, 0)
+materials_root=""
+generate_occluder=true
+primitive_occluder=false
+primitive_occluder_scale=Vector3(1, 1, 1)

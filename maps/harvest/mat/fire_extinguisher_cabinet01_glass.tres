@@ -1,8 +1,0 @@
-[gd_resource type="StandardMaterial3D" format=3 uid="uid://cq5e56111venf"]
-
-[resource]
-resource_name = "fire_extinguisher_cabinet01_glass"
-transparency = 4
-cull_mode = 2
-vertex_color_use_as_albedo = true
-metallic = 1.0

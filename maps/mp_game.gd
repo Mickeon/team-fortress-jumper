@@ -9,17 +9,42 @@ const Chat = preload("res://ui/chat/chat.gd")
 
 @onready var chat: Chat = $Chat
 
+@export var map_scene: PackedScene:
+	set(new):
+		if map == new:
+			return
+		if not is_node_ready(): await ready
+		if map:
+			remove_child(map)
+			map.queue_free()
+		map = new.instantiate()
+		if map:
+			add_child(map)
+var map: Node
+
 func _unhandled_input(event):
 	if event.is_action_pressed("debug_spawn_fake_player") and multiplayer.is_server():
 		spawn_player.rpc(0)
+		get_viewport().set_input_as_handled()
 	
 	if event is InputEventKey and event.is_pressed() and not event.is_echo():
-		match event.keycode:
+		match event.physical_keycode:
 			KEY_KP_SUBTRACT, KEY_KP_ADD:
 				var advance := 1 if event.keycode == KEY_KP_ADD else -1
 				var players: Array[Player] = []
 				players.assign(get_tree().get_nodes_in_group("players"))
 				Player.main = players[posmod(players.find(Player.main) + advance, players.size())]
+			KEY_QUOTELEFT:
+				get_tree().reload_current_scene()
+			KEY_F2:
+				if (event.is_command_or_control_pressed() 
+				and ResourceLoader.exists("res://maps/KOTHHarvestFinal.tscn")):
+					map_scene = load("res://maps/KOTHHarvestFinal.tscn")
+				elif (event.shift_pressed
+				and ResourceLoader.exists("res://maps/PLMinepit.tscn")):
+					map_scene = load("res://maps/PLMinepit.tscn")
+				else:
+					map_scene = load("res://maps/ItemTest.tscn")
 
 func _ready() -> void:
 	tweak_window()

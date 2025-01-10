@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://cro3fnclngk7u"
+path="res://.godot/imported/mcgrass.vmt-a699c52ce35b72e7f4f39441612b9a67.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/custom/mcgrass.vmt"
+dest_files=["res://.godot/imported/mcgrass.vmt-a699c52ce35b72e7f4f39441612b9a67.vmt.res"]
+
+[params]
+

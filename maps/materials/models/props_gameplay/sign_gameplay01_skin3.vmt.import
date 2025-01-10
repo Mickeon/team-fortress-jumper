@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://cmycx7cjiccrm"
+path="res://.godot/imported/sign_gameplay01_skin3.vmt-302c1b844f283c1d5406d3e52727e745.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/models/props_gameplay/sign_gameplay01_skin3.vmt"
+dest_files=["res://.godot/imported/sign_gameplay01_skin3.vmt-302c1b844f283c1d5406d3e52727e745.vmt.res"]
+
+[params]
+

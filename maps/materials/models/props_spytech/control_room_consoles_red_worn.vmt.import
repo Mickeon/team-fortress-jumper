@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://cjepegi4jsuo"
+path="res://.godot/imported/control_room_consoles_red_worn.vmt-025a52c101bfb559e78cd9e49548878d.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/models/props_spytech/control_room_consoles_red_worn.vmt"
+dest_files=["res://.godot/imported/control_room_consoles_red_worn.vmt-025a52c101bfb559e78cd9e49548878d.vmt.res"]
+
+[params]
+

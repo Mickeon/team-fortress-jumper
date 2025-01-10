@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://dsyl1kw45vfp8"
+path="res://.godot/imported/mccobble.vmt-e9e455dd78f4eeefc0f3cb9b1d3f225c.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/custom/mccobble.vmt"
+dest_files=["res://.godot/imported/mccobble.vmt-e9e455dd78f4eeefc0f3cb9b1d3f225c.vmt.res"]
+
+[params]
+

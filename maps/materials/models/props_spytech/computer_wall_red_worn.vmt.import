@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://tab0xykcwnxv"
+path="res://.godot/imported/computer_wall_red_worn.vmt-fe961cf9e981e351486842643a64c26f.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/models/props_spytech/computer_wall_red_worn.vmt"
+dest_files=["res://.godot/imported/computer_wall_red_worn.vmt-fe961cf9e981e351486842643a64c26f.vmt.res"]
+
+[params]
+

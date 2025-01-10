@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://c7aay0g0bvi68"
+path="res://.godot/imported/tree_lighting.vmt-f950c98a907b625edca23f7f553621dd.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/harvest/tree/tree_lighting.vmt"
+dest_files=["res://.godot/imported/tree_lighting.vmt-f950c98a907b625edca23f7f553621dd.vmt.res"]
+
+[params]
+

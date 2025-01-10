@@ -1,7 +1,7 @@
 {
-	"gameinfo_path0": "res://maps",
-	"gameinfo_path1": "D:/SteamLibrary/steamapps/common/SourceFilmmaker/game/tf",
-	"gameinfo_path2": "C:/Program Files (x86)/Steam/steamapps/common/Team Fortress 2/tf",
+	"gameinfo_path-removesuffixasnecessary0": "res://maps",
+	"gameinfo_path-removesuffixasnecessary1": "D:/SteamLibrary/steamapps/common/SourceFilmmaker/game/tf",
+	"gameinfo_path-removesuffixasnecessary2": "C:/Program Files (x86)/Steam/steamapps/common/Team Fortress 2/tf",
 	"vtfcmd": "C:/Program Files/VTFEdit/aVTFCmd.exe",
 
 	"import": {
@@ -21,7 +21,7 @@
 
 	"models": {
 		"import": true,
-		"lightmap_texel_size": 0.4,
+		"lightmap_texel_size": 0.2,
 		"target_folder": "res://maps"
 	},
 

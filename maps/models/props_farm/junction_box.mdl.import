@@ -1,0 +1,21 @@
+[remap]
+
+importer="MDL"
+type="PackedScene"
+uid="uid://cese5ufj6705x"
+path="res://.godot/imported/junction_box.mdl-8d691fb0e666bb4dad0075158bf9e52b.scn"
+
+[deps]
+
+source_file="res://maps/models/props_farm/junction_box.mdl"
+dest_files=["res://.godot/imported/junction_box.mdl-8d691fb0e666bb4dad0075158bf9e52b.scn"]
+
+[params]
+
+use_global_scale=true
+scale=0.019
+additional_rotation=Vector3(0, 0, 0)
+materials_root=""
+generate_occluder=true
+primitive_occluder=false
+primitive_occluder_scale=Vector3(1, 1, 1)

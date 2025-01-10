@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://cwi5c77gclmib"
+path="res://.godot/imported/haypile001.vmt-67fc77ea68e951cb453342eb9ff09ede.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/models/props_farm/haypile001.vmt"
+dest_files=["res://.godot/imported/haypile001.vmt-67fc77ea68e951cb453342eb9ff09ede.vmt.res"]
+
+[params]
+

@@ -1,7 +1,0 @@
-[gd_resource type="StandardMaterial3D" format=3 uid="uid://bfg8jb25txglh"]
-
-[resource]
-resource_name = "resupply_locker"
-cull_mode = 2
-vertex_color_use_as_albedo = true
-metallic = 1.0

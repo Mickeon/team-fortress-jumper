@@ -1,0 +1,6 @@
+"LightmappedGeneric"
+{
+	"$basetexture" "custom/MChalfblockside"
+	"$surfaceprop" "Concrete"
+	"$translucent" 0
+}

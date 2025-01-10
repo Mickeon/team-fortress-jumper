@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://b7jw6tsxxea14"
+path="res://.godot/imported/walllight001a_blue_off.vmt-e2ebddc0499cf01099d0099db93d9743.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/models/props_lights/walllight001a_blue_off.vmt"
+dest_files=["res://.godot/imported/walllight001a_blue_off.vmt-e2ebddc0499cf01099d0099db93d9743.vmt.res"]
+
+[params]
+

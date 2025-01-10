@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://cupj1k34tr4bg"
+path="res://.godot/imported/computer_screen1.vmt-2541ee02f958f8b8817127997294d725.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/models/props_spytech/computer_screen1.vmt"
+dest_files=["res://.godot/imported/computer_screen1.vmt-2541ee02f958f8b8817127997294d725.vmt.res"]
+
+[params]
+

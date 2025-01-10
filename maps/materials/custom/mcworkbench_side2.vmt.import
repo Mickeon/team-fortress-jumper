@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://bvy6l6rs0w4lj"
+path="res://.godot/imported/mcworkbench_side2.vmt-5fb7889c7b05668a064aada57ac99c59.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/custom/mcworkbench_side2.vmt"
+dest_files=["res://.godot/imported/mcworkbench_side2.vmt-5fb7889c7b05668a064aada57ac99c59.vmt.res"]
+
+[params]
+

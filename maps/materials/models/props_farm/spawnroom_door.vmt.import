@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://bb45nc53uh0st"
+path="res://.godot/imported/spawnroom_door.vmt-73177696ad7a8a908b6f650f8606e210.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/models/props_farm/spawnroom_door.vmt"
+dest_files=["res://.godot/imported/spawnroom_door.vmt-73177696ad7a8a908b6f650f8606e210.vmt.res"]
+
+[params]
+

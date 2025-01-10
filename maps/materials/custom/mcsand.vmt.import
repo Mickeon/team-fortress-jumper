@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://wkr86peolmof"
+path="res://.godot/imported/mcsand.vmt-fba1a791ed00245e494184ea6980f3b8.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/custom/mcsand.vmt"
+dest_files=["res://.godot/imported/mcsand.vmt-fba1a791ed00245e494184ea6980f3b8.vmt.res"]
+
+[params]
+

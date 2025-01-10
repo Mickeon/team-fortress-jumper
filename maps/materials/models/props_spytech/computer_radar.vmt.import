@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://cjpe5xbyo1nsx"
+path="res://.godot/imported/computer_radar.vmt-929d38f7db07209cdc5a4706c90fc5cb.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/models/props_spytech/computer_radar.vmt"
+dest_files=["res://.godot/imported/computer_radar.vmt-929d38f7db07209cdc5a4706c90fc5cb.vmt.res"]
+
+[params]
+

@@ -1,7 +1,0 @@
-[gd_resource type="StandardMaterial3D" format=3 uid="uid://dpf2gx72vb2bk"]
-
-[resource]
-resource_name = "shelf_props01"
-vertex_color_use_as_albedo = true
-albedo_color = Color(1, 0.862745, 0.556863, 1)
-metallic = 1.0

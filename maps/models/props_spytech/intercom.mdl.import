@@ -1,0 +1,21 @@
+[remap]
+
+importer="MDL"
+type="PackedScene"
+uid="uid://c22kataav8sh0"
+path="res://.godot/imported/intercom.mdl-fb0df82640c37260fbe9b43ee5521ce9.scn"
+
+[deps]
+
+source_file="res://maps/models/props_spytech/intercom.mdl"
+dest_files=["res://.godot/imported/intercom.mdl-fb0df82640c37260fbe9b43ee5521ce9.scn"]
+
+[params]
+
+use_global_scale=true
+scale=0.019
+additional_rotation=Vector3(0, 0, 0)
+materials_root=""
+generate_occluder=true
+primitive_occluder=false
+primitive_occluder_scale=Vector3(1, 1, 1)

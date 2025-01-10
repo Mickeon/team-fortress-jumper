@@ -1,0 +1,6 @@
+"VertexLitGeneric"
+{
+	"$basetexture" "Models/props_trainyard/distillery_barrel001"
+	"$bumpmap"	"Models/props_trainyard/distillery_barrel001_normal"
+}
+

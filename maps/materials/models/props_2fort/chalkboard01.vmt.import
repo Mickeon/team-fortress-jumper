@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://bkyya8bd4fsj3"
+path="res://.godot/imported/chalkboard01.vmt-f5f1efc98846e9b7110c10fd0c55057f.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/models/props_2fort/chalkboard01.vmt"
+dest_files=["res://.godot/imported/chalkboard01.vmt-f5f1efc98846e9b7110c10fd0c55057f.vmt.res"]
+
+[params]
+

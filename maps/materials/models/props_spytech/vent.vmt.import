@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://ctavik7aqyhhc"
+path="res://.godot/imported/vent.vmt-97caf58b7764b63f5dab46894c9d7038.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/models/props_spytech/vent.vmt"
+dest_files=["res://.godot/imported/vent.vmt-97caf58b7764b63f5dab46894c9d7038.vmt.res"]
+
+[params]
+

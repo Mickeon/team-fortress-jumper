@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://fu83r2exb7hq"
+path="res://.godot/imported/metaldoor01_192_noentry.vmt-3b287dd6c6cb22eb924316eae14a4536.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/props/metaldoor01_192_noentry.vmt"
+dest_files=["res://.godot/imported/metaldoor01_192_noentry.vmt-3b287dd6c6cb22eb924316eae14a4536.vmt.res"]
+
+[params]
+

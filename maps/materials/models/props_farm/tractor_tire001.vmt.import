@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://22ykgaw3o3yb"
+path="res://.godot/imported/tractor_tire001.vmt-55c8e483b0fffe4f1ee3721d2fff6fc4.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/models/props_farm/tractor_tire001.vmt"
+dest_files=["res://.godot/imported/tractor_tire001.vmt-55c8e483b0fffe4f1ee3721d2fff6fc4.vmt.res"]
+
+[params]
+

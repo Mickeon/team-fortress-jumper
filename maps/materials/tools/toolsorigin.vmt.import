@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://dnmh3vpltrvah"
+path="res://.godot/imported/toolsorigin.vmt-f9e1e288141b5a0824b9e2cc81094abc.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/tools/toolsorigin.vmt"
+dest_files=["res://.godot/imported/toolsorigin.vmt-f9e1e288141b5a0824b9e2cc81094abc.vmt.res"]
+
+[params]
+

@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://c63j7qgt1s2yb"
+path="res://.godot/imported/security_fence_big.vmt-d089893867de841e7598fbe53f3ff78b.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/models/props_gameplay/security_fence_big.vmt"
+dest_files=["res://.godot/imported/security_fence_big.vmt-d089893867de841e7598fbe53f3ff78b.vmt.res"]
+
+[params]
+

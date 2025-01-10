@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://qdv46435icoc"
+path="res://.godot/imported/mcdirt.vmt-dda489514fa67755b8ef49dd48ab358c.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/custom/mcdirt.vmt"
+dest_files=["res://.godot/imported/mcdirt.vmt-dda489514fa67755b8ef49dd48ab358c.vmt.res"]
+
+[params]
+

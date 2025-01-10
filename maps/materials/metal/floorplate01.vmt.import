@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://i5xls1508lv5"
+path="res://.godot/imported/floorplate01.vmt-b0aa9d5092122f23e388e2507e8241e8.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/metal/floorplate01.vmt"
+dest_files=["res://.godot/imported/floorplate01.vmt-b0aa9d5092122f23e388e2507e8241e8.vmt.res"]
+
+[params]
+

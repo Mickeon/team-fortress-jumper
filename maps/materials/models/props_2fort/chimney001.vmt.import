@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://stxl4seen41s"
+path="res://.godot/imported/chimney001.vmt-12c7b0223096e189124541f594e4dd26.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/models/props_2fort/chimney001.vmt"
+dest_files=["res://.godot/imported/chimney001.vmt-12c7b0223096e189124541f594e4dd26.vmt.res"]
+
+[params]
+

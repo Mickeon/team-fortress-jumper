@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://bcgwk4pxrtqnj"
+path="res://.godot/imported/wagonwheel001.vmt-7bda8c35745f1ef7c7d01eda21fe897e.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/models/props_2fort/wagonwheel001.vmt"
+dest_files=["res://.godot/imported/wagonwheel001.vmt-7bda8c35745f1ef7c7d01eda21fe897e.vmt.res"]
+
+[params]
+

@@ -1,0 +1,21 @@
+[remap]
+
+importer="MDL"
+type="PackedScene"
+uid="uid://d2ufaik8qiqvw"
+path="res://.godot/imported/handrail128.mdl-7a6c845d04ca345c719abfe7de99dbbd.scn"
+
+[deps]
+
+source_file="res://maps/models/props_trainyard/handrail128.mdl"
+dest_files=["res://.godot/imported/handrail128.mdl-7a6c845d04ca345c719abfe7de99dbbd.scn"]
+
+[params]
+
+use_global_scale=true
+scale=0.019
+additional_rotation=Vector3(0, 0, 0)
+materials_root=""
+generate_occluder=true
+primitive_occluder=false
+primitive_occluder_scale=Vector3(1, 1, 1)

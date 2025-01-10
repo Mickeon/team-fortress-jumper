@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://calwkrye0qe5y"
+path="res://.godot/imported/computerwall010.vmt-b951b9b1594e0ce69cb9859c33e4e722.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/concrete/computerwall010.vmt"
+dest_files=["res://.godot/imported/computerwall010.vmt-b951b9b1594e0ce69cb9859c33e4e722.vmt.res"]
+
+[params]
+

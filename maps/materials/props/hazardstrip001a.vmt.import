@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://do7y6sthipxtv"
+path="res://.godot/imported/hazardstrip001a.vmt-9b59b5712d11773eb3e64548dd370b7e.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/props/hazardstrip001a.vmt"
+dest_files=["res://.godot/imported/hazardstrip001a.vmt-9b59b5712d11773eb3e64548dd370b7e.vmt.res"]
+
+[params]
+

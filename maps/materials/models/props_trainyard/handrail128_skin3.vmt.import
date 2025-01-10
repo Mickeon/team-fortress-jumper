@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://13mgcjbd0m00"
+path="res://.godot/imported/handrail128_skin3.vmt-3e82cf7652df446d7f91b2eb0283fbef.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/models/props_trainyard/handrail128_skin3.vmt"
+dest_files=["res://.godot/imported/handrail128_skin3.vmt-3e82cf7652df446d7f91b2eb0283fbef.vmt.res"]
+
+[params]
+

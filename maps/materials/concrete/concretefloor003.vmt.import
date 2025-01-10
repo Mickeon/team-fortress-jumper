@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://c4jjlqtjmauvy"
+path="res://.godot/imported/concretefloor003.vmt-fd1e2b7e0922a5b37698f60c3f4ae47f.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/concrete/concretefloor003.vmt"
+dest_files=["res://.godot/imported/concretefloor003.vmt-fd1e2b7e0922a5b37698f60c3f4ae47f.vmt.res"]
+
+[params]
+

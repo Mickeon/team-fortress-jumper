@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://boa5ywrd14gj2"
+path="res://.godot/imported/mctnttop.vmt-19e10a0cae9ad9ae6630adfd379433cc.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/custom/mctnttop.vmt"
+dest_files=["res://.godot/imported/mctnttop.vmt-19e10a0cae9ad9ae6630adfd379433cc.vmt.res"]
+
+[params]
+

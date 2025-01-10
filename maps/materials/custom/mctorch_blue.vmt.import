@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://bv04lxgvwljls"
+path="res://.godot/imported/mctorch_blue.vmt-029944d9fb56c0841df0fb74d302fc8e.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/custom/mctorch_blue.vmt"
+dest_files=["res://.godot/imported/mctorch_blue.vmt-029944d9fb56c0841df0fb74d302fc8e.vmt.res"]
+
+[params]
+

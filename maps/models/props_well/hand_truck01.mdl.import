@@ -1,0 +1,21 @@
+[remap]
+
+importer="MDL"
+type="PackedScene"
+uid="uid://bhvnru7o3vqr7"
+path="res://.godot/imported/hand_truck01.mdl-addbea1c0e64e0672551e525f2b6591e.scn"
+
+[deps]
+
+source_file="res://maps/models/props_well/hand_truck01.mdl"
+dest_files=["res://.godot/imported/hand_truck01.mdl-addbea1c0e64e0672551e525f2b6591e.scn"]
+
+[params]
+
+use_global_scale=true
+scale=0.019
+additional_rotation=Vector3(0, 0, 0)
+materials_root=""
+generate_occluder=true
+primitive_occluder=false
+primitive_occluder_scale=Vector3(1, 1, 1)

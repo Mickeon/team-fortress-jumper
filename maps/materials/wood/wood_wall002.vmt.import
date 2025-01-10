@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://cpqgpny6qpons"
+path="res://.godot/imported/wood_wall002.vmt-34b458ef3ba5e6912b3fdfd00cc05f9b.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/wood/wood_wall002.vmt"
+dest_files=["res://.godot/imported/wood_wall002.vmt-34b458ef3ba5e6912b3fdfd00cc05f9b.vmt.res"]
+
+[params]
+

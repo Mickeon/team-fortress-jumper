@@ -1,0 +1,21 @@
+[remap]
+
+importer="MDL"
+type="PackedScene"
+uid="uid://bfp052mfnvhod"
+path="res://.godot/imported/spawnroom_door_left.mdl-5c7c5075199a44ab6e846a9a86fb3090.scn"
+
+[deps]
+
+source_file="res://maps/models/props_farm/spawnroom_door_left.mdl"
+dest_files=["res://.godot/imported/spawnroom_door_left.mdl-5c7c5075199a44ab6e846a9a86fb3090.scn"]
+
+[params]
+
+use_global_scale=true
+scale=0.019
+additional_rotation=Vector3(0, 0, 0)
+materials_root=""
+generate_occluder=true
+primitive_occluder=false
+primitive_occluder_scale=Vector3(1, 1, 1)

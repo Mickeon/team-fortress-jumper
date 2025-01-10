@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://bv215d752gte3"
+path="res://.godot/imported/world_map001a.vmt-b9c3fe4213766b4e906a8a39f3733595.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/signs/world_map001a.vmt"
+dest_files=["res://.godot/imported/world_map001a.vmt-b9c3fe4213766b4e906a8a39f3733595.vmt.res"]
+
+[params]
+

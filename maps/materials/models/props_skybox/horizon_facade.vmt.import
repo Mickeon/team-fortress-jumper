@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://bl7ijegtt44ck"
+path="res://.godot/imported/horizon_facade.vmt-28379464aedae87251c4d9185178ba7e.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/models/props_skybox/horizon_facade.vmt"
+dest_files=["res://.godot/imported/horizon_facade.vmt-28379464aedae87251c4d9185178ba7e.vmt.res"]
+
+[params]
+

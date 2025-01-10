@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://blp3k47nw62x3"
+path="res://.godot/imported/mctorch.vmt-a437067f27e6cf46e5b75e8d831c01eb.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/custom/mctorch.vmt"
+dest_files=["res://.godot/imported/mctorch.vmt-a437067f27e6cf46e5b75e8d831c01eb.vmt.res"]
+
+[params]
+

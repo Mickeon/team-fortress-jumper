@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://b5ddrsl186nd1"
+path="res://.godot/imported/computer_cart01.vmt-bab4f39fd7aea0200d0a130c7779e151.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/models/props_well/computer_cart01.vmt"
+dest_files=["res://.godot/imported/computer_cart01.vmt-bab4f39fd7aea0200d0a130c7779e151.vmt.res"]
+
+[params]
+

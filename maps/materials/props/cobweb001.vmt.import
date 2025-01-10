@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://defc22add2814"
+path="res://.godot/imported/cobweb001.vmt-93699e318032de92b6df5ad93a9a1157.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/props/cobweb001.vmt"
+dest_files=["res://.godot/imported/cobweb001.vmt-93699e318032de92b6df5ad93a9a1157.vmt.res"]
+
+[params]
+

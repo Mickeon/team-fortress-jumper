@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://6s1apw7enn8w"
+path="res://.godot/imported/computer_wallb.vmt-340943c9bcc15abdcab4a2e7ae156cb9.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/models/props_spytech/computer_wallb.vmt"
+dest_files=["res://.godot/imported/computer_wallb.vmt-340943c9bcc15abdcab4a2e7ae156cb9.vmt.res"]
+
+[params]
+

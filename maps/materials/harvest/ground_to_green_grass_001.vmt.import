@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://dnjv8jmuf8ap2"
+path="res://.godot/imported/ground_to_green_grass_001.vmt-f7be63df6e6afc53dec828877878e788.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/harvest/ground_to_green_grass_001.vmt"
+dest_files=["res://.godot/imported/ground_to_green_grass_001.vmt-f7be63df6e6afc53dec828877878e788.vmt.res"]
+
+[params]
+

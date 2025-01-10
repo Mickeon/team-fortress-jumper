@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://bh3g2lrkemkvr"
+path="res://.godot/imported/hand_truck01_skin2.vmt-647452b789750ad0e9e88a9c684d5b7b.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/models/props_well/hand_truck01_skin2.vmt"
+dest_files=["res://.godot/imported/hand_truck01_skin2.vmt-647452b789750ad0e9e88a9c684d5b7b.vmt.res"]
+
+[params]
+

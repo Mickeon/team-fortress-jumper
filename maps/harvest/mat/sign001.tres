@@ -1,6 +1,0 @@
-[gd_resource type="StandardMaterial3D" format=3 uid="uid://cg6sp6xyfh705"]
-
-[resource]
-resource_name = "sign001"
-vertex_color_use_as_albedo = true
-metallic = 1.0

@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://cpiir5sbcwf0w"
+path="res://.godot/imported/awning001.vmt-7da9e298c0c02038da1643d4944e4672.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/models/props_trainyard/awning001.vmt"
+dest_files=["res://.godot/imported/awning001.vmt-7da9e298c0c02038da1643d4944e4672.vmt.res"]
+
+[params]
+

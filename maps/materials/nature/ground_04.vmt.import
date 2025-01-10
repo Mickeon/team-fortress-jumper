@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://dxuf20tw3kdhs"
+path="res://.godot/imported/ground_04.vmt-b33468997a09d4c4d50cf7f397b6dd82.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/nature/ground_04.vmt"
+dest_files=["res://.godot/imported/ground_04.vmt-b33468997a09d4c4d50cf7f397b6dd82.vmt.res"]
+
+[params]
+

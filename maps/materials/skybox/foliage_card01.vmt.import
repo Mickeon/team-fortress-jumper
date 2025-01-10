@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://bi8kqei5xtdyh"
+path="res://.godot/imported/foliage_card01.vmt-c71f777c4517b92983ec7822dfa1fe6a.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/skybox/foliage_card01.vmt"
+dest_files=["res://.godot/imported/foliage_card01.vmt-c71f777c4517b92983ec7822dfa1fe6a.vmt.res"]
+
+[params]
+

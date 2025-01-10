@@ -1,0 +1,21 @@
+[remap]
+
+importer="MDL"
+type="PackedScene"
+uid="uid://dbch41d8tbb1r"
+path="res://.godot/imported/2pipe_turn_90.mdl-27ea88aa381ee1320699ed2aaa9ec842.scn"
+
+[deps]
+
+source_file="res://maps/models/props_hydro/2pipe_turn_90.mdl"
+dest_files=["res://.godot/imported/2pipe_turn_90.mdl-27ea88aa381ee1320699ed2aaa9ec842.scn"]
+
+[params]
+
+use_global_scale=true
+scale=0.019
+additional_rotation=Vector3(0, 0, 0)
+materials_root=""
+generate_occluder=true
+primitive_occluder=false
+primitive_occluder_scale=Vector3(1, 1, 1)

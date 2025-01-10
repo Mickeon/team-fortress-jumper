@@ -1,0 +1,8 @@
+"LightmappedGeneric"
+{
+	"$basetexture" "custom/MCcage"
+	"$surfaceprop" "MetalGrate"
+	"$alphatest" 1
+	"$nocull" 1
+	"$translucent" 1
+}

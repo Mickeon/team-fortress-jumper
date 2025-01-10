@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://cjic0af4iho3"
+path="res://.godot/imported/spool_rope.vmt-7991e5d8046960f6e4088100db844a2d.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/models/props_farm/spool_rope.vmt"
+dest_files=["res://.godot/imported/spool_rope.vmt-7991e5d8046960f6e4088100db844a2d.vmt.res"]
+
+[params]
+

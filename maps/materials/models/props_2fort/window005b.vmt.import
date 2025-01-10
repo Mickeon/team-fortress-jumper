@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://ckt8kaxrl21l"
+path="res://.godot/imported/window005b.vmt-f806958a6e81be02a09a225c76cc92d4.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/models/props_2fort/window005b.vmt"
+dest_files=["res://.godot/imported/window005b.vmt-f806958a6e81be02a09a225c76cc92d4.vmt.res"]
+
+[params]
+

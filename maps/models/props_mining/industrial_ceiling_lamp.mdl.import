@@ -1,0 +1,21 @@
+[remap]
+
+importer="MDL"
+type="PackedScene"
+uid="uid://bxid8ouopy1lx"
+path="res://.godot/imported/industrial_ceiling_lamp.mdl-a45604ff9bdcd92bb79d06a3ad36284b.scn"
+
+[deps]
+
+source_file="res://maps/models/props_mining/industrial_ceiling_lamp.mdl"
+dest_files=["res://.godot/imported/industrial_ceiling_lamp.mdl-a45604ff9bdcd92bb79d06a3ad36284b.scn"]
+
+[params]
+
+use_global_scale=true
+scale=0.019
+additional_rotation=Vector3(0, 0, 0)
+materials_root=""
+generate_occluder=true
+primitive_occluder=false
+primitive_occluder_scale=Vector3(1, 1, 1)

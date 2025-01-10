@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://c3oweovd26yoi"
+path="res://.godot/imported/logo_blue_white.vmt-c94863e417b5612dc8fb86cb6ebc448d.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/overlays/logo_blue_white.vmt"
+dest_files=["res://.godot/imported/logo_blue_white.vmt-c94863e417b5612dc8fb86cb6ebc448d.vmt.res"]
+
+[params]
+

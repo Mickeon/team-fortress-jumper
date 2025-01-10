@@ -1,0 +1,21 @@
+[remap]
+
+importer="MDL"
+type="PackedScene"
+uid="uid://bf1nb0faiowda"
+path="res://.godot/imported/tree_big_skybox.mdl-78909ce58bc88255a3fadbcb9d946e65.scn"
+
+[deps]
+
+source_file="res://maps/models/harvest/tree/tree_big_skybox.mdl"
+dest_files=["res://.godot/imported/tree_big_skybox.mdl-78909ce58bc88255a3fadbcb9d946e65.scn"]
+
+[params]
+
+use_global_scale=true
+scale=0.019
+additional_rotation=Vector3(0, 0, 0)
+materials_root=""
+generate_occluder=true
+primitive_occluder=false
+primitive_occluder_scale=Vector3(1, 1, 1)

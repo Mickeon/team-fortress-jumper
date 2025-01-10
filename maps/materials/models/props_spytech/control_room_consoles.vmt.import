@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://bja5alwlt6pqj"
+path="res://.godot/imported/control_room_consoles.vmt-6bf6f1ed3c76fdc8703aac9f1d91a4b5.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/models/props_spytech/control_room_consoles.vmt"
+dest_files=["res://.godot/imported/control_room_consoles.vmt-6bf6f1ed3c76fdc8703aac9f1d91a4b5.vmt.res"]
+
+[params]
+

@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://ctalwh5wwuuf4"
+path="res://.godot/imported/pickup04.vmt-8ef2e8745f93b1c61d0e3d2c42602a6c.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/models/props_vehicles/pickup04.vmt"
+dest_files=["res://.godot/imported/pickup04.vmt-8ef2e8745f93b1c61d0e3d2c42602a6c.vmt.res"]
+
+[params]
+

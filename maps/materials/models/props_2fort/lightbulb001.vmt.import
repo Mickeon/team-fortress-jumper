@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://by652s78f5j8r"
+path="res://.godot/imported/lightbulb001.vmt-a72af9fb559589fbbb5d8e5c7bd85ded.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/models/props_2fort/lightbulb001.vmt"
+dest_files=["res://.godot/imported/lightbulb001.vmt-a72af9fb559589fbbb5d8e5c7bd85ded.vmt.res"]
+
+[params]
+

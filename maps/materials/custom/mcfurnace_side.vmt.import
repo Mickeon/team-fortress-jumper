@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://oi1few4i1qrg"
+path="res://.godot/imported/mcfurnace_side.vmt-121d17c09c2c1a797ed9a55951ec109e.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/custom/mcfurnace_side.vmt"
+dest_files=["res://.godot/imported/mcfurnace_side.vmt-121d17c09c2c1a797ed9a55951ec109e.vmt.res"]
+
+[params]
+

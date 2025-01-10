@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://dvju5nonaj30d"
+path="res://.godot/imported/ceiling_pipe01.vmt-8f1f309dec6f785caa42699287ae6ac1.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/models/props_mining/ceiling_pipe01.vmt"
+dest_files=["res://.godot/imported/ceiling_pipe01.vmt-8f1f309dec6f785caa42699287ae6ac1.vmt.res"]
+
+[params]
+

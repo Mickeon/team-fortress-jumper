@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://cb5dqnjcmwgxd"
+path="res://.godot/imported/officedoor002.vmt-731513a372d9bed1794776591a596f70.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/metal/officedoor002.vmt"
+dest_files=["res://.godot/imported/officedoor002.vmt-731513a372d9bed1794776591a596f70.vmt.res"]
+
+[params]
+

@@ -1,0 +1,21 @@
+[remap]
+
+importer="MDL"
+type="PackedScene"
+uid="uid://cakoomgaym5u4"
+path="res://.godot/imported/siren.mdl-a4b3c7b433679f012f7ba90b38fae743.scn"
+
+[deps]
+
+source_file="res://maps/models/props_spytech/siren.mdl"
+dest_files=["res://.godot/imported/siren.mdl-a4b3c7b433679f012f7ba90b38fae743.scn"]
+
+[params]
+
+use_global_scale=true
+scale=0.019
+additional_rotation=Vector3(0, 0, 0)
+materials_root=""
+generate_occluder=true
+primitive_occluder=false
+primitive_occluder_scale=Vector3(1, 1, 1)

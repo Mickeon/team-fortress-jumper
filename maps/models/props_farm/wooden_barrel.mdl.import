@@ -1,0 +1,21 @@
+[remap]
+
+importer="MDL"
+type="PackedScene"
+uid="uid://cht3h3wm5dg8f"
+path="res://.godot/imported/wooden_barrel.mdl-c3c4026d17caeab0546c2def60cafd84.scn"
+
+[deps]
+
+source_file="res://maps/models/props_farm/wooden_barrel.mdl"
+dest_files=["res://.godot/imported/wooden_barrel.mdl-c3c4026d17caeab0546c2def60cafd84.scn"]
+
+[params]
+
+use_global_scale=true
+scale=0.019
+additional_rotation=Vector3(0, 0, 0)
+materials_root=""
+generate_occluder=true
+primitive_occluder=false
+primitive_occluder_scale=Vector3(1, 1, 1)

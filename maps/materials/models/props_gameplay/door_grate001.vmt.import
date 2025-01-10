@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://lyvsfjlntare"
+path="res://.godot/imported/door_grate001.vmt-264a89d046d4411c15972a0ded416600.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/models/props_gameplay/door_grate001.vmt"
+dest_files=["res://.godot/imported/door_grate001.vmt-264a89d046d4411c15972a0ded416600.vmt.res"]
+
+[params]
+

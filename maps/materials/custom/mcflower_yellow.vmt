@@ -1,0 +1,8 @@
+"UnlitGeneric"
+{
+	"$basetexture" "custom/MCflower_yellow"
+	"$alphatest" 1
+	"$translucent" 1
+	"$nocull" 1
+
+}

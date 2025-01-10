@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://bxgipfb6lcedb"
+path="res://.godot/imported/toolsblack_nofog.vmt-ad7013a5be816ed137e131edc8211454.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/tools/toolsblack_nofog.vmt"
+dest_files=["res://.godot/imported/toolsblack_nofog.vmt-ad7013a5be816ed137e131edc8211454.vmt.res"]
+
+[params]
+

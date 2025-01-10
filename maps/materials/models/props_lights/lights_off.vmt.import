@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://caxrmqyiicllt"
+path="res://.godot/imported/lights_off.vmt-a1362c214bdcfb184f1e4e01bb5fdacd.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/models/props_lights/lights_off.vmt"
+dest_files=["res://.godot/imported/lights_off.vmt-a1362c214bdcfb184f1e4e01bb5fdacd.vmt.res"]
+
+[params]
+

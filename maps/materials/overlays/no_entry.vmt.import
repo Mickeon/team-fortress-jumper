@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://byqroo7nv7bt4"
+path="res://.godot/imported/no_entry.vmt-036006087c714025a3eb4f180e67f80e.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/overlays/no_entry.vmt"
+dest_files=["res://.godot/imported/no_entry.vmt-036006087c714025a3eb4f180e67f80e.vmt.res"]
+
+[params]
+

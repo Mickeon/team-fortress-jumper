@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://b2tl3jsy0rc0h"
+path="res://.godot/imported/mcbrick.vmt-133dbe0ae2caaec9d730e0c549476001.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/custom/mcbrick.vmt"
+dest_files=["res://.godot/imported/mcbrick.vmt-133dbe0ae2caaec9d730e0c549476001.vmt.res"]
+
+[params]
+

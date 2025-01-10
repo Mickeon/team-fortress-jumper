@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://jmrlgl822hkc"
+path="res://.godot/imported/chalkboard01_skin1.vmt-f16cbc7a63372a16f3ea1b5c69a686f4.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/models/props_2fort/chalkboard01_skin1.vmt"
+dest_files=["res://.godot/imported/chalkboard01_skin1.vmt-f16cbc7a63372a16f3ea1b5c69a686f4.vmt.res"]
+
+[params]
+

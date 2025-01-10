@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://bhec758m7xuru"
+path="res://.godot/imported/mcinnertree.vmt-4ae2e4ce6e37932b0238716728eb99af.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/custom/mcinnertree.vmt"
+dest_files=["res://.godot/imported/mcinnertree.vmt-4ae2e4ce6e37932b0238716728eb99af.vmt.res"]
+
+[params]
+

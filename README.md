@@ -35,8 +35,9 @@ Alternatively, download a build from [the releases](https://github.com/Mickeon/t
 | Key | Action | ... |
 | :-: | --- | --- |
 | **\\** | Restart current scene | ... _It's the button below **ESC**_
-| **F2** | Change map to test Level 
-| **CTRL** + **F2** | Change map to Harvest | Not available in web demo.<br>This can take a while to load.
+| **F2** | Change map to `itemtest`
+| **CTRL** + **F2** | Change map to `koth_harvest_final` | Not available in web demo.<br>This can take a while to load.
+| **SHIFT** + **F2** | Change map to `pl_minepit` | Not available in web demo.<br>This can take a while to load.
 
 #### Debugging:
 | Key | Action |
@@ -59,7 +60,8 @@ My Twitter: https://twitter.com/DoodlingMicky
 
 This project is primarily based off the work of aneacsu [in this blog](https://aneacsu.com/blog/2023/04/09/quake-movement-godot)(See also [this video](https://www.youtube.com/watch?v=ssU6ec_um78)), as well as my prior experience with [Team Fortress Unity](https://www.youtube.com/watch?v=4WNybhStAE0).
 
-- Harvest map originally ported to Blender by [hisanimations](https://www.youtube.com/@hisanimations).
+- Maps ripped through [GodotVMF](https://github.com/H2xDev/GodotVMF) and [BSPSRC](https://github.com/ata4/bspsrc).
+- [`pl_minepit`](https://gamebanana.com/mods/71709) created by [Csand1](https://gamebanana.com/members/264279)
 - Sound effects ripped and organized by [Broly9990](https://www.sounds-resource.com/submitter/Broly9990/), [Cooper B. Chance](https://www.sounds-resource.com/submitter/Cooper+B.+Chance/), [Irockz](https://www.sounds-resource.com/submitter/Irockz/), [KIZ](https://www.sounds-resource.com/submitter/KIZ/), [Undeadbraindead](https://www.sounds-resource.com/submitter/Undeadbraindead/):
 	<br>at the [Source Resource](https://www.sounds-resource.com/pc_computer/tf2/sound/18547/);
 - Animations created/ported by [DJTHED](https://www.youtube.com/c/djthed);

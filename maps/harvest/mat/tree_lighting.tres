@@ -1,7 +1,0 @@
-[gd_resource type="StandardMaterial3D" format=3 uid="uid://edv1skoxh5c1"]
-
-[resource]
-resource_name = "tree_lighting"
-cull_mode = 2
-vertex_color_use_as_albedo = true
-metallic = 1.0

@@ -1,0 +1,21 @@
+[remap]
+
+importer="MDL"
+type="PackedScene"
+uid="uid://b0uoupuuyjo74"
+path="res://.godot/imported/tree_medium.mdl-df075a452f9e1663e9da1ea9304306d8.scn"
+
+[deps]
+
+source_file="res://maps/models/harvest/tree/tree_medium.mdl"
+dest_files=["res://.godot/imported/tree_medium.mdl-df075a452f9e1663e9da1ea9304306d8.scn"]
+
+[params]
+
+use_global_scale=true
+scale=0.019
+additional_rotation=Vector3(0, 0, 0)
+materials_root=""
+generate_occluder=true
+primitive_occluder=false
+primitive_occluder_scale=Vector3(1, 1, 1)

@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://4t7t8u76u1vt"
+path="res://.godot/imported/walllight001a.vmt-3963ff869a85deb65045bfc965489fbc.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/models/props_lights/walllight001a.vmt"
+dest_files=["res://.godot/imported/walllight001a.vmt-3963ff869a85deb65045bfc965489fbc.vmt.res"]
+
+[params]
+

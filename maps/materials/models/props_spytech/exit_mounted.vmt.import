@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://j87csupaicj3"
+path="res://.godot/imported/exit_mounted.vmt-f3bf98168d4ef28deec6dfc6bc851eee.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/models/props_spytech/exit_mounted.vmt"
+dest_files=["res://.godot/imported/exit_mounted.vmt-f3bf98168d4ef28deec6dfc6bc851eee.vmt.res"]
+
+[params]
+

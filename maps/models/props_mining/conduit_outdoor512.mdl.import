@@ -1,0 +1,21 @@
+[remap]
+
+importer="MDL"
+type="PackedScene"
+uid="uid://ukgpl0mwbjiq"
+path="res://.godot/imported/conduit_outdoor512.mdl-3c9b76f32ff904a80b8c2ca8bc9a54f2.scn"
+
+[deps]
+
+source_file="res://maps/models/props_mining/conduit_outdoor512.mdl"
+dest_files=["res://.godot/imported/conduit_outdoor512.mdl-3c9b76f32ff904a80b8c2ca8bc9a54f2.scn"]
+
+[params]
+
+use_global_scale=true
+scale=0.019
+additional_rotation=Vector3(0, 0, 0)
+materials_root=""
+generate_occluder=true
+primitive_occluder=false
+primitive_occluder_scale=Vector3(1, 1, 1)

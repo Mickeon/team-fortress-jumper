@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://bqu26kka3prv5"
+path="res://.godot/imported/corrugated_metal004.vmt-cabd36f6fc1b3b0010a138540f40f6ea.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/models/props_2fort/corrugated_metal004.vmt"
+dest_files=["res://.godot/imported/corrugated_metal004.vmt-cabd36f6fc1b3b0010a138540f40f6ea.vmt.res"]
+
+[params]
+

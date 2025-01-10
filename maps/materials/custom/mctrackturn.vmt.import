@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://b71d4kpgxsadv"
+path="res://.godot/imported/mctrackturn.vmt-c14a58d2a7ad95e116f55840483af08c.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/custom/mctrackturn.vmt"
+dest_files=["res://.godot/imported/mctrackturn.vmt-c14a58d2a7ad95e116f55840483af08c.vmt.res"]
+
+[params]
+

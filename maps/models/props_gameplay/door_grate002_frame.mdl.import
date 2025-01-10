@@ -1,0 +1,21 @@
+[remap]
+
+importer="MDL"
+type="PackedScene"
+uid="uid://bbt2i7pbf137j"
+path="res://.godot/imported/door_grate002_frame.mdl-24a8ba56968cb41fc74383c3d3c1caa5.scn"
+
+[deps]
+
+source_file="res://maps/models/props_gameplay/door_grate002_frame.mdl"
+dest_files=["res://.godot/imported/door_grate002_frame.mdl-24a8ba56968cb41fc74383c3d3c1caa5.scn"]
+
+[params]
+
+use_global_scale=true
+scale=0.019
+additional_rotation=Vector3(0, 0, 0)
+materials_root=""
+generate_occluder=true
+primitive_occluder=false
+primitive_occluder_scale=Vector3(1, 1, 1)

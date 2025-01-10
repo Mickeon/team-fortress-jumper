@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://i1enqvmc66p0"
+path="res://.godot/imported/pumpkin.vmt-2f08998077ef5f39275314a16cb49d6b.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/models/props_halloween/pumpkin.vmt"
+dest_files=["res://.godot/imported/pumpkin.vmt-2f08998077ef5f39275314a16cb49d6b.vmt.res"]
+
+[params]
+

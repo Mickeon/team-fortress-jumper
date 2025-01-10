@@ -19,19 +19,6 @@ func _ready() -> void:
 		load("res://maps/test_mat.tres").roughness = 0.5
 		load("res://maps/test_mat.tres").albedo_color = Color.WHITE.darkened(0.5)
 
-func _input(event):
-	if event is InputEventKey and event.pressed and not event.echo:
-		match event.physical_keycode:
-			KEY_QUOTELEFT:
-				get_tree().reload_current_scene()
-			KEY_F2:
-				if (event.is_command_or_control_pressed() 
-				and ResourceLoader.exists("res://maps/Harvest.tscn")):
-					get_tree().change_scene_to_file("res://maps/Harvest.tscn")
-				else:
-					get_tree().change_scene_to_file("res://maps/Level.tscn")
-
-
 
 var _cache := {} # { Mesh: Shape3D }
 func create_shape_sibling(mesh_instance: MeshInstance3D, convex := true):

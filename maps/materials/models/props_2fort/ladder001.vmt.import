@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://dfvb288ctxv1q"
+path="res://.godot/imported/ladder001.vmt-c9c54b24a3957dbda5a6e23ceb93747e.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/models/props_2fort/ladder001.vmt"
+dest_files=["res://.godot/imported/ladder001.vmt-c9c54b24a3957dbda5a6e23ceb93747e.vmt.res"]
+
+[params]
+

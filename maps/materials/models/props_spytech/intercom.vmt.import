@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://dme88dthgcplv"
+path="res://.godot/imported/intercom.vmt-e3f889e0592b8be69cda968e75670697.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/models/props_spytech/intercom.vmt"
+dest_files=["res://.godot/imported/intercom.vmt-e3f889e0592b8be69cda968e75670697.vmt.res"]
+
+[params]
+

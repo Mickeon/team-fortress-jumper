@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://bcxfetwqkh0dy"
+path="res://.godot/imported/rock_worn001.vmt-86f40f21fee5a88e623d4115081fb6de.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/models/props_nature/rock_worn001.vmt"
+dest_files=["res://.godot/imported/rock_worn001.vmt-86f40f21fee5a88e623d4115081fb6de.vmt.res"]
+
+[params]
+

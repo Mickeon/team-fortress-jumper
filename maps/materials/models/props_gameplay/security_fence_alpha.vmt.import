@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://d3gi5hamp5a0d"
+path="res://.godot/imported/security_fence_alpha.vmt-eb25954c19307fd115e4ebf49f7482c6.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/models/props_gameplay/security_fence_alpha.vmt"
+dest_files=["res://.godot/imported/security_fence_alpha.vmt-eb25954c19307fd115e4ebf49f7482c6.vmt.res"]
+
+[params]
+

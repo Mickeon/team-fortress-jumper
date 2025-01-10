@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://dopaax555x58q"
+path="res://.godot/imported/junction_box.vmt-254fd9484c41ab981a21f39f10edaab2.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/models/props_farm/junction_box.vmt"
+dest_files=["res://.godot/imported/junction_box.vmt-254fd9484c41ab981a21f39f10edaab2.vmt.res"]
+
+[params]
+

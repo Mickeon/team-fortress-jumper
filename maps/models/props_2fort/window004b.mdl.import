@@ -1,0 +1,21 @@
+[remap]
+
+importer="MDL"
+type="PackedScene"
+uid="uid://cx7d4s2kfsvd4"
+path="res://.godot/imported/window004b.mdl-7fae357cdfb2f7ff7c4f1b7f525b8913.scn"
+
+[deps]
+
+source_file="res://maps/models/props_2fort/window004b.mdl"
+dest_files=["res://.godot/imported/window004b.mdl-7fae357cdfb2f7ff7c4f1b7f525b8913.scn"]
+
+[params]
+
+use_global_scale=true
+scale=0.019
+additional_rotation=Vector3(0, 0, 0)
+materials_root=""
+generate_occluder=true
+primitive_occluder=false
+primitive_occluder_scale=Vector3(1, 1, 1)

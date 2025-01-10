@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://dts355laefc01"
+path="res://.godot/imported/mclava.vmt-ebb692bf2e727d1ba801bf4bfc70131f.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/custom/mclava.vmt"
+dest_files=["res://.godot/imported/mclava.vmt-ebb692bf2e727d1ba801bf4bfc70131f.vmt.res"]
+
+[params]
+

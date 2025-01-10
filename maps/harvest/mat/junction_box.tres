@@ -1,7 +1,0 @@
-[gd_resource type="StandardMaterial3D" format=3 uid="uid://dxosib6sld5cx"]
-
-[resource]
-resource_name = "junction_box"
-cull_mode = 2
-vertex_color_use_as_albedo = true
-metallic = 1.0

@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://bbgf6dubngoi3"
+path="res://.godot/imported/mcstone.vmt-9232c144f6c6c93f034d5fa729a85cc6.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/custom/mcstone.vmt"
+dest_files=["res://.godot/imported/mcstone.vmt-9232c144f6c6c93f034d5fa729a85cc6.vmt.res"]
+
+[params]
+

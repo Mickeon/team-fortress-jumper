@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://dyd8c802n5oad"
+path="res://.godot/imported/toolsblockbullets.vmt-c81101aab90a109e14256b5e5657ee89.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/tools/toolsblockbullets.vmt"
+dest_files=["res://.godot/imported/toolsblockbullets.vmt-c81101aab90a109e14256b5e5657ee89.vmt.res"]
+
+[params]
+

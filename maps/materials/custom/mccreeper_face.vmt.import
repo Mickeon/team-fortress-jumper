@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://b8jnexgss7aes"
+path="res://.godot/imported/mccreeper_face.vmt-a1ee75cc0678666f4fff401d2df38e39.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/custom/mccreeper_face.vmt"
+dest_files=["res://.godot/imported/mccreeper_face.vmt-a1ee75cc0678666f4fff401d2df38e39.vmt.res"]
+
+[params]
+

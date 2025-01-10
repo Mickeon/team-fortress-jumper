@@ -1,7 +1,0 @@
-[gd_resource type="StandardMaterial3D" format=3 uid="uid://b8w2dnnxh145n"]
-
-[resource]
-resource_name = "roof_metal001"
-albedo_color = Color(0.72549, 0.588235, 0.639216, 1)
-metallic = 0.8
-roughness = 0.55

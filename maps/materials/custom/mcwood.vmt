@@ -1,0 +1,6 @@
+"LightmappedGeneric"
+{
+	"$basetexture" "custom/MCwood"
+	"$surfaceprop" "Wood_Plank"
+	"$translucent" 0
+}

@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://bqsuh6kqqee2s"
+path="res://.godot/imported/mcgravel.vmt-51d037f4fa3cb969faa9876ba539a849.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/custom/mcgravel.vmt"
+dest_files=["res://.godot/imported/mcgravel.vmt-51d037f4fa3cb969faa9876ba539a849.vmt.res"]
+
+[params]
+

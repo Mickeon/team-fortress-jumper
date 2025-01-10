@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://d020co37dxsje"
+path="res://.godot/imported/toolsnpcclip.vmt-babca3f82ba8643855c7787609d9c6d6.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/tools/toolsnpcclip.vmt"
+dest_files=["res://.godot/imported/toolsnpcclip.vmt-babca3f82ba8643855c7787609d9c6d6.vmt.res"]
+
+[params]
+

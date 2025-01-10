@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://cuw1q4w551jp2"
+path="res://.godot/imported/toolsareaportal.vmt-de120a54213fcd36d65550ed12c6a7bd.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/tools/toolsareaportal.vmt"
+dest_files=["res://.godot/imported/toolsareaportal.vmt-de120a54213fcd36d65550ed12c6a7bd.vmt.res"]
+
+[params]
+

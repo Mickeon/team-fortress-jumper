@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://cg830irruysu3"
+path="res://.godot/imported/toolsblock_los.vmt-bfe7db40eb19b2536f283f7b7d77f4ae.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/tools/toolsblock_los.vmt"
+dest_files=["res://.godot/imported/toolsblock_los.vmt-bfe7db40eb19b2536f283f7b7d77f4ae.vmt.res"]
+
+[params]
+

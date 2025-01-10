@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://b6m28xq5qym12"
+path="res://.godot/imported/wood_beam03.vmt-d3c0a17994af25b9aafc16ebcb155359.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/wood/wood_beam03.vmt"
+dest_files=["res://.godot/imported/wood_beam03.vmt-d3c0a17994af25b9aafc16ebcb155359.vmt.res"]
+
+[params]
+

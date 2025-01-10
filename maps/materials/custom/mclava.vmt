@@ -1,0 +1,36 @@
+"UnlitGeneric"
+{
+
+	
+	"%tooltexture" "custom/MClava"
+	"%compilewater" "1"
+	"%compileKeepLight" 1
+
+
+	"$basetexture" "custom/MClava"
+	"$surfaceprop" "mudslipperyslime"
+
+	"$bottommaterial" "custom/MClava"
+
+	"$abovewater" "1"
+
+	"$fogenable" 1
+	"$fogcolor" "{245 80 26}"
+	"$fogstart" "-500"
+	"$fogend" "200"
+
+	"Proxies"
+{
+"AnimatedTexture"
+{
+"animatedtexturevar" "$basetexture"
+"animatedtextureframenumvar" "$frame"
+"animatedtextureframerate" 5.00
+}
+
+"WaterLOD"
+		{
+		}
+}
+}
+

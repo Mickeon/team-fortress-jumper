@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://t5g5h48715tw"
+path="res://.godot/imported/wood_floor001.vmt-94b5200ffcd3a9f8597f56cb68db1806.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/wood/wood_floor001.vmt"
+dest_files=["res://.godot/imported/wood_floor001.vmt-94b5200ffcd3a9f8597f56cb68db1806.vmt.res"]
+
+[params]
+

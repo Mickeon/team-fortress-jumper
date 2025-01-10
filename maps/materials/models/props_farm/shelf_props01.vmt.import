@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://csklu2eepabk8"
+path="res://.godot/imported/shelf_props01.vmt-a8dec48942a50b1144c2351547d20b03.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/models/props_farm/shelf_props01.vmt"
+dest_files=["res://.godot/imported/shelf_props01.vmt-a8dec48942a50b1144c2351547d20b03.vmt.res"]
+
+[params]
+

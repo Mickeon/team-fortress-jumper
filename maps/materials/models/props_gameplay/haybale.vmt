@@ -1,0 +1,5 @@
+"VertexLitGeneric"
+{
+	"$basetexture" "Models/props_gameplay/haybale"
+	//"$bumpmap" "Models/props_gameplay/haybale_normal"
+}

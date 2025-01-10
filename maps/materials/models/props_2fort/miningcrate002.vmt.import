@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://b2bnk247rt7vk"
+path="res://.godot/imported/miningcrate002.vmt-317f8cdf3d47af418942b30b47cfbd1e.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/models/props_2fort/miningcrate002.vmt"
+dest_files=["res://.godot/imported/miningcrate002.vmt-317f8cdf3d47af418942b30b47cfbd1e.vmt.res"]
+
+[params]
+

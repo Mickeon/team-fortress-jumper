@@ -1,6 +1,0 @@
-[gd_resource type="StandardMaterial3D" format=3 uid="uid://br8ounktysaf6"]
-
-[resource]
-resource_name = "window003"
-albedo_color = Color(0.835294, 0.890196, 0.909804, 1)
-metallic = 1.0

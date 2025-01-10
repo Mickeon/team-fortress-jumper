@@ -1,9 +1,0 @@
-[gd_resource type="StandardMaterial3D" format=3 uid="uid://ckev07d1om03e"]
-
-[resource]
-resource_name = "pickup03"
-vertex_color_use_as_albedo = true
-albedo_color = Color(0.996078, 0.305882, 0.32549, 1)
-metallic = 0.44
-metallic_specular = 0.85
-roughness = 0.36

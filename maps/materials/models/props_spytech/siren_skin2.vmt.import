@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://ypt86t4bqi3o"
+path="res://.godot/imported/siren_skin2.vmt-33b74e807582375608008e34d7031696.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/models/props_spytech/siren_skin2.vmt"
+dest_files=["res://.godot/imported/siren_skin2.vmt-33b74e807582375608008e34d7031696.vmt.res"]
+
+[params]
+

@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://dw15y8uicf2iy"
+path="res://.godot/imported/wooden_barrel.vmt-0d5e41208667002aea06fea2120e2f94.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/models/props_farm/wooden_barrel.vmt"
+dest_files=["res://.godot/imported/wooden_barrel.vmt-0d5e41208667002aea06fea2120e2f94.vmt.res"]
+
+[params]
+

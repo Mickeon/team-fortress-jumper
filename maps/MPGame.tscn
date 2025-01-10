@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://ddl2hvuyg0djc"]
 
 [ext_resource type="Script" path="res://maps/mp_game.gd" id="1_f7p4g"]
-[ext_resource type="PackedScene" uid="uid://dsyym2bcxma0k" path="res://maps/Level.tscn" id="2_jfik2"]
+[ext_resource type="PackedScene" uid="uid://dsyym2bcxma0k" path="res://maps/Level.tscn" id="2_65r4o"]
 [ext_resource type="PackedScene" uid="uid://bf71q8x45pv03" path="res://player/PlayerDebugger.tscn" id="3_4tyrb"]
 [ext_resource type="PackedScene" uid="uid://dvq62dln05o5l" path="res://ui/chat/Chat.tscn" id="4_0p1jr"]
 
@@ -19,8 +19,7 @@ fill_from = Vector2(0.5, 0.5)
 
 [node name="MPGame" type="Node"]
 script = ExtResource("1_f7p4g")
-
-[node name="Level" parent="." instance=ExtResource("2_jfik2")]
+map_scene = ExtResource("2_65r4o")
 
 [node name="PlayerDebugger" parent="." instance=ExtResource("3_4tyrb")]
 view_mode = 0

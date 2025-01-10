@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://50k3mwqcqwku"
+path="res://.godot/imported/shelf_props01_skin2.vmt-55e5eed970e1fd6d1ed426af055d7a45.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/models/props_farm/shelf_props01_skin2.vmt"
+dest_files=["res://.godot/imported/shelf_props01_skin2.vmt-55e5eed970e1fd6d1ed426af055d7a45.vmt.res"]
+
+[params]
+

@@ -1,0 +1,21 @@
+[remap]
+
+importer="MDL"
+type="PackedScene"
+uid="uid://bv2460kncco6h"
+path="res://.godot/imported/ceiling_pipe_128.mdl-1ba032b1aa9f51d71df26cd6546a1beb.scn"
+
+[deps]
+
+source_file="res://maps/models/props_mining/ceiling_pipe_128.mdl"
+dest_files=["res://.godot/imported/ceiling_pipe_128.mdl-1ba032b1aa9f51d71df26cd6546a1beb.scn"]
+
+[params]
+
+use_global_scale=true
+scale=0.019
+additional_rotation=Vector3(0, 0, 0)
+materials_root=""
+generate_occluder=true
+primitive_occluder=false
+primitive_occluder_scale=Vector3(1, 1, 1)

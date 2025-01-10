@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://d1oiyf8v70xwx"
+path="res://.godot/imported/leaf_pile_01.vmt-0689b408f840b9b40621009ba1f010d0.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/harvest/leaf_pile_01.vmt"
+dest_files=["res://.godot/imported/leaf_pile_01.vmt-0689b408f840b9b40621009ba1f010d0.vmt.res"]
+
+[params]
+

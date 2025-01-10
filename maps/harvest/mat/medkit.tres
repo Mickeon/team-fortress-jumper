@@ -1,7 +1,0 @@
-[gd_resource type="StandardMaterial3D" format=3 uid="uid://duqilt1fl3k3l"]
-
-[resource]
-resource_name = "medkit"
-cull_mode = 2
-vertex_color_use_as_albedo = true
-metallic = 1.0

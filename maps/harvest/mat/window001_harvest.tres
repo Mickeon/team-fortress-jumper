@@ -1,6 +1,0 @@
-[gd_resource type="StandardMaterial3D" format=3 uid="uid://bbo0y81e23c6y"]
-
-[resource]
-resource_name = "window001_harvest"
-albedo_color = Color(0.639216, 0.501961, 0.482353, 1)
-metallic = 0.4

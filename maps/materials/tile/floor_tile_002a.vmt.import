@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://d4fkdvltx0pmo"
+path="res://.godot/imported/floor_tile_002a.vmt-40aa3a8134daf90cd8de045546441d54.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/tile/floor_tile_002a.vmt"
+dest_files=["res://.godot/imported/floor_tile_002a.vmt-40aa3a8134daf90cd8de045546441d54.vmt.res"]
+
+[params]
+

@@ -273,9 +273,23 @@ func _init(path, duration):
 	
 
 static func get_texture(texture: String):
-	var texture_path = VMFUtils.normalize_path(VMFConfig.materials.target_folder + "/" + texture + ".vtf");
+	#var texture_path = VMFUtils.normalize_path(VMFConfig.materials.target_folder + "/" + texture + ".vtf");
+	#if not ResourceLoader.exists(texture_path):
+		#VMFLogger.warn("Texture not found: " + texture);
+		#return null;
+#
+	#return ResourceLoader.load(texture_path);
+	
+	# Micky: Some VMTs contain the texture's path in uppercase, but case doesn't matter.
+	# Micky: Support PNG import as well.
+	var texture_path_no_extension = VMFUtils.normalize_path(VMFConfig.materials.target_folder + "/" + texture).to_lower()
+	var texture_path = texture_path_no_extension + ".png"
+	
 	if not ResourceLoader.exists(texture_path):
-		VMFLogger.warn("Texture not found: " + texture);
+		texture_path = texture_path_no_extension + ".vtf"
+	
+	if not ResourceLoader.exists(texture_path):
+		VMFLogger.warn("Texture not found: " + texture)
 		return null;
 
-	return ResourceLoader.load(texture_path);
+	return ResourceLoader.load(texture_path)

@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://dp4y8fmtnluqf"
+path="res://.godot/imported/grass_02.vmt-d76fb49f4ee3f6d8f75b894321697ae6.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/models/props_foliage/grass_02.vmt"
+dest_files=["res://.godot/imported/grass_02.vmt-d76fb49f4ee3f6d8f75b894321697ae6.vmt.res"]
+
+[params]
+

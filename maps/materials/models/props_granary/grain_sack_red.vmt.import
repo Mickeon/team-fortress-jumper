@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://b4dkslgiivwmi"
+path="res://.godot/imported/grain_sack_red.vmt-07e102bc51b4637a907725e4d1ae6f09.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/models/props_granary/grain_sack_red.vmt"
+dest_files=["res://.godot/imported/grain_sack_red.vmt-07e102bc51b4637a907725e4d1ae6f09.vmt.res"]
+
+[params]
+

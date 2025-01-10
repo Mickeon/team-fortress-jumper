@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://c3ojb33d5tvev"
+path="res://.godot/imported/mcshroom_red.vmt-836cdf8169ac8e0e56a5c351a57f3471.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/custom/mcshroom_red.vmt"
+dest_files=["res://.godot/imported/mcshroom_red.vmt-836cdf8169ac8e0e56a5c351a57f3471.vmt.res"]
+
+[params]
+

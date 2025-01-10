@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://c47wfdunmy826"
+path="res://.godot/imported/sign_barricade001a.vmt-9e3f6bdb1d1d2b574529d3826881071e.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/models/props_gameplay/sign_barricade001a.vmt"
+dest_files=["res://.godot/imported/sign_barricade001a.vmt-9e3f6bdb1d1d2b574529d3826881071e.vmt.res"]
+
+[params]
+

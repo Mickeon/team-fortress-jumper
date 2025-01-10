@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://cidgnr6cohn4i"
+path="res://.godot/imported/mcblu.vmt-6af6a63e296362abce80870342df81fc.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/custom/mcblu.vmt"
+dest_files=["res://.godot/imported/mcblu.vmt-6af6a63e296362abce80870342df81fc.vmt.res"]
+
+[params]
+

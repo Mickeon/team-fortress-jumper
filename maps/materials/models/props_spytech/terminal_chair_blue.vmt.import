@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://2mho16w0yfr3"
+path="res://.godot/imported/terminal_chair_blue.vmt-255219adc3f9197f19f93b066cc8a141.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/models/props_spytech/terminal_chair_blue.vmt"
+dest_files=["res://.godot/imported/terminal_chair_blue.vmt-255219adc3f9197f19f93b066cc8a141.vmt.res"]
+
+[params]
+

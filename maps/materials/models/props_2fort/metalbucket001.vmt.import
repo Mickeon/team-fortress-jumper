@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://cl5sarilserme"
+path="res://.godot/imported/metalbucket001.vmt-f78f387e4f831c530bdcb2aaf89fefa3.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/models/props_2fort/metalbucket001.vmt"
+dest_files=["res://.godot/imported/metalbucket001.vmt-f78f387e4f831c530bdcb2aaf89fefa3.vmt.res"]
+
+[params]
+

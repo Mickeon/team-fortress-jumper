@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://5n43d5fdoqsb"
+path="res://.godot/imported/mcred.vmt-f193eff39c3edaaf139cb81873132907.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/custom/mcred.vmt"
+dest_files=["res://.godot/imported/mcred.vmt-f193eff39c3edaaf139cb81873132907.vmt.res"]
+
+[params]
+

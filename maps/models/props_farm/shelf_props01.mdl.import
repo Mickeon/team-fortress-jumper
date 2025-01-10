@@ -1,0 +1,21 @@
+[remap]
+
+importer="MDL"
+type="PackedScene"
+uid="uid://c7tbrhwmwvm6y"
+path="res://.godot/imported/shelf_props01.mdl-cce904dc767cacc74c3e6b53a7c0aad5.scn"
+
+[deps]
+
+source_file="res://maps/models/props_farm/shelf_props01.mdl"
+dest_files=["res://.godot/imported/shelf_props01.mdl-cce904dc767cacc74c3e6b53a7c0aad5.scn"]
+
+[params]
+
+use_global_scale=true
+scale=0.019
+additional_rotation=Vector3(0, 0, 0)
+materials_root=""
+generate_occluder=true
+primitive_occluder=false
+primitive_occluder_scale=Vector3(1, 1, 1)

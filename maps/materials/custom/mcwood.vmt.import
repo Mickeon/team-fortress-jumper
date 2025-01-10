@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://msiydhv2mp1k"
+path="res://.godot/imported/mcwood.vmt-99ec93d496557f72fb3130d1d0631f5b.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/custom/mcwood.vmt"
+dest_files=["res://.godot/imported/mcwood.vmt-99ec93d496557f72fb3130d1d0631f5b.vmt.res"]
+
+[params]
+

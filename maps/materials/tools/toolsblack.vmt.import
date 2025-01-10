@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://b1qlgyptjxgvp"
+path="res://.godot/imported/toolsblack.vmt-176868a1becdfc3d95651989b9ea4ad3.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/tools/toolsblack.vmt"
+dest_files=["res://.godot/imported/toolsblack.vmt-176868a1becdfc3d95651989b9ea4ad3.vmt.res"]
+
+[params]
+

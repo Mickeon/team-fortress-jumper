@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://bti5qvpauv5mv"
+path="res://.godot/imported/water_barrel.vmt-4d2f680e4692fea4428a7c2d4779a5ed.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/models/props_hydro/water_barrel.vmt"
+dest_files=["res://.godot/imported/water_barrel.vmt-4d2f680e4692fea4428a7c2d4779a5ed.vmt.res"]
+
+[params]
+

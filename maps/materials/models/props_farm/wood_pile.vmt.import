@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://1gb8ewdjagnf"
+path="res://.godot/imported/wood_pile.vmt-f84ec8220ffcd3144c135c242a5f8150.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/models/props_farm/wood_pile.vmt"
+dest_files=["res://.godot/imported/wood_pile.vmt-f84ec8220ffcd3144c135c242a5f8150.vmt.res"]
+
+[params]
+

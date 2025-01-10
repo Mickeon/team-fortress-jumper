@@ -1,0 +1,21 @@
+[remap]
+
+importer="MDL"
+type="PackedScene"
+uid="uid://cb0n3opo00giu"
+path="res://.godot/imported/flood_light_left001.mdl-65cb0fd6562dc21d0e9dd5f4f93e5058.scn"
+
+[deps]
+
+source_file="res://maps/models/props_lights/flood_light_left001.mdl"
+dest_files=["res://.godot/imported/flood_light_left001.mdl-65cb0fd6562dc21d0e9dd5f4f93e5058.scn"]
+
+[params]
+
+use_global_scale=true
+scale=0.019
+additional_rotation=Vector3(0, 0, 0)
+materials_root=""
+generate_occluder=true
+primitive_occluder=false
+primitive_occluder_scale=Vector3(1, 1, 1)

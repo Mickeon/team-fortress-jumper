@@ -1,0 +1,21 @@
+[remap]
+
+importer="MDL"
+type="PackedScene"
+uid="uid://3ijg756ykcu2"
+path="res://.godot/imported/groundlight001.mdl-4a620876804cd763cbb58e8b0deccf26.scn"
+
+[deps]
+
+source_file="res://maps/models/props_2fort/groundlight001.mdl"
+dest_files=["res://.godot/imported/groundlight001.mdl-4a620876804cd763cbb58e8b0deccf26.scn"]
+
+[params]
+
+use_global_scale=true
+scale=0.019
+additional_rotation=Vector3(0, 0, 0)
+materials_root=""
+generate_occluder=true
+primitive_occluder=false
+primitive_occluder_scale=Vector3(1, 1, 1)

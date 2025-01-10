@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://dcpqayqtmftc7"
+path="res://.godot/imported/sign001.vmt-17246f1a6315258fe5d57d3d77ba2cf3.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/models/props_mining/sign001.vmt"
+dest_files=["res://.godot/imported/sign001.vmt-17246f1a6315258fe5d57d3d77ba2cf3.vmt.res"]
+
+[params]
+

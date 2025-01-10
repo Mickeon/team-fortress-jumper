@@ -1,0 +1,21 @@
+[remap]
+
+importer="MDL"
+type="PackedScene"
+uid="uid://ccy11v8s0mldx"
+path="res://.godot/imported/tire002.mdl-f4420e1b283f91b29a15792ba882f8fc.scn"
+
+[deps]
+
+source_file="res://maps/models/props_2fort/tire002.mdl"
+dest_files=["res://.godot/imported/tire002.mdl-f4420e1b283f91b29a15792ba882f8fc.scn"]
+
+[params]
+
+use_global_scale=true
+scale=0.019
+additional_rotation=Vector3(0, 0, 0)
+materials_root=""
+generate_occluder=true
+primitive_occluder=false
+primitive_occluder_scale=Vector3(1, 1, 1)

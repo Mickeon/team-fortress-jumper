@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://dp5cx8kyc3b6j"
+path="res://.godot/imported/hazard_yellow001.vmt-bce0d649ffc800f5997717e0308d4242.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/signs/hazard_yellow001.vmt"
+dest_files=["res://.godot/imported/hazard_yellow001.vmt-bce0d649ffc800f5997717e0308d4242.vmt.res"]
+
+[params]
+

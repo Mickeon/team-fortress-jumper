@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://bcyfkfqqbc42i"
+path="res://.godot/imported/metaltrim01.vmt-bc0208e64373d8a0cbe6f5090d05fab1.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/metal/metaltrim01.vmt"
+dest_files=["res://.godot/imported/metaltrim01.vmt-bc0208e64373d8a0cbe6f5090d05fab1.vmt.res"]
+
+[params]
+

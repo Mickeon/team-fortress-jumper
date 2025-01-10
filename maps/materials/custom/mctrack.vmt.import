@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://daudoavxm56ss"
+path="res://.godot/imported/mctrack.vmt-548af244b37ebb52815676d74b5aa180.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/custom/mctrack.vmt"
+dest_files=["res://.godot/imported/mctrack.vmt-548af244b37ebb52815676d74b5aa180.vmt.res"]
+
+[params]
+

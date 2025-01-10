@@ -1,0 +1,6 @@
+"UnlitGeneric"
+{
+	"$basetexture" "custom/MCtorch_red"
+	"$alphatest" 1
+	"$nocull" 1
+}

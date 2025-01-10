@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://dc83mdu6dnhuv"
+path="res://.godot/imported/mcflower_red.vmt-be867bf5534bace930dee67af4f1eac2.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/custom/mcflower_red.vmt"
+dest_files=["res://.godot/imported/mcflower_red.vmt-be867bf5534bace930dee67af4f1eac2.vmt.res"]
+
+[params]
+

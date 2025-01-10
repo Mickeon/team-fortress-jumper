@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://cr5cnfcytdhvo"
+path="res://.godot/imported/mcmossy.vmt-ec47bd66efc1643c140f00c3f3cd8acb.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/custom/mcmossy.vmt"
+dest_files=["res://.godot/imported/mcmossy.vmt-ec47bd66efc1643c140f00c3f3cd8acb.vmt.res"]
+
+[params]
+

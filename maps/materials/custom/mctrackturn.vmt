@@ -1,0 +1,7 @@
+"LightmappedGeneric"
+{
+	"$basetexture" "custom/MCtrackturn"
+	"$surfaceprop" "Metal"
+	"$translucent" 1
+	"$nocull" 1
+}

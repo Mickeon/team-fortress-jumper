@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://s663db8peum8"
+path="res://.godot/imported/imetal003.vmt-951e04f2b7e492792e429ce171898b94.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/metal/imetal003.vmt"
+dest_files=["res://.godot/imported/imetal003.vmt-951e04f2b7e492792e429ce171898b94.vmt.res"]
+
+[params]
+

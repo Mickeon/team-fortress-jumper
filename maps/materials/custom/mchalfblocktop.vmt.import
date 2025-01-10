@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://dqjuyek0rkoh6"
+path="res://.godot/imported/mchalfblocktop.vmt-099c31608a196946c4b992fcd34e8d40.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/custom/mchalfblocktop.vmt"
+dest_files=["res://.godot/imported/mchalfblocktop.vmt-099c31608a196946c4b992fcd34e8d40.vmt.res"]
+
+[params]
+

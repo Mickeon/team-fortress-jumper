@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://b7oquneechwjp"
+path="res://.godot/imported/groundlight001_sheet.vmt-1b0818c1da6121d900070ceb7ed7099a.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/models/props_2fort/groundlight001_sheet.vmt"
+dest_files=["res://.godot/imported/groundlight001_sheet.vmt-1b0818c1da6121d900070ceb7ed7099a.vmt.res"]
+
+[params]
+

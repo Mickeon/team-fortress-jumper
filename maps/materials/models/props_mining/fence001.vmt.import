@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://b4nrfknogg0ry"
+path="res://.godot/imported/fence001.vmt-5ca499bcee8032f32485a30208950d24.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/models/props_mining/fence001.vmt"
+dest_files=["res://.godot/imported/fence001.vmt-5ca499bcee8032f32485a30208950d24.vmt.res"]
+
+[params]
+

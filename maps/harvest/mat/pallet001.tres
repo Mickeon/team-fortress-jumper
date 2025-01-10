@@ -1,9 +1,0 @@
-[gd_resource type="StandardMaterial3D" format=3 uid="uid://civ17yln5fklt"]
-
-[resource]
-resource_name = "pallet001"
-cull_mode = 2
-vertex_color_use_as_albedo = true
-albedo_color = Color(0.945098, 0.411765, 0.541176, 1)
-metallic = 0.1
-metallic_specular = 0.2

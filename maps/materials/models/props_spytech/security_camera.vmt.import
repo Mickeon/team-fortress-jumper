@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://dtrjlsy46ds2t"
+path="res://.godot/imported/security_camera.vmt-5c8923aaba41d94a5c7bc4f414bf1971.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/models/props_spytech/security_camera.vmt"
+dest_files=["res://.godot/imported/security_camera.vmt-5c8923aaba41d94a5c7bc4f414bf1971.vmt.res"]
+
+[params]
+

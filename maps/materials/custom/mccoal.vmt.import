@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://nrdj4ko27tph"
+path="res://.godot/imported/mccoal.vmt-0ebac1f3daf928e8f090b48ca9a5b182.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/custom/mccoal.vmt"
+dest_files=["res://.godot/imported/mccoal.vmt-0ebac1f3daf928e8f090b48ca9a5b182.vmt.res"]
+
+[params]
+

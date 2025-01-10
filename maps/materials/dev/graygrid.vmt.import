@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://ff22s4w7psie"
+path="res://.godot/imported/graygrid.vmt-2dc27d12b9498a112b5362b3bc73ae0c.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/dev/graygrid.vmt"
+dest_files=["res://.godot/imported/graygrid.vmt-2dc27d12b9498a112b5362b3bc73ae0c.vmt.res"]
+
+[params]
+

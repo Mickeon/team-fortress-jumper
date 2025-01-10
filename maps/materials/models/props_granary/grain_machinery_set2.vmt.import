@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://c6a8pyb6ovjpy"
+path="res://.godot/imported/grain_machinery_set2.vmt-df5d298fa522d349a654d367661a7d15.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/models/props_granary/grain_machinery_set2.vmt"
+dest_files=["res://.godot/imported/grain_machinery_set2.vmt-df5d298fa522d349a654d367661a7d15.vmt.res"]
+
+[params]
+

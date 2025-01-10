@@ -1,9 +1,0 @@
-[gd_resource type="StandardMaterial3D" format=3 uid="uid://dy2c1ho6eio6d"]
-
-[resource]
-resource_name = "metalbucket001"
-cull_mode = 2
-albedo_color = Color(0.752941, 0.796078, 0.819608, 1)
-metallic = 0.89
-metallic_specular = 0.73
-roughness = 0.61

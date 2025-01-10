@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://kr7xe0x0wiv2"
+path="res://.godot/imported/haybale.vmt-3ece13c0f265a9f6813e2cfb9fda0211.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/models/props_gameplay/haybale.vmt"
+dest_files=["res://.godot/imported/haybale.vmt-3ece13c0f265a9f6813e2cfb9fda0211.vmt.res"]
+
+[params]
+

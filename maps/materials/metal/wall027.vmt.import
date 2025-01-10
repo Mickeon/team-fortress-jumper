@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://fvjbgdtqrcyu"
+path="res://.godot/imported/wall027.vmt-dafff6d3af6b5004062ffc0db904cfd0.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/metal/wall027.vmt"
+dest_files=["res://.godot/imported/wall027.vmt-dafff6d3af6b5004062ffc0db904cfd0.vmt.res"]
+
+[params]
+

@@ -1,0 +1,21 @@
+[remap]
+
+importer="MDL"
+type="PackedScene"
+uid="uid://dx88owe1tngj1"
+path="res://.godot/imported/roof_metal002.mdl-6ce89776ad35d3946f78b0785a0a824e.scn"
+
+[deps]
+
+source_file="res://maps/models/props_2fort/roof_metal002.mdl"
+dest_files=["res://.godot/imported/roof_metal002.mdl-6ce89776ad35d3946f78b0785a0a824e.scn"]
+
+[params]
+
+use_global_scale=true
+scale=0.019
+additional_rotation=Vector3(0, 0, 0)
+materials_root=""
+generate_occluder=true
+primitive_occluder=false
+primitive_occluder_scale=Vector3(1, 1, 1)

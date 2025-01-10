@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://cgea616nettcq"
+path="res://.godot/imported/walllight001a_grey_off.vmt-3e4fda222738db7ffb726068f9100e47.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/models/props_lights/walllight001a_grey_off.vmt"
+dest_files=["res://.godot/imported/walllight001a_grey_off.vmt-3e4fda222738db7ffb726068f9100e47.vmt.res"]
+
+[params]
+

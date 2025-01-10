@@ -1,7 +1,0 @@
-[gd_resource type="StandardMaterial3D" format=3 uid="uid://bb1vh2arne4nv"]
-
-[resource]
-resource_name = "sign_gameplay01_skin1"
-cull_mode = 2
-vertex_color_use_as_albedo = true
-metallic = 1.0

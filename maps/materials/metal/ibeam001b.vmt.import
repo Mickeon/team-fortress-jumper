@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://bt88g427gckdc"
+path="res://.godot/imported/ibeam001b.vmt-94fd1aab86f40bdc31bfa153841f9750.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/metal/ibeam001b.vmt"
+dest_files=["res://.godot/imported/ibeam001b.vmt-94fd1aab86f40bdc31bfa153841f9750.vmt.res"]
+
+[params]
+

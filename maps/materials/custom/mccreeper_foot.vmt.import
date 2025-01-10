@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://cqm2nichnvmrj"
+path="res://.godot/imported/mccreeper_foot.vmt-ebc493c57af0b81f4d39442ca330313e.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/custom/mccreeper_foot.vmt"
+dest_files=["res://.godot/imported/mccreeper_foot.vmt-ebc493c57af0b81f4d39442ca330313e.vmt.res"]
+
+[params]
+

@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://crywh3m2ae6oi"
+path="res://.godot/imported/mctreetrunk.vmt-c89e4d9384193ac4a22c3cf0ce354e88.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/custom/mctreetrunk.vmt"
+dest_files=["res://.godot/imported/mctreetrunk.vmt-c89e4d9384193ac4a22c3cf0ce354e88.vmt.res"]
+
+[params]
+

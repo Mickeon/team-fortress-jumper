@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://cmpt4niollmx7"
+path="res://.godot/imported/mccreeper_toes.vmt-2896f9ed63e6ca7c9f0f385c21d9703d.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/custom/mccreeper_toes.vmt"
+dest_files=["res://.godot/imported/mccreeper_toes.vmt-2896f9ed63e6ca7c9f0f385c21d9703d.vmt.res"]
+
+[params]
+

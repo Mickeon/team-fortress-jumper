@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://ccv1ee0whx5nl"
+path="res://.godot/imported/sign095.vmt-fb44099d35a7a99d3bab44a312846444.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/signs/sign095.vmt"
+dest_files=["res://.godot/imported/sign095.vmt-fb44099d35a7a99d3bab44a312846444.vmt.res"]
+
+[params]
+

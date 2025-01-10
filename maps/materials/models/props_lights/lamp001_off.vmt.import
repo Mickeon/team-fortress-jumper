@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://omscdjvjwctn"
+path="res://.godot/imported/lamp001_off.vmt-b93c447b7c6e525dcbc191e247b00faa.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/models/props_lights/lamp001_off.vmt"
+dest_files=["res://.godot/imported/lamp001_off.vmt-b93c447b7c6e525dcbc191e247b00faa.vmt.res"]
+
+[params]
+

@@ -1,0 +1,21 @@
+[remap]
+
+importer="MDL"
+type="PackedScene"
+uid="uid://mn0pnws5yfrp"
+path="res://.godot/imported/concrete_block001.mdl-97c64af298554df72bacf6b4f8d71e4c.scn"
+
+[deps]
+
+source_file="res://maps/models/props_farm/concrete_block001.mdl"
+dest_files=["res://.godot/imported/concrete_block001.mdl-97c64af298554df72bacf6b4f8d71e4c.scn"]
+
+[params]
+
+use_global_scale=true
+scale=0.019
+additional_rotation=Vector3(0, 0, 0)
+materials_root=""
+generate_occluder=true
+primitive_occluder=false
+primitive_occluder_scale=Vector3(1, 1, 1)

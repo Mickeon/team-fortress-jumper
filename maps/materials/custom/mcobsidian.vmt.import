@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://dcxtek03jbj3l"
+path="res://.godot/imported/mcobsidian.vmt-1415fcbdb60845c10d7e6b5b7886a0f5.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/custom/mcobsidian.vmt"
+dest_files=["res://.godot/imported/mcobsidian.vmt-1415fcbdb60845c10d7e6b5b7886a0f5.vmt.res"]
+
+[params]
+

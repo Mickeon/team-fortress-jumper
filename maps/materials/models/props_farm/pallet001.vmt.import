@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://ut5d8b6kngdm"
+path="res://.godot/imported/pallet001.vmt-6e45aa986e2789520cd1ef72a59d5ff4.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/models/props_farm/pallet001.vmt"
+dest_files=["res://.godot/imported/pallet001.vmt-6e45aa986e2789520cd1ef72a59d5ff4.vmt.res"]
+
+[params]
+

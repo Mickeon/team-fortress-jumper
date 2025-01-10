@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://dr8g3mloku0ew"
+path="res://.godot/imported/mcchest_front.vmt-b20b7dd42a2808874f608636b55bc636.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/custom/mcchest_front.vmt"
+dest_files=["res://.godot/imported/mcchest_front.vmt-b20b7dd42a2808874f608636b55bc636.vmt.res"]
+
+[params]
+

@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://cwpljnduy6wcn"
+path="res://.godot/imported/propane_tank_tall01.vmt-0820b4f851d062f293fe88c2f7376fe6.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/models/props_2fort/propane_tank_tall01.vmt"
+dest_files=["res://.godot/imported/propane_tank_tall01.vmt-0820b4f851d062f293fe88c2f7376fe6.vmt.res"]
+
+[params]
+

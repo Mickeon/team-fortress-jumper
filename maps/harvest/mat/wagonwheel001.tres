@@ -1,9 +1,0 @@
-[gd_resource type="StandardMaterial3D" format=3 uid="uid://d3rb2ml1nngip"]
-
-[resource]
-resource_name = "wagonwheel001"
-cull_mode = 2
-vertex_color_use_as_albedo = true
-albedo_color = Color(0.85098, 0.541176, 0.109804, 1)
-metallic = 0.4
-metallic_specular = 0.2

@@ -1,0 +1,21 @@
+[remap]
+
+importer="MDL"
+type="PackedScene"
+uid="uid://baxru7l000qjy"
+path="res://.godot/imported/security_fence_section01.mdl-5d6925bda42425af6f2a4608f7142686.scn"
+
+[deps]
+
+source_file="res://maps/models/props_gameplay/security_fence_section01.mdl"
+dest_files=["res://.godot/imported/security_fence_section01.mdl-5d6925bda42425af6f2a4608f7142686.scn"]
+
+[params]
+
+use_global_scale=true
+scale=0.019
+additional_rotation=Vector3(0, 0, 0)
+materials_root=""
+generate_occluder=true
+primitive_occluder=false
+primitive_occluder_scale=Vector3(1, 1, 1)

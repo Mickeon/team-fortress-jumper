@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://kw8no0sdm248"
+path="res://.godot/imported/roof_metal001.vmt-48d88c2a6bf5179140fe60e0d3f5fb7e.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/models/props_2fort/roof_metal001.vmt"
+dest_files=["res://.godot/imported/roof_metal001.vmt-48d88c2a6bf5179140fe60e0d3f5fb7e.vmt.res"]
+
+[params]
+

@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://eq3c0rwq31dm"
+path="res://.godot/imported/itemsheet.vmt-cdfb381b346ecfd4fbda4e8b117c2bb0.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/models/items/minecraft/itemsheet.vmt"
+dest_files=["res://.godot/imported/itemsheet.vmt-cdfb381b346ecfd4fbda4e8b117c2bb0.vmt.res"]
+
+[params]
+

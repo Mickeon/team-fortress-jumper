@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://y8htgoclvsx3"
+path="res://.godot/imported/distillery_barrel001.vmt-3e6ad91f986d7b136a149470c44848d9.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/models/props_trainyard/distillery_barrel001.vmt"
+dest_files=["res://.godot/imported/distillery_barrel001.vmt-3e6ad91f986d7b136a149470c44848d9.vmt.res"]
+
+[params]
+

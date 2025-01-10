@@ -1,0 +1,21 @@
+[remap]
+
+importer="MDL"
+type="PackedScene"
+uid="uid://cp47g6xuq6y1e"
+path="res://.godot/imported/gate_sign001.mdl-465b10a839cfc95a2515956759bd127c.scn"
+
+[deps]
+
+source_file="res://maps/models/props_farm/gate_sign001.mdl"
+dest_files=["res://.godot/imported/gate_sign001.mdl-465b10a839cfc95a2515956759bd127c.scn"]
+
+[params]
+
+use_global_scale=true
+scale=0.019
+additional_rotation=Vector3(0, 0, 0)
+materials_root=""
+generate_occluder=true
+primitive_occluder=false
+primitive_occluder_scale=Vector3(1, 1, 1)

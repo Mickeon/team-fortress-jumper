@@ -1,0 +1,14 @@
+[remap]
+
+importer="VTF"
+type="Texture"
+uid="uid://vwipktddju77"
+path="res://.godot/imported/wood_floor001.vtf-bbcae27a9b6a29cb344954793c11c7f8.vtf.res"
+
+[deps]
+
+source_file="res://maps/materials/wood/wood_floor001.vtf"
+dest_files=["res://.godot/imported/wood_floor001.vtf-bbcae27a9b6a29cb344954793c11c7f8.vtf.res"]
+
+[params]
+

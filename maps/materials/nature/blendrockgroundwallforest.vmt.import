@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://ddvyqene2vovu"
+path="res://.godot/imported/blendrockgroundwallforest.vmt-d9c464249cf4132213f4f0c511764fb0.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/nature/blendrockgroundwallforest.vmt"
+dest_files=["res://.godot/imported/blendrockgroundwallforest.vmt-d9c464249cf4132213f4f0c511764fb0.vmt.res"]
+
+[params]
+

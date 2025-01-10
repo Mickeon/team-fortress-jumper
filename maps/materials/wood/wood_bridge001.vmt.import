@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://caawnd86n5coq"
+path="res://.godot/imported/wood_bridge001.vmt-7c4115371de6cb1e823e30deecff6b17.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/wood/wood_bridge001.vmt"
+dest_files=["res://.godot/imported/wood_bridge001.vmt-7c4115371de6cb1e823e30deecff6b17.vmt.res"]
+
+[params]
+

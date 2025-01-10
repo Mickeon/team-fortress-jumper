@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://dfgs61hdf8jlp"
+path="res://.godot/imported/chair.vmt-3428319d97d80295f5e84d7fa887ea7e.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/models/props_spytech/chair.vmt"
+dest_files=["res://.godot/imported/chair.vmt-3428319d97d80295f5e84d7fa887ea7e.vmt.res"]
+
+[params]
+

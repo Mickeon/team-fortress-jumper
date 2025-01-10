@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://bnsou68sapme6"
+path="res://.godot/imported/tire001.vmt-eb0d2abb3db7a3fd01d76e07cadef69e.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/models/props_2fort/tire001.vmt"
+dest_files=["res://.godot/imported/tire001.vmt-eb0d2abb3db7a3fd01d76e07cadef69e.vmt.res"]
+
+[params]
+

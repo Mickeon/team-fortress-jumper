@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://b1e3b3m02yg7x"
+path="res://.godot/imported/mcdiamond.vmt-13b322d5fd2735b1836f29882dd85165.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/custom/mcdiamond.vmt"
+dest_files=["res://.godot/imported/mcdiamond.vmt-13b322d5fd2735b1836f29882dd85165.vmt.res"]
+
+[params]
+

@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://bsafdf47vn0sn"
+path="res://.godot/imported/telephone001.vmt-58702da194b3d343535b5cdfdaad09d8.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/models/props_2fort/telephone001.vmt"
+dest_files=["res://.godot/imported/telephone001.vmt-58702da194b3d343535b5cdfdaad09d8.vmt.res"]
+
+[params]
+

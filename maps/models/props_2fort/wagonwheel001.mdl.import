@@ -1,0 +1,21 @@
+[remap]
+
+importer="MDL"
+type="PackedScene"
+uid="uid://tvkiyyvsl06p"
+path="res://.godot/imported/wagonwheel001.mdl-722952eb88c78dc85c5e7d8f884f1bdf.scn"
+
+[deps]
+
+source_file="res://maps/models/props_2fort/wagonwheel001.mdl"
+dest_files=["res://.godot/imported/wagonwheel001.mdl-722952eb88c78dc85c5e7d8f884f1bdf.scn"]
+
+[params]
+
+use_global_scale=true
+scale=0.019
+additional_rotation=Vector3(0, 0, 0)
+materials_root=""
+generate_occluder=true
+primitive_occluder=false
+primitive_occluder_scale=Vector3(1, 1, 1)

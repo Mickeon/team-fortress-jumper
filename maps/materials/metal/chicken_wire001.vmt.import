@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://bidppaxtlr6b7"
+path="res://.godot/imported/chicken_wire001.vmt-c2d2cff63fdbbde6ce37cba5d4af522f.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/metal/chicken_wire001.vmt"
+dest_files=["res://.godot/imported/chicken_wire001.vmt-c2d2cff63fdbbde6ce37cba5d4af522f.vmt.res"]
+
+[params]
+

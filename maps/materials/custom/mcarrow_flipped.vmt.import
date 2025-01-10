@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://bcqiw7tywy1qk"
+path="res://.godot/imported/mcarrow_flipped.vmt-48735ff88a7fff7d7833d854b5ba3ac3.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/custom/mcarrow_flipped.vmt"
+dest_files=["res://.godot/imported/mcarrow_flipped.vmt-48735ff88a7fff7d7833d854b5ba3ac3.vmt.res"]
+
+[params]
+

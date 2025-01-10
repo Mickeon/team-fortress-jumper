@@ -1,0 +1,21 @@
+[remap]
+
+importer="MDL"
+type="PackedScene"
+uid="uid://de8w7o8apvn4v"
+path="res://.godot/imported/rock_worn_cluster001.mdl-3f0c27b58110f2cafcd593f1afd1c262.scn"
+
+[deps]
+
+source_file="res://maps/models/props_nature/rock_worn_cluster001.mdl"
+dest_files=["res://.godot/imported/rock_worn_cluster001.mdl-3f0c27b58110f2cafcd593f1afd1c262.scn"]
+
+[params]
+
+use_global_scale=true
+scale=0.019
+additional_rotation=Vector3(0, 0, 0)
+materials_root=""
+generate_occluder=true
+primitive_occluder=false
+primitive_occluder_scale=Vector3(1, 1, 1)
