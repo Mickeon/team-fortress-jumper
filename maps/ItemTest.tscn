@@ -979,6 +979,7 @@ environment = SubResource("Environment_0lsgu")
 
 [node name="LightmapGI" type="LightmapGI" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.314747, 2.32041, 0)
+layers = 15
 bias = 0.01
 max_texture_size = 2048
 light_data = ExtResource("1_1s8p8")

@@ -15,7 +15,7 @@ dest_files=["res://.godot/imported/haypile001.png-f12af816eeb9ffdd48516fda5e0c05
 
 [params]
 
-compress/mode=0
+compress/mode=1
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

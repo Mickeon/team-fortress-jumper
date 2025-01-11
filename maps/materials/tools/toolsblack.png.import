@@ -3,21 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bqgnku5je110y"
-path.s3tc="res://.godot/imported/toolsblack.png-8169c41277731c308d92ac498fa2e0b5.s3tc.ctex"
-path.etc2="res://.godot/imported/toolsblack.png-8169c41277731c308d92ac498fa2e0b5.etc2.ctex"
+path="res://.godot/imported/toolsblack.png-8169c41277731c308d92ac498fa2e0b5.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://maps/materials/tools/toolsblack.png"
-dest_files=["res://.godot/imported/toolsblack.png-8169c41277731c308d92ac498fa2e0b5.s3tc.ctex", "res://.godot/imported/toolsblack.png-8169c41277731c308d92ac498fa2e0b5.etc2.ctex"]
+dest_files=["res://.godot/imported/toolsblack.png-8169c41277731c308d92ac498fa2e0b5.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=1
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

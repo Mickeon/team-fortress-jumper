@@ -3,21 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cnv7sbgb73q86"
-path.s3tc="res://.godot/imported/lamp001.png-33f7a6de548de9b42f0a94ad7048c443.s3tc.ctex"
-path.etc2="res://.godot/imported/lamp001.png-33f7a6de548de9b42f0a94ad7048c443.etc2.ctex"
+path="res://.godot/imported/lamp001.png-33f7a6de548de9b42f0a94ad7048c443.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://maps/materials/models/props_lights/lamp001.png"
-dest_files=["res://.godot/imported/lamp001.png-33f7a6de548de9b42f0a94ad7048c443.s3tc.ctex", "res://.godot/imported/lamp001.png-33f7a6de548de9b42f0a94ad7048c443.etc2.ctex"]
+dest_files=["res://.godot/imported/lamp001.png-33f7a6de548de9b42f0a94ad7048c443.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=1
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

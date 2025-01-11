@@ -3,21 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dx6fphuf3vevf"
-path.s3tc="res://.godot/imported/security_fence_alpha.png-b73d5bbd7754e6204222c215330084d8.s3tc.ctex"
-path.etc2="res://.godot/imported/security_fence_alpha.png-b73d5bbd7754e6204222c215330084d8.etc2.ctex"
+path="res://.godot/imported/security_fence_alpha.png-b73d5bbd7754e6204222c215330084d8.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://maps/materials/models/props_gameplay/security_fence_alpha.png"
-dest_files=["res://.godot/imported/security_fence_alpha.png-b73d5bbd7754e6204222c215330084d8.s3tc.ctex", "res://.godot/imported/security_fence_alpha.png-b73d5bbd7754e6204222c215330084d8.etc2.ctex"]
+dest_files=["res://.godot/imported/security_fence_alpha.png-b73d5bbd7754e6204222c215330084d8.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=1
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

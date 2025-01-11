@@ -3,21 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bf1e8lqar0032"
-path.s3tc="res://.godot/imported/world_map001.png-c8c42b090ed61c07c810f99d36bb58dd.s3tc.ctex"
-path.etc2="res://.godot/imported/world_map001.png-c8c42b090ed61c07c810f99d36bb58dd.etc2.ctex"
+path="res://.godot/imported/world_map001.png-c8c42b090ed61c07c810f99d36bb58dd.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://maps/materials/signs/world_map001.png"
-dest_files=["res://.godot/imported/world_map001.png-c8c42b090ed61c07c810f99d36bb58dd.s3tc.ctex", "res://.godot/imported/world_map001.png-c8c42b090ed61c07c810f99d36bb58dd.etc2.ctex"]
+dest_files=["res://.godot/imported/world_map001.png-c8c42b090ed61c07c810f99d36bb58dd.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=1
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

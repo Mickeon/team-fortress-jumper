@@ -3,21 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://i5bru08v04tm"
-path.s3tc="res://.godot/imported/rockwall001forest.png-9d5058b3dc2a1d8f2782383de4e1b32d.s3tc.ctex"
-path.etc2="res://.godot/imported/rockwall001forest.png-9d5058b3dc2a1d8f2782383de4e1b32d.etc2.ctex"
+path="res://.godot/imported/rockwall001forest.png-9d5058b3dc2a1d8f2782383de4e1b32d.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://maps/materials/nature/rockwall001forest.png"
-dest_files=["res://.godot/imported/rockwall001forest.png-9d5058b3dc2a1d8f2782383de4e1b32d.s3tc.ctex", "res://.godot/imported/rockwall001forest.png-9d5058b3dc2a1d8f2782383de4e1b32d.etc2.ctex"]
+dest_files=["res://.godot/imported/rockwall001forest.png-9d5058b3dc2a1d8f2782383de4e1b32d.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=1
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

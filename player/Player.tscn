@@ -580,7 +580,7 @@ bones/70/rotation = Quaternion(0.048686, -0.0347198, 0.0266326, 0.997855)
 
 [node name="mesh" parent="Smoothing3D/Pivot/FirstPersonModel/Arms/Skeleton3D" index="0"]
 layers = 2
-gi_mode = 0
+gi_mode = 2
 surface_material_override/0 = ExtResource("8_be5vy")
 surface_material_override/1 = ExtResource("11_0ojm0")
 

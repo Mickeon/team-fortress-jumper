@@ -3,21 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://nvcpkhbqthfo"
-path.s3tc="res://.godot/imported/telephone001.png-9381b42b45033465c63e0e199f59a9dc.s3tc.ctex"
-path.etc2="res://.godot/imported/telephone001.png-9381b42b45033465c63e0e199f59a9dc.etc2.ctex"
+path="res://.godot/imported/telephone001.png-9381b42b45033465c63e0e199f59a9dc.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://maps/materials/models/props_2fort/telephone001.png"
-dest_files=["res://.godot/imported/telephone001.png-9381b42b45033465c63e0e199f59a9dc.s3tc.ctex", "res://.godot/imported/telephone001.png-9381b42b45033465c63e0e199f59a9dc.etc2.ctex"]
+dest_files=["res://.godot/imported/telephone001.png-9381b42b45033465c63e0e199f59a9dc.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=1
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

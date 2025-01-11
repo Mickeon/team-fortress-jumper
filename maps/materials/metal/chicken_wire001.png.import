@@ -3,21 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://d07x3eysvpwx7"
-path.s3tc="res://.godot/imported/chicken_wire001.png-821e6dd0755de3b628c330d889b31165.s3tc.ctex"
-path.etc2="res://.godot/imported/chicken_wire001.png-821e6dd0755de3b628c330d889b31165.etc2.ctex"
+path="res://.godot/imported/chicken_wire001.png-821e6dd0755de3b628c330d889b31165.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://maps/materials/metal/chicken_wire001.png"
-dest_files=["res://.godot/imported/chicken_wire001.png-821e6dd0755de3b628c330d889b31165.s3tc.ctex", "res://.godot/imported/chicken_wire001.png-821e6dd0755de3b628c330d889b31165.etc2.ctex"]
+dest_files=["res://.godot/imported/chicken_wire001.png-821e6dd0755de3b628c330d889b31165.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=1
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

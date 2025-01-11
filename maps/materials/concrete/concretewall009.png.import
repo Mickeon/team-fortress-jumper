@@ -3,21 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://yxpd0g5ex8o"
-path.s3tc="res://.godot/imported/concretewall009.png-93cf43eb611a441b83464bffa3533bbb.s3tc.ctex"
-path.etc2="res://.godot/imported/concretewall009.png-93cf43eb611a441b83464bffa3533bbb.etc2.ctex"
+path="res://.godot/imported/concretewall009.png-93cf43eb611a441b83464bffa3533bbb.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://maps/materials/concrete/concretewall009.png"
-dest_files=["res://.godot/imported/concretewall009.png-93cf43eb611a441b83464bffa3533bbb.s3tc.ctex", "res://.godot/imported/concretewall009.png-93cf43eb611a441b83464bffa3533bbb.etc2.ctex"]
+dest_files=["res://.godot/imported/concretewall009.png-93cf43eb611a441b83464bffa3533bbb.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=1
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

@@ -3,21 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cfw6g2tlqg5ux"
-path.s3tc="res://.godot/imported/wood_bridge001.png-098afc6b28e0941a2b08beb90e37a242.s3tc.ctex"
-path.etc2="res://.godot/imported/wood_bridge001.png-098afc6b28e0941a2b08beb90e37a242.etc2.ctex"
+path="res://.godot/imported/wood_bridge001.png-098afc6b28e0941a2b08beb90e37a242.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://maps/materials/wood/wood_bridge001.png"
-dest_files=["res://.godot/imported/wood_bridge001.png-098afc6b28e0941a2b08beb90e37a242.s3tc.ctex", "res://.godot/imported/wood_bridge001.png-098afc6b28e0941a2b08beb90e37a242.etc2.ctex"]
+dest_files=["res://.godot/imported/wood_bridge001.png-098afc6b28e0941a2b08beb90e37a242.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=1
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

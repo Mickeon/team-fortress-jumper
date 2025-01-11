@@ -3,21 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bjofqsu3ipfvo"
-path.s3tc="res://.godot/imported/glasswindow001a.png-59748c8c9bc377f87973f486078ddd0d.s3tc.ctex"
-path.etc2="res://.godot/imported/glasswindow001a.png-59748c8c9bc377f87973f486078ddd0d.etc2.ctex"
+path="res://.godot/imported/glasswindow001a.png-59748c8c9bc377f87973f486078ddd0d.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://maps/materials/glass/glasswindow001a.png"
-dest_files=["res://.godot/imported/glasswindow001a.png-59748c8c9bc377f87973f486078ddd0d.s3tc.ctex", "res://.godot/imported/glasswindow001a.png-59748c8c9bc377f87973f486078ddd0d.etc2.ctex"]
+dest_files=["res://.godot/imported/glasswindow001a.png-59748c8c9bc377f87973f486078ddd0d.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=1
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

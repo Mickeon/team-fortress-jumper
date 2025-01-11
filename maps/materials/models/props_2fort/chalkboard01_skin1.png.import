@@ -3,21 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://xrtur3w2y2v8"
-path.s3tc="res://.godot/imported/chalkboard01_skin1.png-a25d3894f11cf4b6cc6c39d06551f8ee.s3tc.ctex"
-path.etc2="res://.godot/imported/chalkboard01_skin1.png-a25d3894f11cf4b6cc6c39d06551f8ee.etc2.ctex"
+path="res://.godot/imported/chalkboard01_skin1.png-a25d3894f11cf4b6cc6c39d06551f8ee.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://maps/materials/models/props_2fort/chalkboard01_skin1.png"
-dest_files=["res://.godot/imported/chalkboard01_skin1.png-a25d3894f11cf4b6cc6c39d06551f8ee.s3tc.ctex", "res://.godot/imported/chalkboard01_skin1.png-a25d3894f11cf4b6cc6c39d06551f8ee.etc2.ctex"]
+dest_files=["res://.godot/imported/chalkboard01_skin1.png-a25d3894f11cf4b6cc6c39d06551f8ee.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=1
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

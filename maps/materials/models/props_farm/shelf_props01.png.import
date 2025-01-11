@@ -3,21 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://djwedftnc3xxm"
-path.s3tc="res://.godot/imported/shelf_props01.png-bec1b4821e2efab99824b6341f0b0a13.s3tc.ctex"
-path.etc2="res://.godot/imported/shelf_props01.png-bec1b4821e2efab99824b6341f0b0a13.etc2.ctex"
+path="res://.godot/imported/shelf_props01.png-bec1b4821e2efab99824b6341f0b0a13.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://maps/materials/models/props_farm/shelf_props01.png"
-dest_files=["res://.godot/imported/shelf_props01.png-bec1b4821e2efab99824b6341f0b0a13.s3tc.ctex", "res://.godot/imported/shelf_props01.png-bec1b4821e2efab99824b6341f0b0a13.etc2.ctex"]
+dest_files=["res://.godot/imported/shelf_props01.png-bec1b4821e2efab99824b6341f0b0a13.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=1
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

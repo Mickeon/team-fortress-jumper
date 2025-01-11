@@ -3,21 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dhi5h0pi58lqc"
-path.s3tc="res://.godot/imported/roof_metal001.png-0821177e5a7527624ae984f1f75c088f.s3tc.ctex"
-path.etc2="res://.godot/imported/roof_metal001.png-0821177e5a7527624ae984f1f75c088f.etc2.ctex"
+path="res://.godot/imported/roof_metal001.png-0821177e5a7527624ae984f1f75c088f.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://maps/materials/models/props_2fort/roof_metal001.png"
-dest_files=["res://.godot/imported/roof_metal001.png-0821177e5a7527624ae984f1f75c088f.s3tc.ctex", "res://.godot/imported/roof_metal001.png-0821177e5a7527624ae984f1f75c088f.etc2.ctex"]
+dest_files=["res://.godot/imported/roof_metal001.png-0821177e5a7527624ae984f1f75c088f.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=1
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

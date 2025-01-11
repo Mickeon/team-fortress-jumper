@@ -3,21 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cm74fchw3ho03"
-path.s3tc="res://.godot/imported/wall019d.png-a9b0f306bce65462a6659d56ea9a10a6.s3tc.ctex"
-path.etc2="res://.godot/imported/wall019d.png-a9b0f306bce65462a6659d56ea9a10a6.etc2.ctex"
+path="res://.godot/imported/wall019d.png-a9b0f306bce65462a6659d56ea9a10a6.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://maps/materials/metal/wall019d.png"
-dest_files=["res://.godot/imported/wall019d.png-a9b0f306bce65462a6659d56ea9a10a6.s3tc.ctex", "res://.godot/imported/wall019d.png-a9b0f306bce65462a6659d56ea9a10a6.etc2.ctex"]
+dest_files=["res://.godot/imported/wall019d.png-a9b0f306bce65462a6659d56ea9a10a6.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=1
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

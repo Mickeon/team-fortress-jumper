@@ -3,21 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://pmf6jbfa50hf"
-path.s3tc="res://.godot/imported/sign_gameplay01_skin7.png-80e8bc05d7beeceb91dad56885f82e6b.s3tc.ctex"
-path.etc2="res://.godot/imported/sign_gameplay01_skin7.png-80e8bc05d7beeceb91dad56885f82e6b.etc2.ctex"
+path="res://.godot/imported/sign_gameplay01_skin7.png-80e8bc05d7beeceb91dad56885f82e6b.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://maps/materials/models/props_gameplay/sign_gameplay01_skin7.png"
-dest_files=["res://.godot/imported/sign_gameplay01_skin7.png-80e8bc05d7beeceb91dad56885f82e6b.s3tc.ctex", "res://.godot/imported/sign_gameplay01_skin7.png-80e8bc05d7beeceb91dad56885f82e6b.etc2.ctex"]
+dest_files=["res://.godot/imported/sign_gameplay01_skin7.png-80e8bc05d7beeceb91dad56885f82e6b.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=1
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

@@ -2,22 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://68g1cc88tffy"
-path.s3tc="res://.godot/imported/window003b.png-e44a0d9e693c7889ddb944665126c293.s3tc.ctex"
-path.etc2="res://.godot/imported/window003b.png-e44a0d9e693c7889ddb944665126c293.etc2.ctex"
+uid="uid://bs0vn0c4rewul"
+path="res://.godot/imported/window003b.png-e44a0d9e693c7889ddb944665126c293.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://maps/materials/models/props_2fort/window003b.png"
-dest_files=["res://.godot/imported/window003b.png-e44a0d9e693c7889ddb944665126c293.s3tc.ctex", "res://.godot/imported/window003b.png-e44a0d9e693c7889ddb944665126c293.etc2.ctex"]
+dest_files=["res://.godot/imported/window003b.png-e44a0d9e693c7889ddb944665126c293.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=1
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

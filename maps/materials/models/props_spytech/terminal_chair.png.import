@@ -3,21 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://djvdjusat5vou"
-path.s3tc="res://.godot/imported/terminal_chair.png-e8da55fa389b379a291a729d0b0b18fb.s3tc.ctex"
-path.etc2="res://.godot/imported/terminal_chair.png-e8da55fa389b379a291a729d0b0b18fb.etc2.ctex"
+path="res://.godot/imported/terminal_chair.png-e8da55fa389b379a291a729d0b0b18fb.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://maps/materials/models/props_spytech/terminal_chair.png"
-dest_files=["res://.godot/imported/terminal_chair.png-e8da55fa389b379a291a729d0b0b18fb.s3tc.ctex", "res://.godot/imported/terminal_chair.png-e8da55fa389b379a291a729d0b0b18fb.etc2.ctex"]
+dest_files=["res://.godot/imported/terminal_chair.png-e8da55fa389b379a291a729d0b0b18fb.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=1
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

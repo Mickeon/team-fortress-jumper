@@ -3,21 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dxu5rryo5hdl6"
-path.s3tc="res://.godot/imported/corrugated_metal004.png-64352dc934e47ebc13336471457d4d5c.s3tc.ctex"
-path.etc2="res://.godot/imported/corrugated_metal004.png-64352dc934e47ebc13336471457d4d5c.etc2.ctex"
+path="res://.godot/imported/corrugated_metal004.png-64352dc934e47ebc13336471457d4d5c.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://maps/materials/models/props_2fort/corrugated_metal004.png"
-dest_files=["res://.godot/imported/corrugated_metal004.png-64352dc934e47ebc13336471457d4d5c.s3tc.ctex", "res://.godot/imported/corrugated_metal004.png-64352dc934e47ebc13336471457d4d5c.etc2.ctex"]
+dest_files=["res://.godot/imported/corrugated_metal004.png-64352dc934e47ebc13336471457d4d5c.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=1
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

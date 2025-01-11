@@ -3,21 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c7vh1id66g7fp"
-path.s3tc="res://.godot/imported/tractor_tire001.png-be1b4f6f91c877fe802d0a57d641a305.s3tc.ctex"
-path.etc2="res://.godot/imported/tractor_tire001.png-be1b4f6f91c877fe802d0a57d641a305.etc2.ctex"
+path="res://.godot/imported/tractor_tire001.png-be1b4f6f91c877fe802d0a57d641a305.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://maps/materials/models/props_farm/tractor_tire001.png"
-dest_files=["res://.godot/imported/tractor_tire001.png-be1b4f6f91c877fe802d0a57d641a305.s3tc.ctex", "res://.godot/imported/tractor_tire001.png-be1b4f6f91c877fe802d0a57d641a305.etc2.ctex"]
+dest_files=["res://.godot/imported/tractor_tire001.png-be1b4f6f91c877fe802d0a57d641a305.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=1
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

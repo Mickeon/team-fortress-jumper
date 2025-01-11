@@ -3,21 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ccwife5hqv0i2"
-path.s3tc="res://.godot/imported/imetal003.png-c6f9910d05120f9027110c56a230972a.s3tc.ctex"
-path.etc2="res://.godot/imported/imetal003.png-c6f9910d05120f9027110c56a230972a.etc2.ctex"
+path="res://.godot/imported/imetal003.png-c6f9910d05120f9027110c56a230972a.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://maps/materials/metal/imetal003.png"
-dest_files=["res://.godot/imported/imetal003.png-c6f9910d05120f9027110c56a230972a.s3tc.ctex", "res://.godot/imported/imetal003.png-c6f9910d05120f9027110c56a230972a.etc2.ctex"]
+dest_files=["res://.godot/imported/imetal003.png-c6f9910d05120f9027110c56a230972a.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=1
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

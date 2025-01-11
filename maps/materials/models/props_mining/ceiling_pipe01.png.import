@@ -3,21 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ccy8back4hcsl"
-path.s3tc="res://.godot/imported/ceiling_pipe01.png-8e36d0657c60526215dd9ef8af776426.s3tc.ctex"
-path.etc2="res://.godot/imported/ceiling_pipe01.png-8e36d0657c60526215dd9ef8af776426.etc2.ctex"
+path="res://.godot/imported/ceiling_pipe01.png-8e36d0657c60526215dd9ef8af776426.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://maps/materials/models/props_mining/ceiling_pipe01.png"
-dest_files=["res://.godot/imported/ceiling_pipe01.png-8e36d0657c60526215dd9ef8af776426.s3tc.ctex", "res://.godot/imported/ceiling_pipe01.png-8e36d0657c60526215dd9ef8af776426.etc2.ctex"]
+dest_files=["res://.godot/imported/ceiling_pipe01.png-8e36d0657c60526215dd9ef8af776426.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=1
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

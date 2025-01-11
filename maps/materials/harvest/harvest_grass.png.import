@@ -3,21 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://d1nbf106ltqy8"
-path.s3tc="res://.godot/imported/harvest_grass.png-2a7f0231c2a931b1bdba9dd8bd570879.s3tc.ctex"
-path.etc2="res://.godot/imported/harvest_grass.png-2a7f0231c2a931b1bdba9dd8bd570879.etc2.ctex"
+path="res://.godot/imported/harvest_grass.png-2a7f0231c2a931b1bdba9dd8bd570879.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://maps/materials/harvest/harvest_grass.png"
-dest_files=["res://.godot/imported/harvest_grass.png-2a7f0231c2a931b1bdba9dd8bd570879.s3tc.ctex", "res://.godot/imported/harvest_grass.png-2a7f0231c2a931b1bdba9dd8bd570879.etc2.ctex"]
+dest_files=["res://.godot/imported/harvest_grass.png-2a7f0231c2a931b1bdba9dd8bd570879.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=1
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

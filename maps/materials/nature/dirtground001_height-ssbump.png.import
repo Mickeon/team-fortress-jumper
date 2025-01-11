@@ -3,21 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dewvm5w8a0n5d"
-path.s3tc="res://.godot/imported/dirtground001_height-ssbump.png-058f6fb5d6de6bdc508964914b805e3c.s3tc.ctex"
-path.etc2="res://.godot/imported/dirtground001_height-ssbump.png-058f6fb5d6de6bdc508964914b805e3c.etc2.ctex"
+path="res://.godot/imported/dirtground001_height-ssbump.png-058f6fb5d6de6bdc508964914b805e3c.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://maps/materials/nature/dirtground001_height-ssbump.png"
-dest_files=["res://.godot/imported/dirtground001_height-ssbump.png-058f6fb5d6de6bdc508964914b805e3c.s3tc.ctex", "res://.godot/imported/dirtground001_height-ssbump.png-058f6fb5d6de6bdc508964914b805e3c.etc2.ctex"]
+dest_files=["res://.godot/imported/dirtground001_height-ssbump.png-058f6fb5d6de6bdc508964914b805e3c.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=1
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

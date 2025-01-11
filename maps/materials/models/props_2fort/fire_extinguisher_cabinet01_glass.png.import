@@ -3,21 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://d2e37sl4po0le"
-path.s3tc="res://.godot/imported/fire_extinguisher_cabinet01_glass.png-441c6fddc9bfab6c09e54b5dd73d36e4.s3tc.ctex"
-path.etc2="res://.godot/imported/fire_extinguisher_cabinet01_glass.png-441c6fddc9bfab6c09e54b5dd73d36e4.etc2.ctex"
+path="res://.godot/imported/fire_extinguisher_cabinet01_glass.png-441c6fddc9bfab6c09e54b5dd73d36e4.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://maps/materials/models/props_2fort/fire_extinguisher_cabinet01_glass.png"
-dest_files=["res://.godot/imported/fire_extinguisher_cabinet01_glass.png-441c6fddc9bfab6c09e54b5dd73d36e4.s3tc.ctex", "res://.godot/imported/fire_extinguisher_cabinet01_glass.png-441c6fddc9bfab6c09e54b5dd73d36e4.etc2.ctex"]
+dest_files=["res://.godot/imported/fire_extinguisher_cabinet01_glass.png-441c6fddc9bfab6c09e54b5dd73d36e4.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=1
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

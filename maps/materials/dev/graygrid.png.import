@@ -3,21 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bqqal3ona40yh"
-path.s3tc="res://.godot/imported/graygrid.png-1de9eb1cecf3547f8227a0be42ce6fbc.s3tc.ctex"
-path.etc2="res://.godot/imported/graygrid.png-1de9eb1cecf3547f8227a0be42ce6fbc.etc2.ctex"
+path="res://.godot/imported/graygrid.png-1de9eb1cecf3547f8227a0be42ce6fbc.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://maps/materials/dev/graygrid.png"
-dest_files=["res://.godot/imported/graygrid.png-1de9eb1cecf3547f8227a0be42ce6fbc.s3tc.ctex", "res://.godot/imported/graygrid.png-1de9eb1cecf3547f8227a0be42ce6fbc.etc2.ctex"]
+dest_files=["res://.godot/imported/graygrid.png-1de9eb1cecf3547f8227a0be42ce6fbc.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=1
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

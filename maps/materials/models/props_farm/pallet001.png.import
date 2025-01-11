@@ -3,21 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://oy4jgyyewwx3"
-path.s3tc="res://.godot/imported/pallet001.png-e637a1cb62039b8d71b329d8cc71dc73.s3tc.ctex"
-path.etc2="res://.godot/imported/pallet001.png-e637a1cb62039b8d71b329d8cc71dc73.etc2.ctex"
+path="res://.godot/imported/pallet001.png-e637a1cb62039b8d71b329d8cc71dc73.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://maps/materials/models/props_farm/pallet001.png"
-dest_files=["res://.godot/imported/pallet001.png-e637a1cb62039b8d71b329d8cc71dc73.s3tc.ctex", "res://.godot/imported/pallet001.png-e637a1cb62039b8d71b329d8cc71dc73.etc2.ctex"]
+dest_files=["res://.godot/imported/pallet001.png-e637a1cb62039b8d71b329d8cc71dc73.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=1
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

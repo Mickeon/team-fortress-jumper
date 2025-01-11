@@ -3,21 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ijl1xdy8730k"
-path.s3tc="res://.godot/imported/intercom.png-d050c97d96db3e81439a376c886204f4.s3tc.ctex"
-path.etc2="res://.godot/imported/intercom.png-d050c97d96db3e81439a376c886204f4.etc2.ctex"
+path="res://.godot/imported/intercom.png-d050c97d96db3e81439a376c886204f4.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://maps/materials/models/props_spytech/intercom.png"
-dest_files=["res://.godot/imported/intercom.png-d050c97d96db3e81439a376c886204f4.s3tc.ctex", "res://.godot/imported/intercom.png-d050c97d96db3e81439a376c886204f4.etc2.ctex"]
+dest_files=["res://.godot/imported/intercom.png-d050c97d96db3e81439a376c886204f4.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=1
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

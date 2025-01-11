@@ -3,21 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://xynsgbw0pafv"
-path.s3tc="res://.godot/imported/tree_lighting.png-b67a15a4ab766d1a9b4759132ea770db.s3tc.ctex"
-path.etc2="res://.godot/imported/tree_lighting.png-b67a15a4ab766d1a9b4759132ea770db.etc2.ctex"
+path="res://.godot/imported/tree_lighting.png-b67a15a4ab766d1a9b4759132ea770db.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://maps/materials/harvest/tree/tree_lighting.png"
-dest_files=["res://.godot/imported/tree_lighting.png-b67a15a4ab766d1a9b4759132ea770db.s3tc.ctex", "res://.godot/imported/tree_lighting.png-b67a15a4ab766d1a9b4759132ea770db.etc2.ctex"]
+dest_files=["res://.godot/imported/tree_lighting.png-b67a15a4ab766d1a9b4759132ea770db.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=1
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

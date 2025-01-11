@@ -3,21 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ds3wbk5q35pej"
-path.s3tc="res://.godot/imported/fire_extinguisher.png-a6e74b752b19a952cd6bb3f339e27855.s3tc.ctex"
-path.etc2="res://.godot/imported/fire_extinguisher.png-a6e74b752b19a952cd6bb3f339e27855.etc2.ctex"
+path="res://.godot/imported/fire_extinguisher.png-a6e74b752b19a952cd6bb3f339e27855.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://maps/materials/models/props_2fort/fire_extinguisher.png"
-dest_files=["res://.godot/imported/fire_extinguisher.png-a6e74b752b19a952cd6bb3f339e27855.s3tc.ctex", "res://.godot/imported/fire_extinguisher.png-a6e74b752b19a952cd6bb3f339e27855.etc2.ctex"]
+dest_files=["res://.godot/imported/fire_extinguisher.png-a6e74b752b19a952cd6bb3f339e27855.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=1
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

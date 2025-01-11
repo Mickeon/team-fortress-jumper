@@ -3,19 +3,21 @@
 importer="2d_array_texture"
 type="CompressedTexture2DArray"
 uid="uid://ngr810gyy66k"
-path="res://.godot/imported/pl_minepit.exr-5976161043bf6bed34794bc8d69ffa05.ctexarray"
+path.bptc="res://.godot/imported/pl_minepit.exr-5976161043bf6bed34794bc8d69ffa05.bptc.ctexarray"
+path.astc="res://.godot/imported/pl_minepit.exr-5976161043bf6bed34794bc8d69ffa05.astc.ctexarray"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://maps/pl_minepit.exr"
-dest_files=["res://.godot/imported/pl_minepit.exr-5976161043bf6bed34794bc8d69ffa05.ctexarray"]
+dest_files=["res://.godot/imported/pl_minepit.exr-5976161043bf6bed34794bc8d69ffa05.bptc.ctexarray", "res://.godot/imported/pl_minepit.exr-5976161043bf6bed34794bc8d69ffa05.astc.ctexarray"]
 
 [params]
 
-compress/mode=3
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

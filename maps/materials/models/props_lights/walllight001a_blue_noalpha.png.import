@@ -3,21 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ger7lbpbndjh"
-path.s3tc="res://.godot/imported/walllight001a_blue_noalpha.png-afc9dc95435ff1da5e13b1332c7ea92e.s3tc.ctex"
-path.etc2="res://.godot/imported/walllight001a_blue_noalpha.png-afc9dc95435ff1da5e13b1332c7ea92e.etc2.ctex"
+path="res://.godot/imported/walllight001a_blue_noalpha.png-afc9dc95435ff1da5e13b1332c7ea92e.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://maps/materials/models/props_lights/walllight001a_blue_noalpha.png"
-dest_files=["res://.godot/imported/walllight001a_blue_noalpha.png-afc9dc95435ff1da5e13b1332c7ea92e.s3tc.ctex", "res://.godot/imported/walllight001a_blue_noalpha.png-afc9dc95435ff1da5e13b1332c7ea92e.etc2.ctex"]
+dest_files=["res://.godot/imported/walllight001a_blue_noalpha.png-afc9dc95435ff1da5e13b1332c7ea92e.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=1
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

@@ -3,21 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://di62m1p13edha"
-path.s3tc="res://.godot/imported/ibeam001b.png-5c88b26148febf7d5c6452b6f9d75bde.s3tc.ctex"
-path.etc2="res://.godot/imported/ibeam001b.png-5c88b26148febf7d5c6452b6f9d75bde.etc2.ctex"
+path="res://.godot/imported/ibeam001b.png-5c88b26148febf7d5c6452b6f9d75bde.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://maps/materials/metal/ibeam001b.png"
-dest_files=["res://.godot/imported/ibeam001b.png-5c88b26148febf7d5c6452b6f9d75bde.s3tc.ctex", "res://.godot/imported/ibeam001b.png-5c88b26148febf7d5c6452b6f9d75bde.etc2.ctex"]
+dest_files=["res://.godot/imported/ibeam001b.png-5c88b26148febf7d5c6452b6f9d75bde.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=1
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

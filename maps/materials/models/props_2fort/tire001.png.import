@@ -3,21 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://65q0fqp0t06a"
-path.s3tc="res://.godot/imported/tire001.png-979efa435c0ac2436af7fc37786f256c.s3tc.ctex"
-path.etc2="res://.godot/imported/tire001.png-979efa435c0ac2436af7fc37786f256c.etc2.ctex"
+path="res://.godot/imported/tire001.png-979efa435c0ac2436af7fc37786f256c.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://maps/materials/models/props_2fort/tire001.png"
-dest_files=["res://.godot/imported/tire001.png-979efa435c0ac2436af7fc37786f256c.s3tc.ctex", "res://.godot/imported/tire001.png-979efa435c0ac2436af7fc37786f256c.etc2.ctex"]
+dest_files=["res://.godot/imported/tire001.png-979efa435c0ac2436af7fc37786f256c.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=1
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

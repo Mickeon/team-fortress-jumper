@@ -11,11 +11,11 @@ This repository has not been originally designed to be visible by the public, bu
 Full support for this demo, as well as additional features _(such as multiplayer)_ should **not** be taken for granted.
 
 You can try a **considerably** stripped out version of this project on a Chromium web browser by [clicking here](https://mickeon.itch.io/team-fortress-jumper).
-Alternatively, download a build from [the releases](https://github.com/Mickeon/team-fortress-jumper/releases/tag/Demo).
+Alternatively, download a build from [the releases](https://github.com/Mickeon/team-fortress-jumper/releases).
 
 ## Controls
 
-**Beware: some actions may become outdated, or may only work in some scenes.**
+**Beware: Some actions may become outdated.**
 
 #### Basic:
 | Key | Action |

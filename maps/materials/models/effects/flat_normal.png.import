@@ -3,21 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bgpmwxrdre8mk"
-path.s3tc="res://.godot/imported/flat_normal.png-6aab3aebb96e94971133870d3e7a1b4a.s3tc.ctex"
-path.etc2="res://.godot/imported/flat_normal.png-6aab3aebb96e94971133870d3e7a1b4a.etc2.ctex"
+path="res://.godot/imported/flat_normal.png-6aab3aebb96e94971133870d3e7a1b4a.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://maps/materials/models/effects/flat_normal.png"
-dest_files=["res://.godot/imported/flat_normal.png-6aab3aebb96e94971133870d3e7a1b4a.s3tc.ctex", "res://.godot/imported/flat_normal.png-6aab3aebb96e94971133870d3e7a1b4a.etc2.ctex"]
+dest_files=["res://.godot/imported/flat_normal.png-6aab3aebb96e94971133870d3e7a1b4a.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=1
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

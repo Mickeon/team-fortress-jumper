@@ -3,21 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dx1bfky7hnaq4"
-path.s3tc="res://.godot/imported/concretefloor003.png-f6d647ebce09e6491b8d5fe0af081b10.s3tc.ctex"
-path.etc2="res://.godot/imported/concretefloor003.png-f6d647ebce09e6491b8d5fe0af081b10.etc2.ctex"
+path="res://.godot/imported/concretefloor003.png-f6d647ebce09e6491b8d5fe0af081b10.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://maps/materials/concrete/concretefloor003.png"
-dest_files=["res://.godot/imported/concretefloor003.png-f6d647ebce09e6491b8d5fe0af081b10.s3tc.ctex", "res://.godot/imported/concretefloor003.png-f6d647ebce09e6491b8d5fe0af081b10.etc2.ctex"]
+dest_files=["res://.godot/imported/concretefloor003.png-f6d647ebce09e6491b8d5fe0af081b10.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=1
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

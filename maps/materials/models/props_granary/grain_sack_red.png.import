@@ -3,21 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://mbvifmsgeu2t"
-path.s3tc="res://.godot/imported/grain_sack_red.png-995fc4846dbee1236849f0eb5ca25cbe.s3tc.ctex"
-path.etc2="res://.godot/imported/grain_sack_red.png-995fc4846dbee1236849f0eb5ca25cbe.etc2.ctex"
+path="res://.godot/imported/grain_sack_red.png-995fc4846dbee1236849f0eb5ca25cbe.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://maps/materials/models/props_granary/grain_sack_red.png"
-dest_files=["res://.godot/imported/grain_sack_red.png-995fc4846dbee1236849f0eb5ca25cbe.s3tc.ctex", "res://.godot/imported/grain_sack_red.png-995fc4846dbee1236849f0eb5ca25cbe.etc2.ctex"]
+dest_files=["res://.godot/imported/grain_sack_red.png-995fc4846dbee1236849f0eb5ca25cbe.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=1
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

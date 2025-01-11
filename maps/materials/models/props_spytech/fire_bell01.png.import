@@ -3,21 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cdn887fh6r5fj"
-path.s3tc="res://.godot/imported/fire_bell01.png-70be90166924dc5bb80d0880a5eb8d2b.s3tc.ctex"
-path.etc2="res://.godot/imported/fire_bell01.png-70be90166924dc5bb80d0880a5eb8d2b.etc2.ctex"
+path="res://.godot/imported/fire_bell01.png-70be90166924dc5bb80d0880a5eb8d2b.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://maps/materials/models/props_spytech/fire_bell01.png"
-dest_files=["res://.godot/imported/fire_bell01.png-70be90166924dc5bb80d0880a5eb8d2b.s3tc.ctex", "res://.godot/imported/fire_bell01.png-70be90166924dc5bb80d0880a5eb8d2b.etc2.ctex"]
+dest_files=["res://.godot/imported/fire_bell01.png-70be90166924dc5bb80d0880a5eb8d2b.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=1
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

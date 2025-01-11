@@ -3,21 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://qgokk1tfern5"
-path.s3tc="res://.godot/imported/wall011d_bump-ssbump.png-6549a0cdabf2ea51690210842caf5bf2.s3tc.ctex"
-path.etc2="res://.godot/imported/wall011d_bump-ssbump.png-6549a0cdabf2ea51690210842caf5bf2.etc2.ctex"
+path="res://.godot/imported/wall011d_bump-ssbump.png-6549a0cdabf2ea51690210842caf5bf2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://maps/materials/metal/wall011d_bump-ssbump.png"
-dest_files=["res://.godot/imported/wall011d_bump-ssbump.png-6549a0cdabf2ea51690210842caf5bf2.s3tc.ctex", "res://.godot/imported/wall011d_bump-ssbump.png-6549a0cdabf2ea51690210842caf5bf2.etc2.ctex"]
+dest_files=["res://.godot/imported/wall011d_bump-ssbump.png-6549a0cdabf2ea51690210842caf5bf2.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=1
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

@@ -3,21 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bt0xp7yc0qchl"
-path.s3tc="res://.godot/imported/metaldoor01_192_noentry.png-eecffe8da699e7ca812415ec8d4a3fc1.s3tc.ctex"
-path.etc2="res://.godot/imported/metaldoor01_192_noentry.png-eecffe8da699e7ca812415ec8d4a3fc1.etc2.ctex"
+path="res://.godot/imported/metaldoor01_192_noentry.png-eecffe8da699e7ca812415ec8d4a3fc1.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://maps/materials/props/metaldoor01_192_noentry.png"
-dest_files=["res://.godot/imported/metaldoor01_192_noentry.png-eecffe8da699e7ca812415ec8d4a3fc1.s3tc.ctex", "res://.godot/imported/metaldoor01_192_noentry.png-eecffe8da699e7ca812415ec8d4a3fc1.etc2.ctex"]
+dest_files=["res://.godot/imported/metaldoor01_192_noentry.png-eecffe8da699e7ca812415ec8d4a3fc1.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=1
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
