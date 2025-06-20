@@ -1,7 +1,7 @@
 [gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://dsyli0q6u4vy"]
 
-[ext_resource type="Texture2D" uid="uid://dp7pfmuhgrtwn" path="res://player/soldier/mat/eye-iris-blue.png" id="1_uc56u"]
-[ext_resource type="Texture2D" uid="uid://bs5cyy4m1kufg" path="res://player/soldier/mat/eye-cornea.png" id="2_431ye"]
+[ext_resource type="Texture2D" uid="uid://bp8gy3j7jmak4" path="res://player/soldier/mat/eye-iris-blue.png" id="1_uc56u"]
+[ext_resource type="Texture2D" uid="uid://bou66qyo8yk06" path="res://player/soldier/mat/eye-cornea.png" id="2_431ye"]
 
 [resource]
 resource_name = "eye"

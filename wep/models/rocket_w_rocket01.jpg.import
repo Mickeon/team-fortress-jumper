@@ -2,18 +2,21 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cc2f5ys0ydkxg"
-path.s3tc="res://.godot/imported/p_shotgun_albedo.png-c8cbc765e1eb188f984566ba37c09661.s3tc.ctex"
-path.etc2="res://.godot/imported/p_shotgun_albedo.png-c8cbc765e1eb188f984566ba37c09661.etc2.ctex"
+uid="uid://dkiqutxhlvd0p"
+path.s3tc="res://.godot/imported/rocket_w_rocket01.jpg-f809f8a76781f9ba5659efc16c0dd49f.s3tc.ctex"
+path.etc2="res://.godot/imported/rocket_w_rocket01.jpg-f809f8a76781f9ba5659efc16c0dd49f.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
+generator_parameters={
+"md5": "e24b9ca788ccbfe59d1f5975c8a92531"
+}
 
 [deps]
 
-source_file="res://wep/models/p_shotgun_albedo.png"
-dest_files=["res://.godot/imported/p_shotgun_albedo.png-c8cbc765e1eb188f984566ba37c09661.s3tc.ctex", "res://.godot/imported/p_shotgun_albedo.png-c8cbc765e1eb188f984566ba37c09661.etc2.ctex"]
+source_file="res://wep/models/rocket_w_rocket01.jpg"
+dest_files=["res://.godot/imported/rocket_w_rocket01.jpg-f809f8a76781f9ba5659efc16c0dd49f.s3tc.ctex", "res://.godot/imported/rocket_w_rocket01.jpg-f809f8a76781f9ba5659efc16c0dd49f.etc2.ctex"]
 
 [params]
 

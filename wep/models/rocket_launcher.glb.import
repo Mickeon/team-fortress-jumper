@@ -3,7 +3,7 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://dnev3pycp5dyd"
+uid="uid://cw116s8st8i27"
 path="res://.godot/imported/rocket_launcher.glb-002e4fb7bb2b2e8681d5baeb5731e5eb.scn"
 
 [deps]
@@ -13,8 +13,8 @@ dest_files=["res://.godot/imported/rocket_launcher.glb-002e4fb7bb2b2e8681d5baeb5
 
 [params]
 
-nodes/root_type="Node3D"
-nodes/root_name="Rocket Launcher"
+nodes/root_type=""
+nodes/root_name=""
 nodes/apply_root_scale=true
 nodes/root_scale=1.0
 nodes/import_as_skeleton_bones=false

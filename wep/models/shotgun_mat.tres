@@ -1,8 +1,8 @@
 [gd_resource type="StandardMaterial3D" load_steps=4 format=3 uid="uid://cnmv8s17cp571"]
 
-[ext_resource type="Texture2D" uid="uid://dh3imuutsnvnw" path="res://wep/models/c_shotgun.png" id="1_0a4ou"]
-[ext_resource type="Texture2D" uid="uid://bga8r3kapbil8" path="res://wep/models/p_shotgun_ao.png" id="2_e775g"]
-[ext_resource type="Texture2D" uid="uid://bnc61vb8ph8lo" path="res://wep/models/c_shotgun_exp.png" id="3_mno61"]
+[ext_resource type="Texture2D" uid="uid://djanhj6t836h5" path="res://wep/models/c_shotgun.png" id="1_0a4ou"]
+[ext_resource type="Texture2D" uid="uid://tgjqfofphv55" path="res://wep/models/p_shotgun_ao.png" id="2_e775g"]
+[ext_resource type="Texture2D" uid="uid://dfvhl7vstl822" path="res://wep/models/c_shotgun_exp.png" id="3_mno61"]
 
 [resource]
 albedo_texture = ExtResource("1_0a4ou")

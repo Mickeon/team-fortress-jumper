@@ -2,20 +2,22 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ch100c1rf53eo"
-path="res://.godot/imported/c_shovel.png-b6ee9e3f9aed09681ae7dab3197e2109.ctex"
+uid="uid://b1388bryi57ak"
+path.s3tc="res://.godot/imported/c_shovel.png-b6ee9e3f9aed09681ae7dab3197e2109.s3tc.ctex"
+path.etc2="res://.godot/imported/c_shovel.png-b6ee9e3f9aed09681ae7dab3197e2109.etc2.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://wep/models/c_shovel.png"
-dest_files=["res://.godot/imported/c_shovel.png-b6ee9e3f9aed09681ae7dab3197e2109.ctex"]
+dest_files=["res://.godot/imported/c_shovel.png-b6ee9e3f9aed09681ae7dab3197e2109.s3tc.ctex", "res://.godot/imported/c_shovel.png-b6ee9e3f9aed09681ae7dab3197e2109.etc2.ctex"]
 
 [params]
 
-compress/mode=4
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

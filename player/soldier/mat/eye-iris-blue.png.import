@@ -2,7 +2,7 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dp7pfmuhgrtwn"
+uid="uid://bp8gy3j7jmak4"
 path.s3tc="res://.godot/imported/eye-iris-blue.png-b093ee525524c799055211b3a793a430.s3tc.ctex"
 path.etc2="res://.godot/imported/eye-iris-blue.png-b093ee525524c799055211b3a793a430.etc2.ctex"
 metadata={
@@ -26,7 +26,7 @@ compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=2
 roughness/mode=1
-roughness/src_normal="res://player/soldier/eye-iris-blue.png"
+roughness/src_normal=""
 process/fix_alpha_border=false
 process/premult_alpha=false
 process/normal_map_invert_y=false

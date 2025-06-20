@@ -2,7 +2,7 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bs5cyy4m1kufg"
+uid="uid://bou66qyo8yk06"
 path.s3tc="res://.godot/imported/eye-cornea.png-1920af93ee17d55d7fadaf31043731a2.s3tc.ctex"
 path.etc2="res://.godot/imported/eye-cornea.png-1920af93ee17d55d7fadaf31043731a2.etc2.ctex"
 metadata={
@@ -26,7 +26,7 @@ compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1
 roughness/mode=1
-roughness/src_normal="res://player/soldier/eye-cornea.png"
+roughness/src_normal="res://player/soldier/mat/eye-cornea.png"
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/normal_map_invert_y=false

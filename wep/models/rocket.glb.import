@@ -3,7 +3,7 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://fd3o8skf15np"
+uid="uid://nfgjuo3f0osg"
 path="res://.godot/imported/rocket.glb-435b3f2200fbb74af68cc53831477d39.scn"
 
 [deps]
@@ -13,8 +13,8 @@ dest_files=["res://.godot/imported/rocket.glb-435b3f2200fbb74af68cc53831477d39.s
 
 [params]
 
-nodes/root_type="Node3D"
-nodes/root_name="Rocket"
+nodes/root_type=""
+nodes/root_name=""
 nodes/apply_root_scale=true
 nodes/root_scale=1.0
 nodes/import_as_skeleton_bones=false
@@ -34,4 +34,4 @@ animation/import_rest_as_RESET=false
 import_script/path=""
 _subresources={}
 gltf/naming_version=1
-gltf/embedded_image_handling=2
+gltf/embedded_image_handling=1

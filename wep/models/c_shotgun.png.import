@@ -2,20 +2,22 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dh3imuutsnvnw"
-path="res://.godot/imported/c_shotgun.png-12652f8d02d520f2d373fbaa1b979990.ctex"
+uid="uid://djanhj6t836h5"
+path.s3tc="res://.godot/imported/c_shotgun.png-12652f8d02d520f2d373fbaa1b979990.s3tc.ctex"
+path.etc2="res://.godot/imported/c_shotgun.png-12652f8d02d520f2d373fbaa1b979990.etc2.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://wep/models/c_shotgun.png"
-dest_files=["res://.godot/imported/c_shotgun.png-12652f8d02d520f2d373fbaa1b979990.ctex"]
+dest_files=["res://.godot/imported/c_shotgun.png-12652f8d02d520f2d373fbaa1b979990.s3tc.ctex", "res://.godot/imported/c_shotgun.png-12652f8d02d520f2d373fbaa1b979990.etc2.ctex"]
 
 [params]
 
-compress/mode=4
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

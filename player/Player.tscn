@@ -2,10 +2,10 @@
 
 [ext_resource type="Script" uid="uid://ralk8skbs5p3" path="res://player/Player.gd" id="1"]
 [ext_resource type="Script" uid="uid://cqeexyt8opffs" path="res://wep/rocket_launcher.gd" id="2_eytv3"]
-[ext_resource type="PackedScene" uid="uid://cinr8vnvlck8b" path="res://player/soldier/soldier_fp.glb" id="2_q83su"]
+[ext_resource type="PackedScene" uid="uid://bs1di4sdp87y2" path="res://player/soldier/soldier_fp.glb" id="2_q83su"]
 [ext_resource type="Script" uid="uid://yyqovq2q75n1" path="res://addons/smoothing/smoothing.gd" id="4_5fufl"]
 [ext_resource type="AudioStream" uid="uid://824byn35wkj0" path="res://sfx/primary/rocket_jumper_shoot.ogg" id="4_6revy"]
-[ext_resource type="PackedScene" uid="uid://dnev3pycp5dyd" path="res://wep/models/rocket_launcher.glb" id="4_fpnlp"]
+[ext_resource type="PackedScene" uid="uid://cw116s8st8i27" path="res://wep/models/rocket_launcher.glb" id="4_fpnlp"]
 [ext_resource type="Script" uid="uid://bcmj5coy5nnpn" path="res://wep/charging_shield.gd" id="5_k3wqx"]
 [ext_resource type="AudioStream" uid="uid://c6j2eqvfvvcc4" path="res://sfx/primary/primary_draw.ogg" id="5_ud5jp"]
 [ext_resource type="Material" uid="uid://bcyjpdmg18bqa" path="res://wep/models/rocket_launcher_mat.tres" id="5_w6h5j"]
@@ -16,12 +16,12 @@
 [ext_resource type="AudioStream" uid="uid://dlpsi358ivubb" path="res://sfx/secondary/shotgun_shoot.ogg" id="9_u7nmh"]
 [ext_resource type="AudioStream" uid="uid://q7y100ioyoni" path="res://sfx/secondary/secondary_draw.ogg" id="10_gfrrk"]
 [ext_resource type="Material" uid="uid://blvflicat0g82" path="res://player/soldier/mat/sleeves_mat_red.tres" id="11_0ojm0"]
-[ext_resource type="PackedScene" uid="uid://k43nu6i4pm32" path="res://wep/models/shovel.glb" id="11_4qh4n"]
+[ext_resource type="PackedScene" uid="uid://bc37xq0qfcyx5" path="res://wep/models/shovel.glb" id="11_4qh4n"]
 [ext_resource type="Script" uid="uid://cw4ev4bso5bxx" path="res://wep/shovel.gd" id="11_durgm"]
 [ext_resource type="AudioStream" uid="uid://cahe8sqs0wtbw" path="res://sfx/common/concrete_impact_bullet1.ogg" id="11_gbcug"]
 [ext_resource type="AudioStream" uid="uid://c1nbhm567idh" path="res://sfx/common/concrete_impact_bullet2.ogg" id="12_pgrf5"]
 [ext_resource type="AudioStream" uid="uid://bsbenbjxv0qg" path="res://sfx/common/concrete_impact_bullet3.ogg" id="13_v6cfi"]
-[ext_resource type="PackedScene" uid="uid://csp0d7462puxm" path="res://wep/models/shotgun.glb" id="14_2bunr"]
+[ext_resource type="PackedScene" uid="uid://cwra1254eqlhr" path="res://wep/models/shotgun.glb" id="14_2bunr"]
 [ext_resource type="AudioStream" uid="uid://bk1v0qmr2pe8g" path="res://sfx/common/concrete_impact_bullet4.ogg" id="14_yq7mb"]
 [ext_resource type="Material" uid="uid://cnmv8s17cp571" path="res://wep/models/shotgun_mat.tres" id="15_lowst"]
 [ext_resource type="Script" uid="uid://e0acsamgskt8" path="res://player/weapon_manager.gd" id="15_m23wc"]
@@ -390,18 +390,11 @@ transform = Transform3D(-1, 0, -9.81473e-08, 0, 1, 0, 1.50996e-07, 0, -0.65, 0, 
 [node name="Skeleton3D" parent="Smoothing3D/Pivot/Shotgun/Model/c_shotgun_skeleton" index="0"]
 bones/0/enabled = false
 bones/1/enabled = false
-bones/1/position = Vector3(0.000474975, 0.000474975, 0.000474975)
-bones/1/scale = Vector3(1.00048, 1.00048, 1.00048)
 bones/2/enabled = false
-bones/2/position = Vector3(0.000474975, 0.000474975, 0.000474975)
 bones/3/enabled = false
-bones/3/position = Vector3(1.12448, 7.20448, 5.58848)
-bones/3/scale = Vector3(1.00048, 1.00048, 1.00048)
 bones/4/enabled = false
 bones/5/enabled = false
-bones/5/scale = Vector3(1.00048, 1.00048, 1.00048)
 bones/6/enabled = false
-bones/6/scale = Vector3(1.00048, 1.00048, 1.00048)
 bones/7/enabled = false
 bones/8/enabled = false
 
@@ -498,86 +491,6 @@ attenuation_filter_cutoff_hz = 18520.0
 [node name="FirstPersonModel" parent="Smoothing3D/Pivot" instance=ExtResource("2_q83su")]
 transform = Transform3D(-1, 0, -9.81473e-08, 0, 1, 0, 1.50996e-07, 0, -0.65, 0, 0, 0)
 
-[node name="Skeleton3D" parent="Smoothing3D/Pivot/FirstPersonModel/Arms" index="0"]
-bones/2/position = Vector3(-3.4066, -0.468442, 0)
-bones/2/rotation = Quaternion(-2.68221e-07, 0, 0, 1)
-bones/3/position = Vector3(-1.13844, -13.7387, 11.6293)
-bones/3/rotation = Quaternion(-0.600171, -0.395701, -0.153303, 0.678021)
-bones/4/position = Vector3(-1.188, -14.0583, -3.26346)
-bones/4/rotation = Quaternion(-0.531395, 0.00827983, -0.0209467, 0.846825)
-bones/5/position = Vector3(-8.71723e-07, -12.3754, -1.35067e-05)
-bones/5/rotation = Quaternion(-0.00619997, -1.13624e-07, -4.24924e-07, 0.999981)
-bones/6/rotation = Quaternion(0.226852, -0.0415078, 0.149731, 0.961455)
-bones/12/rotation = Quaternion(-0.270379, -0.0297311, -0.353441, 0.895037)
-bones/13/rotation = Quaternion(0.554678, 1.5734e-07, 1.08331e-07, 0.832065)
-bones/14/position = Vector3(-3.69548e-06, -1.64941, 3.08357e-06)
-bones/14/rotation = Quaternion(0.139119, -1.69856e-08, 9.75261e-08, 0.990276)
-bones/16/position = Vector3(1.85235e-06, -3.30729, 8.95508e-07)
-bones/16/rotation = Quaternion(0.274312, 0.0586107, 0.30374, 0.910527)
-bones/17/position = Vector3(2.38418e-06, -2.89288, 1.46134e-07)
-bones/17/rotation = Quaternion(0.561346, 1.28482e-07, 7.58913e-08, 0.827581)
-bones/18/rotation = Quaternion(0.0781385, -4.11039e-08, 1.78241e-06, 0.996943)
-bones/19/rotation = Quaternion(-0.0322437, 0.776677, -0.0694008, 0.625234)
-bones/20/rotation = Quaternion(0.401801, 0.00386846, 0.174454, 0.898948)
-bones/21/position = Vector3(1.43051e-06, -2.79951, 3.93187e-06)
-bones/21/rotation = Quaternion(0.602618, -2.51437e-07, -1.37618e-07, 0.79803)
-bones/22/position = Vector3(2.38399e-07, -1.82245, -4.54529e-06)
-bones/22/rotation = Quaternion(0.420244, 1.87305e-07, 2.53953e-07, 0.907411)
-bones/23/rotation = Quaternion(0.0668786, 0.769808, 0.0176987, 0.634516)
-bones/24/rotation = Quaternion(0.481692, 0.0564772, -0.00184271, 0.874517)
-bones/25/rotation = Quaternion(0.427094, 2.54419e-07, 1.90916e-07, 0.904207)
-bones/26/rotation = Quaternion(0.320205, -1.21408e-07, 1.93861e-07, 0.947348)
-bones/27/rotation = Quaternion(0.164691, 0.757378, 0.0570782, 0.629284)
-bones/28/position = Vector3(5.22395e-06, -3.29754, 1.79564e-06)
-bones/28/rotation = Quaternion(0.495501, 0.0881671, -0.176717, 0.845858)
-bones/29/position = Vector3(1.2517e-06, -1.95185, 6.71333e-06)
-bones/29/rotation = Quaternion(0.371242, -2.46935e-07, -7.41225e-08, 0.928536)
-bones/30/rotation = Quaternion(0.261524, 3.83473e-07, 1.42982e-07, 0.965197)
-bones/31/position = Vector3(-16.0144, -5.9767, -8.58229)
-bones/31/rotation = Quaternion(0.907669, -0.195327, -0.0271373, 0.370469)
-bones/32/position = Vector3(1.18795, 14.0584, 3.26346)
-bones/32/rotation = Quaternion(-0.502987, 0.00794008, -0.0222428, 0.863971)
-bones/34/position = Vector3(5.05052e-05, 1.05885, 1.49011e-07)
-bones/34/rotation = Quaternion(-0.0229094, -0.0749985, 0.158279, 0.984276)
-bones/36/position = Vector3(9.28357, -9.58572, -26.8645)
-bones/36/rotation = Quaternion(3.22182e-05, -5.52461e-06, 3.59267e-05, -1)
-bones/37/position = Vector3(-1.8407, 23.1056, -10.0956)
-bones/37/rotation = Quaternion(0.505107, 0.190851, -0.806365, -0.241285)
-bones/38/position = Vector3(-3.40325, 25.5549, -13.1332)
-bones/38/rotation = Quaternion(0.447575, -0.71283, 0.254135, -0.476408)
-bones/39/position = Vector3(6.03971, 2.69475, 1.13533)
-bones/40/position = Vector3(6.46406, 3.59923, 1.46289)
-bones/44/position = Vector3(0.489977, 3.93007, -2.97098)
-bones/44/rotation = Quaternion(0.63834, -0.140102, -0.164374, -0.738833)
-bones/48/position = Vector3(4.81458, 2.7311, 1.19043)
-bones/48/rotation = Quaternion(0.963014, -0.200186, -0.0522706, -0.172619)
-bones/49/rotation = Quaternion(0.963014, -0.200186, -0.0522709, -0.172619)
-bones/50/rotation = Quaternion(0.963014, -0.200186, -0.0522703, -0.172619)
-bones/51/rotation = Quaternion(-0.213237, -0.183323, -0.17427, 0.943691)
-bones/52/position = Vector3(1.23976e-05, 3.09957, 1.48867e-05)
-bones/52/rotation = Quaternion(0.304673, 6.96577e-08, -6.38817e-08, 0.952457)
-bones/53/rotation = Quaternion(0.236207, -3.88818e-06, 1.38335e-07, 0.971703)
-bones/55/position = Vector3(1.10964e-05, 3.30726, 1.56839e-05)
-bones/55/rotation = Quaternion(0.150219, 0.0424141, 0.316565, 0.93564)
-bones/56/rotation = Quaternion(0.650423, 1.9542e-07, -4.91647e-07, 0.759572)
-bones/57/position = Vector3(-2.7895e-05, 1.78928, -4.41099e-05)
-bones/57/rotation = Quaternion(0.484525, 2.14273e-07, -3.54342e-07, 0.874778)
-bones/59/rotation = Quaternion(0.304938, 0.0288017, 0.255868, 0.916905)
-bones/60/position = Vector3(-6.61635e-06, 2.79957, -4.8018e-06)
-bones/60/rotation = Quaternion(0.610572, 1.15542e-05, -9.40216e-06, 0.791961)
-bones/61/position = Vector3(1.62125e-05, 1.82241, 9.48756e-06)
-bones/61/rotation = Quaternion(0.529254, -1.55522e-07, 6.51884e-08, 0.848463)
-bones/63/position = Vector3(-2.30992e-05, 3.38824, -4.31996e-06)
-bones/63/rotation = Quaternion(0.427461, 0.160906, 0.127657, 0.880392)
-bones/64/rotation = Quaternion(0.571263, 2.30431e-06, -1.196e-06, 0.820767)
-bones/65/rotation = Quaternion(0.452531, -7.80342e-07, 7.07538e-07, 0.891749)
-bones/67/position = Vector3(-7.83023e-06, 3.29759, 1.81632e-05)
-bones/67/rotation = Quaternion(0.522349, 0.248967, -0.00221284, 0.815575)
-bones/68/rotation = Quaternion(0.509227, -1.29156e-07, -1.35684e-07, 0.860632)
-bones/69/rotation = Quaternion(0.413392, 5.33972e-07, -4.96001e-07, 0.910553)
-bones/70/position = Vector3(-32.6533, -28.7581, 25.2944)
-bones/70/rotation = Quaternion(0.048686, -0.0347198, 0.0266326, 0.997855)
-
 [node name="mesh" parent="Smoothing3D/Pivot/FirstPersonModel/Arms/Skeleton3D" index="0"]
 layers = 2
 gi_mode = 2
@@ -610,6 +523,9 @@ script = ExtResource("40_icifs")
 [node name="Soldier" parent="." instance=ExtResource("25_vdsxv")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
 
+[node name="Skeleton3D" parent="Soldier/Body" index="0"]
+bones/69/scale = Vector3(0.999999, 1, 0.999991)
+
 [node name="AnimationTree" parent="Soldier" index="2" node_paths=PackedStringArray("player", "model")]
 active = false
 player = NodePath("../..")
@@ -636,13 +552,9 @@ max_distance = 1.0
 max_polyphony = 10
 attenuation_filter_cutoff_hz = 18520.0
 
-[connection signal="deployed" from="Smoothing3D/Pivot/RocketLauncher" to="Soldier/AnimationTree" method="_on_any_weapon_deployed" binds= [0]]
 [connection signal="shot" from="Smoothing3D/Pivot/RocketLauncher" to="Soldier/AnimationTree" method="_on_any_weapon_shot"]
-[connection signal="deployed" from="Smoothing3D/Pivot/GrenadeLauncher" to="Soldier/AnimationTree" method="_on_any_weapon_deployed" binds= [0]]
 [connection signal="shot" from="Smoothing3D/Pivot/GrenadeLauncher" to="Soldier/AnimationTree" method="_on_any_weapon_shot"]
-[connection signal="deployed" from="Smoothing3D/Pivot/Shotgun" to="Soldier/AnimationTree" method="_on_any_weapon_deployed" binds= [1]]
 [connection signal="shot" from="Smoothing3D/Pivot/Shotgun" to="Soldier/AnimationTree" method="_on_any_weapon_shot"]
-[connection signal="deployed" from="Smoothing3D/Pivot/Shovel" to="Soldier/AnimationTree" method="_on_any_weapon_deployed" binds= [2]]
 [connection signal="shot" from="Smoothing3D/Pivot/Shovel" to="Soldier/AnimationTree" method="_on_any_weapon_shot"]
 [connection signal="animation_finished" from="Smoothing3D/Pivot/FirstPersonModel/AnimationPlayer" to="Smoothing3D/Pivot/Shotgun" method="_on_FirstPersonPlayer_animation_finished"]
 

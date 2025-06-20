@@ -3,7 +3,7 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://k43nu6i4pm32"
+uid="uid://bc37xq0qfcyx5"
 path="res://.godot/imported/shovel.glb-3019cb8ec83472915b5d691d9ad0af71.scn"
 
 [deps]
@@ -13,8 +13,8 @@ dest_files=["res://.godot/imported/shovel.glb-3019cb8ec83472915b5d691d9ad0af71.s
 
 [params]
 
-nodes/root_type="Node3D"
-nodes/root_name="Shovel"
+nodes/root_type=""
+nodes/root_name=""
 nodes/apply_root_scale=true
 nodes/root_scale=1.0
 nodes/import_as_skeleton_bones=false
