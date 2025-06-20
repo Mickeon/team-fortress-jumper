@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://dvq62dln05o5l"]
 
 [ext_resource type="Theme" uid="uid://dhkoa5aepxj0j" path="res://ui/chat/chat_theme.tres" id="1_dsfbt"]
-[ext_resource type="Script" path="res://ui/chat/chat.gd" id="1_wtviw"]
+[ext_resource type="Script" uid="uid://c2i7e6qpew2yl" path="res://ui/chat/chat.gd" id="1_wtviw"]
 [ext_resource type="AudioStream" uid="uid://bs4u86cdjx5ds" path="res://sfx/interface/fail.ogg" id="2_xvi77"]
 [ext_resource type="AudioStream" uid="uid://cp05pouwbvdae" path="res://sfx/interface/button_click.ogg" id="3_dxnua"]
 [ext_resource type="AudioStream" uid="uid://jm8yeamc344g" path="res://sfx/interface/button_click_release.ogg" id="4_qc5d2"]

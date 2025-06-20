@@ -13,9 +13,9 @@ config_version=5
 config/name="Team Fortress Jumper"
 config/description="A small demo that attempts to recreate how it feels to rocket-jump around in Team Fortress 2."
 run/main_scene="res://maps/MPGame.tscn"
-config/features=PackedStringArray("4.3", "Forward Plus")
-boot_splash/image="res://icon.png"
+config/features=PackedStringArray("4.4", "Forward Plus")
 boot_splash/fullsize=false
+boot_splash/image="res://icon.png"
 config/icon="res://icon.svg"
 config/windows_native_icon="res://icon_tf2.ico"
 run/max_fps.editor=75
@@ -40,6 +40,7 @@ multirun/number_of_windows=2
 [debug_draw_3d]
 
 settings/3d/volumetric_defaults/thickness=0.01
+settings/addon_root_folder="res://addons/debug_draw_3d"
 
 [display]
 
@@ -222,6 +223,11 @@ menu_open_chat={
 3d_physics/layer_1="Solid Geometry"
 3d_physics/layer_9="Player"
 3d_physics/layer_10="Projectile"
+
+[physics]
+
+2d/physics_engine="Dummy"
+3d/physics_engine="Jolt Physics"
 
 [rendering]
 

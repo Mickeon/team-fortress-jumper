@@ -1,7 +1,7 @@
 [gd_scene load_steps=144 format=4 uid="uid://hh4q032b8r24"]
 
 [ext_resource type="LightmapGIData" uid="uid://bmb3fuha1cu1n" path="res://maps/itemtest.lmbake" id="1_1s8p8"]
-[ext_resource type="Script" path="res://addons/godotvmf/src/VMFNode.gd" id="2_d4sps"]
+[ext_resource type="Script" uid="uid://dnqsm37nfocg5" path="res://addons/godotvmf/src/VMFNode.gd" id="2_d4sps"]
 [ext_resource type="ArrayMesh" uid="uid://cqxcgu85ibwo2" path="res://maps/geometry/itemtest_vmf_import.mesh" id="3_qe8i5"]
 [ext_resource type="Shape3D" uid="uid://b12ftn5ptk4oh" path="res://maps/geometry/itemtest_vmf_collision_surface_prop_metal.res" id="4_b4yqu"]
 [ext_resource type="Shape3D" uid="uid://bp05fvda8d8gl" path="res://maps/geometry/itemtest_vmf_collision_surface_prop_default.res" id="5_wmpvj"]
@@ -72,7 +72,7 @@
 [ext_resource type="Material" uid="uid://crmbooh1ktqpp" path="res://maps/materials/concrete/concretewall012b.vmt" id="111_yv6fw"]
 [ext_resource type="Material" uid="uid://dxuf20tw3kdhs" path="res://maps/materials/nature/ground_04.vmt" id="112_o7ec0"]
 [ext_resource type="PackedScene" uid="uid://dol3fg7umxotv" path="res://maps/entities/info_overlay.tscn" id="113_vpw8b"]
-[ext_resource type="Texture2D" uid="uid://dexn0y04q7y5f" path="res://maps/materials/signs/hazard_yellow001.png" id="115_oeu8p"]
+[ext_resource type="Texture2D" uid="uid://dalkexq7rhs8j" path="res://maps/materials/signs/hazard_yellow001.png" id="115_oeu8p"]
 
 [sub_resource type="Environment" id="Environment_0lsgu"]
 tonemap_mode = 2

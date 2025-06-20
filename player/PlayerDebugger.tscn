@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bf71q8x45pv03"]
 
 [ext_resource type="FontFile" uid="uid://idu5r2kjc1sx" path="res://shared/fonts/SourceCodePro-Medium.ttf" id="1_0jd0t"]
-[ext_resource type="Script" path="res://player/player_debugger.gd" id="2_gd2o7"]
+[ext_resource type="Script" uid="uid://djvnhk404ygsf" path="res://player/player_debugger.gd" id="2_gd2o7"]
 
 [node name="PlayerDebugger" type="RichTextLabel"]
 clip_contents = false

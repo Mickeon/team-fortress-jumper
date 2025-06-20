@@ -17,9 +17,9 @@
 	<key>NSHumanReadableCopyright</key>
 	<string>Copyright (c) Dmitriy Salnikov.</string>
 	<key>CFBundleVersion</key>
-	<string>1.4.5</string>
+	<string>1.5.1</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.4.5</string>
+	<string>1.5.1</string>
 	<key>CFBundlePackageType</key>
 	<string>FMWK</string>
 	<key>CSResourcesFileMapped</key>
@@ -28,6 +28,10 @@
 	<string>macosx</string>
 	<key>LSMinimumSystemVersion</key>
 	<string>10.14</string>
+	<key>CFBundleSupportedPlatforms</key>
+	<array>
+		<string>MacOSX</string>
+	</array>
 </dict>
 </plist>
     

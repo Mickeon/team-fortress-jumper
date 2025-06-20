@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dqohp4r0iukoo"]
 
-[ext_resource type="Script" path="res://maps/entities/light_spot.gd" id="1_t5d4s"]
+[ext_resource type="Script" uid="uid://7g7sn23qu2xr" path="res://maps/entities/light_spot.gd" id="1_t5d4s"]
 
 [node name="LightSpot" type="Node3D"]
 rotation_order = 3

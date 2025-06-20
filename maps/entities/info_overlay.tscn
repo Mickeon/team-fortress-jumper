@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dol3fg7umxotv"]
 
-[ext_resource type="Script" path="res://maps/entities/info_overlay.gd" id="1_ycpda"]
+[ext_resource type="Script" uid="uid://6wqx6awmxkgt" path="res://maps/entities/info_overlay.gd" id="1_ycpda"]
 
 [node name="InfoOverlay" type="Node3D"]
 script = ExtResource("1_ycpda")

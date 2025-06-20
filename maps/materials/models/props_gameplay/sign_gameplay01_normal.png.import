@@ -2,20 +2,22 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ctqffb3fvmq6q"
-path="res://.godot/imported/sign_gameplay01_normal.png-e1a16bcbde75e24a9ff813016d09c1b0.ctex"
+uid="uid://bdwspxumn03xe"
+path.s3tc="res://.godot/imported/sign_gameplay01_normal.png-e1a16bcbde75e24a9ff813016d09c1b0.s3tc.ctex"
+path.etc2="res://.godot/imported/sign_gameplay01_normal.png-e1a16bcbde75e24a9ff813016d09c1b0.etc2.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://maps/materials/models/props_gameplay/sign_gameplay01_normal.png"
-dest_files=["res://.godot/imported/sign_gameplay01_normal.png-e1a16bcbde75e24a9ff813016d09c1b0.ctex"]
+dest_files=["res://.godot/imported/sign_gameplay01_normal.png-e1a16bcbde75e24a9ff813016d09c1b0.s3tc.ctex", "res://.godot/imported/sign_gameplay01_normal.png-e1a16bcbde75e24a9ff813016d09c1b0.etc2.ctex"]
 
 [params]
 
-compress/mode=1
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

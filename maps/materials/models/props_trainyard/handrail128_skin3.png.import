@@ -2,20 +2,22 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bjuo5kog06wya"
-path="res://.godot/imported/handrail128_skin3.png-d9e2681e6a2f588e629e8f374eb88b04.ctex"
+uid="uid://bs8hhkmcg2iep"
+path.s3tc="res://.godot/imported/handrail128_skin3.png-d9e2681e6a2f588e629e8f374eb88b04.s3tc.ctex"
+path.etc2="res://.godot/imported/handrail128_skin3.png-d9e2681e6a2f588e629e8f374eb88b04.etc2.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://maps/materials/models/props_trainyard/handrail128_skin3.png"
-dest_files=["res://.godot/imported/handrail128_skin3.png-d9e2681e6a2f588e629e8f374eb88b04.ctex"]
+dest_files=["res://.godot/imported/handrail128_skin3.png-d9e2681e6a2f588e629e8f374eb88b04.s3tc.ctex", "res://.godot/imported/handrail128_skin3.png-d9e2681e6a2f588e629e8f374eb88b04.etc2.ctex"]
 
 [params]
 
-compress/mode=1
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

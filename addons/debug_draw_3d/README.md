@@ -16,7 +16,7 @@ Your support adds motivation to develop my public projects.
 
 <a href="https://boosty.to/dmitriysalnikov/donate"><img src="/docs/images/boosty.png" alt="Boosty" width=150px/></a>
 
-<img src="/docs/images/USDT-TRC20.png" alt="USDT-TRC20" width=150px/>
+<a href="#"><img src="/docs/images/USDT-TRC20.png" alt="USDT-TRC20" width=150px/></a>
 
 <b>USDT-TRC20 TEw934PrsffHsAn5M63SoHYRuZo984EF6v</b>
 
@@ -38,6 +38,7 @@ Your support adds motivation to develop my public projects.
 * Points
 * Position 3D (3 crossing axes)
 * Sphere
+* 3D Text
 
 2D:
 
@@ -46,30 +47,24 @@ Your support adds motivation to develop my public projects.
 Overlay:
 
 * Text (with grouping and coloring)
-* FPS Graph
-* Custom Graphs
 
 Precompiled for:
 
 * Windows
-* Linux (built on Ubuntu 20.04)
-* macOS (10.14+)
+* Linux (built on Ubuntu 22.04)
+* macOS (10.15+)
 * Android (5.0+)
 * iOS
-* Web (Firefox not supported)
+* Web (Firefox is supported by Godot 4.3+)
 
 This addon supports working with several World3D and different Viewports.
 There is also a no depth test mode and other settings that can be changed for each instance.
 
-This library supports double-precision builds, for more information, [see the documentation](https://dd3d.dmitriysalnikov.ru/docs/1.4.5/md_docs_2DoublePrecision.html).
+This library supports double-precision builds, for more information, [see the documentation](https://dd3d.dmitriysalnikov.ru/docs/?page=md_docs_2DoublePrecision.html).
 
 ## [Interactive Web Demo](https://dd3d.dmitriysalnikov.ru/demo/)
 
 [![screenshot_web](/images/screenshot_web.png)](https://dd3d.dmitriysalnikov.ru/demo/)
-
-> [!WARNING]
->
-> * Firefox most likely can't run this demo
 
 ## Download
 
@@ -96,7 +91,7 @@ func _process(delta: float) -> void:
     var line_begin = Vector3(-1, sin(_time * 4), 0)
     var line_end = Vector3(1, cos(_time * 4), 0)
 
-    DebugDraw3D.draw_box(box_pos, Vector3(1, 2, 1), Color(0, 1, 0))
+    DebugDraw3D.draw_box(box_pos, Quaternion.IDENTITY, Vector3(1, 2, 1), Color(0, 1, 0))
     DebugDraw3D.draw_line(line_begin, line_end, Color(1, 1, 0))
     DebugDraw2D.set_text("Time", _time)
     DebugDraw2D.set_text("Frames drawn", Engine.get_frames_drawn())
@@ -149,7 +144,7 @@ Also, a list of all functions is available in the documentation inside the edito
 
 The text in the keys and values of a text group cannot contain multi-line strings.
 
-The entire text overlay can only be placed in one corner, unlike `DataGraphs`.
+The entire text overlay can only be placed in one corner.
 
 [Frustum of Camera3D does not take into account the window size from ProjectSettings](https://github.com/godotengine/godot/issues/70362).
 

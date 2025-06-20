@@ -1,6 +1,6 @@
 [gd_scene load_steps=16 format=3 uid="uid://na0nnag5qudg"]
 
-[ext_resource type="Script" path="res://wep/other/grenade.gd" id="1_3arf6"]
+[ext_resource type="Script" uid="uid://c2fe48h3gwtyi" path="res://wep/other/grenade.gd" id="1_3arf6"]
 [ext_resource type="Material" uid="uid://d0gfkuuvgpoy0" path="res://wep/other/grenade_glow.tres" id="2_eayir"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_yg74f"]

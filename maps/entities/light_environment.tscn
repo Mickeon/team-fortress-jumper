@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cwxttgf1xbejo"]
 
-[ext_resource type="Script" path="res://maps/entities/light_environment.gd" id="1_m4j1f"]
+[ext_resource type="Script" uid="uid://inmkmjjd178v" path="res://maps/entities/light_environment.gd" id="1_m4j1f"]
 
 [node name="LightEnvironment" type="Node3D"]
 script = ExtResource("1_m4j1f")

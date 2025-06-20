@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://dsyym2bcxma0k"]
 
-[ext_resource type="Script" path="res://maps/level.gd" id="1_mcdpx"]
+[ext_resource type="Script" uid="uid://cjiejc55kysqk" path="res://maps/level.gd" id="1_mcdpx"]
 [ext_resource type="Material" uid="uid://bagj31aqo6y0f" path="res://maps/test_mat.tres" id="2_hlduo"]
 [ext_resource type="Texture2D" uid="uid://ciuqdaym61xuw" path="res://maps/tf-demoman.png" id="3_xpmct"]
 
@@ -75,12 +75,12 @@ void fragment() {
 resource_name = "gif_mat"
 render_priority = 0
 shader = SubResource("Shader_nck53")
+shader_parameter/tex = ExtResource("3_xpmct")
 shader_parameter/h_frames = 5
 shader_parameter/v_frames = 14
 shader_parameter/total_frames = 69
 shader_parameter/uv_scale = Vector2(-1, 1.595)
 shader_parameter/animation_scale = 16.0
-shader_parameter/tex = ExtResource("3_xpmct")
 
 [node name="Level" type="Node3D"]
 script = ExtResource("1_mcdpx")

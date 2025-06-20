@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://c0qhcxtaau6gc"]
 
-[ext_resource type="Script" path="res://wep/other/damage_number.gd" id="1_ngdck"]
+[ext_resource type="Script" uid="uid://d0lr4ysql7bdu" path="res://wep/other/damage_number.gd" id="1_ngdck"]
 
 [node name="DamageNumber" type="Label3D"]
 layers = 8

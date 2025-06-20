@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://dnn6dus4lvweg"]
 
-[ext_resource type="Script" path="res://wep/other/rocket.gd" id="1_s5gan"]
+[ext_resource type="Script" uid="uid://beos766pn00xm" path="res://wep/other/rocket.gd" id="1_s5gan"]
 [ext_resource type="PackedScene" uid="uid://fd3o8skf15np" path="res://wep/models/rocket.glb" id="2_b165l"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dqyvw"]

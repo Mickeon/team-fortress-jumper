@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bu24kkwsr1gej"]
 
-[ext_resource type="Script" path="res://addons/plugin_refresher/refresh_button.gd" id="1_air57"]
+[ext_resource type="Script" uid="uid://c5tnp6f5vq1f7" path="res://addons/plugin_refresher/refresh_button.gd" id="1_air57"]
 
 [node name="HBoxContainer" type="HBoxContainer"]
 offset_right = 91.0
