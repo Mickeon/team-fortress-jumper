@@ -3,6 +3,7 @@ extends Area3D
 const HU = Player.HU
 const ROCKET_JUMP_SCALE = 10.0 * HU # On air
 const ROCKET_JUMP_BAD_SCALE = 5.0 * HU # On ground
+const ROCKET_JUMP_RADIUS = 121 * HU
 
 const DEBUG_COLOR = Color.ORANGE
 const LIFETIME = 30.0
@@ -63,15 +64,14 @@ func _update_splash_radius():
 func apply_knockback(player: Player):
 	var player_global_center := player.get_global_center()
 	var splash_distance = 0.0
-	if directly_hit_player != player:
+	if player != directly_hit_player:
 		splash_distance = minf(
 				global_position.distance_to(player.global_position), 
 				global_position.distance_to(player_global_center))
 	
 	var radius := splash_radius
 	if inflictor == player:
-#		radius -= 25 * HU
-		radius -= 25.25 * HU # For some reason this works better. for now.
+		radius = ROCKET_JUMP_RADIUS
 	
 	var edge_damage := base_damage * 0.5
 	var damage := clampf(
@@ -80,18 +80,20 @@ func apply_knockback(player: Player):
 	
 	var multiplier := 6.0 * HU
 	if inflictor == player:
-		if not player.grounded:
+		if player.grounded:
+			multiplier = ROCKET_JUMP_BAD_SCALE
+		else:
 			damage *= 0.6
 			multiplier = ROCKET_JUMP_SCALE
-		else:
-			multiplier = ROCKET_JUMP_BAD_SCALE
 	else:
 		if damage_falloff_enabled:
 			damage *= get_damage_falloff(inflictor.global_position.distance_to(player.global_position))
 	
 	# Pretends that the knockback direction of attacks come from 10 Hu lower than they really do.
 	# It's part of why you're frequently pushed upwards when taking damage in the Vanilla game.
-	var direction := (global_position + Vector3(0, -10 * HU, 0)).direction_to(player_global_center)
+	# I cannot find any proof of the former being correct.
+	#var direction := (global_position + Vector3(0, -10 * HU, 0)).direction_to(player_global_center)
+	var direction := global_position.direction_to(player_global_center)
 	
 	var volume_ratio := 1.49091 if player.crouching else 1.0
 	var knockback_force := minf(damage * volume_ratio * multiplier, 1000 * HU)
@@ -105,6 +107,8 @@ func apply_knockback(player: Player):
 		print("Damage: %4.2f | Speed: %5.2f" % [damage, player.velocity.length() / HU])
 
 func is_valid_target(player: Player) -> bool:
+	# TODO: More accurate, albeit quirky, distance check.
+	# (See CTFGameRules::RadiusDamage and CCollisionProperty::CalcNearestPoint).
 	var query := PhysicsRayQueryParameters3D.create(
 			global_position, player.get_global_center(),
 			0b1, [player.get_rid()])

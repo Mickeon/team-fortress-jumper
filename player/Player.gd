@@ -6,6 +6,8 @@ const HU = 0.01905
 
 const CROUCH_SPEED_MULTIPLIER = 0.333333
 const BACKPEDAL_SPEED_MULTIPLIER = 0.9
+const HEIGHT_BASE = 82 * HU
+const HEIGHT_CROUCH = 62 * HU
 
 ## The player you control, and see from.
 static var main: Player:
@@ -32,7 +34,8 @@ static var main: Player:
 @export var AIR_SPEED := 75 * HU#12.0 * HU # Especially noticeable when moving backwards.
 @export var AIR_ACCELERATION := 2400 * HU * 0.85 #100.0
 
-@export var JUMP_FORCE := 283 * HU # not 271 * HU. Gravity applies the first frame in the air, too.
+# Rather arbitrary value for jump force (271 + 12 + 7). Investigate something reasonable.
+@export var JUMP_FORCE := 290 * HU #(271 + 12) * HU # not 271 * HU. Gravity applies the first frame in the air, too.
 @export var GRAVITY_FORCE := 800 * HU # 12 * 66.666
 @export var TERMINAL_SPEED := 3500 * HU
 
@@ -65,8 +68,6 @@ var grounded := false:
 			rocket_jumping = false
 var crouching := false:
 	set(new):
-		const HEIGHT_BASE = 82 * HU
-		const HEIGHT_CROUCH = 62 * HU
 		const VIEW_BASE = 68 * HU # Same as Soldier's.
 		const VIEW_CROUCH = 45 * HU
 		
@@ -85,8 +86,10 @@ var crouching := false:
 		
 		cam_pivot.position.y = VIEW_CROUCH if crouching else VIEW_BASE
 		
+		# FIXME: Crouch-jumping is way too high.
+		# 77~ HU, should be at most 72 HU. Investigate why.
 		if not grounded:
-			position.y += 27 * HU if crouching else -27 * HU
+			position.y += 20 * HU if crouching else -20 * HU
 var just_jumped := false
 var just_landed := false
 var rocket_jumping := false:
@@ -402,12 +405,13 @@ func _try_to_step_up(pos: Vector3, remainder: Vector3) -> bool:
 func get_slope_angle(normal: Vector3) -> float:
 	return normal.angle_to(up_direction)
 
+# Roughly the BodyTarget() or WorldSpaceCenter() methods in vanilla.
 func get_global_center() -> Vector3:
 	var center := hull.global_position
 	if crouching:
 		# Pretend the center is further down than it actually is.
 		# Makes rocket jumping even stronger. Halved because of the box extents.
-		center.y = global_position.y + (55 * HU) * 0.6 # For some reason 0.6 works better now.
+		center.y = global_position.y + HEIGHT_CROUCH * 0.5
 	
 	return center
 

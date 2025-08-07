@@ -24,7 +24,8 @@ func _ready():
 
 func _physics_process(delta):
 	if is_colliding():
-		global_position = get_collision_point()
+		# Pull back a bit. Vanilla does this (CTFBaseRocket::Explode).
+		global_position = get_collision_point() + get_collision_normal() * Player.HU
 		explode()
 		return
 	

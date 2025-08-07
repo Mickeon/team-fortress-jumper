@@ -6,7 +6,7 @@ const Explosion = preload("res://wep/other/explosion.gd")
 enum ViewMode { FIRST_PERSON, THIRD_PERSON, FRONT, TOP_DOWN }
 
 const STRING = """[color=gray]F3 to toggle, [color=cyan][url="github"]Click here for controls[/url][/color]. (%s)
-POS: %s (%s)
+POS: %s (%s) %s
 ANG: %s
 SPD: %s
 HSP: %s
@@ -14,6 +14,7 @@ HSP: %s
 
 @export var player: Player
 @export var display_meters_as_hu := false
+@export var display_pos_from_eyes := false
 @export var view_mode := ViewMode.FIRST_PERSON:
 	set(new):
 		if view_mode == new or not player:
@@ -75,6 +76,8 @@ func _input(event):
 					Explosion.debug_show_radius = not Explosion.debug_show_radius
 					player.debug_show_collisions = Explosion.debug_show_radius
 					player.debug_show_collision_hull = Explosion.debug_show_radius
+				elif key_event.alt_pressed:
+					display_pos_from_eyes = not display_pos_from_eyes
 				else:
 					visible = not visible
 			KEY_F4:
@@ -88,6 +91,9 @@ func _input(event):
 				var s := "  🔇"
 				var title := get_window().title
 				get_window().title = (title + s) if AudioServer.is_bus_mute(0) else title.trim_suffix(s)
+			KEY_K:
+				player.cam_pivot.rotation.x = -1.55334 if key_event.shift_pressed else 0.0
+				player.cam_pivot.rotation.y = PI
 	
 	if event.is_action_pressed("debug_view_mode"):
 		view_mode = (view_mode + 1) % ViewMode.size() as ViewMode
@@ -123,14 +129,16 @@ func _debug_draw():
 
 func update_debug_text():
 	var angles := Vector2(player.cam_pivot.rotation_degrees.x, player.cam_pivot.rotation_degrees.y)
+	var pos := player.cam_pivot.global_position if display_pos_from_eyes else player.global_position
 	var velocity_planar := Vector2(player.velocity.x, player.velocity.z)
 	var multiplayer_id := multiplayer.get_unique_id()
 	var is_server := multiplayer.is_server()
 	
 	var new_text = STRING % [
 		"[color=%s][url=clipboard:%s]%s[/url][/color]" % ["blue" if is_server else "cyan", multiplayer_id, multiplayer_id],
-		prettify(adjust(player.global_position)),
+		prettify(adjust(pos)),
 		"Using Hu" if display_meters_as_hu else "Using Meters",
+		"(eyes)" if display_pos_from_eyes else "",
 		prettify(angles),
 		prettify(adjust(player.velocity.length())),
 		prettify(adjust(velocity_planar.length())),
