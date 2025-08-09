@@ -1,4 +1,4 @@
-[gd_scene load_steps=69 format=3 uid="uid://bp3faj46c64ck"]
+[gd_scene load_steps=75 format=3 uid="uid://bp3faj46c64ck"]
 
 [ext_resource type="Script" uid="uid://ralk8skbs5p3" path="res://player/Player.gd" id="1"]
 [ext_resource type="Script" uid="uid://cqeexyt8opffs" path="res://wep/rocket_launcher.gd" id="2_eytv3"]
@@ -43,6 +43,11 @@
 [ext_resource type="AudioStream" uid="uid://c1k6nn541ywka" path="res://sfx/secondary/charging_shield_windup_no_voice.ogg" id="34_ti2ir"]
 [ext_resource type="AudioStream" uid="uid://cqwxehsek2xdy" path="res://sfx/common/rocket_jump_wind.ogg" id="40_4f14b"]
 [ext_resource type="Script" uid="uid://dmw8caoh5bhha" path="res://player/server_synchronizer.gd" id="40_icifs"]
+[ext_resource type="AudioStream" uid="uid://c4l4h2802f0h6" path="res://sfx/common/footstep/concrete1.wav" id="44_wpul2"]
+[ext_resource type="AudioStream" uid="uid://513g3hdv3516" path="res://sfx/common/footstep/concrete2.wav" id="45_pcftw"]
+[ext_resource type="AudioStream" uid="uid://trhsus8x6vff" path="res://sfx/common/footstep/concrete3.wav" id="46_cayk5"]
+[ext_resource type="AudioStream" uid="uid://c1h2fhf0ydntj" path="res://sfx/common/footstep/concrete4.wav" id="47_wqfsd"]
+[ext_resource type="Script" uid="uid://cy8k051va8lv7" path="res://player/footstep_manager.gd" id="48_wpo5q"]
 
 [sub_resource type="Skin" id="Skin_37hr0"]
 resource_name = "Skin"
@@ -255,6 +260,14 @@ height = 1.562
 resource_local_to_scene = true
 height = 1.562
 radius = 0.457
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_22tms"]
+playback_mode = 1
+streams_count = 4
+stream_0/stream = ExtResource("44_wpul2")
+stream_1/stream = ExtResource("45_pcftw")
+stream_2/stream = ExtResource("46_cayk5")
+stream_3/stream = ExtResource("47_wqfsd")
 
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("cam_pivot", "hull") groups=["players"]]
 process_thread_group = 1
@@ -551,6 +564,20 @@ max_db = -20.0
 max_distance = 1.0
 max_polyphony = 10
 attenuation_filter_cutoff_hz = 18520.0
+
+[node name="Footstep" type="AudioStreamPlayer3D" parent="SFX"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.000180006, 0)
+top_level = true
+stream = SubResource("AudioStreamRandomizer_22tms")
+unit_size = 1.0
+max_db = 0.0
+max_distance = 5.0
+attenuation_filter_cutoff_hz = 18520.0
+script = ExtResource("48_wpo5q")
+
+[node name="Step" type="Timer" parent="SFX/Footstep"]
+process_callback = 0
+one_shot = true
 
 [connection signal="shot" from="Smoothing3D/Pivot/RocketLauncher" to="Soldier/AnimationTree" method="_on_any_weapon_shot"]
 [connection signal="shot" from="Smoothing3D/Pivot/GrenadeLauncher" to="Soldier/AnimationTree" method="_on_any_weapon_shot"]

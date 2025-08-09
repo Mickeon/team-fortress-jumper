@@ -34,8 +34,8 @@ static var main: Player:
 @export var AIR_SPEED := 75 * HU#12.0 * HU # Especially noticeable when moving backwards.
 @export var AIR_ACCELERATION := 2400 * HU * 0.85 #100.0
 
-# Rather arbitrary value for jump force (271 + 12 + 7). Investigate something reasonable.
-@export var JUMP_FORCE := 290 * HU #(271 + 12) * HU # not 271 * HU. Gravity applies the first frame in the air, too.
+# Straight from the source, but it may barely reach 50 HU. Investigate why.
+@export var JUMP_FORCE := 289 * HU # not 271 * HU. Gravity applies the first frame in the air, too.
 @export var GRAVITY_FORCE := 800 * HU # 12 * 66.666
 @export var TERMINAL_SPEED := 3500 * HU
 
@@ -86,8 +86,7 @@ var crouching := false:
 		
 		cam_pivot.position.y = VIEW_CROUCH if crouching else VIEW_BASE
 		
-		# FIXME: Crouch-jumping is way too high.
-		# 77~ HU, should be at most 72 HU. Investigate why.
+		# FIXME: A perfect crouch-jump is too low (should be 72 HU). Investigate why.
 		if not grounded:
 			position.y += 20 * HU if crouching else -20 * HU
 var just_jumped := false
