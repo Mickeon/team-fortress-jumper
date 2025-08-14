@@ -214,24 +214,24 @@ size = Vector3(9.683, 1.02, 4.2)
 [node name="JumpableBoxes" type="Node3D" parent="MainGround"]
 
 [node name="JumpableBox" type="CSGBox3D" parent="MainGround/JumpableBoxes"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0.843, 12)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0.979736, 12)
 use_collision = true
-size = Vector3(1.372, 0.686, 1.372)
+size = Vector3(1.372, 0.953, 1.372)
 
 [node name="JumpableBoxWithCrouch" type="CSGBox3D" parent="MainGround/JumpableBoxes"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0.972, 13.3716)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 1.1665, 13.3716)
 use_collision = true
-size = Vector3(1.372, 0.943, 1.372)
+size = Vector3(1.372, 1.333, 1.372)
 
-[node name="StepUp" type="CSGBox3D" parent="MainGround/JumpableBoxes"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0.972, 14.7475)
+[node name="JumpableBoxWithPerfectCrouch" type="CSGBox3D" parent="MainGround/JumpableBoxes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 1.186, 14.7475)
 use_collision = true
-size = Vector3(1.372, 1.34831, 1.372)
+size = Vector3(1.372, 1.372, 1.372)
 
 [node name="StepUp2" type="CSGBox3D" parent="MainGround/JumpableBoxes"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0.972, 16.0858)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 1.26248, 16.0858)
 use_collision = true
-size = Vector3(1.372, 1.82116, 1.372)
+size = Vector3(1.372, 1.52496, 1.372)
 
 [node name="ThinFence" type="CSGBox3D" parent="MainGround/JumpableBoxes"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.1658, 0.972, 12.1447)

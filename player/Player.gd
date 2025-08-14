@@ -264,6 +264,12 @@ func _jump():
 		grounded = false
 		just_jumped = true
 		velocity.y = JUMP_FORCE
+		if crouching:
+			# Source games quirk due to how gravity and jumping is applied.
+			# This should be applied only as the player is crouching, but I don't have that yet.
+			# It's either fully crouched or not, nothing in between.
+			#velocity.y += 2 * HU
+			velocity.y += 54 * HU
 
 #region Collision handling
 func _handle_collision(delta: float):
