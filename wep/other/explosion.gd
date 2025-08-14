@@ -90,10 +90,9 @@ func apply_knockback(player: Player):
 			damage *= get_damage_falloff(inflictor.global_position.distance_to(player.global_position))
 	
 	# Pretends that the knockback direction of attacks come from 10 Hu lower than they really do.
-	# It's part of why you're frequently pushed upwards when taking damage in the Vanilla game.
-	# I cannot find any proof of the former being correct.
-	#var direction := (global_position + Vector3(0, -10 * HU, 0)).direction_to(player_global_center)
-	var direction := global_position.direction_to(player_global_center)
+	# It's part of why you're frequently pushed off the ground when taking damage in the Vanilla game.
+	# (See CTFPlayer::OnTakeDamage_Alive).
+	var direction := (global_position + Vector3(0, -10 * HU, 0)).direction_to(player_global_center)
 	
 	var volume_ratio := 1.49091 if player.crouching else 1.0
 	var knockback_force := minf(damage * volume_ratio * multiplier, 1000 * HU)
