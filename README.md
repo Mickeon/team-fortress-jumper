@@ -2,10 +2,10 @@
 A small demo built in Godot 4.1+ that attempts to recreate how it feels to rocket-jump around in **Team Fortress 2**.
 As it stands, it's pretty close. Collisions are almost entirely broken. Things like bunny-hopping may also be intentionally turned on (they're pretty fun to mess around with).
 
-<img width="45%" alt="Team Fortress Jumper Harvest preview" src="https://github.com/Mickeon/team-fortress-jumper/assets/66727710/2b6b756d-82e6-4af9-9e2f-8cf5a100eed8">
-<img width="45%" alt="Team Fortress Jumper Test map preview" src="https://github.com/Mickeon/team-fortress-jumper/assets/66727710/7846da8f-d52c-46cc-882e-41141fe12f63">
+<h3>Showcases:</h3>
+<p><img width="33%" src="https://github.com/user-attachments/assets/72130acc-0033-4033-b286-7181e6e94f14"><img width="33%" src="https://github.com/user-attachments/assets/9e430c6f-c1f2-4a89-9147-a2848ff3cdca"><img width="33%" src="https://github.com/user-attachments/assets/a9cccff5-2f6e-483d-b398-90e13b7b4dae"></p>
 
-<sup> Do not judge this code quality. </sup>
+<sup> Do not judge this code quality.</sup>
 
 This repository has not been originally designed to be visible by the public, but I'm putting it out there. It could be useful as a general point of reference. 
 Full support for this demo, as well as additional features _(such as multiplayer)_ should **not** be taken for granted.
@@ -24,7 +24,7 @@ Alternatively, download a build from [the releases](https://github.com/Mickeon/t
 | **Jump** | Jump
 | **Shift** or **CTRL** | Crouch
 | **Left Click** | Use Weapon
-| **R** | Charge!!
+| **R** | Charge
 | **1** | Switch to Rocket Launcher
 | **2** | Switch to Shotgun
 | **3** | Switch to Shovel
@@ -48,15 +48,19 @@ Alternatively, download a build from [the releases](https://github.com/Mickeon/t
 | **F5** | Change camera mode
 | **N** or **E** | Toggle noclip
 | **Page Up/Down** | Change time scale
+| **ALT** + **F3** | Toggle position from eyes
 | **CTRL** + **F3** | Toggle Hammer Units/Meters
 | **SHIFT** + **F3** | Toggle explosion radius & collisions display
 | **F** | Spawn fake player
 | **M** | Mute audio
+| **K** | Set rotation's yaw to 89°
+| **Shift** + **K** | Set rotation's pitch to 0°
 
 
 ## Credits
 
 My Twitter: https://twitter.com/DoodlingMicky
+My Bluesky: https://bsky.app/profile/mickeon.bsky.social
 
 This project is primarily based off the work of aneacsu [in this blog](https://aneacsu.com/blog/2023/04/09/quake-movement-godot)(See also [this video](https://www.youtube.com/watch?v=ssU6ec_um78)), as well as my prior experience with [Team Fortress Unity](https://www.youtube.com/watch?v=4WNybhStAE0).
 
@@ -67,5 +71,5 @@ This project is primarily based off the work of aneacsu [in this blog](https://a
 - Animations created/ported by [DJTHED](https://www.youtube.com/c/djthed);
 - [Godot Engine](https://godotengine.org/) for allowing this;
 - The [Team Fortress 2](https://www.teamfortress.com/) development team for creating a masterpiece;
-- [Valve Software](https://www.valvesoftware.com/it/) for... owning a lot of the used assets.
+- [Valve Software](https://www.valvesoftware.com/it/) for owning most of the used assets.
 
