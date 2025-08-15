@@ -1,6 +1,6 @@
 # Team Fortress Jumper
 A small demo built in Godot 4.1+ that attempts to recreate how it feels to rocket-jump around in **Team Fortress 2**.
-As it stands, it's pretty close. Collisions are almost entirely broken. Things like bunny-hopping may also be intentionally turned on (they're pretty fun to mess around with).
+As it stands, it's pretty close. Collisions are quite broken. Things like bunny-hopping can also be intentionally turned on (they're pretty fun to mess around with).
 
 <h3>Showcases:</h3>
 <p><img width="33%" src="https://github.com/user-attachments/assets/72130acc-0033-4033-b286-7181e6e94f14"><img width="33%" src="https://github.com/user-attachments/assets/9e430c6f-c1f2-4a89-9147-a2848ff3cdca"><img width="33%" src="https://github.com/user-attachments/assets/a9cccff5-2f6e-483d-b398-90e13b7b4dae"></p>
@@ -59,15 +59,14 @@ Alternatively, download a build from [the releases](https://github.com/Mickeon/t
 
 ## Credits
 
-My Twitter: https://twitter.com/DoodlingMicky
-My Bluesky: https://bsky.app/profile/mickeon.bsky.social
+My [Twitter](https://twitter.com/DoodlingMicky) and [Bluesky](https://bsky.app/profile/mickeon.bsky.social).
 
-This project is primarily based off the work of aneacsu [in this blog](https://aneacsu.com/blog/2023/04/09/quake-movement-godot)(See also [this video](https://www.youtube.com/watch?v=ssU6ec_um78)), as well as my prior experience with [Team Fortress Unity](https://www.youtube.com/watch?v=4WNybhStAE0).
+This project is primarily based off the work of aneacsu [in this archived blog](https://web.archive.org/web/20240408190842/https://aneacsu.com/blog/2023/04/09/quake-movement-godot), as well as my prior experience with [Team Fortress Unity](https://www.youtube.com/watch?v=4WNybhStAE0).
 
 - Maps ripped through [GodotVMF](https://github.com/H2xDev/GodotVMF) and [BSPSRC](https://github.com/ata4/bspsrc).
 - [`pl_minepit`](https://gamebanana.com/mods/71709) created by [Csand1](https://gamebanana.com/members/264279)
 - Sound effects ripped and organized by [Broly9990](https://www.sounds-resource.com/submitter/Broly9990/), [Cooper B. Chance](https://www.sounds-resource.com/submitter/Cooper+B.+Chance/), [Irockz](https://www.sounds-resource.com/submitter/Irockz/), [KIZ](https://www.sounds-resource.com/submitter/KIZ/), [Undeadbraindead](https://www.sounds-resource.com/submitter/Undeadbraindead/):
-	<br>at the [Source Resource](https://www.sounds-resource.com/pc_computer/tf2/sound/18547/);
+	<br>at the [Sounds Resource](https://www.sounds-resource.com/pc_computer/tf2/sound/18547/);
 - Animations created/ported by [DJTHED](https://www.youtube.com/c/djthed);
 - [Godot Engine](https://godotengine.org/) for allowing this;
 - The [Team Fortress 2](https://www.teamfortress.com/) development team for creating a masterpiece;
