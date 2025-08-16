@@ -1,0 +1,153 @@
+[gd_resource type="AnimationNodeBlendTree" load_steps=25 format=3 uid="uid://babqdhmbrx55u"]
+
+[ext_resource type="AnimationNodeBlendTree" uid="uid://cgwbifii8xwl1" path="res://player/soldier/anims/stand_primary.tres" id="1_q1ugm"]
+[ext_resource type="AnimationNodeBlendTree" uid="uid://t8ufcyi1vnhj" path="res://player/soldier/anims/crouch_primary.tres" id="1_vt8xa"]
+
+[sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_e6nu5"]
+sync = true
+
+[sub_resource type="AnimationNodeSub2" id="AnimationNodeSub2_vt8xa"]
+
+[sub_resource type="AnimationNodeSub2" id="AnimationNodeSub2_prcrf"]
+
+[sub_resource type="AnimationNodeSub2" id="AnimationNodeSub2_v1euv"]
+
+[sub_resource type="AnimationNodeSub2" id="AnimationNodeSub2_q1ugm"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_q1ugm"]
+animation = &"jump_float_PRIMARY"
+use_custom_timeline = true
+timeline_length = 0.533333
+stretch_time_scale = false
+start_offset = 0.0
+loop_mode = 1
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_g4iqx"]
+mix_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_golsn"]
+animation = &"jump_land_PRIMARY"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4hdod"]
+animation = &"stand_PRIMARY"
+use_custom_timeline = true
+timeline_length = 0.0
+stretch_time_scale = true
+start_offset = 0.0
+loop_mode = 0
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_vdnen"]
+mix_mode = 1
+fadeout_time = 0.4
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_huqk6"]
+animation = &"jump_start_PRIMARY"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3bbto"]
+animation = &"stand_PRIMARY"
+use_custom_timeline = true
+timeline_length = 0.0
+stretch_time_scale = true
+start_offset = 0.0
+loop_mode = 0
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_js0yo"]
+animation = &"stand_PRIMARY_LookUp"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8ok4h"]
+animation = &"stand_PRIMARY_LookRight"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8tpkq"]
+animation = &"stand_PRIMARY_LookLeft"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_f3ql1"]
+animation = &"stand_PRIMARY_LookDown"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_vgrfx"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_js0yo")
+blend_point_0/pos = Vector2(0, 1)
+blend_point_1/node = SubResource("AnimationNodeAnimation_8ok4h")
+blend_point_1/pos = Vector2(1, 0)
+blend_point_2/node = SubResource("AnimationNodeAnimation_8tpkq")
+blend_point_2/pos = Vector2(-1, 0)
+blend_point_3/node = SubResource("AnimationNodeAnimation_f3ql1")
+blend_point_3/pos = Vector2(0, -1)
+x_label = "Left-Right"
+y_label = "Up-Down"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1w4up"]
+animation = &"run_center_PRIMARY"
+
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_d046g"]
+xfade_time = 0.2
+input_0/name = "standing"
+input_0/auto_advance = false
+input_0/break_loop_at_end = false
+input_0/reset = true
+input_1/name = "airborne"
+input_1/auto_advance = false
+input_1/break_loop_at_end = false
+input_1/reset = true
+input_2/name = "crouched"
+input_2/auto_advance = false
+input_2/break_loop_at_end = false
+input_2/reset = true
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_q1ugm"]
+mix_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vt8xa"]
+animation = &"attack_PRIMARY"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_d046g"]
+animation = &"stand_PRIMARY"
+use_custom_timeline = true
+timeline_length = 0.0
+stretch_time_scale = true
+start_offset = 0.0
+loop_mode = 0
+
+[resource]
+graph_offset = Vector2(-1949.41, 169.014)
+nodes/_add_look/node = SubResource("AnimationNodeAdd2_e6nu5")
+nodes/_add_look/position = Vector2(480, 346.667)
+nodes/_sub_jump_land/node = SubResource("AnimationNodeSub2_vt8xa")
+nodes/_sub_jump_land/position = Vector2(-1146.67, 640)
+nodes/_sub_jump_start/node = SubResource("AnimationNodeSub2_prcrf")
+nodes/_sub_jump_start/position = Vector2(-1733.33, 640)
+nodes/_sub_look/node = SubResource("AnimationNodeSub2_v1euv")
+nodes/_sub_look/position = Vector2(266.667, 613.333)
+nodes/_sub_shoot/node = SubResource("AnimationNodeSub2_q1ugm")
+nodes/_sub_shoot/position = Vector2(-533.333, 640)
+nodes/airborne/node = SubResource("AnimationNodeAnimation_q1ugm")
+nodes/airborne/position = Vector2(-2800, 213.333)
+nodes/crouch/node = ExtResource("1_vt8xa")
+nodes/crouch/position = Vector2(-2800, 400)
+nodes/jump_land/node = SubResource("AnimationNodeOneShot_g4iqx")
+nodes/jump_land/position = Vector2(-1280, 133.333)
+nodes/jump_land_anim/node = SubResource("AnimationNodeAnimation_golsn")
+nodes/jump_land_anim/position = Vector2(-1466.67, 506.667)
+nodes/jump_land_base/node = SubResource("AnimationNodeAnimation_4hdod")
+nodes/jump_land_base/position = Vector2(-1466.67, 720)
+nodes/jump_start/node = SubResource("AnimationNodeOneShot_vdnen")
+nodes/jump_start/position = Vector2(-1866.67, 133.333)
+nodes/jump_start_anim/node = SubResource("AnimationNodeAnimation_huqk6")
+nodes/jump_start_anim/position = Vector2(-2053.33, 506.667)
+nodes/jump_start_base/node = SubResource("AnimationNodeAnimation_3bbto")
+nodes/jump_start_base/position = Vector2(-2053.33, 720)
+nodes/look_blend/node = SubResource("AnimationNodeBlendSpace2D_vgrfx")
+nodes/look_blend/position = Vector2(26.6667, 586.667)
+nodes/look_center/node = SubResource("AnimationNodeAnimation_1w4up")
+nodes/look_center/position = Vector2(0, 826.667)
+nodes/movement_state/node = SubResource("AnimationNodeTransition_d046g")
+nodes/movement_state/position = Vector2(-2400, 133.333)
+nodes/output/position = Vector2(693.333, 346.667)
+nodes/shoot/node = SubResource("AnimationNodeOneShot_q1ugm")
+nodes/shoot/position = Vector2(-613.333, 160)
+nodes/shoot_anim/node = SubResource("AnimationNodeAnimation_vt8xa")
+nodes/shoot_anim/position = Vector2(-853.333, 506.667)
+nodes/shoot_base/node = SubResource("AnimationNodeAnimation_d046g")
+nodes/shoot_base/position = Vector2(-853.333, 720)
+nodes/stand/node = ExtResource("1_q1ugm")
+nodes/stand/position = Vector2(-2800, 53.3333)
+node_connections = [&"_add_look", 0, &"shoot", &"_add_look", 1, &"_sub_look", &"_sub_jump_land", 0, &"jump_land_anim", &"_sub_jump_land", 1, &"jump_land_base", &"_sub_jump_start", 0, &"jump_start_anim", &"_sub_jump_start", 1, &"jump_start_base", &"_sub_look", 0, &"look_blend", &"_sub_look", 1, &"look_center", &"_sub_shoot", 0, &"shoot_anim", &"_sub_shoot", 1, &"shoot_base", &"jump_land", 0, &"jump_start", &"jump_land", 1, &"_sub_jump_land", &"jump_start", 0, &"movement_state", &"jump_start", 1, &"_sub_jump_start", &"movement_state", 0, &"stand", &"movement_state", 1, &"airborne", &"movement_state", 2, &"crouch", &"output", 0, &"_add_look", &"shoot", 0, &"jump_land", &"shoot", 1, &"_sub_shoot"]
