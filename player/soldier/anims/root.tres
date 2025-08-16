@@ -107,6 +107,7 @@ autorestart_delay = 0.5
 [sub_resource type="AnimationNodeSub2" id="AnimationNodeSub2_fwpij"]
 
 [resource]
+graph_offset = Vector2(-1438.82, -43.3088)
 nodes/Attack/node = SubResource("AnimationNodeAnimation_7rys0")
 nodes/Attack/position = Vector2(453.333, 693.333)
 nodes/AttackMachine/node = ExtResource("1_egy54")
@@ -128,7 +129,7 @@ nodes/JumpStart/position = Vector2(1786.67, -266.667)
 nodes/JumpStartMachine/node = ExtResource("4_o6on6")
 nodes/JumpStartMachine/position = Vector2(1573.33, -266.667)
 nodes/Stand/node = SubResource("AnimationNodeAnimation_tkt5h")
-nodes/Stand/position = Vector2(-533.333, 133.333)
+nodes/Stand/position = Vector2(-986.667, 133.333)
 nodes/StandMachine/node = ExtResource("6_6fxbh")
 nodes/StandMachine/position = Vector2(-746.667, 133.333)
 nodes/crouch_walk/node = SubResource("AnimationNodeBlend2_ypuct")

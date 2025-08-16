@@ -1,35 +1,60 @@
-[gd_resource type="AnimationNodeStateMachine" load_steps=7 format=3 uid="uid://dfebbyjrw162b"]
+[gd_resource type="AnimationNodeStateMachine" load_steps=9 format=3 uid="uid://dfebbyjrw162b"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_myyie"]
+animation = &"RESET"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_n2opi"]
 animation = &"stand_PRIMARY"
+use_custom_timeline = true
+timeline_length = 1.66667
+stretch_time_scale = false
+start_offset = 0.0
+loop_mode = 1
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mi1c1"]
 animation = &"stand_SECONDARY"
+use_custom_timeline = true
+timeline_length = 1.66667
+stretch_time_scale = false
+start_offset = 0.0
+loop_mode = 1
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_pph0i"]
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1ada2"]
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5rusp"]
-xfade_time = 0.2
-reset = false
-switch_mode = 1
-advance_mode = 2
-advance_expression = "held_type == Type.PRIMARY"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_raghl"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_258xn"]
 xfade_time = 0.2
 reset = false
 switch_mode = 1
 advance_mode = 2
 advance_expression = "held_type == Type.SECONDARY"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0siic"]
+reset = false
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0xej2"]
+reset = false
+switch_mode = 1
+advance_mode = 2
+advance_expression = "held_type != Type.SECONDARY"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_sd4s7"]
+xfade_time = 0.2
+reset = false
+switch_mode = 1
+advance_mode = 2
+advance_expression = "held_type == Type.PRIMARY"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_4mkd5"]
+reset = false
+switch_mode = 1
+advance_mode = 2
+advance_expression = "held_type != Type.PRIMARY"
+
 [resource]
+states/RESET/node = SubResource("AnimationNodeAnimation_myyie")
+states/RESET/position = Vector2(320.333, 101.185)
 states/stand_PRIMARY/node = SubResource("AnimationNodeAnimation_n2opi")
-states/stand_PRIMARY/position = Vector2(529.333, 88.6667)
+states/stand_PRIMARY/position = Vector2(528.668, 88.6667)
 states/stand_SECONDARY/node = SubResource("AnimationNodeAnimation_mi1c1")
-states/stand_SECONDARY/position = Vector2(528.889, 174)
-transitions = ["Start", "stand_PRIMARY", SubResource("AnimationNodeStateMachineTransition_pph0i"), "Start", "stand_SECONDARY", SubResource("AnimationNodeStateMachineTransition_1ada2"), "stand_SECONDARY", "stand_PRIMARY", SubResource("AnimationNodeStateMachineTransition_5rusp"), "stand_PRIMARY", "stand_SECONDARY", SubResource("AnimationNodeStateMachineTransition_raghl")]
+states/stand_SECONDARY/position = Vector2(528.668, 171.333)
+transitions = ["RESET", "stand_SECONDARY", SubResource("AnimationNodeStateMachineTransition_258xn"), "Start", "RESET", SubResource("AnimationNodeStateMachineTransition_0siic"), "stand_SECONDARY", "RESET", SubResource("AnimationNodeStateMachineTransition_0xej2"), "RESET", "stand_PRIMARY", SubResource("AnimationNodeStateMachineTransition_sd4s7"), "stand_PRIMARY", "RESET", SubResource("AnimationNodeStateMachineTransition_4mkd5")]
 graph_offset = Vector2(-195, -96)
