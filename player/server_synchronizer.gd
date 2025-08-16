@@ -29,14 +29,14 @@ func _physics_process(_delta: float) -> void:
 			position = o.position, 
 			velocity = o.velocity, 
 			wish_dir = o.wish_dir,
-			crouching = o.crouching,
+			crouched = o.crouched,
 			pivot_basis = o.cam_pivot.basis.orthonormalized(),
 		})
 		
 	else: # Client sends
 		update_input.rpc_id(SERVER_ID, current_tick, {
 			wish_dir = o.wish_dir,
-			crouching = o.crouching,
+			crouched = o.crouched,
 			pivot_basis = o.cam_pivot.basis.orthonormalized(),
 		})
 	
@@ -51,7 +51,7 @@ func update_physics(server_tick: int, server: Dictionary):
 	
 	if o.get_multiplayer_authority() != multiplayer.get_unique_id():
 		o.wish_dir = server.wish_dir
-		o.crouching = server.crouching
+		o.crouched = server.crouched
 		o.cam_pivot.basis = server.pivot_basis
 
 
@@ -59,7 +59,7 @@ func update_physics(server_tick: int, server: Dictionary):
 func update_input(client_tick: int, client: Dictionary):
 	#if history.has(client_tick):
 		#history[client_tick].wish_dir = client_data.wish_dir
-		#history[client_tick].crouching = client_data.crouching
+		#history[client_tick].crouched = client_data.crouched
 		#client_delay_ticks = current_tick - client_tick
 	if not multiplayer.is_server():
 		return
@@ -69,7 +69,7 @@ func update_input(client_tick: int, client: Dictionary):
 		last_received_client_tick = client_tick
 		
 		o.wish_dir = client.wish_dir
-		o.crouching = client.crouching
+		o.crouched = client.crouched
 		o.cam_pivot.basis = client.pivot_basis
 		
 		for tick in missed_ticks:

@@ -28,6 +28,11 @@ var splash_radius := 146 * HU:
 var base_damage := 90.0
 var damage_falloff_enabled := true
 
+var sfx: AudioStream = preload("res://wep/other/Explosion.tscn::AudioStreamRandomizer_4c5hd"):
+	set(new):
+		sfx = new
+		$Explode.stream = sfx
+
 var inflictor: Player
 var directly_hit_player: Player
 
@@ -61,16 +66,16 @@ func _update_splash_radius():
 	$BlastParticles.one_shot = true # In the editor, it is not one-shot.
 
 
-func apply_knockback(player: Player):
-	var player_global_center := player.get_global_center()
+func apply_knockback(victim: Player):
+	var victim_global_center := victim.get_global_center()
 	var splash_distance = 0.0
-	if player != directly_hit_player:
+	if victim != directly_hit_player:
 		splash_distance = minf(
-				global_position.distance_to(player.global_position), 
-				global_position.distance_to(player_global_center))
+				global_position.distance_to(victim.global_position), 
+				global_position.distance_to(victim_global_center))
 	
 	var radius := splash_radius
-	if inflictor == player:
+	if inflictor == victim:
 		radius = ROCKET_JUMP_RADIUS
 	
 	var edge_damage := base_damage * 0.5
@@ -79,40 +84,40 @@ func apply_knockback(player: Player):
 			edge_damage, base_damage)
 	
 	var multiplier := 6.0 * HU
-	if inflictor == player:
-		if player.grounded:
+	if inflictor == victim:
+		if victim.grounded:
 			multiplier = ROCKET_JUMP_BAD_SCALE
 		else:
 			damage *= 0.6
 			multiplier = ROCKET_JUMP_SCALE
 	else:
 		if damage_falloff_enabled:
-			damage *= get_damage_falloff(inflictor.global_position.distance_to(player.global_position))
+			damage *= get_damage_falloff(inflictor.global_position.distance_to(victim.global_position))
 	
 	# Pretends that the knockback direction of attacks come from 10 Hu lower than they really do.
 	# It's part of why you're frequently pushed off the ground when taking damage in the Vanilla game.
 	# (See CTFPlayer::OnTakeDamage_Alive).
-	var direction := (global_position + Vector3(0, -10 * HU, 0)).direction_to(player_global_center)
+	var direction := (global_position + Vector3(0, -10 * HU, 0)).direction_to(victim_global_center)
 	
-	var volume_ratio := 1.49091 if player.crouching else 1.0
+	var volume_ratio := 1.49091 if victim.crouched else 1.0
 	var knockback_force := minf(damage * volume_ratio * multiplier, 1000 * HU)
 	var add_velocity := knockback_force * direction
-	player.velocity += add_velocity
-	player.grounded = false
-	player.rocket_jumping = true
-	player.take_damage(damage, inflictor)
+	victim.velocity += add_velocity
+	victim.grounded = false
+	victim.rocket_jumping = true
+	victim.take_damage(damage, inflictor)
 	
-	if inflictor == player:
-		print("Damage: %4.2f | Speed: %5.2f" % [damage, player.velocity.length() / HU])
+	if inflictor == victim:
+		print("Damage: %4.2f | Speed: %5.2f" % [damage, victim.velocity.length() / HU])
 
-func is_valid_target(player: Player) -> bool:
+func is_valid_target(victim: Player) -> bool:
 	# TODO: More accurate, albeit quirky, distance check.
 	# (See CTFGameRules::RadiusDamage and CCollisionProperty::CalcNearestPoint).
 	var query := PhysicsRayQueryParameters3D.create(
-			global_position, player.get_global_center(),
-			0b1, [player.get_rid()])
+			global_position, victim.get_global_center(),
+			0b1, [victim.get_rid()])
 	
-	# Check for any obstruction between the player and the blast.
+	# Check for any obstruction between the victim and the blast.
 	return get_world_3d().direct_space_state.intersect_ray(query).is_empty()
 
 

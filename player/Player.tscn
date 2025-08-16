@@ -579,9 +579,13 @@ script = ExtResource("48_wpo5q")
 process_callback = 0
 one_shot = true
 
+[connection signal="deployed" from="Smoothing3D/Pivot/RocketLauncher" to="Soldier/AnimationTree" method="_on_any_weapon_deployed" binds= [0]]
 [connection signal="shot" from="Smoothing3D/Pivot/RocketLauncher" to="Soldier/AnimationTree" method="_on_any_weapon_shot"]
+[connection signal="deployed" from="Smoothing3D/Pivot/GrenadeLauncher" to="Soldier/AnimationTree" method="_on_any_weapon_deployed" binds= [0]]
 [connection signal="shot" from="Smoothing3D/Pivot/GrenadeLauncher" to="Soldier/AnimationTree" method="_on_any_weapon_shot"]
+[connection signal="deployed" from="Smoothing3D/Pivot/Shotgun" to="Soldier/AnimationTree" method="_on_any_weapon_deployed" binds= [1]]
 [connection signal="shot" from="Smoothing3D/Pivot/Shotgun" to="Soldier/AnimationTree" method="_on_any_weapon_shot"]
+[connection signal="deployed" from="Smoothing3D/Pivot/Shovel" to="Soldier/AnimationTree" method="_on_any_weapon_deployed" binds= [2]]
 [connection signal="shot" from="Smoothing3D/Pivot/Shovel" to="Soldier/AnimationTree" method="_on_any_weapon_shot"]
 [connection signal="animation_finished" from="Smoothing3D/Pivot/FirstPersonModel/AnimationPlayer" to="Smoothing3D/Pivot/Shotgun" method="_on_FirstPersonPlayer_animation_finished"]
 

@@ -30,17 +30,17 @@ enum Type { PRIMARY, SECONDARY, MELEE }
 			$"../Body/Shovel".show()
 
 var _previously_grounded := false
-var air_crouching := false:
+var air_crouched := false:
 	set(new):
-		if air_crouching == new:
+		if air_crouched == new:
 			return
 		
-		air_crouching = new
+		air_crouched = new
 		
-		if air_crouching:
-			model.position.y -= 27 * player.HU
+		if air_crouched:
+			model.position.y -= 20 * player.HU
 		else:
-			model.position.y += 27 * player.HU
+			model.position.y += 20 * player.HU
 
 func _ready():
 	if Engine.is_editor_hint():
@@ -69,7 +69,7 @@ func _handle_animations():
 	var player_speed := velocity_planar.length()
 	
 	if player.grounded:
-		if player.crouching:
+		if player.crouched:
 			var crouch_speed := player.GROUND_SPEED * player.CROUCH_SPEED_MULTIPLIER
 			var move_blend_pos = Vector2(velocity_planar.x, -velocity_planar.y) / crouch_speed
 			
@@ -93,7 +93,7 @@ func _handle_animations():
 	if player.just_jumped and not player.grounded:
 		set(&"parameters/jump_start/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 	
-	air_crouching = not player.grounded and player.crouching
+	air_crouched = not player.grounded and player.crouched
 
 
 # These are connected inside the PackedScene.

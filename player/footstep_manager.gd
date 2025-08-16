@@ -25,7 +25,7 @@ func _physics_process(_delta) -> void:
 			step_timer.start(0.5)
 		else:
 			# Arbitrary durations for now, as they're seemingly based on the animation.
-			step_timer.start(0.5 if player.crouching else 0.45)
+			step_timer.start(0.5 if player.crouched else 0.45)
 		
 		global_position = player.global_position
 		play()
@@ -34,7 +34,7 @@ func _physics_process(_delta) -> void:
 func is_gentle_step() -> bool:
 	# Based on thorough testing. Yeah.
 	var threshold := player.GROUND_SPEED * 0.8
-	if player.crouching:
+	if player.crouched:
 		threshold = player.GROUND_SPEED * 0.9 * player.CROUCH_SPEED_MULTIPLIER 
 	
 	if player.velocity.length_squared() >= threshold * threshold:
@@ -44,7 +44,7 @@ func is_gentle_step() -> bool:
 
 func get_volume_multiplier():
 	var multiplier := 1.0
-	if player.crouching:
+	if player.crouched:
 		multiplier *= 0.65
 	
 	if is_gentle_step():
@@ -56,7 +56,7 @@ func get_volume_multiplier():
 func is_moving_fast_enough() -> bool:
 	# Not actually based on CBasePlayer::GetStepSoundVelocities.
 	var required_speed := player.GROUND_SPEED * 0.3
-	if player.crouching:
+	if player.crouched:
 		required_speed = player.GROUND_SPEED  * 0.75 * player.CROUCH_SPEED_MULTIPLIER
 	
 	return player.velocity.length_squared() >= required_speed * required_speed

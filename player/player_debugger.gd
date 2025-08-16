@@ -159,8 +159,8 @@ func update_debug_text():
 		new_text += "\nTime scale: %s" % Engine.time_scale
 	if player.debug_allow_bunny_hopping:
 		new_text += "\nBunny Hopping Enabled"
-	if player.crouching:
-		new_text += "\nCROUCHING"
+	if player.crouched:
+		new_text += "\nCROUCHED"
 	if not player.grounded:
 		new_text += "\nAIRBORNE"
 	

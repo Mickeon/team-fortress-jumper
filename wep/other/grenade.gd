@@ -31,8 +31,7 @@ func explode():
 	explosion.directly_hit_player = directly_hit_player
 	explosion.base_damage = damage
 	explosion.damage_falloff_enabled = false
-	# TODO: Replace with sfx property on Explosion.
-	explosion.get_node("Explode").stream =  preload("res://sfx/primary/rocket_blackbox_explode1.ogg")
+	explosion.sfx = preload("res://sfx/primary/rocket_blackbox_explode1.ogg")
 	
 	add_sibling(explosion, true)
 	

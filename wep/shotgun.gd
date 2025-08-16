@@ -82,7 +82,7 @@ func deal_damage(player: Player):
 	
 	var multiplier := 0.05#0.2
 	var direction := (global_position + Vector3(0, -10 * HU, 0)).direction_to(player.global_position)
-	var volume_ratio := 1.49091 if player.crouching else 1.0
+	var volume_ratio := 1.49091 if player.crouched else 1.0
 	var knockback_force := minf(damage * volume_ratio * multiplier, 1000 * HU)
 	var add_velocity := knockback_force * direction
 	player.velocity += add_velocity

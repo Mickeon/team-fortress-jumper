@@ -78,8 +78,12 @@ func _ready_to_shoot():
 func add_decal(decal_scene: PackedScene, hit_point: Vector3, normal: Vector3):
 	var decal: Decal = decal_scene.instantiate()
 	decal.position = hit_point
-	if normal.is_equal_approx(Vector3.DOWN):
-		decal.basis = decal.basis.rotated(Vector3.RIGHT, PI)
+	if normal.is_equal_approx(Vector3.DOWN):		
+		#decal.basis = decal.basis.rotated(Vector3.RIGHT, PI)
+		#decal.basis *= Basis(Vector3.RIGHT, Vector3.DOWN, Vector3.FORWARD)
+		# In this case, it's equivalent to the above code snippets but faster. 
+		decal.basis.y *= -1
+		decal.basis.z *= -1
 	elif not normal.is_equal_approx(Vector3.UP):
 		decal.basis = decal.basis.looking_at(normal)
 		decal.transform = decal.transform.rotated_local(Vector3.RIGHT, TAU * -0.25)

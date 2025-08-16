@@ -66,17 +66,17 @@ var grounded := false:
 		grounded = new
 		if grounded:
 			rocket_jumping = false
-var crouching := false:
+var crouched := false:
 	set(new):
 		const VIEW_BASE = 68 * HU # Same as Soldier's.
 		const VIEW_CROUCH = 45 * HU
 		
-		if crouching == new:
+		if crouched == new:
 			return
 		
-		crouching = new
+		crouched = new
 		
-		var height := HEIGHT_CROUCH if crouching else HEIGHT_BASE
+		var height := HEIGHT_CROUCH if crouched else HEIGHT_BASE
 		if hull.shape is BoxShape3D:
 			hull.shape.size.y = height
 		else:
@@ -84,11 +84,10 @@ var crouching := false:
 			
 		hull.position.y = height * 0.5
 		
-		cam_pivot.position.y = VIEW_CROUCH if crouching else VIEW_BASE
+		cam_pivot.position.y = VIEW_CROUCH if crouched else VIEW_BASE
 		
-		# FIXME: A perfect crouch-jump is too low (should be 72 HU). Investigate why.
 		if not grounded:
-			position.y += 20 * HU if crouching else -20 * HU
+			position.y += 20 * HU if crouched else -20 * HU
 var just_jumped := false
 var just_landed := false
 var rocket_jumping := false:
@@ -132,7 +131,7 @@ func _unhandled_input(event):
 		_handle_camera_rotation(event)
 	
 	elif event.is_action("player_crouch"):
-		crouching = event.is_pressed()
+		crouched = event.is_pressed()
 	
 	elif event.is_action_pressed("debug_noclip"):
 		noclip_enabled = not noclip_enabled
@@ -178,7 +177,7 @@ func _physics_process(delta: float):
 	
 	var max_speed := GROUND_SPEED if grounded else AIR_SPEED
 	var acceleration := GROUND_ACCELERATION if grounded else AIR_ACCELERATION
-	if crouching and grounded:
+	if crouched and grounded:
 		max_speed = GROUND_SPEED * CROUCH_SPEED_MULTIPLIER
 	
 	# The magic Source function.
@@ -264,7 +263,7 @@ func _jump():
 		grounded = false
 		just_jumped = true
 		velocity.y = JUMP_FORCE
-		if crouching:
+		if crouched:
 			# Source games quirk due to how gravity and jumping is applied.
 			# This should be applied only as the player is crouching, but I don't have that yet.
 			# It's either fully crouched or not, nothing in between.
@@ -413,7 +412,7 @@ func get_slope_angle(normal: Vector3) -> float:
 # Roughly the BodyTarget() or WorldSpaceCenter() methods in vanilla.
 func get_global_center() -> Vector3:
 	var center := hull.global_position
-	if crouching:
+	if crouched:
 		# Pretend the center is further down than it actually is.
 		# Makes rocket jumping even stronger. Halved because of the box extents.
 		center.y = global_position.y + HEIGHT_CROUCH * 0.5
@@ -461,9 +460,4 @@ func _update_for_main_player():
 			get_node("Soldier/Body/Shotgun/c_shotgun_skeleton/Skeleton3D/c_shotgun")
 		]:
 			mesh.layers = 6
-
-
-#const JUMP_HEIGHT = 72 * HU
-#func _get_jump_force(height: float):
-#	return -sqrt(2 * GRAVITY_FORCE * height)    # - ceil(GRAVITY_FORCE * delta)
 
