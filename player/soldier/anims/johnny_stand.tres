@@ -1,0 +1,11 @@
+[gd_resource type="AnimationNodeExtension" script_class="AnimationNodeCustom" load_steps=2 format=3 uid="uid://blv0shpa3yrcc"]
+
+[ext_resource type="Script" uid="uid://duqalsglymluf" path="res://player/soldier/anims/animation_node_custom.gd" id="1_am0fp"]
+
+[resource]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("1_am0fp")
+mode = 1
+animation_name = "stand_*"
+metadata/_custom_type_script = "uid://duqalsglymluf"

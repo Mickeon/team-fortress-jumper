@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://d3tlxp1tfmuf8"]
+[gd_scene load_steps=31 format=3 uid="uid://d3tlxp1tfmuf8"]
 
 [ext_resource type="PackedScene" uid="uid://6k0qx8blsyoj" path="res://player/soldier/soldier.glb" id="1_up20u"]
 [ext_resource type="Material" uid="uid://6ow1u4ur6s03" path="res://player/soldier/mat/coat_mat_red.tres" id="2_wqvld"]
@@ -15,7 +15,10 @@
 [ext_resource type="PackedScene" uid="uid://cw116s8st8i27" path="res://wep/models/rocket_launcher.glb" id="11_w6e2f"]
 [ext_resource type="Material" uid="uid://dfrd6lutgerj5" path="res://wep/models/shovel_mat.tres" id="12_r63hc"]
 [ext_resource type="AnimationNodeBlendTree" uid="uid://d3mmdlg7iwy2i" path="res://player/soldier/anims/root_melee.tres" id="13_j7es8"]
+[ext_resource type="AnimationNodeExtension" uid="uid://cj8v2bgouahdy" path="res://player/soldier/anims/johnny_attack.tres" id="13_pajyk"]
+[ext_resource type="AnimationNodeExtension" uid="uid://blv0shpa3yrcc" path="res://player/soldier/anims/johnny_stand.tres" id="14_qklgp"]
 [ext_resource type="AnimationNodeBlendTree" uid="uid://cgls1kg1dfa0o" path="res://player/soldier/anims/root_secondary.tres" id="15_cjxjk"]
+[ext_resource type="AnimationNodeExtension" uid="uid://diagrfkeqoxgs" path="res://player/soldier/anims/johnny_attack_base.tres" id="15_xskup"]
 
 [sub_resource type="Skin" id="Skin_qpmxg"]
 resource_name = "Skin"
@@ -65,6 +68,13 @@ bind/2/name = &"weapon_bone"
 bind/2/bone = 1
 bind/2/pose = Transform3D(52.4934, 0, 0, 0, -8.55227e-06, -52.4934, 0, 52.4934, -8.55227e-06, 0, -16.7849, 0.061404)
 
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_cjxjk"]
+mix_mode = 1
+autorestart = true
+autorestart_delay = 0.5
+
+[sub_resource type="AnimationNodeSub2" id="AnimationNodeSub2_cjxjk"]
+
 [sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_flhtx"]
 sync = true
 xfade_time = 0.1
@@ -81,13 +91,48 @@ input_2/auto_advance = false
 input_2/break_loop_at_end = false
 input_2/reset = false
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_pajyk"]
+animation = &"attack_PRIMARY"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_cjxjk"]
+animation = &"stand_PRIMARY"
+use_custom_timeline = true
+timeline_length = 1.66667
+stretch_time_scale = false
+start_offset = 0.0
+loop_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_sp3vi"]
+animation = &"stand_PRIMARY"
+use_custom_timeline = true
+timeline_length = 0.0
+stretch_time_scale = true
+start_offset = 0.0
+loop_mode = 0
+
 [sub_resource type="AnimationNodeTimeSeek" id="AnimationNodeTimeSeek_fiyxg"]
 explicit_elapse = false
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_j7es8"]
-graph_offset = Vector2(-1010.67, -50.6667)
+graph_offset = Vector2(-963.393, -954.131)
+nodes/OneShot/node = SubResource("AnimationNodeOneShot_cjxjk")
+nodes/OneShot/position = Vector2(-293.333, -1226.67)
+nodes/_sub_johny_attack/node = SubResource("AnimationNodeSub2_cjxjk")
+nodes/_sub_johny_attack/position = Vector2(-746.667, -933.333)
 nodes/held_type/node = SubResource("AnimationNodeTransition_flhtx")
 nodes/held_type/position = Vector2(-80, 106.667)
+nodes/johnny_attack/node = ExtResource("13_pajyk")
+nodes/johnny_attack/position = Vector2(-1120, -933.333)
+"nodes/johnny_attack 2/node" = SubResource("AnimationNodeAnimation_pajyk")
+"nodes/johnny_attack 2/position" = Vector2(-1386.67, -933.333)
+nodes/johnny_attack_base/node = ExtResource("15_xskup")
+nodes/johnny_attack_base/position = Vector2(-1120, -586.667)
+nodes/johnny_stand/node = ExtResource("14_qklgp")
+nodes/johnny_stand/position = Vector2(-1120, -1306.67)
+"nodes/johnny_stand 2/node" = SubResource("AnimationNodeAnimation_cjxjk")
+"nodes/johnny_stand 2/position" = Vector2(-1386.67, -1306.67)
+"nodes/johny_attack_base 2/node" = SubResource("AnimationNodeAnimation_sp3vi")
+"nodes/johny_attack_base 2/position" = Vector2(-1386.67, -586.667)
 nodes/melee/node = ExtResource("13_j7es8")
 nodes/melee/position = Vector2(-560, 400)
 nodes/output/position = Vector2(506.667, 133.333)
@@ -97,7 +142,7 @@ nodes/secondary/node = ExtResource("15_cjxjk")
 nodes/secondary/position = Vector2(-560, 240)
 nodes/seek/node = SubResource("AnimationNodeTimeSeek_fiyxg")
 nodes/seek/position = Vector2(133.333, 106.667)
-node_connections = [&"held_type", 0, &"primary", &"held_type", 1, &"secondary", &"held_type", 2, &"melee", &"output", 0, &"seek", &"seek", 0, &"held_type"]
+node_connections = [&"OneShot", 0, &"johnny_stand", &"OneShot", 1, &"_sub_johny_attack", &"_sub_johny_attack", 0, &"johnny_attack", &"_sub_johny_attack", 1, &"johnny_attack_base", &"held_type", 0, &"primary", &"held_type", 1, &"secondary", &"held_type", 2, &"melee", &"output", 0, &"OneShot", &"seek", 0, &"held_type"]
 
 [node name="Soldier" instance=ExtResource("1_up20u")]
 
@@ -217,9 +262,19 @@ surface_material_override/0 = ExtResource("12_r63hc")
 [node name="AnimationTree" type="AnimationTree" parent="." index="2"]
 tree_root = SubResource("AnimationNodeBlendTree_j7es8")
 anim_player = NodePath("../AnimationPlayer")
+parameters/OneShot/active = false
+parameters/OneShot/internal_active = false
+parameters/OneShot/request = 0
+parameters/_sub_johny_attack/sub_amount = 1.0
 parameters/held_type/current_state = "primary"
-parameters/held_type/transition_request = ""
+parameters/held_type/transition_request = &"primary"
 parameters/held_type/current_index = 0
+parameters/johnny_attack/coolness = 0.0
+parameters/johnny_attack/wetness = 0.0
+parameters/johnny_attack_base/coolness = 1.0
+parameters/johnny_attack_base/wetness = 0.5
+parameters/johnny_stand/coolness = 0.0
+parameters/johnny_stand/wetness = 0.0
 parameters/melee/_add_look/add_amount = 1.0
 parameters/melee/_sub_jump_land/sub_amount = 1.0
 parameters/melee/_sub_jump_start/sub_amount = 1.0
@@ -292,7 +347,7 @@ parameters/secondary/shoot/request = 0
 parameters/secondary/stand/_add_move/add_amount = 1.0
 parameters/secondary/stand/_sub_move/sub_amount = 1.0
 parameters/secondary/stand/move_blend/blend_position = Vector2(0, 0)
-parameters/seek/seek_request = -1.0
+parameters/seek/seek_request = null
 script = ExtResource("10_ro42a")
 
 [editable path="Body/Rocket Launcher"]

@@ -1,0 +1,11 @@
+[gd_resource type="AnimationNodeExtension" script_class="AnimationNodeCustom" load_steps=2 format=3 uid="uid://cj8v2bgouahdy"]
+
+[ext_resource type="Script" uid="uid://duqalsglymluf" path="res://player/soldier/anims/animation_node_custom.gd" id="1_2tatm"]
+
+[resource]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("1_2tatm")
+mode = 0
+animation_name = "attack_*"
+metadata/_custom_type_script = "uid://duqalsglymluf"
