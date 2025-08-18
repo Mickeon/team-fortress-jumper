@@ -1,0 +1,14 @@
+[gd_resource type="AudioStreamRandomizer" load_steps=5 format=3 uid="uid://cufkhduw2x0hf"]
+
+[ext_resource type="AudioStream" uid="uid://qnmtra20sfco" path="res://sfx/common/footstep/metal1.wav" id="1_quxfh"]
+[ext_resource type="AudioStream" uid="uid://cmvhphsdq7mkk" path="res://sfx/common/footstep/metal2.wav" id="2_c7q8p"]
+[ext_resource type="AudioStream" uid="uid://bhsmu0gmjrj3k" path="res://sfx/common/footstep/metal3.wav" id="3_48hte"]
+[ext_resource type="AudioStream" uid="uid://br2sbqro86147" path="res://sfx/common/footstep/metal4.wav" id="4_oousl"]
+
+[resource]
+playback_mode = 1
+streams_count = 4
+stream_0/stream = ExtResource("1_quxfh")
+stream_1/stream = ExtResource("2_c7q8p")
+stream_2/stream = ExtResource("3_48hte")
+stream_3/stream = ExtResource("4_oousl")

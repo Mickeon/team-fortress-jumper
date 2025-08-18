@@ -1,0 +1,14 @@
+[gd_resource type="AudioStreamRandomizer" load_steps=5 format=3 uid="uid://blsqvlwnog4li"]
+
+[ext_resource type="AudioStream" uid="uid://cahe8sqs0wtbw" path="res://sfx/common/impact_bullet/concrete_impact_bullet1.ogg" id="1_2rmbh"]
+[ext_resource type="AudioStream" uid="uid://c1nbhm567idh" path="res://sfx/common/impact_bullet/concrete_impact_bullet2.ogg" id="2_u1xqd"]
+[ext_resource type="AudioStream" uid="uid://bsbenbjxv0qg" path="res://sfx/common/impact_bullet/concrete_impact_bullet3.ogg" id="3_pbl37"]
+[ext_resource type="AudioStream" uid="uid://bk1v0qmr2pe8g" path="res://sfx/common/impact_bullet/concrete_impact_bullet4.ogg" id="4_q2lsa"]
+
+[resource]
+random_pitch = 1.1
+streams_count = 4
+stream_0/stream = ExtResource("1_2rmbh")
+stream_1/stream = ExtResource("2_u1xqd")
+stream_2/stream = ExtResource("3_pbl37")
+stream_3/stream = ExtResource("4_q2lsa")

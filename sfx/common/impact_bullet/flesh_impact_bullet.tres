@@ -1,0 +1,16 @@
+[gd_resource type="AudioStreamRandomizer" load_steps=6 format=3 uid="uid://oux86kihnmia"]
+
+[ext_resource type="AudioStream" uid="uid://bqgla0drxt01m" path="res://sfx/common/impact_bullet/flesh_impact_bullet1.ogg" id="1_fpx3i"]
+[ext_resource type="AudioStream" uid="uid://c7f1in5h4ako" path="res://sfx/common/impact_bullet/flesh_impact_bullet2.ogg" id="2_cgcek"]
+[ext_resource type="AudioStream" uid="uid://cs6uqyqjx03lt" path="res://sfx/common/impact_bullet/flesh_impact_bullet3.ogg" id="3_fh56p"]
+[ext_resource type="AudioStream" uid="uid://bhivf2mckcel8" path="res://sfx/common/impact_bullet/flesh_impact_bullet4.ogg" id="4_kc2d1"]
+[ext_resource type="AudioStream" uid="uid://vy8ernuxg8gj" path="res://sfx/common/impact_bullet/flesh_impact_bullet5.ogg" id="5_qgn7f"]
+
+[resource]
+random_pitch = 1.1
+streams_count = 5
+stream_0/stream = ExtResource("1_fpx3i")
+stream_1/stream = ExtResource("2_cgcek")
+stream_2/stream = ExtResource("3_fh56p")
+stream_3/stream = ExtResource("4_kc2d1")
+stream_4/stream = ExtResource("5_qgn7f")
