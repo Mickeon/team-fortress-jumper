@@ -2,8 +2,8 @@
 
 [sub_resource type="Gradient" id="Gradient_ilr3l"]
 interpolation_mode = 2
-offsets = PackedFloat32Array(0.0538117, 0.189591, 0.360595, 0.587444, 0.753363)
-colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 0.831373, 0, 0, 0, 0.831373, 0, 0, 0, 0.568627, 0, 0, 0, 0)
+offsets = PackedFloat32Array(0, 0.0397727, 0.125, 0.244318, 0.772727)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0.270588, 0.945098, 0, 0, 0, 0.756863, 0, 0, 0, 0.568627, 0, 0, 0, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_mvuq3"]
 gradient = SubResource("Gradient_ilr3l")
@@ -66,13 +66,13 @@ curve = SubResource("Curve_2ojl0")
 [node name="BulletDecal" type="Decal"]
 size = Vector3(0.25, 0.25, 0.25)
 texture_albedo = SubResource("GradientTexture2D_mvuq3")
-albedo_mix = 0.5
 upper_fade = 2.0
 lower_fade = 2.4
 
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
+[node name="TestGround" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.025, 0)
 visible = false
-size = Vector3(0.3, 0.005, 0.3)
+size = Vector3(0.3, 0.05, 0.3)
 
 [node name="Sparks" type="GPUParticles3D" parent="."]
 material_override = SubResource("StandardMaterial3D_6m3ep")
