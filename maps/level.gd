@@ -7,13 +7,8 @@ func _ready() -> void:
 	for mesh_instance in collider_mesh_instances:
 		create_shape_sibling(mesh_instance, false)
 	
-	if OS.has_feature("web"):
-		var env: Environment = $WorldEnvironment.environment
-		
-		env.fog_enabled = false # Fog doesn't look great in web builds right now.
-		env.ssil_enabled = false
-		env.glow_enabled = false
-		env.adjustment_enabled = false
+	if RenderingServer.get_current_rendering_method() == "gl_compatibility":
+		$WorldEnvironment.environment = load("res://maps/level_env_compat.tres")
 		
 		# Make this material less reflective on web builds.
 		load("res://maps/test_mat.tres").roughness = 0.5

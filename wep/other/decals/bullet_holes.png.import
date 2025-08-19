@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://53ndqqn6xb12"
-path="res://.godot/imported/scorch1.png-977ec73bbd8878317e7fe3aaed185547.ctex"
+uid="uid://cklfqnw64jj60"
+path="res://.godot/imported/bullet_holes.png-4e47a99bd7c379f67a483337ce8398fe.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://wep/other/decals/scorch/scorch1.png"
-dest_files=["res://.godot/imported/scorch1.png-977ec73bbd8878317e7fe3aaed185547.ctex"]
+source_file="res://wep/other/decals/bullet_holes.png"
+dest_files=["res://.godot/imported/bullet_holes.png-4e47a99bd7c379f67a483337ce8398fe.ctex"]
 
 [params]
 
@@ -21,7 +21,7 @@ compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=true
+mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""

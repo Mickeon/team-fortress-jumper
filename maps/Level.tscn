@@ -1,40 +1,18 @@
-[gd_scene load_steps=9 format=3 uid="uid://dsyym2bcxma0k"]
+[gd_scene load_steps=22 format=3 uid="uid://dsyym2bcxma0k"]
 
 [ext_resource type="Script" uid="uid://cjiejc55kysqk" path="res://maps/level.gd" id="1_mcdpx"]
+[ext_resource type="Environment" uid="uid://bn4larkp4d8ra" path="res://maps/level_env_forward.tres" id="2_3g7cv"]
 [ext_resource type="Material" uid="uid://bagj31aqo6y0f" path="res://maps/test_mat.tres" id="2_hlduo"]
 [ext_resource type="Texture2D" uid="uid://ciuqdaym61xuw" path="res://maps/tf-demoman.png" id="3_xpmct"]
-
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_rtpvj"]
-sky_horizon_color = Color(0.624681, 0.637029, 0.654167, 1)
-sky_curve = 0.0724453
-ground_bottom_color = Color(0.0823529, 0.0705882, 0.219608, 1)
-ground_horizon_color = Color(0.624681, 0.637029, 0.654167, 1)
-ground_curve = 0.0772753
-
-[sub_resource type="Sky" id="Sky_ck6x6"]
-sky_material = SubResource("ProceduralSkyMaterial_rtpvj")
-
-[sub_resource type="Environment" id="Environment_0m0w2"]
-background_mode = 2
-sky = SubResource("Sky_ck6x6")
-tonemap_mode = 2
-ssil_enabled = true
-ssil_radius = 1.5
-sdfgi_cascades = 2
-sdfgi_min_cell_size = 2.8
-sdfgi_cascade0_distance = 179.2
-sdfgi_max_distance = 716.8
-sdfgi_y_scale = 0
-glow_enabled = true
-glow_bloom = 0.05
-fog_enabled = true
-fog_light_color = Color(1, 0.662745, 0.423529, 1)
-fog_density = 0.005
-fog_aerial_perspective = 0.806
-fog_sky_affect = 0.148
-adjustment_enabled = true
-adjustment_contrast = 1.25
-adjustment_saturation = 1.1
+[ext_resource type="Shader" uid="uid://dpwkh87qoojrj" path="res://wep/other/decals/decal.gdshader" id="4_b4338"]
+[ext_resource type="Texture2D" uid="uid://cklfqnw64jj60" path="res://wep/other/decals/bullet_holes.png" id="5_b4338"]
+[ext_resource type="Material" uid="uid://bivslxrrg1t8o" path="res://maps/materials/glass/glasswindow001b.vmt" id="5_mvu23"]
+[ext_resource type="Material" uid="uid://dtwk813218oyc" path="res://maps/materials/nature/dirtground009.vmt" id="6_olgy5"]
+[ext_resource type="Material" uid="uid://c4jjlqtjmauvy" path="res://maps/materials/concrete/concretefloor003.vmt" id="6_vk76v"]
+[ext_resource type="Material" uid="uid://b1arvegkk3uie" path="res://maps/materials/nature/dirtground004.vmt" id="7_u77ad"]
+[ext_resource type="Texture2D" uid="uid://53ndqqn6xb12" path="res://wep/other/decals/scorch/scorch1.png" id="10_u77ad"]
+[ext_resource type="Texture2D" uid="uid://qaa2ppbnwk2n" path="res://wep/other/decals/scorch/scorch2.png" id="12_y0b8k"]
+[ext_resource type="Texture2D" uid="uid://bkq438m71jeph" path="res://wep/other/decals/decals_atlas.png" id="13_rcven"]
 
 [sub_resource type="Shader" id="Shader_nck53"]
 code = "shader_type spatial;
@@ -82,11 +60,44 @@ shader_parameter/total_frames = 69
 shader_parameter/uv_scale = Vector2(-1, 1.595)
 shader_parameter/animation_scale = 16.0
 
+[sub_resource type="BoxMesh" id="BoxMesh_mvu23"]
+size = Vector3(2, 0.5, 2)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mvu23"]
+render_priority = 0
+shader = ExtResource("4_b4338")
+shader_parameter/modulate = Color(1, 1, 1, 1)
+shader_parameter/texture_albedo = ExtResource("5_b4338")
+shader_parameter/cube_half_size = 0.5
+
+[sub_resource type="BoxMesh" id="BoxMesh_v1run"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3g7cv"]
+render_priority = 0
+shader = ExtResource("4_b4338")
+shader_parameter/modulate = Color(0.25, 0.25, 0.25, 1)
+shader_parameter/texture_albedo = ExtResource("10_u77ad")
+shader_parameter/cube_half_size = 0.5
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rcven"]
+render_priority = 0
+shader = ExtResource("4_b4338")
+shader_parameter/modulate = Color(0.25, 0.25, 0.25, 1)
+shader_parameter/texture_albedo = ExtResource("12_y0b8k")
+shader_parameter/cube_half_size = 0.5
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_51kv4"]
+render_priority = 0
+shader = ExtResource("4_b4338")
+shader_parameter/modulate = Color(1, 1, 1, 1)
+shader_parameter/texture_albedo = ExtResource("13_rcven")
+shader_parameter/cube_half_size = 0.5
+
 [node name="Level" type="Node3D"]
 script = ExtResource("1_mcdpx")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_0m0w2")
+environment = ExtResource("2_3g7cv")
 
 [node name="DirectionalLight" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.392985, 0.863301, 0.316661, 0.589432, -0.500812, 0.633843, 0.705785, -0.0624407, -0.705669, 0, 3, 0)
@@ -237,3 +248,66 @@ size = Vector3(1.372, 1.52496, 1.372)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.1658, 0.972, 12.1447)
 use_collision = true
 size = Vector3(2.803, 0.29, 0.05)
+
+[node name="DecalTestGround" type="Node3D" parent="."]
+
+[node name="ConcreteFloor" type="MeshInstance3D" parent="DecalTestGround"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.79658, -0.152864, 24.9657)
+mesh = SubResource("BoxMesh_mvu23")
+surface_material_override/0 = ExtResource("6_vk76v")
+
+[node name="Glass" type="MeshInstance3D" parent="DecalTestGround"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.79658, -0.152864, 26.9657)
+mesh = SubResource("BoxMesh_mvu23")
+surface_material_override/0 = ExtResource("5_mvu23")
+
+[node name="DirtGround" type="MeshInstance3D" parent="DecalTestGround"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.79658, -0.152864, 24.9657)
+mesh = SubResource("BoxMesh_mvu23")
+surface_material_override/0 = ExtResource("6_olgy5")
+
+[node name="DirtGround2" type="MeshInstance3D" parent="DecalTestGround"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.79658, -0.152864, 26.9657)
+mesh = SubResource("BoxMesh_mvu23")
+surface_material_override/0 = ExtResource("7_u77ad")
+
+[node name="BulletHoles" type="MeshInstance3D" parent="DecalTestGround"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.31261, 0.26886, 25.1118)
+material_override = SubResource("ShaderMaterial_mvu23")
+mesh = SubResource("BoxMesh_v1run")
+
+[node name="Scorch1" type="MeshInstance3D" parent="DecalTestGround"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.2708, 0.26886, 25.2686)
+sorting_offset = 25.0
+material_override = SubResource("ShaderMaterial_3g7cv")
+mesh = SubResource("BoxMesh_v1run")
+
+[node name="Scorch2" type="MeshInstance3D" parent="DecalTestGround"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.01645, 0.26886, 25.3087)
+sorting_offset = 50.0
+material_override = SubResource("ShaderMaterial_rcven")
+mesh = SubResource("BoxMesh_v1run")
+
+[node name="Scorch3" type="MeshInstance3D" parent="DecalTestGround"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.34453, 0.26886, 25.5889)
+sorting_offset = 59.444
+material_override = SubResource("ShaderMaterial_rcven")
+mesh = SubResource("BoxMesh_v1run")
+
+[node name="Scorch4" type="MeshInstance3D" parent="DecalTestGround"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.21872, 0.26886, 25.4179)
+sorting_offset = 73.488
+material_override = SubResource("ShaderMaterial_rcven")
+mesh = SubResource("BoxMesh_v1run")
+
+[node name="Scorch5" type="MeshInstance3D" parent="DecalTestGround"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.31806, 0.26886, 25.0706)
+sorting_offset = 73.488
+material_override = SubResource("ShaderMaterial_rcven")
+mesh = SubResource("BoxMesh_v1run")
+
+[node name="DecalAtlas" type="MeshInstance3D" parent="DecalTestGround"]
+transform = Transform3D(-2.62268e-07, 0, 3, 0, 1, 0, -6, 0, -1.31134e-07, -6.3193, -0.307476, 25.1036)
+sorting_offset = -1.0
+material_override = SubResource("ShaderMaterial_51kv4")
+mesh = SubResource("BoxMesh_v1run")
