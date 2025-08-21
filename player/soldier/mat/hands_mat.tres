@@ -4,9 +4,16 @@
 
 [resource]
 resource_name = "skin"
+diffuse_mode = 3
+specular_mode = 1
 albedo_color = Color(1, 1, 0.886275, 1)
 albedo_texture = ExtResource("1_kv7ii")
+metallic_specular = 0.2
+roughness = 0.95
 rim_enabled = true
-rim = 0.1
-rim_tint = 0.9
+rim = 0.15
+rim_tint = 0.95
+subsurf_scatter_enabled = true
+subsurf_scatter_strength = 0.6
+subsurf_scatter_skin_mode = true
 uv1_scale = Vector3(0.1, 0.1, 1)

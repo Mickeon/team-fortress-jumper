@@ -5,13 +5,19 @@
 
 [resource]
 resource_name = "coat"
+diffuse_mode = 2
+specular_mode = 1
 albedo_texture = ExtResource("1_qmop5")
+metallic = 1.0
 metallic_specular = 0.2
-roughness = 0.75
-normal_enabled = true
+metallic_texture = ExtResource("2_jqsg7")
+metallic_texture_channel = 3
+roughness = 0.5
+roughness_texture_channel = 2
 normal_scale = 0.5
 normal_texture = ExtResource("2_jqsg7")
 rim_enabled = true
 rim = 0.5
+rim_tint = 0.75
 backlight_enabled = true
 backlight = Color(0.784314, 0.54902, 0.270588, 1)

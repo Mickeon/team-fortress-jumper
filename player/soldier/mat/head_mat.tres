@@ -4,6 +4,8 @@
 
 [resource]
 resource_name = "head"
+diffuse_mode = 2
+specular_mode = 1
 albedo_texture = ExtResource("1_k8drc")
 metallic_specular = 0.2
 roughness = 0.95
@@ -14,3 +16,5 @@ subsurf_scatter_enabled = true
 subsurf_scatter_strength = 0.6
 subsurf_scatter_skin_mode = true
 subsurf_scatter_transmittance_enabled = true
+backlight_enabled = true
+backlight = Color(0.686637, 0.562589, 0.530161, 1)

@@ -68,7 +68,6 @@ render_priority = 0
 shader = ExtResource("4_b4338")
 shader_parameter/modulate = Color(1, 1, 1, 1)
 shader_parameter/texture_albedo = ExtResource("5_b4338")
-shader_parameter/cube_half_size = 0.5
 
 [sub_resource type="BoxMesh" id="BoxMesh_v1run"]
 
@@ -77,21 +76,18 @@ render_priority = 0
 shader = ExtResource("4_b4338")
 shader_parameter/modulate = Color(0.25, 0.25, 0.25, 1)
 shader_parameter/texture_albedo = ExtResource("10_u77ad")
-shader_parameter/cube_half_size = 0.5
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rcven"]
 render_priority = 0
 shader = ExtResource("4_b4338")
 shader_parameter/modulate = Color(0.25, 0.25, 0.25, 1)
 shader_parameter/texture_albedo = ExtResource("12_y0b8k")
-shader_parameter/cube_half_size = 0.5
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_51kv4"]
 render_priority = 0
 shader = ExtResource("4_b4338")
 shader_parameter/modulate = Color(1, 1, 1, 1)
 shader_parameter/texture_albedo = ExtResource("13_rcven")
-shader_parameter/cube_half_size = 0.5
 
 [node name="Level" type="Node3D"]
 script = ExtResource("1_mcdpx")
@@ -101,7 +97,18 @@ environment = ExtResource("2_3g7cv")
 
 [node name="DirectionalLight" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.392985, 0.863301, 0.316661, 0.589432, -0.500812, 0.633843, 0.705785, -0.0624407, -0.705669, 0, 3, 0)
-light_color = Color(0.992157, 0.964706, 0.972549, 1)
+light_color = Color(0.992, 0.965, 0.973, 1)
+light_bake_mode = 1
+shadow_enabled = true
+directional_shadow_mode = 0
+directional_shadow_max_distance = 55.0
+directional_shadow_pancake_size = 130.0
+
+[node name="DirectionalLight2" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.392985, 0.863301, 0.316661, 0.589432, -0.500812, 0.633843, 0.705785, -0.0624407, -0.705669, 0, 3, 0)
+visible = false
+light_color = Color(0.822115, 0.41523, 0.567944, 1)
+light_energy = 4.0
 light_bake_mode = 1
 shadow_enabled = true
 directional_shadow_mode = 0
@@ -262,7 +269,7 @@ mesh = SubResource("BoxMesh_mvu23")
 surface_material_override/0 = ExtResource("5_mvu23")
 
 [node name="DirtGround" type="MeshInstance3D" parent="DecalTestGround"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.79658, -0.152864, 24.9657)
+transform = Transform3D(1, 0, 0, 0, 0.258819, 0.965926, 0, -0.965926, 0.258819, -6.79658, -0.152864, 24.9657)
 mesh = SubResource("BoxMesh_mvu23")
 surface_material_override/0 = ExtResource("6_olgy5")
 
@@ -273,41 +280,46 @@ surface_material_override/0 = ExtResource("7_u77ad")
 
 [node name="BulletHoles" type="MeshInstance3D" parent="DecalTestGround"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.31261, 0.26886, 25.1118)
+visible = false
 material_override = SubResource("ShaderMaterial_mvu23")
 mesh = SubResource("BoxMesh_v1run")
 
 [node name="Scorch1" type="MeshInstance3D" parent="DecalTestGround"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.2708, 0.26886, 25.2686)
-sorting_offset = 25.0
+transform = Transform3D(1, 0, 0, 0, 0.258819, 0.965926, 0, -0.965926, 0.258819, -6.91906, 0.350122, 24.9941)
 material_override = SubResource("ShaderMaterial_3g7cv")
 mesh = SubResource("BoxMesh_v1run")
 
 [node name="Scorch2" type="MeshInstance3D" parent="DecalTestGround"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.01645, 0.26886, 25.3087)
-sorting_offset = 50.0
+transform = Transform3D(1, 0, 0, 0, 0.258819, 0.965926, 0, -0.965926, 0.258819, -6.63882, 0.387793, 25.0042)
 material_override = SubResource("ShaderMaterial_rcven")
 mesh = SubResource("BoxMesh_v1run")
 
 [node name="Scorch3" type="MeshInstance3D" parent="DecalTestGround"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.34453, 0.26886, 25.5889)
-sorting_offset = 59.444
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.345, 0, 25.445)
+visible = false
 material_override = SubResource("ShaderMaterial_rcven")
 mesh = SubResource("BoxMesh_v1run")
 
 [node name="Scorch4" type="MeshInstance3D" parent="DecalTestGround"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.21872, 0.26886, 25.4179)
-sorting_offset = 73.488
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.166, 0, 25.418)
+visible = false
 material_override = SubResource("ShaderMaterial_rcven")
 mesh = SubResource("BoxMesh_v1run")
 
 [node name="Scorch5" type="MeshInstance3D" parent="DecalTestGround"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.31806, 0.26886, 25.0706)
-sorting_offset = 73.488
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.318, 0, 25.144)
+visible = false
 material_override = SubResource("ShaderMaterial_rcven")
 mesh = SubResource("BoxMesh_v1run")
 
 [node name="DecalAtlas" type="MeshInstance3D" parent="DecalTestGround"]
-transform = Transform3D(-2.62268e-07, 0, 3, 0, 1, 0, -6, 0, -1.31134e-07, -6.3193, -0.307476, 25.1036)
+transform = Transform3D(-2.62268e-07, 0, 3, 0, 1, 0, -6, 0, -1.31134e-07, -5.14812, -0.307476, 26.8172)
 sorting_offset = -1.0
 material_override = SubResource("ShaderMaterial_51kv4")
 mesh = SubResource("BoxMesh_v1run")
+
+[node name="LightTest" type="OmniLight3D" parent="DecalTestGround"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.50848, 0.371292, 24.797)
+visible = false
+light_color = Color(0.827451, 0.933333, 0.215686, 1)
+light_size = 0.509

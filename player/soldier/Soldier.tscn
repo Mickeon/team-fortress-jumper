@@ -85,7 +85,6 @@ input_2/reset = false
 explicit_elapse = false
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_j7es8"]
-graph_offset = Vector2(-1010.67, -50.6667)
 nodes/held_type/node = SubResource("AnimationNodeTransition_flhtx")
 nodes/held_type/position = Vector2(-80, 106.667)
 nodes/melee/node = ExtResource("13_j7es8")
