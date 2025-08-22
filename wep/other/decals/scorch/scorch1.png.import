@@ -3,26 +3,28 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://53ndqqn6xb12"
-path="res://.godot/imported/scorch1.png-977ec73bbd8878317e7fe3aaed185547.ctex"
+path.bptc="res://.godot/imported/scorch1.png-977ec73bbd8878317e7fe3aaed185547.bptc.ctex"
+path.astc="res://.godot/imported/scorch1.png-977ec73bbd8878317e7fe3aaed185547.astc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://wep/other/decals/scorch/scorch1.png"
-dest_files=["res://.godot/imported/scorch1.png-977ec73bbd8878317e7fe3aaed185547.ctex"]
+dest_files=["res://.godot/imported/scorch1.png-977ec73bbd8878317e7fe3aaed185547.bptc.ctex", "res://.godot/imported/scorch1.png-977ec73bbd8878317e7fe3aaed185547.astc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=true
 compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
 mipmaps/generate=true
-mipmaps/limit=-1
+mipmaps/limit=4
 roughness/mode=0
 roughness/src_normal=""
 process/fix_alpha_border=true

@@ -60,9 +60,8 @@ func _debug_physics_process():
 		DebugDraw3D.draw_sphere(position, splash_radius, final_color, delta)
 
 func _update_splash_radius():
-	# By default, these two are 2-4 meters wide.
-	$BlastShape.scale = Vector3.ONE / 2.0 * splash_radius
-	$BlastDecal.size = (Vector3.ONE * 4) / 2.0 * splash_radius
+	$BlastShape.scale = Vector3.ONE * splash_radius
+	$BlastDecal.scale = Vector3(2, 0.25, 2.0) * splash_radius # By default, this is 2 meters wide.
 	$BlastParticles.one_shot = true # In the editor, it is not one-shot.
 
 

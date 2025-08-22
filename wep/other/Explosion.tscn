@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://xnor1ir3y6j6" path="res://wep/other/BlastDecal.tscn" id="3_bgour"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_r7on5"]
-radius = 2.0
+radius = 1.0
 
 [sub_resource type="Gradient" id="Gradient_agyos"]
 offsets = PackedFloat32Array(0.0673077, 1)
@@ -83,7 +83,6 @@ script = ExtResource("1_u2aqr")
 shape = SubResource("SphereShape3D_r7on5")
 
 [node name="BlastDecal" parent="." instance=ExtResource("3_bgour")]
-cull_mask = 1048561
 
 [node name="BlastParticles" type="GPUParticles3D" parent="."]
 process_thread_group = 1
