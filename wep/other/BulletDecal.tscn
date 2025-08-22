@@ -1,16 +1,17 @@
-[gd_scene load_steps=11 format=3 uid="uid://cvascdi686gvo"]
+[gd_scene load_steps=14 format=3 uid="uid://cvascdi686gvo"]
 
-[sub_resource type="Gradient" id="Gradient_ilr3l"]
-interpolation_mode = 2
-offsets = PackedFloat32Array(0, 0.0397727, 0.125, 0.244318, 0.772727)
-colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0.270588, 0.945098, 0, 0, 0, 0.756863, 0, 0, 0, 0.568627, 0, 0, 0, 0)
+[ext_resource type="Script" uid="uid://d4dloq0cxslxq" path="res://wep/other/free_at_runtime.gd" id="1_j03v7"]
+[ext_resource type="Texture2D" uid="uid://3dsjc30bhh2i" path="res://wep/other/decals/bullet_holes/concrete3.png" id="2_j03v7"]
+[ext_resource type="Shader" uid="uid://dpwkh87qoojrj" path="res://wep/other/decals/decal.gdshader" id="2_spwp8"]
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_mvuq3"]
-gradient = SubResource("Gradient_ilr3l")
-width = 32
-height = 32
-fill = 1
-fill_from = Vector2(0.5, 0.5)
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pfs6m"]
+render_priority = 0
+shader = ExtResource("2_spwp8")
+shader_parameter/modulate = Color(0.75, 0.75, 0.75, 1)
+shader_parameter/texture_albedo = ExtResource("2_j03v7")
+
+[sub_resource type="BoxMesh" id="BoxMesh_j03v7"]
+material = SubResource("ShaderMaterial_pfs6m")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6m3ep"]
 transparency = 1
@@ -63,18 +64,13 @@ sections = 3
 section_length = 0.05
 curve = SubResource("Curve_2ojl0")
 
-[node name="BulletDecal" type="Decal"]
-size = Vector3(0.25, 0.25, 0.25)
-texture_albedo = SubResource("GradientTexture2D_mvuq3")
-upper_fade = 2.0
-lower_fade = 2.4
-
-[node name="TestGround" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.025, 0)
-visible = false
-size = Vector3(0.3, 0.05, 0.3)
+[node name="BulletDecal" type="MeshInstance3D"]
+transform = Transform3D(0.32, 0, 0, 0, 0.25, 0, 0, 0, 0.32, 0, 0, 0)
+custom_aabb = AABB(-0.5, -0.5, -0.5, 1, 1, 1)
+mesh = SubResource("BoxMesh_j03v7")
 
 [node name="Sparks" type="GPUParticles3D" parent="."]
+transform = Transform3D(3.125, 0, 0, 0, 4, 0, 0, 0, 3.125, 0, 0, 0)
 material_override = SubResource("StandardMaterial3D_6m3ep")
 cast_shadow = 0
 amount = 1
@@ -83,3 +79,9 @@ transform_align = 1
 trail_enabled = true
 process_material = SubResource("ParticleProcessMaterial_f60ev")
 draw_pass_1 = SubResource("RibbonTrailMesh_tgmrr")
+
+[node name="TestGround" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.025, 0)
+top_level = true
+size = Vector3(0.3, 0.05, 0.3)
+script = ExtResource("1_j03v7")

@@ -2,9 +2,9 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cklfqnw64jj60"
-path.bptc="res://.godot/imported/bullet_holes.png-4e47a99bd7c379f67a483337ce8398fe.bptc.ctex"
-path.astc="res://.godot/imported/bullet_holes.png-4e47a99bd7c379f67a483337ce8398fe.astc.ctex"
+uid="uid://4ueptdupcucx"
+path.bptc="res://.godot/imported/concrete2.png-fb43a8dee178a8772dd062399a58d066.bptc.ctex"
+path.astc="res://.godot/imported/concrete2.png-fb43a8dee178a8772dd062399a58d066.astc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ metadata={
 
 [deps]
 
-source_file="res://wep/other/decals/bullet_holes.png"
-dest_files=["res://.godot/imported/bullet_holes.png-4e47a99bd7c379f67a483337ce8398fe.bptc.ctex", "res://.godot/imported/bullet_holes.png-4e47a99bd7c379f67a483337ce8398fe.astc.ctex"]
+source_file="res://wep/other/decals/bullet_holes/concrete2.png"
+dest_files=["res://.godot/imported/concrete2.png-fb43a8dee178a8772dd062399a58d066.bptc.ctex", "res://.godot/imported/concrete2.png-fb43a8dee178a8772dd062399a58d066.astc.ctex"]
 
 [params]
 
@@ -23,8 +23,8 @@ compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=false
-mipmaps/limit=-1
+mipmaps/generate=true
+mipmaps/limit=2
 roughness/mode=0
 roughness/src_normal=""
 process/fix_alpha_border=true

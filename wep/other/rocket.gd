@@ -43,9 +43,9 @@ func explode():
 	var normal := get_collision_normal()
 	if normal.is_equal_approx(Vector3.DOWN):
 		explosion.rotation.x += PI
-	elif not normal.is_equal_approx(Vector3.UP) and not normal == Vector3.ZERO:
+	elif not normal.is_equal_approx(Vector3.UP) and normal != Vector3.ZERO:
 		explosion.look_at_from_position(position, position + normal)
-		explosion.transform = explosion.transform.rotated_local(Vector3.RIGHT, TAU * -0.25)
+		explosion.rotate_object_local(Vector3.RIGHT, TAU * -0.25);
 	
 	add_sibling(explosion, true)
 	

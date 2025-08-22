@@ -238,3 +238,5 @@ textures/webp_compression/lossless_compression_factor=100.0
 occlusion_culling/use_occlusion_culling=true
 mesh_lod/lod_change/threshold_pixels.web=2.0
 anti_aliasing/screen_space_roughness_limiter/enabled.web=false
+occlusion_culling/use_occlusion_culling.web=false
+environment/subsurface_scattering/subsurface_scattering_quality.web=0

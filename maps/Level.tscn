@@ -12,7 +12,7 @@
 [ext_resource type="Material" uid="uid://b1arvegkk3uie" path="res://maps/materials/nature/dirtground004.vmt" id="7_u77ad"]
 [ext_resource type="Texture2D" uid="uid://53ndqqn6xb12" path="res://wep/other/decals/scorch/scorch1.png" id="10_u77ad"]
 [ext_resource type="Texture2D" uid="uid://qaa2ppbnwk2n" path="res://wep/other/decals/scorch/scorch2.png" id="12_y0b8k"]
-[ext_resource type="Texture2D" uid="uid://bkq438m71jeph" path="res://wep/other/decals/decals_atlas.png" id="13_rcven"]
+[ext_resource type="Texture2D" uid="uid://dtwtlctftta2q" path="res://wep/other/decals/decals_mod2x.vtf" id="13_rcven"]
 
 [sub_resource type="Shader" id="Shader_nck53"]
 code = "shader_type spatial;
@@ -279,8 +279,7 @@ mesh = SubResource("BoxMesh_mvu23")
 surface_material_override/0 = ExtResource("7_u77ad")
 
 [node name="BulletHoles" type="MeshInstance3D" parent="DecalTestGround"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.31261, 0.26886, 25.1118)
-visible = false
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.31261, 0.0709461, 25.1118)
 material_override = SubResource("ShaderMaterial_mvu23")
 mesh = SubResource("BoxMesh_v1run")
 
@@ -313,7 +312,7 @@ material_override = SubResource("ShaderMaterial_rcven")
 mesh = SubResource("BoxMesh_v1run")
 
 [node name="DecalAtlas" type="MeshInstance3D" parent="DecalTestGround"]
-transform = Transform3D(-2.62268e-07, 0, 3, 0, 1, 0, -6, 0, -1.31134e-07, -5.14812, -0.307476, 26.8172)
+transform = Transform3D(-2.62268e-07, 0, 3, 0, 1, 0, -6, 0, -1.31134e-07, -5.148, 0, 24.927)
 sorting_offset = -1.0
 material_override = SubResource("ShaderMaterial_51kv4")
 mesh = SubResource("BoxMesh_v1run")

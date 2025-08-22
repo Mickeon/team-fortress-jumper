@@ -1,27 +1,31 @@
-[gd_scene load_steps=4 format=3 uid="uid://xnor1ir3y6j6"]
+[gd_scene load_steps=6 format=3 uid="uid://xnor1ir3y6j6"]
 
 [ext_resource type="Texture2D" uid="uid://53ndqqn6xb12" path="res://wep/other/decals/scorch/scorch1.png" id="1_ji6ur"]
-[ext_resource type="Script" uid="uid://bj3mdla53n4rl" path="res://wep/other/blast_decal.gd" id="2_p3scy"]
+[ext_resource type="Shader" uid="uid://dpwkh87qoojrj" path="res://wep/other/decals/decal.gdshader" id="1_p3scy"]
+[ext_resource type="Script" uid="uid://d4dloq0cxslxq" path="res://wep/other/free_at_runtime.gd" id="3_pfs6m"]
 
-[sub_resource type="GDScript" id="GDScript_4gn02"]
-resource_name = "test_ground"
-script/source = "extends CSGBox3D
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pfs6m"]
+render_priority = 0
+shader = ExtResource("1_p3scy")
+shader_parameter/modulate = Color(0.25, 0.25, 0.25, 1)
+shader_parameter/texture_albedo = ExtResource("1_ji6ur")
 
+[sub_resource type="BoxMesh" id="BoxMesh_ejks6"]
+material = SubResource("ShaderMaterial_pfs6m")
 
-func _init() -> void:
-	queue_free()
-"
-
-[node name="BlastDecal" type="Decal"]
-size = Vector3(4, 1, 4)
-texture_albedo = ExtResource("1_ji6ur")
-albedo_mix = 0.5
-normal_fade = 0.01
-lower_fade = 3.0
-script = ExtResource("2_p3scy")
+[node name="Scorch1" type="MeshInstance3D"]
+transform = Transform3D(2, 0, 0, 0, 0.25, 0, 0, 0, 2, 0, 0, 0)
+custom_aabb = AABB(-0.5, -0.5, -0.5, 1, 1, 1)
+mesh = SubResource("BoxMesh_ejks6")
 
 [node name="TestGround" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.125, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9, -0.125, 0)
 top_level = true
 size = Vector3(2, 0.25, 5)
-script = SubResource("GDScript_4gn02")
+script = ExtResource("3_pfs6m")
+
+[node name="TestGround2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.466827, -1.3283, 0)
+top_level = true
+size = Vector3(2, 0.25, 5)
+script = ExtResource("3_pfs6m")
