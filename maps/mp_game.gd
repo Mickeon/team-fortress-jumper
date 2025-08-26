@@ -141,10 +141,10 @@ func tweak_client(player: Player):
 	const BLU_COAT = preload("res://player/soldier/mat/coat_mat_blu.tres")
 	const BLU_SLEEVES = preload("res://player/soldier/mat/sleeves_mat_blu.tres")
 	
-	var body_mesh := player.get_node("Soldier/Body/Skeleton3D/mesh")
+	var body_mesh := player.get_node("Soldier/TPSkeleton/mesh")
 	body_mesh.set("surface_material_override/0", BLU_COAT)
 	
-	var fp_mesh := player.cam_pivot.get_node("FirstPersonModel/Arms/Skeleton3D/mesh")
+	var fp_mesh := player.cam_pivot.get_node("FirstPersonModel/FPSkeleton/mesh")
 	fp_mesh.set("surface_material_override/1", BLU_SLEEVES)
 	
 	# All clients are shifted ahead on spawn

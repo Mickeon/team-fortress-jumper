@@ -16,29 +16,9 @@ enum Type { PRIMARY, SECONDARY, MELEE }
 		held_type = new
 		held_type_name = Type.find_key(held_type).to_lower()
 		
-		#create_tween().tween_method(func(_a):
-			#set(&"parameters/seek/seek_request", get("parameters/%s/current_position" % prior_held_type_name))
-		#, 0, 0.0, 0.8)
-		
 		set(&"parameters/seek/seek_request", get("parameters/%s/current_position" % prior_held_type_name))
 		
 		set(&"parameters/held_type/transition_request", held_type_name)
-		
-		if Engine.is_editor_hint():
-			return # I'd like git not to alarm me, thanks.
-		
-		if not is_node_ready(): await ready
-		
-		# TODO: Decouple this shit.
-		$"../Body/Rocket Launcher".hide()
-		$"../Body/Shotgun".hide()
-		$"../Body/Shovel".hide()
-		if held_type == Type.PRIMARY:
-			$"../Body/Rocket Launcher".show()
-		elif held_type == Type.SECONDARY:
-			$"../Body/Shotgun".show()
-		elif held_type == Type.MELEE:
-			$"../Body/Shovel".show()
 
 var held_type_name := &"primary"
 

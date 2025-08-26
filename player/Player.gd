@@ -433,31 +433,23 @@ func take_damage(amount: float, inflictor: Player = null):
 
 
 func _update_for_main_player():
-	if self == Player.main:
-		propagate_call("set_process_input", [true])
-		propagate_call("set_process_unhandled_input", [true])
-		
-		cam_pivot.show()
-		cam_pivot.get_node("Camera").current = true
-		
-		for mesh: MeshInstance3D in [
-			get_node("Soldier/Body/Skeleton3D/mesh"),
-			get_node("Soldier/Body/Rocket Launcher/c_rocketlauncher_qc_skeleton/Skeleton3D/c_rocketlauncher"),
-			get_node("Soldier/Body/Shotgun/c_shotgun_skeleton/Skeleton3D/c_shotgun")
-		]:
-			mesh.layers = 4
-	else:
-		cam_pivot.hide()
-		cam_pivot.get_node("Camera").current = false
-		
-		propagate_call("set_process_input", [false])
-		propagate_call("set_process_unhandled_input", [false])
-		
-		# Show TP model all the time.
-		for mesh: MeshInstance3D in [
-			get_node("Soldier/Body/Skeleton3D/mesh"),
-			get_node("Soldier/Body/Rocket Launcher/c_rocketlauncher_qc_skeleton/Skeleton3D/c_rocketlauncher"),
-			get_node("Soldier/Body/Shotgun/c_shotgun_skeleton/Skeleton3D/c_shotgun")
-		]:
-			mesh.layers = 6
+	const LAYER_FIRST_PERSON = 1 << 1
+	const LAYER_THIRD_PERSON = 1 << 2
+	var is_main_player := self == Player.main
+	
+	propagate_call("set_process_input", [is_main_player])
+	propagate_call("set_process_unhandled_input", [is_main_player])
+	
+	cam_pivot.visible = is_main_player
+	cam_pivot.get_node("Camera").current = is_main_player
+	
+	# Hacky dependency to WeaponManager to hide your own third person meshes when in first person.
+	var hacky_shit_tp_meshes: Array[MeshInstance3D] = [get_node("Soldier/TPSkeleton/mesh")]
+	for wep: WeaponNode in $Smoothing3D/Pivot/WeaponManager.get_weapons():
+		if wep.tp_model:
+			hacky_shit_tp_meshes.append(wep.tp_model.get_child(0).get_child(0))
+	
+	for mesh in hacky_shit_tp_meshes:
+		# TODO: Show third person model's shadow when in first person.
+		mesh.layers = LAYER_THIRD_PERSON | (0 if is_main_player else LAYER_FIRST_PERSON)
 

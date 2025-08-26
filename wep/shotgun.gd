@@ -1,6 +1,6 @@
 extends WeaponNode
 
-const BULLET_SPREAD_DISTANCE_FROM_CENTER := 0.05
+const BULLET_SPREAD_DISTANCE_FROM_CENTER := deg_to_rad(3)
 const BULLET_SPREAD_BASE_OFFSETS: Array[Vector2] = [
 	Vector2( 0.0,  0.0),
 	
@@ -14,10 +14,10 @@ const BULLET_SPREAD_BASE_OFFSETS: Array[Vector2] = [
 	
 	Vector2(-1.0,  1.0) * BULLET_SPREAD_DISTANCE_FROM_CENTER,
 	Vector2( 0.0,  1.0) * BULLET_SPREAD_DISTANCE_FROM_CENTER,
-	Vector2( 1.0,  1.0) * BULLET_SPREAD_DISTANCE_FROM_CENTER,
+	Vector2( 1.0,  1.0) * BULLET_SPREAD_DISTANCE_FROM_CENTER, 
 ]
 
-@export var inaccuracy := deg_to_rad(2.0) # Not really measured, based on a guess.
+@export var inaccuracy := deg_to_rad(1.0) # Not really measured, based on a guess.
 
 @export_range(0, 120, 1, "hide_slider", "or_greater")
 var base_damage := 6.0
@@ -42,8 +42,8 @@ func _shoot():
 
 func _create_bullet(base_offset := Vector2.ZERO, first_bullet := false):
 	var spread := Vector2.ZERO if first_bullet else Vector2(
-			randf_range(-inaccuracy, inaccuracy), 
-			randf_range(-inaccuracy, inaccuracy))
+			randfn(0, inaccuracy), 
+			randfn(0, inaccuracy))
 	var ahead := -global_transform.basis.z.rotated(
 			global_transform.basis.y, base_offset.y + spread.y).rotated(
 			global_transform.basis.x, base_offset.x + spread.x)

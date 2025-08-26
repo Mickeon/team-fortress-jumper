@@ -21,7 +21,8 @@ var trigger_action := "player_primary"
 
 @onready var player_owner: Player = owner
 @onready var sfx: AudioStreamPlayer3D = $Shoot
-@onready var fp_model: Node3D = get_node_or_null("Model")
+@onready var fp_model: Node3D = get_node_or_null("FPModel")
+@onready var tp_model: Node3D = get_node_or_null("TPModel")
 @onready var deploy_sfx: AudioStreamPlayer3D = get_node_or_null("Deploy")
 
 
@@ -43,6 +44,8 @@ func shoot():
 func deploy():
 	if fp_model:
 		fp_model.show()
+	if tp_model:
+		tp_model.show()
 	if deploy_sfx:
 		deploy_sfx.play()
 	
@@ -52,6 +55,8 @@ func deploy():
 func holster():
 	if fp_model:
 		fp_model.hide()
+	if tp_model:
+		tp_model.hide()
 
 var _interval_timer: SceneTreeTimer
 func refresh_interval():

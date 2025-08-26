@@ -1,38 +1,45 @@
-[gd_scene load_steps=23 format=3 uid="uid://d3tlxp1tfmuf8"]
+[gd_scene load_steps=21 format=3 uid="uid://d3tlxp1tfmuf8"]
 
 [ext_resource type="PackedScene" uid="uid://6k0qx8blsyoj" path="res://player/soldier/soldier.glb" id="1_up20u"]
-[ext_resource type="Material" uid="uid://6ow1u4ur6s03" path="res://player/soldier/mat/coat_mat_red.tres" id="2_wqvld"]
-[ext_resource type="Material" uid="uid://dsyli0q6u4vy" path="res://player/soldier/mat/eyes_mat.tres" id="3_nhegp"]
-[ext_resource type="Material" uid="uid://dayfb14k5kwp" path="res://player/soldier/mat/head_mat.tres" id="4_ofv37"]
-[ext_resource type="Material" uid="uid://cuc8qbquctc7i" path="res://player/soldier/mat/tongue_mat.tres" id="5_vl3c4"]
-[ext_resource type="Material" uid="uid://nrs81kxpekfb" path="res://player/soldier/mat/hands_mat.tres" id="6_aelk0"]
-[ext_resource type="Material" uid="uid://bcyjpdmg18bqa" path="res://wep/models/rocket_launcher_mat.tres" id="8_yrs7y"]
+[ext_resource type="Material" uid="uid://6ow1u4ur6s03" path="res://player/soldier/mat/coat_mat_red.tres" id="2_lfa4a"]
+[ext_resource type="Script" uid="uid://d4dloq0cxslxq" path="res://wep/other/free_at_runtime.gd" id="3_13aua"]
+[ext_resource type="Material" uid="uid://dsyli0q6u4vy" path="res://player/soldier/mat/eyes_mat.tres" id="3_fiyxg"]
+[ext_resource type="Material" uid="uid://dayfb14k5kwp" path="res://player/soldier/mat/head_mat.tres" id="4_flhtx"]
+[ext_resource type="Material" uid="uid://cuc8qbquctc7i" path="res://player/soldier/mat/tongue_mat.tres" id="5_fiyxg"]
+[ext_resource type="Material" uid="uid://nrs81kxpekfb" path="res://player/soldier/mat/hands_mat.tres" id="5_j7es8"]
 [ext_resource type="PackedScene" uid="uid://cwra1254eqlhr" path="res://wep/models/shotgun.glb" id="9_lymci"]
-[ext_resource type="Material" uid="uid://cnmv8s17cp571" path="res://wep/models/shotgun_mat.tres" id="10_bpa3x"]
 [ext_resource type="Script" uid="uid://cp1rudrnpq164" path="res://player/soldier/anims/soldier_anim_manager.gd" id="10_ro42a"]
 [ext_resource type="PackedScene" uid="uid://bc37xq0qfcyx5" path="res://wep/models/shovel.glb" id="11_47wd3"]
 [ext_resource type="AnimationNodeBlendTree" uid="uid://babqdhmbrx55u" path="res://player/soldier/anims/root_primary.tres" id="11_nn7aa"]
 [ext_resource type="PackedScene" uid="uid://cw116s8st8i27" path="res://wep/models/rocket_launcher.glb" id="11_w6e2f"]
-[ext_resource type="Material" uid="uid://dfrd6lutgerj5" path="res://wep/models/shovel_mat.tres" id="12_r63hc"]
 [ext_resource type="AnimationNodeBlendTree" uid="uid://d3mmdlg7iwy2i" path="res://player/soldier/anims/root_melee.tres" id="13_j7es8"]
 [ext_resource type="AnimationNodeBlendTree" uid="uid://cgls1kg1dfa0o" path="res://player/soldier/anims/root_secondary.tres" id="15_cjxjk"]
 
-[sub_resource type="Skin" id="Skin_qpmxg"]
+[sub_resource type="Skin" id="Skin_fkeuq"]
 resource_name = "Skin"
-bind_count = 3
+bind_count = 6
 bind/0/name = &"weapon_bone"
 bind/0/bone = -1
 bind/0/pose = Transform3D(52.4934, 0, 0, 0, 52.4934, -8.55227e-06, 0, 8.55227e-06, 52.4934, 0, 2.24543, 2.10987)
-bind/1/name = &"weapon_bone"
-bind/1/bone = 1
-bind/1/pose = Transform3D(52.4934, 0, 0, 0, 52.4934, -8.55227e-06, 0, 8.55227e-06, 52.4934, 0, 2.24543, 2.10987)
-bind/2/name = &"weapon_bone"
-bind/2/bone = 1
-bind/2/pose = Transform3D(52.4934, 0, 0, 0, 52.4934, -8.55227e-06, 0, 8.55227e-06, 52.4934, 0, 2.24543, 2.10987)
+bind/1/name = &""
+bind/1/bone = 2
+bind/1/pose = Transform3D(1.61522e-05, 46.2953, 24.7447, -2.00992e-06, 24.7447, -46.2953, -52.4934, 1.45329e-05, 7.76778e-06, -14.1995, 10.3593, 2.08272)
+bind/2/name = &""
+bind/2/bone = 2
+bind/2/pose = Transform3D(-9.06898e-06, 51.8248, -8.35214, 1.72555e-06, 8.35212, 51.8247, 52.4934, 7.44366e-06, -1.52775e-06, -8.36767, -19.3895, -2.09028)
+bind/3/name = &""
+bind/3/bone = 2
+bind/3/pose = Transform3D(-1.50565e-05, 51.8248, -8.35206, 1.40162e-06, 8.35205, 51.8248, 52.4934, 1.34064e-05, -2.16057e-06, -8.3677, -19.4502, -2.09028)
+bind/4/name = &""
+bind/4/bone = 2
+bind/4/pose = Transform3D(51.5036, 10.0947, -1.02009, -1.03836, -0.005782, -52.4832, -10.0928, 51.5137, 0.194012, -3.79051, 4.92592, -4.5772)
+bind/5/name = &""
+bind/5/bone = 2
+bind/5/pose = Transform3D(51.5036, 10.0947, -1.02, -1.03835, -0.00536986, -52.4832, -10.0928, 51.5137, 0.194415, -3.79052, 4.86513, -4.57723)
 
-[sub_resource type="Skin" id="Skin_cmrye"]
+[sub_resource type="Skin" id="Skin_13aua"]
 resource_name = "Skin"
-bind_count = 6
+bind_count = 9
 bind/0/name = &"weapon_bone"
 bind/0/bone = -1
 bind/0/pose = Transform3D(52.4934, 0, 0, 0, -8.55227e-06, -52.4934, 0, 52.4934, -8.55227e-06, 0, 0, 0)
@@ -40,30 +47,39 @@ bind/1/name = &"weapon_bone_1"
 bind/1/bone = -1
 bind/1/pose = Transform3D(52.4934, 0, 0, 0, -8.55227e-06, -52.4934, 0, 52.4934, -8.55227e-06, 0, -1.39409, -25.9658)
 bind/2/name = &""
-bind/2/bone = 1
+bind/2/bone = 2
 bind/2/pose = Transform3D(52.4934, 0, 0, 0, -8.55227e-06, -52.4934, 0, 52.4934, -8.55227e-06, 0, -1.44503, -25.9658)
 bind/3/name = &""
-bind/3/bone = 1
+bind/3/bone = 2
 bind/3/pose = Transform3D(52.4934, 0, 0, 0, -8.55227e-06, -52.4934, 0, 52.4934, -8.55227e-06, -0.109113, -2.60987, -5.58891)
 bind/4/name = &""
-bind/4/bone = 1
+bind/4/bone = 2
 bind/4/pose = Transform3D(52.4934, 0, 0, 0, -8.55227e-06, -52.4934, 0, 52.4934, -8.55227e-06, -0.109113, -2.66081, -5.58891)
 bind/5/name = &""
-bind/5/bone = 1
+bind/5/bone = 2
 bind/5/pose = Transform3D(52.4934, 0, 0, 0, -8.55227e-06, -52.4934, 0, 52.4934, -8.55227e-06, -1.20714, -3.10209, -8.74143)
+bind/6/name = &""
+bind/6/bone = 2
+bind/6/pose = Transform3D(52.4934, 0, 0, 0, -8.55227e-06, -52.4934, 0, 52.4934, -8.55227e-06, -1.20714, -3.15302, -8.74143)
+bind/7/name = &""
+bind/7/bone = 2
+bind/7/pose = Transform3D(52.4789, 0.0115601, 1.23475, 0.0705155, -52.4335, -2.50612, 1.23279, 2.50708, -52.419, -1.4523, 7.73628, -2.27039)
+bind/8/name = &""
+bind/8/bone = 2
+bind/8/pose = Transform3D(52.4789, 0.0115601, 1.23475, 0.0705155, -52.4335, -2.50612, 1.23279, 2.50708, -52.419, -1.4523, 7.68534, -2.27039)
 
-[sub_resource type="Skin" id="Skin_ssq02"]
-resource_name = "Skin"
+[sub_resource type="Skin" id="Skin_nh3dg"]
+resource_name = "ShovelSkin"
 bind_count = 3
 bind/0/name = &"weapon_bone"
 bind/0/bone = -1
 bind/0/pose = Transform3D(52.4934, 0, 0, 0, -8.55227e-06, -52.4934, 0, 52.4934, -8.55227e-06, 0, 0, 0)
 bind/1/name = &"weapon_bone"
-bind/1/bone = -1
-bind/1/pose = Transform3D(52.493, 0, 0, 0, 0, -52.493, 0, 52.493, 0, 0, 0, 0)
+bind/1/bone = 2
+bind/1/pose = Transform3D(52.493, 0, 0, 0, 0, -52.493, 0, 52.493, 0, 0, 0, 0.061)
 bind/2/name = &"weapon_bone"
 bind/2/bone = 1
-bind/2/pose = Transform3D(52.4934, 0, 0, 0, -8.55227e-06, -52.4934, 0, 52.4934, -8.55227e-06, 0, -16.7849, 0.061404)
+bind/2/pose = Transform3D(52.493, 0, 0, 0, 0, -52.493, 0, 52.493, 0, 0, 0, 0)
 
 [sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_flhtx"]
 sync = true
@@ -100,120 +116,46 @@ node_connections = [&"held_type", 0, &"primary", &"held_type", 1, &"secondary", 
 
 [node name="Soldier" instance=ExtResource("1_up20u")]
 
-[node name="Skeleton3D" parent="Body" index="0"]
-bones/1/scale = Vector3(1, 1, 1)
-bones/9/scale = Vector3(1, 1, 1)
-bones/10/scale = Vector3(1, 1, 1)
-bones/11/scale = Vector3(1, 1, 1)
-bones/12/scale = Vector3(1, 1, 1)
-bones/13/scale = Vector3(1, 1, 1)
-bones/15/scale = Vector3(1, 1, 1)
-bones/16/scale = Vector3(1, 1, 1)
-bones/19/scale = Vector3(1, 1, 1)
-bones/22/scale = Vector3(1, 1, 1)
-bones/25/scale = Vector3(1, 1, 1)
-bones/28/scale = Vector3(1, 1, 1)
-bones/31/scale = Vector3(1, 1, 1)
-bones/32/scale = Vector3(1, 1, 1)
-bones/36/scale = Vector3(1, 1, 1)
-bones/37/scale = Vector3(1, 1, 1)
-bones/38/scale = Vector3(1, 1, 1)
-bones/39/scale = Vector3(1, 1, 1)
-bones/40/scale = Vector3(1, 1, 1)
-bones/41/scale = Vector3(1, 1, 1)
-bones/42/scale = Vector3(1, 1, 1)
-bones/43/scale = Vector3(1, 1, 1)
-bones/46/scale = Vector3(1, 1, 1)
-bones/49/scale = Vector3(1, 1, 1)
-bones/50/scale = Vector3(1, 1, 1)
-bones/52/scale = Vector3(1, 1, 1)
-bones/55/scale = Vector3(1, 1, 1)
-bones/57/scale = Vector3(1, 1, 0.999999)
-bones/58/rotation = Quaternion(0.97062, -0.0326128, 0.149065, 0.186046)
-bones/58/scale = Vector3(1, 1, 1)
-bones/59/scale = Vector3(1, 1, 1)
-bones/60/scale = Vector3(1, 1, 1)
-bones/61/scale = Vector3(1, 1, 1)
-bones/65/scale = Vector3(1, 1, 1)
-bones/67/scale = Vector3(1, 1, 1)
-bones/69/scale = Vector3(0.999999, 1, 0.999992)
-bones/70/scale = Vector3(1, 1, 1)
-bones/72/scale = Vector3(1, 1, 1)
-bones/74/scale = Vector3(1, 1, 0.999999)
-bones/76/scale = Vector3(1, 1, 1)
-bones/77/rotation = Quaternion(-1.86265e-07, -2.87313e-07, -1.04122e-06, 1)
-bones/78/scale = Vector3(0.999997, 1, 0.999996)
-bones/80/scale = Vector3(1, 1, 1)
-bones/81/rotation = Quaternion(-9.31322e-08, -1.19209e-07, -8.67699e-15, 1)
-bones/82/rotation = Quaternion(-9.31322e-08, -1.19209e-07, -8.67699e-15, 1)
-bones/83/rotation = Quaternion(-9.31322e-08, -1.19209e-07, -8.67699e-15, 1)
-bones/84/rotation = Quaternion(-9.31322e-08, -1.19209e-07, -8.67699e-15, 1)
-bones/85/rotation = Quaternion(-9.31322e-08, -1.19209e-07, -8.67699e-15, 1)
-bones/86/rotation = Quaternion(-9.31322e-08, -1.19209e-07, -8.67699e-15, 1)
-bones/87/rotation = Quaternion(-9.31322e-08, -1.19209e-07, -8.67699e-15, 1)
+[node name="TPSkeleton" parent="." index="0"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 
-[node name="mesh" parent="Body/Skeleton3D" index="0"]
-layers = 4
+[node name="mesh" parent="TPSkeleton" index="0"]
 lod_bias = 2.0
-gi_mode = 2
-surface_material_override/0 = ExtResource("2_wqvld")
-surface_material_override/1 = ExtResource("3_nhegp")
-surface_material_override/2 = ExtResource("4_ofv37")
-surface_material_override/3 = ExtResource("3_nhegp")
-surface_material_override/4 = ExtResource("5_vl3c4")
-surface_material_override/5 = ExtResource("6_aelk0")
+surface_material_override/0 = ExtResource("2_lfa4a")
+surface_material_override/1 = ExtResource("3_fiyxg")
+surface_material_override/2 = ExtResource("4_flhtx")
+surface_material_override/3 = ExtResource("3_fiyxg")
+surface_material_override/4 = ExtResource("5_fiyxg")
+surface_material_override/5 = ExtResource("5_j7es8")
 
-[node name="Rocket Launcher" parent="Body" index="1" instance=ExtResource("11_w6e2f")]
-transform = Transform3D(52.4934, 0, 0, 0, 52.4934, 0, 0, 0, 52.4934, 0, 0, 0)
+[node name="Test Rocket Launcher" parent="." index="1" instance=ExtResource("11_w6e2f")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+visible = false
+script = ExtResource("3_13aua")
 
-[node name="Skeleton3D" parent="Body/Rocket Launcher/c_rocketlauncher_qc_skeleton" index="0"]
-bones/1/rotation = Quaternion(-0.363529, -0.606504, 0.363529, 0.606504)
-bones/1/scale = Vector3(1, 1, 1)
-bones/2/rotation = Quaternion(0.947547, 0.319617, 2.16259e-07, 2.41304e-08)
-bones/2/scale = Vector3(1, 1, 1)
-bones/4/rotation = Quaternion(-0.703128, -0.0613414, 0.0752713, 0.704402)
+[node name="c_rocketlauncher" parent="Test Rocket Launcher/WeaponSkeleton" index="0"]
+skin = SubResource("Skin_fkeuq")
+skeleton = NodePath("../../../TPSkeleton")
 
-[node name="c_rocketlauncher" parent="Body/Rocket Launcher/c_rocketlauncher_qc_skeleton/Skeleton3D" index="0"]
-layers = 4
-skin = SubResource("Skin_qpmxg")
-skeleton = NodePath("../../../../Skeleton3D")
-surface_material_override/0 = ExtResource("8_yrs7y")
+[node name="Test Shotgun" parent="." index="2" instance=ExtResource("9_lymci")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+visible = false
+script = ExtResource("3_13aua")
 
-[node name="Shotgun" parent="Body" index="2" instance=ExtResource("9_lymci")]
-transform = Transform3D(52.4934, 0, 0, 0, 52.4934, 0, 0, 0, 52.4934, 0, 0, 0)
+[node name="c_shotgun" parent="Test Shotgun/WeaponSkeleton" index="0"]
+skin = SubResource("Skin_13aua")
+skeleton = NodePath("../../../TPSkeleton")
 
-[node name="Skeleton3D" parent="Body/Shotgun/c_shotgun_skeleton" index="0"]
-bones/0/enabled = false
-bones/0/rotation = Quaternion(-0.707107, 0, 0, 0.707107)
-bones/1/enabled = false
-bones/2/enabled = false
-bones/3/enabled = false
-bones/4/enabled = false
-bones/5/enabled = false
-bones/6/enabled = false
-bones/7/enabled = false
-bones/7/rotation = Quaternion(-0.689968, 0.00803615, -0.00858914, 0.723745)
-bones/8/enabled = false
+[node name="Test Shovel" parent="." index="3" instance=ExtResource("11_47wd3")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+visible = false
+script = ExtResource("3_13aua")
 
-[node name="c_shotgun" parent="Body/Shotgun/c_shotgun_skeleton/Skeleton3D" index="0"]
-layers = 4
-skin = SubResource("Skin_cmrye")
-skeleton = NodePath("../../../../Skeleton3D")
-surface_material_override/0 = ExtResource("10_bpa3x")
+[node name="c_shovel" parent="Test Shovel/WeaponSkeleton" index="0"]
+skin = SubResource("Skin_nh3dg")
+skeleton = NodePath("../../../TPSkeleton")
 
-[node name="Shovel" parent="Body" index="3" instance=ExtResource("11_47wd3")]
-transform = Transform3D(52.4934, 0, 0, 0, 52.4934, 0, 0, 0, 52.4934, 0, 0, 0)
-
-[node name="Skeleton3D" parent="Body/Shovel/c_shovel_skeleton" index="0"]
-bones/0/rotation = Quaternion(-0.707107, 0, 0, 0.707107)
-
-[node name="c_shovel" parent="Body/Shovel/c_shovel_skeleton/Skeleton3D" index="0"]
-layers = 4
-skin = SubResource("Skin_ssq02")
-skeleton = NodePath("../../../../Skeleton3D")
-surface_material_override/0 = ExtResource("12_r63hc")
-
-[node name="AnimationTree" type="AnimationTree" parent="." index="2"]
+[node name="AnimationTree" type="AnimationTree" parent="." index="5"]
 tree_root = SubResource("AnimationNodeBlendTree_j7es8")
 anim_player = NodePath("../AnimationPlayer")
 parameters/held_type/current_state = "primary"
@@ -294,6 +236,6 @@ parameters/secondary/stand/move_blend/blend_position = Vector2(0, 0)
 parameters/seek/seek_request = -1.0
 script = ExtResource("10_ro42a")
 
-[editable path="Body/Rocket Launcher"]
-[editable path="Body/Shotgun"]
-[editable path="Body/Shovel"]
+[editable path="Test Rocket Launcher"]
+[editable path="Test Shotgun"]
+[editable path="Test Shovel"]

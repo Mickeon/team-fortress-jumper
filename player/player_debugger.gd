@@ -27,7 +27,7 @@ HSP: %s
 		if view_mode != ViewMode.FIRST_PERSON:
 			
 			var cam_pivot = player.cam_pivot
-			camera = Camera3D.new()
+			camera = Camera3D.new() # FIXME: Cameras leak memory in the scene tree every view change.
 			
 			if view_mode == ViewMode.TOP_DOWN:
 				var tw := create_tween().set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_OUT).set_parallel()
