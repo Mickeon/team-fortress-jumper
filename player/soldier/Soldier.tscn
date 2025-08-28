@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://d3tlxp1tfmuf8"]
+[gd_scene load_steps=22 format=3 uid="uid://d3tlxp1tfmuf8"]
 
 [ext_resource type="PackedScene" uid="uid://6k0qx8blsyoj" path="res://player/soldier/soldier.glb" id="1_up20u"]
 [ext_resource type="Material" uid="uid://6ow1u4ur6s03" path="res://player/soldier/mat/coat_mat_red.tres" id="2_lfa4a"]
@@ -14,6 +14,20 @@
 [ext_resource type="PackedScene" uid="uid://cw116s8st8i27" path="res://wep/models/rocket_launcher.glb" id="11_w6e2f"]
 [ext_resource type="AnimationNodeBlendTree" uid="uid://d3mmdlg7iwy2i" path="res://player/soldier/anims/root_melee.tres" id="13_j7es8"]
 [ext_resource type="AnimationNodeBlendTree" uid="uid://cgls1kg1dfa0o" path="res://player/soldier/anims/root_secondary.tres" id="15_cjxjk"]
+
+[sub_resource type="GDScript" id="GDScript_fiyxg"]
+resource_name = "body_model"
+script/source = "@icon(\"res://player/soldier/mat/soldier_red.png\")
+extends Node3D
+
+
+@onready var animation_tree: AnimationTree = $AnimationTree
+@export var player: Player:
+	set(new):
+		player = new
+		if not is_node_ready(): await ready
+		animation_tree.player = player
+"
 
 [sub_resource type="Skin" id="Skin_fkeuq"]
 resource_name = "Skin"
@@ -115,6 +129,7 @@ nodes/seek/position = Vector2(133.333, 106.667)
 node_connections = [&"held_type", 0, &"primary", &"held_type", 1, &"secondary", &"held_type", 2, &"melee", &"output", 0, &"seek", &"seek", 0, &"held_type"]
 
 [node name="Soldier" instance=ExtResource("1_up20u")]
+script = SubResource("GDScript_fiyxg")
 
 [node name="TPSkeleton" parent="." index="0"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
@@ -155,7 +170,7 @@ script = ExtResource("3_13aua")
 skin = SubResource("Skin_nh3dg")
 skeleton = NodePath("../../../TPSkeleton")
 
-[node name="AnimationTree" type="AnimationTree" parent="." index="5"]
+[node name="AnimationTree" type="AnimationTree" parent="." index="5" node_paths=PackedStringArray("model")]
 tree_root = SubResource("AnimationNodeBlendTree_j7es8")
 anim_player = NodePath("../AnimationPlayer")
 parameters/held_type/current_state = "primary"
@@ -235,6 +250,7 @@ parameters/secondary/stand/_sub_move/sub_amount = 1.0
 parameters/secondary/stand/move_blend/blend_position = Vector2(0, 0)
 parameters/seek/seek_request = -1.0
 script = ExtResource("10_ro42a")
+model = NodePath("..")
 
 [editable path="Test Rocket Launcher"]
 [editable path="Test Shotgun"]

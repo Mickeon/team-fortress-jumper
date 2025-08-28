@@ -17,7 +17,7 @@ func _deploy():
 func _shoot():
 	const SWING_ANIMATIONS = [&"shovel_swing_a", &"shovel_swing_b"]
 	
-	sfx.play()
+	shoot_sfx.play()
 	first_person_player.stop()
 	first_person_player.play(SWING_ANIMATIONS.pick_random())
 	

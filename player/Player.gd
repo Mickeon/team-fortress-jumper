@@ -51,6 +51,25 @@ var MAX_SLOPE_ANGLE := deg_to_rad(45.573):
 @export var camera_sensitivity := 0.075
 @export var cam_pivot: Node3D
 @export var hull: CollisionShape3D ## The collision hull, the bounding box.
+@export var body_mesh: MeshInstance3D
+@export var fp_mesh: MeshInstance3D
+enum Team { RED, BLU }
+@export var team: Team = Team.RED:
+	set(new):
+		if team == new:
+			return
+		team = new
+		
+		if team == Team.BLU:
+			const BLU_COAT = preload("res://player/soldier/mat/coat_mat_blu.tres")
+			const BLU_SLEEVES = preload("res://player/soldier/mat/sleeves_mat_blu.tres")
+			body_mesh.set("surface_material_override/0", BLU_COAT)
+			fp_mesh.set("surface_material_override/1", BLU_SLEEVES)
+		else:
+			const RED_COAT = preload("res://player/soldier/mat/coat_mat_red.tres")
+			const RED_SLEEVES = preload("res://player/soldier/mat/sleeves_mat_red.tres")
+			body_mesh.set("surface_material_override/0", RED_COAT)
+			fp_mesh.set("surface_material_override/1", RED_SLEEVES)
 
 @export_group("Debug", "debug_")
 @export var debug_simulate_vanilla_tickrate := false
@@ -435,7 +454,7 @@ func take_damage(amount: float, inflictor: Player = null):
 func _update_for_main_player():
 	const LAYER_FIRST_PERSON = 1 << 1
 	const LAYER_THIRD_PERSON = 1 << 2
-	var is_main_player := self == Player.main
+	var is_main_player := (self == Player.main)
 	
 	propagate_call("set_process_input", [is_main_player])
 	propagate_call("set_process_unhandled_input", [is_main_player])
@@ -444,7 +463,7 @@ func _update_for_main_player():
 	cam_pivot.get_node("Camera").current = is_main_player
 	
 	# Hacky dependency to WeaponManager to hide your own third person meshes when in first person.
-	var hacky_shit_tp_meshes: Array[MeshInstance3D] = [get_node("Soldier/TPSkeleton/mesh")]
+	var hacky_shit_tp_meshes: Array[MeshInstance3D] = [body_mesh]
 	for wep: WeaponNode in $Smoothing3D/Pivot/WeaponManager.get_weapons():
 		if wep.tp_model:
 			hacky_shit_tp_meshes.append(wep.tp_model.get_child(0).get_child(0))

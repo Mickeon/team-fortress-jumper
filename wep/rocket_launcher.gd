@@ -20,7 +20,7 @@ func _shoot():
 	rocket.add_exception(player_owner)
 	player_owner.add_sibling(rocket, true)
 	
-	sfx.play()
+	shoot_sfx.play()
 	first_person_player.stop()
 	first_person_player.play(&"rocket_launcher_fire")
 

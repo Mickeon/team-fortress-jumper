@@ -20,9 +20,9 @@ var trigger_action := "player_primary"
 			shoot.rpc()
 
 @onready var player_owner: Player = owner
-@onready var sfx: AudioStreamPlayer3D = $Shoot
 @onready var fp_model: Node3D = get_node_or_null("FPModel")
 @onready var tp_model: Node3D = get_node_or_null("TPModel")
+@onready var shoot_sfx: AudioStreamPlayer3D = get_node_or_null("Shoot")
 @onready var deploy_sfx: AudioStreamPlayer3D = get_node_or_null("Deploy")
 
 
@@ -33,7 +33,10 @@ func _unhandled_input(event):
 
 @rpc("authority", "call_local", "reliable")
 func shoot():
+	# FIXME: Due to lag and the timer being off-sync, the shoot RPC often fails in multiplayer.
 	if not active or (_interval_timer and _interval_timer.time_left > 0.0):
+		#if _interval_timer:
+			#print(_interval_timer.time_left)
 		return
 	
 	refresh_interval()
@@ -60,7 +63,7 @@ func holster():
 
 var _interval_timer: SceneTreeTimer
 func refresh_interval():
-	_interval_timer = get_tree().create_timer(attack_interval)
+	_interval_timer = get_tree().create_timer(attack_interval, true, true)
 	_interval_timer.timeout.connect(func():
 			_ready_to_shoot()
 			# When holding down the button, shoot again as soon as possible.

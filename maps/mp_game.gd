@@ -137,15 +137,8 @@ func tweak_server(player: Player):
 	player.cam_pivot.rotation.y += PI
 
 func tweak_client(player: Player):
-	# All clients are colored BLU.
-	const BLU_COAT = preload("res://player/soldier/mat/coat_mat_blu.tres")
-	const BLU_SLEEVES = preload("res://player/soldier/mat/sleeves_mat_blu.tres")
-	
-	var body_mesh := player.get_node("Soldier/TPSkeleton/mesh")
-	body_mesh.set("surface_material_override/0", BLU_COAT)
-	
-	var fp_mesh := player.cam_pivot.get_node("FirstPersonModel/FPSkeleton/mesh")
-	fp_mesh.set("surface_material_override/1", BLU_SLEEVES)
+	# All clients are in BLU team.
+	player.team = Player.Team.BLU
 	
 	# All clients are shifted ahead on spawn
 	player.position.z += 5
@@ -184,13 +177,13 @@ func tweak_window():
 
 #endregion
 
-var _queued_damage_numbers := {} # { Player: float }
+var _queued_damage_numbers: Dictionary[Player, float] = {}
 func _on_player_hurt(amount: float, inflictor: Player, victim: Player):
 	if inflictor == victim:
 		#chat.send("%s took self-damage! %4.2f" % [inflictor.name, amount])
 		return # Don't care about self-inflicted damage.
 	if inflictor != Player.main:
-		return # Don't care about other players damage.
+		return # Don't care about damage other players dealt.
 	
 	if not _queued_damage_numbers.has(victim):
 		create_damage_label.call_deferred(victim)
@@ -206,15 +199,10 @@ func create_damage_label(for_player: Player):
 	damage_label.position.y += for_player.get_height()
 	add_child(damage_label)
 	
-	# Likely because this whole method is "deferred", the label shows up at the origin for a single frame.
-	# to mitigate this, we fully show the label on the very next frame.
-	damage_label.hide()
-	get_tree().process_frame.connect(damage_label.show)
-	
 	_queued_damage_numbers.erase(for_player)
 
 
-static var args_dict: Dictionary: # { String: Variant }
+static var args_dict: Dictionary[String, Variant]:
 	get:
 		if args_dict:
 			return args_dict

@@ -33,7 +33,7 @@ func _deploy():
 
 func _shoot():
 	const SHOOT_ANIMATIONS = [&"shotgun_fire", &"shotgun_fire_nopump"]
-	sfx.play()
+	shoot_sfx.play()
 	first_person_player.stop()
 	first_person_player.play(SHOOT_ANIMATIONS.pick_random())
 	

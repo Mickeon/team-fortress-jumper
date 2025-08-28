@@ -22,7 +22,7 @@ func _shoot():
 			player_owner.velocity.x = charge_velocity.x
 			player_owner.velocity.z = charge_velocity.z
 	
-	sfx.play()
+	shoot_sfx.play()
 	trail.emitting = true
 
 func _ready_to_shoot():

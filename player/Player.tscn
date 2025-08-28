@@ -174,7 +174,7 @@ resource_local_to_scene = true
 height = 1.562
 radius = 0.457
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("cam_pivot", "hull") groups=["players"]]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("cam_pivot", "hull", "body_mesh", "fp_mesh") groups=["players"]]
 process_thread_group = 1
 process_thread_group_order = 0
 process_thread_messages = 0
@@ -186,6 +186,8 @@ floor_max_angle = 0.802851
 script = ExtResource("1")
 cam_pivot = NodePath("Smoothing3D/Pivot")
 hull = NodePath("CollisionShapeBox")
+body_mesh = NodePath("BodyModel/TPSkeleton/mesh")
+fp_mesh = NodePath("Smoothing3D/Pivot/FirstPersonModel/FPSkeleton/mesh")
 
 [node name="Smoothing3D" type="Node3D" parent="."]
 script = ExtResource("4_5fufl")
@@ -212,7 +214,7 @@ script = SubResource("GDScript_7vx8s")
 
 [node name="WeaponManager" type="Node3D" parent="Smoothing3D/Pivot" node_paths=PackedStringArray("tp", "fp", "primary_weapon", "secondary_weapon", "melee_weapon", "held_weapon")]
 script = ExtResource("15_m23wc")
-tp = NodePath("../../../Soldier")
+tp = NodePath("../../../BodyModel")
 fp = NodePath("../FirstPersonModel")
 primary_weapon = NodePath("RocketLauncher")
 secondary_weapon = NodePath("Shotgun")
@@ -220,6 +222,7 @@ melee_weapon = NodePath("Shovel")
 held_weapon = NodePath("RocketLauncher")
 
 [node name="Deploy" type="Timer" parent="Smoothing3D/Pivot/WeaponManager"]
+process_callback = 0
 one_shot = true
 
 [node name="RocketLauncher" type="Node3D" parent="Smoothing3D/Pivot/WeaponManager" node_paths=PackedStringArray("first_person_player")]
@@ -437,12 +440,8 @@ disabled = true
 [node name="Sync" type="Node" parent="."]
 script = ExtResource("40_icifs")
 
-[node name="Soldier" parent="." instance=ExtResource("25_vdsxv")]
-
-[node name="AnimationTree" parent="Soldier" index="5" node_paths=PackedStringArray("player", "model")]
-active = false
-player = NodePath("../..")
-model = NodePath("..")
+[node name="BodyModel" parent="." node_paths=PackedStringArray("player") instance=ExtResource("25_vdsxv")]
+player = NodePath("..")
 
 [node name="SFX" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.34118, 0)
@@ -470,14 +469,14 @@ process_callback = 0
 one_shot = true
 
 [connection signal="animation_finished" from="Smoothing3D/Pivot/FirstPersonModel/AnimationPlayer" to="Smoothing3D/Pivot/WeaponManager/Shotgun" method="_on_FirstPersonPlayer_animation_finished"]
-[connection signal="deployed" from="Smoothing3D/Pivot/WeaponManager/RocketLauncher" to="Soldier/AnimationTree" method="_on_any_weapon_deployed" binds= [0]]
-[connection signal="shot" from="Smoothing3D/Pivot/WeaponManager/RocketLauncher" to="Soldier/AnimationTree" method="_on_any_weapon_shot"]
-[connection signal="deployed" from="Smoothing3D/Pivot/WeaponManager/GrenadeLauncher" to="Soldier/AnimationTree" method="_on_any_weapon_deployed" binds= [0]]
-[connection signal="shot" from="Smoothing3D/Pivot/WeaponManager/GrenadeLauncher" to="Soldier/AnimationTree" method="_on_any_weapon_shot"]
-[connection signal="deployed" from="Smoothing3D/Pivot/WeaponManager/Shotgun" to="Soldier/AnimationTree" method="_on_any_weapon_deployed" binds= [1]]
-[connection signal="shot" from="Smoothing3D/Pivot/WeaponManager/Shotgun" to="Soldier/AnimationTree" method="_on_any_weapon_shot"]
-[connection signal="deployed" from="Smoothing3D/Pivot/WeaponManager/Shovel" to="Soldier/AnimationTree" method="_on_any_weapon_deployed" binds= [2]]
-[connection signal="shot" from="Smoothing3D/Pivot/WeaponManager/Shovel" to="Soldier/AnimationTree" method="_on_any_weapon_shot"]
+[connection signal="deployed" from="Smoothing3D/Pivot/WeaponManager/RocketLauncher" to="BodyModel/AnimationTree" method="_on_any_weapon_deployed" binds= [0]]
+[connection signal="shot" from="Smoothing3D/Pivot/WeaponManager/RocketLauncher" to="BodyModel/AnimationTree" method="_on_any_weapon_shot"]
+[connection signal="deployed" from="Smoothing3D/Pivot/WeaponManager/GrenadeLauncher" to="BodyModel/AnimationTree" method="_on_any_weapon_deployed" binds= [0]]
+[connection signal="shot" from="Smoothing3D/Pivot/WeaponManager/GrenadeLauncher" to="BodyModel/AnimationTree" method="_on_any_weapon_shot"]
+[connection signal="deployed" from="Smoothing3D/Pivot/WeaponManager/Shotgun" to="BodyModel/AnimationTree" method="_on_any_weapon_deployed" binds= [1]]
+[connection signal="shot" from="Smoothing3D/Pivot/WeaponManager/Shotgun" to="BodyModel/AnimationTree" method="_on_any_weapon_shot"]
+[connection signal="deployed" from="Smoothing3D/Pivot/WeaponManager/Shovel" to="BodyModel/AnimationTree" method="_on_any_weapon_deployed" binds= [2]]
+[connection signal="shot" from="Smoothing3D/Pivot/WeaponManager/Shovel" to="BodyModel/AnimationTree" method="_on_any_weapon_shot"]
 
 [editable path="Smoothing3D/Pivot/FirstPersonModel"]
 [editable path="Smoothing3D/Pivot/WeaponManager/RocketLauncher/FPModel"]
@@ -486,7 +485,3 @@ one_shot = true
 [editable path="Smoothing3D/Pivot/WeaponManager/Shotgun/TPModel"]
 [editable path="Smoothing3D/Pivot/WeaponManager/Shovel/FPModel"]
 [editable path="Smoothing3D/Pivot/WeaponManager/Shovel/TPModel"]
-[editable path="Soldier"]
-[editable path="Soldier/Test Rocket Launcher"]
-[editable path="Soldier/Test Shotgun"]
-[editable path="Soldier/Test Shovel"]

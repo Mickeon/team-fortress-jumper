@@ -20,7 +20,7 @@ func _shoot():
 	grenade.add_collision_exception_with(player_owner)
 	player_owner.add_sibling(grenade, true)
 	
-	sfx.play()
+	shoot_sfx.play()
 	first_person_player.stop()
 	first_person_player.play(&"rocket_launcher_fire")
 
