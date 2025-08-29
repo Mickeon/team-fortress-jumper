@@ -1,3 +1,4 @@
+@icon("res://shared/icons/footstep.png")
 extends AudioStreamPlayer3D
 
 # See also CBasePlayer::SetStepSoundTime, UpdateStepSound.
@@ -39,7 +40,7 @@ func play_for_surface(volume: float):
 	var feet_collision := player.move_and_collide(Vector3.DOWN * 10, true)
 	assert(feet_collision)
 	
-	var surface_type = get_surface_type(feet_collision.get_collider(0))
+	var surface_type := get_surface_type(feet_collision.get_collider(0))
 	stream = SURFACE_MAP.get(surface_type, preload("res://sfx/common/crit_hit1.ogg"))
 	
 	volume_linear = volume
@@ -48,9 +49,7 @@ func play_for_surface(volume: float):
 
 func is_walking() -> bool:
 	# Based on thorough testing. Yeah.
-	var threshold := player.GROUND_SPEED * 0.8
-	if player.crouched:
-		threshold = player.GROUND_SPEED * 0.9 * player.CROUCH_SPEED_MULTIPLIER 
+	var threshold := player.get_max_speed() * (0.9 if player.crouched else 0.8)
 	
 	if player.velocity.length_squared() >= threshold * threshold:
 		return false
@@ -71,9 +70,7 @@ func get_footstep_volume():
 
 func is_moving_fast_enough() -> bool:
 	# Not actually based on CBasePlayer::GetStepSoundVelocities.
-	var required_speed := player.GROUND_SPEED * 0.3
-	if player.crouched:
-		required_speed = player.GROUND_SPEED  * 0.75 * player.CROUCH_SPEED_MULTIPLIER
+	var required_speed := player.get_max_speed() * (0.75 if player.crouched else 0.3)
 	
 	return player.velocity.length_squared() >= required_speed * required_speed
 

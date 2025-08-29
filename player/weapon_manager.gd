@@ -1,3 +1,4 @@
+@icon("res://shared/icons/tf.png")
 extends Node3D
 
 
@@ -33,12 +34,21 @@ func _unhandled_input(event):
 
 func _ready() -> void:
 	deploy_timer.timeout.connect(activate_held_weapon)
-	for wep: WeaponNode in [primary_weapon, secondary_weapon, melee_weapon]:
+	
+	var fp_anim_player: AnimationPlayer = fp.get_node("AnimationPlayer")
+	var tp_anim_tree: AnimationTree = tp.get_node("AnimationTree")
+	for wep: WeaponNode in get_weapons():
 		wep.holster()
 		if wep.fp_model:
 			_prepare_weapon_model(wep.fp_model, true)
 		if wep.tp_model:
 			_prepare_weapon_model(wep.tp_model, false)
+		
+		wep.first_person_player = fp_anim_player
+		# Bleh. Why do we "inject" first_player_player to the weapons but not the third person one?
+		if wep.type != WeaponNode.Type.EQUIPPABLE:
+			wep.deployed.connect(tp_anim_tree._on_any_weapon_deployed.bind(wep.type))
+			wep.shot.connect(tp_anim_tree._on_any_weapon_shot)
 
 
 # You cannot pass a whole Object remotely, hence why this exists.
@@ -78,20 +88,20 @@ func get_weapons() -> Array[WeaponNode]:
 	return result
 
 
-func _prepare_weapon_model(model: Node3D, first_person := false):
+func _prepare_weapon_model(model: Node3D, for_first_person := false):
 	# Nasty assumptions galore.
 	assert(model.get_child_count() > 0)
 	assert(model.get_child(0).get_child(0) is MeshInstance3D)
 	
-	var root_person: Node3D = (fp if first_person else tp)
-	var skeleton_node: Skeleton3D = (fp.get_node("FPSkeleton") if first_person else tp.get_node("TPSkeleton"))
+	var root_person: Node3D = (fp if for_first_person else tp)
+	var skeleton_node: Skeleton3D = (fp.get_node("FPSkeleton") if for_first_person else tp.get_node("TPSkeleton"))
 	var mesh_instance: MeshInstance3D = model.get_child(0).get_child(0)
 	
 	mesh_instance.skeleton = ""; # Prevent an error before reparenting.
 	model.reparent(root_person, false)
 	mesh_instance.skeleton = mesh_instance.get_path_to(skeleton_node)
 	
-	if not first_person:
+	if not for_first_person:
 		model.rotation.y += PI # TPSkeleton is flipped, too.
 	
 	# Missing bones cause errors. Void the invalid binds.

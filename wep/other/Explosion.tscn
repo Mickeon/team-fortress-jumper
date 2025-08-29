@@ -109,9 +109,4 @@ autoplay = true
 max_distance = 40.0
 attenuation_filter_cutoff_hz = 17350.0
 
-[node name="Conular" type="CSGCylinder3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.881235, 0)
-visible = false
-cone = true
-
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

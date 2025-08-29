@@ -33,7 +33,7 @@ func _unhandled_input(event):
 				var advance := 1 if event.keycode == KEY_KP_ADD else -1
 				var players: Array[Player] = []
 				players.assign(get_tree().get_nodes_in_group("players"))
-				Player.main = players[posmod(players.find(Player.main) + advance, players.size())]
+				Player.local = players[posmod(players.find(Player.local) + advance, players.size())]
 			KEY_QUOTELEFT:
 				get_tree().reload_current_scene()
 			KEY_F2:
@@ -112,7 +112,7 @@ func spawn_player(id: int):
 	
 	add_child(player, true)
 	if id == multiplayer.get_unique_id():
-		Player.main = player
+		Player.local = player
 	else:
 		tweak_other(player)
 	
@@ -182,7 +182,7 @@ func _on_player_hurt(amount: float, inflictor: Player, victim: Player):
 	if inflictor == victim:
 		#chat.send("%s took self-damage! %4.2f" % [inflictor.name, amount])
 		return # Don't care about self-inflicted damage.
-	if inflictor != Player.main:
+	if inflictor != Player.local:
 		return # Don't care about damage other players dealt.
 	
 	if not _queued_damage_numbers.has(victim):

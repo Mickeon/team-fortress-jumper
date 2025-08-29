@@ -22,14 +22,15 @@ const BULLET_SPREAD_BASE_OFFSETS: Array[Vector2] = [
 @export_range(0, 120, 1, "hide_slider", "or_greater")
 var base_damage := 6.0
 
-@export var first_person_player: AnimationPlayer
 @export var bullet_trail: GPUParticles3D
-
 
 func _deploy():
 	const DEPLOY_ANIMATIONS = [
-			&"shotgun_draw_pump", &"shotgun_draw_no_pump", &"shotgun_draw_lastshot_reload"]
+		&"shotgun_draw_pump", &"shotgun_draw_no_pump", &"shotgun_draw_lastshot_reload"
+	]
 	first_person_player.play(DEPLOY_ANIMATIONS.pick_random())
+	if not first_person_player.animation_finished.is_connected(_on_FirstPersonPlayer_animation_finished):
+		first_person_player.animation_finished.connect(_on_FirstPersonPlayer_animation_finished)
 
 func _shoot():
 	const SHOOT_ANIMATIONS = [&"shotgun_fire", &"shotgun_fire_nopump"]

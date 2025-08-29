@@ -31,19 +31,19 @@ func _ready_to_shoot():
 
 
 func _modify_attributes():
-	previous_ground_speed = player_owner.GROUND_SPEED
-	previous_ground_acceleration = player_owner.GROUND_ACCELERATION
-	previous_air_speed = player_owner.AIR_SPEED
-	previous_air_acceleration = player_owner.AIR_ACCELERATION
+	previous_ground_speed = player_owner.ground_speed
+	previous_ground_acceleration = player_owner.ground_acceleration
+	previous_air_speed = player_owner.air_speed
+	previous_air_acceleration = player_owner.air_acceleration
 	
-	player_owner.GROUND_SPEED = CHARGE_SPEED
-	player_owner.GROUND_ACCELERATION = CHARGE_SPEED * 5
-	player_owner.AIR_SPEED = CHARGE_SPEED
-	player_owner.AIR_ACCELERATION = CHARGE_SPEED * 2
+	player_owner.ground_speed = CHARGE_SPEED
+	player_owner.ground_acceleration = CHARGE_SPEED * 5
+	player_owner.air_speed = CHARGE_SPEED
+	player_owner.air_acceleration = CHARGE_SPEED * 2
 
 func _restore_attributes():
 	player_owner.forced_wishdir.y = 0.0
 	
-	player_owner.AIR_SPEED = previous_air_speed
-	player_owner.GROUND_SPEED = previous_ground_speed
-	player_owner.AIR_ACCELERATION = previous_air_acceleration
+	player_owner.air_speed = previous_air_speed
+	player_owner.ground_speed = previous_ground_speed
+	player_owner.air_acceleration = previous_air_acceleration

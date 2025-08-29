@@ -1,3 +1,4 @@
+@icon("res://shared/icons/weapon.png")
 extends Node3D
 class_name WeaponNode
 
@@ -18,12 +19,16 @@ var trigger_action := "player_primary"
 		# When holding down the button, shoot again as soon as possible.
 		if active and Input.is_action_pressed(trigger_action):
 			shoot.rpc()
+enum Type { PRIMARY, SECONDARY, MELEE, EQUIPPABLE }
+@export var type := Type.PRIMARY
 
 @onready var player_owner: Player = owner
 @onready var fp_model: Node3D = get_node_or_null("FPModel")
 @onready var tp_model: Node3D = get_node_or_null("TPModel")
 @onready var shoot_sfx: AudioStreamPlayer3D = get_node_or_null("Shoot")
 @onready var deploy_sfx: AudioStreamPlayer3D = get_node_or_null("Deploy")
+
+var first_person_player: AnimationPlayer
 
 
 func _unhandled_input(event):

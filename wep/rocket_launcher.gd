@@ -5,8 +5,6 @@ const Rocket = preload("./other/rocket.gd")
 const SHOOT_OFFSET = Vector3(12.0, -3.0, -23.5) * HU # Vanilla coords: (23.5, 12.0, -3.0)
 const SHOOT_OFFSET_CROUCH = Vector3(12.0, 8.0, -23.5) * HU # Vanilla coords: (23.5, 12.0, 8.0)
 
-@export var first_person_player: AnimationPlayer
-
 
 func _deploy():
 	first_person_player.play(&"rocket_launcher_draw")

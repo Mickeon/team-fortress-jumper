@@ -1,7 +1,7 @@
 [gd_resource type="AnimationNodeBlendTree" load_steps=25 format=3 uid="uid://babqdhmbrx55u"]
 
-[ext_resource type="AnimationNodeBlendTree" uid="uid://cgwbifii8xwl1" path="res://player/soldier/anims/stand_primary.tres" id="1_q1ugm"]
-[ext_resource type="AnimationNodeBlendTree" uid="uid://t8ufcyi1vnhj" path="res://player/soldier/anims/crouch_primary.tres" id="1_vt8xa"]
+[ext_resource type="AnimationNodeBlendTree" uid="uid://cgwbifii8xwl1" path="res://player/body/anims/stand_primary.tres" id="1_q1ugm"]
+[ext_resource type="AnimationNodeBlendTree" uid="uid://t8ufcyi1vnhj" path="res://player/body/anims/crouch_primary.tres" id="1_vt8xa"]
 
 [sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_e6nu5"]
 sync = true

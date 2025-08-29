@@ -25,11 +25,11 @@ HSP: %s
 		if not is_node_ready(): await ready
 		
 		if view_mode != ViewMode.FIRST_PERSON:
-			
-			var cam_pivot = player.cam_pivot
-			camera = Camera3D.new() # FIXME: Cameras leak memory in the scene tree every view change.
-			
+			if camera:
+				camera.queue_free()
+			camera = Camera3D.new()
 			if view_mode == ViewMode.TOP_DOWN:
+				var cam_pivot = player.cam_pivot
 				var tw := create_tween().set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_OUT).set_parallel()
 				tw.tween_property(camera, "position:y", 10.0, 0.75).from(cam_pivot.position.y)
 				tw.tween_property(camera, "rotation:x", PI / -2, 0.75).from(cam_pivot.rotation.x)
@@ -152,8 +152,8 @@ func update_debug_text():
 		#if weapon_manager.deploy_timer.time_left > 0.0:
 			#new_text += " (Deploying %2.2f)" % weapon_manager.deploy_timer.time_left
 		#new_text += "[/color]"
-	if Player.main and Player.main.name != str(multiplayer_id):
-		new_text += "\n[color=dark_gray]Looking from %s[/color]" % Player.main.name
+	if Player.local and Player.local.name != str(multiplayer_id):
+		new_text += "\n[color=dark_gray]Looking from %s[/color]" % Player.local.name
 	
 	if Engine.time_scale != 1.0:
 		new_text += "\nTime scale: %s" % Engine.time_scale

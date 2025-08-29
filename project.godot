@@ -30,7 +30,6 @@ VMFConfig="*res://addons/godotvmf/src/VMFConfig.gd"
 
 [debug]
 
-gdscript/warnings/unused_signal=0
 gdscript/warnings/static_called_on_instance=0
 gdscript/warnings/narrowing_conversion=0
 multirun/add_custom_args=true

@@ -5,7 +5,7 @@ extends AnimationTree
 @export var player: Player
 @export var model: Node3D
 
-enum Type { PRIMARY, SECONDARY, MELEE }
+const Type = WeaponNode.Type
 @export var held_type := Type.PRIMARY:
 	set(new):
 		if held_type == new:
@@ -22,6 +22,88 @@ enum Type { PRIMARY, SECONDARY, MELEE }
 
 var held_type_name := &"primary"
 
+var air_crouched := false:
+	set(new):
+		if air_crouched == new:
+			return
+		
+		air_crouched = new
+		
+		if air_crouched:
+			model.position.y -= 20 * player.HU
+		else:
+			model.position.y += 20 * player.HU
+
+func _ready():
+	if Engine.is_editor_hint():
+		set_process(false)
+		set_physics_process(false)
+	else:
+		active = true
+
+
+
+func _process(delta: float) -> void:
+	_handle_rotation(delta)
+
+func _physics_process(_delta: float) -> void:
+	_handle_animations()
+
+
+func _handle_rotation(delta) -> void:
+	var facing_blend_pos := Vector2(0, remap(player.cam_pivot.rotation.x, -PI / 2, PI / 2, -1, 1))
+	
+	if player.velocity.is_zero_approx():
+		# TODO: This isn't very nice and smooth (See CMultiPlayerAnimState::ComputePoseParam_AimYaw, EstimateYaw).
+		facing_blend_pos.x = remap(wrapf(player.cam_pivot.rotation.y - model.rotation.y, -PI, PI), PI / 4, -PI / 4, -1, 1)
+		if abs(facing_blend_pos.x) >= 1.0:
+			model.rotation.y = rotate_toward(model.rotation.y, player.cam_pivot.rotation.y, delta * abs(facing_blend_pos.x) * 4)
+			#facing_blend_pos.x = move_toward(get("parameters/%s/look_blend/blend_position" % held_type_name).x, 0.0, delta * abs(facing_blend_pos.x) * 4)
+	else:
+		model.rotation.y = player.cam_pivot.rotation.y
+		
+	#set(&"parameters/look_blend/blend_position", facing_blend_pos)
+	set("parameters/%s/look_blend/blend_position" % held_type_name, facing_blend_pos)
+
+func _handle_animations():
+	var velocity_planar := Vector2(player.velocity.x, player.velocity.z).rotated(model.rotation.y)
+	#var player_speed := velocity_planar.length()
+	
+	if player.grounded:
+		var max_speed := player.get_max_speed()
+		if player.crouched:
+			var move_blend_pos := Vector2(velocity_planar.x, -velocity_planar.y) / max_speed
+			
+			set("parameters/%s/movement_state/transition_request" % held_type_name, "crouched")
+			set("parameters/%s/crouch/move_blend/blend_position" % held_type_name, move_blend_pos)
+			#set(&"parameters/crouch_walk/blend_amount", player_speed / crouch_speed)
+		else:
+			var move_blend_pos := Vector2(velocity_planar.x, -velocity_planar.y) / max_speed
+			
+			set("parameters/%s/movement_state/transition_request" % held_type_name, "standing")
+			set("parameters/%s/stand/move_blend/blend_position" % held_type_name, move_blend_pos)
+			#set(&"parameters/walk/blend_amount", player_speed / ground_speed)
+	else:
+		set("parameters/%s/movement_state/transition_request" % held_type_name, "airborne")
+	
+	if player.just_landed:
+		set("parameters/%s/jump_land/request" % held_type_name, AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+	if player.just_jumped and not player.grounded:
+		set("parameters/%s/jump_start/request" % held_type_name, AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+	
+	air_crouched = not player.grounded and player.crouched
+	pass
+
+
+# These are connected inside the PackedScene.
+func _on_any_weapon_shot() -> void:
+	set("parameters/%s/shoot/request" % held_type_name, AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+
+func _on_any_weapon_deployed(weapon_type: Type) -> void:
+	held_type = weapon_type
+
+
+#region Editor Stuff
 @export var debug_switch_weapons := false:
 	set(new):
 		debug_switch_weapons = new
@@ -97,91 +179,6 @@ var _debug_switch_tween: Tween
 			set("parameters/%s/%s" % [lower_suffix, parameter_name], get("parameters/primary/" + parameter_name))
 		
 		i += 1
-		
-	
-	
-var _previously_grounded := false
-var air_crouched := false:
-	set(new):
-		if air_crouched == new:
-			return
-		
-		air_crouched = new
-		
-		if air_crouched:
-			model.position.y -= 20 * player.HU
-		else:
-			model.position.y += 20 * player.HU
-
-func _ready():
-	if Engine.is_editor_hint():
-		set_process(false)
-		set_physics_process(false)
-	else:
-		active = true
-
-
-
-func _process(delta: float) -> void:
-	var facing_blend_pos := Vector2(0, remap(player.cam_pivot.rotation.x, -PI / 2, PI / 2, -1, 1))
-	
-	if player.velocity.is_zero_approx():
-		# TODO: This isn't very nice and smooth (See CMultiPlayerAnimState::ComputePoseParam_AimYaw, EstimateYaw).
-		facing_blend_pos.x = remap(wrapf(player.cam_pivot.rotation.y - model.rotation.y, -PI, PI), PI / 4, -PI / 4, -1, 1)
-		if abs(facing_blend_pos.x) >= 1.0:
-			model.rotation.y = rotate_toward(model.rotation.y, player.cam_pivot.rotation.y, delta * abs(facing_blend_pos.x) * 4)
-			#facing_blend_pos.x = move_toward(get("parameters/%s/look_blend/blend_position" % held_type_name).x, 0.0, delta * abs(facing_blend_pos.x) * 4)
-	else:
-		model.rotation.y = player.cam_pivot.rotation.y
-		
-	#set(&"parameters/look_blend/blend_position", facing_blend_pos)
-	set("parameters/%s/look_blend/blend_position" % held_type_name, facing_blend_pos)
-
-func _physics_process(_delta: float) -> void:
-	_handle_animations()
-	
-	_previously_grounded = player.grounded
-
-
-func _handle_animations():
-	air_crouched = not player.grounded and player.crouched
-	
-	var velocity_planar := Vector2(player.velocity.x, player.velocity.z).rotated(model.rotation.y)
-	#var player_speed := velocity_planar.length()
-	
-	if player.grounded:
-		if player.crouched:
-			var crouch_speed := player.GROUND_SPEED * player.CROUCH_SPEED_MULTIPLIER
-			var move_blend_pos = Vector2(velocity_planar.x, -velocity_planar.y) / crouch_speed
-			
-			set("parameters/%s/movement_state/transition_request" % held_type_name, "crouched")
-			set("parameters/%s/crouch/move_blend/blend_position" % held_type_name, move_blend_pos)
-			#set(&"parameters/crouch_walk/blend_amount", player_speed / crouch_speed)
-		else:
-			var ground_speed := player.GROUND_SPEED
-			var move_blend_pos := Vector2(velocity_planar.x, -velocity_planar.y) / ground_speed
-			
-			set("parameters/%s/movement_state/transition_request" % held_type_name, "standing")
-			set("parameters/%s/stand/move_blend/blend_position" % held_type_name, move_blend_pos)
-			#set(&"parameters/walk/blend_amount", player_speed / ground_speed)
-	else:
-		set("parameters/%s/movement_state/transition_request" % held_type_name, "airborne")
-	
-	if player.just_landed:
-		set("parameters/%s/jump_land/request" % held_type_name, AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
-	if player.just_jumped and not player.grounded:
-		set("parameters/%s/jump_start/request" % held_type_name, AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
-	pass
-
-
-# These are connected inside the PackedScene.
-func _on_any_weapon_shot() -> void:
-	set("parameters/%s/shoot/request" % held_type_name, AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
-
-func _on_any_weapon_deployed(weapon_type: Type) -> void:
-	held_type = weapon_type
-
-
 
 static func get_animation_nodes(root: AnimationRootNode) -> Array[AnimationNode]:
 	var result: Array[AnimationNode] = []
@@ -226,4 +223,5 @@ func replace_weapon_type_suffix_for_animations(animations: Array[AnimationNodeAn
 		# Between two weapon types the animation lengths may differ.
 		if anim_node.timeline_length > 0.0 and not anim_node.stretch_time_scale:
 			anim_node.timeline_length = get_animation(anim_node.animation).length
-		
+#endregion		
+

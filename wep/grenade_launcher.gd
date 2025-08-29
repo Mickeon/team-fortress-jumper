@@ -2,8 +2,6 @@ extends WeaponNode
 
 const Grenade = preload("./other/grenade.gd")
 
-@export var first_person_player: AnimationPlayer
-
 
 func _deploy():
 	first_person_player.play(&"rocket_launcher_draw")

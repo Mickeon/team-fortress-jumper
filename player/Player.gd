@@ -9,50 +9,49 @@ const BACKPEDAL_SPEED_MULTIPLIER = 0.9
 const HEIGHT_BASE = 82 * HU
 const HEIGHT_CROUCH = 62 * HU
 
+# Straight from the source, but it may barely reach 50 HU. Investigate why.
+const JUMP_FORCE = 289 * HU # not 271 * HU. Gravity applies the first frame in the air, too.
+const GRAVITY_FORCE = 800 * HU # 12 * 66.666
+const TERMINAL_SPEED = 3500 * HU
+
 ## The player you control, and see from.
-static var main: Player:
+static var local: Player:
 	set(new):
-		if main == new:
+		if local == new:
 			return
 		
-		var previous_main := main
+		var previous_main := local
 		
-		main = new
+		local = new
 		
 		if previous_main != null:
-			# Undo changes to previous player.
-			previous_main._update_for_main_player()
-		
-		if main:
-			main._update_for_main_player()
+			previous_main._update_for_local_player()	# Undo changes to previous player.
+		if local:
+			local._update_for_local_player()
 
 
 @export_group("Movement")
-@export var GROUND_SPEED := 240 * HU # (Soldier's speed) 
-@export var GROUND_ACCELERATION := 2400 * HU # 36 at 66.666 ticks
-@export var GROUND_DECELERATION := 400.0 # 6 at 66.666 ticks
-@export var AIR_SPEED := 75 * HU#12.0 * HU # Especially noticeable when moving backwards.
-@export var AIR_ACCELERATION := 2400 * HU * 0.85 #100.0
-
-# Straight from the source, but it may barely reach 50 HU. Investigate why.
-@export var JUMP_FORCE := 289 * HU # not 271 * HU. Gravity applies the first frame in the air, too.
-@export var GRAVITY_FORCE := 800 * HU # 12 * 66.666
-@export var TERMINAL_SPEED := 3500 * HU
+@export var ground_speed := 240 * HU # (Soldier's speed) 
+@export var ground_acceleration := 2400 * HU # 36 at 66.666 ticks
+@export var ground_deceleration := 400.0 # 6 at 66.666 ticks
+@export var air_speed := 75 * HU#12.0 * HU # Especially noticeable when moving backwards.
+@export var air_acceleration := 2400 * HU * 0.85 #100.0
 
 @export_range(0, 90, 0.001, "radians")
-var MAX_SLOPE_ANGLE := deg_to_rad(45.573):
+var max_slope_angle := deg_to_rad(45.573):
 	set(new): # This is really stupid by the way.
-		MAX_SLOPE_ANGLE = new
+		max_slope_angle = new
 		floor_max_angle = new 
-
 @export var floor_ray_reach := 18 * HU ## How far down the floor raycast will reach out for collisions.
 
-@export_group("")
-@export var camera_sensitivity := 0.075
+@export_group("Nodes")
 @export var cam_pivot: Node3D
 @export var hull: CollisionShape3D ## The collision hull, the bounding box.
 @export var body_mesh: MeshInstance3D
 @export var fp_mesh: MeshInstance3D
+
+@export_group("")
+@export var camera_sensitivity := 0.075
 enum Team { RED, BLU }
 @export var team: Team = Team.RED:
 	set(new):
@@ -132,7 +131,7 @@ var wish_dir := Vector2.ZERO
 var forced_wishdir := Vector2.ZERO
 
 func _ready() -> void:
-	_update_for_main_player()
+	_update_for_local_player()
 
 func _unhandled_input(event):
 	if event.is_action_pressed("ui_cancel"):
@@ -194,10 +193,8 @@ func _physics_process(delta: float):
 	# Good reference for this: https://www.youtube.com/watch?v=v3zT3Z5apaM
 	var current_speed := velocity_planar.dot(wish_dir)
 	
-	var max_speed := GROUND_SPEED if grounded else AIR_SPEED
-	var acceleration := GROUND_ACCELERATION if grounded else AIR_ACCELERATION
-	if crouched and grounded:
-		max_speed = GROUND_SPEED * CROUCH_SPEED_MULTIPLIER
+	var max_speed := get_max_speed()
+	var acceleration := ground_acceleration if grounded else air_acceleration
 	
 	# The magic Source function.
 	var add_speed := clampf(max_speed - current_speed, 0.0, acceleration * delta)
@@ -233,7 +230,7 @@ func _handle_noclip(delta: float):
 	
 	if is_processing_unhandled_input():
 		wish_dir = Input.get_vector("player_left", "player_right", "player_forward", "player_back")
-	var flat_acceleration := Vector3(wish_dir.x, 0, wish_dir.y) * GROUND_ACCELERATION * delta
+	var flat_acceleration := Vector3(wish_dir.x, 0, wish_dir.y) * ground_acceleration * delta
 	
 	var vertical_acceleration := Input.get_axis("player_crouch", "player_jump")
 	if vertical_acceleration:
@@ -253,7 +250,7 @@ func _apply_friction(delta: float):
 		return
 	
 	var speed := velocity.length()
-	var deceleration := GROUND_DECELERATION * delta
+	var deceleration := ground_deceleration * delta
 	
 	# Stronger friction when speed is greater than 100 HU ("speed * 0.01" penalty)
 	speed = move_toward(speed, 0, deceleration * maxf(speed * 0.01, HU))
@@ -261,20 +258,25 @@ func _apply_friction(delta: float):
 	velocity = velocity.normalized() * speed
 
 func _clamp_speed(multiplier := 1.0):
-	var max_speed := GROUND_SPEED * multiplier
+	var max_speed := ground_speed * multiplier
 	var velocity_planar := Vector2(velocity.x, velocity.z)
 	
 	if velocity_planar.length() > max_speed:
 		var clamped_speed := velocity_planar.length() / max_speed
-		velocity_planar /= clamped_speed
-		
-		velocity.x = velocity_planar.x
-		velocity.z = velocity_planar.y
+		velocity_planar /= clamped_speed	
 	
-	var back_speed := velocity.cross(-cam_pivot.global_transform.basis.x)
+	var back_speed := velocity.cross(cam_pivot.global_basis.x)
 	var backpedal_walk_speed := max_speed * BACKPEDAL_SPEED_MULTIPLIER
-	if (back_speed.length() > backpedal_walk_speed and back_speed.y < 0.0):
-		velocity *= backpedal_walk_speed / back_speed.length()
+	if (back_speed.y > backpedal_walk_speed):
+		velocity_planar *= backpedal_walk_speed / back_speed.y
+	#var back_influence := velocity_planar.rotated(cam_pivot.rotation.y).normalized().dot(Vector2.UP)
+	#if back_influence < -0.5 and velocity_planar.length() > backpedal_walk_speed:
+		#velocity_planar.x *= backpedal_walk_speed / back_speed.length() * absf(back_influence)
+		#velocity_planar.y *= backpedal_walk_speed / back_speed.length() * absf(back_influence)
+	
+	velocity.x = velocity_planar.x
+	velocity.z = velocity_planar.y
+
 
 @rpc("authority", "call_local", "reliable")
 func _jump():
@@ -317,8 +319,8 @@ func _handle_collision(delta: float):
 		
 			var slope_angle := get_slope_angle(normal)
 			# At fast speeds, even a gentle slope can launch you.
-			if slope_angle < maxf(MAX_SLOPE_ANGLE - velocity.length() * 0.02, 0.01):
-#			if slope_angle < MAX_SLOPE_ANGLE:
+			if slope_angle < maxf(max_slope_angle - velocity.length() * 0.02, 0.01):
+#			if slope_angle < max_slope_angle:
 				# Give one extra frame of just landed mercy. Vanilla TF2 does this.
 				# Allows keeping momentum with perfect bunny-hopping.
 				set_deferred("grounded", true)
@@ -346,7 +348,7 @@ func _handle_collision(delta: float):
 		var floor_collision := _floor_intersect_shape()
 		if floor_collision:
 			var slope_angle := get_slope_angle(floor_collision.get_normal()) 
-			grounded = slope_angle < MAX_SLOPE_ANGLE
+			grounded = slope_angle < max_slope_angle
 		else:
 			grounded = false
 
@@ -443,6 +445,13 @@ func get_height() -> float:
 
 func get_width() -> float: # Not used anywhere, actually.
 	return hull.shape.radius
+
+func get_max_speed() -> float:
+	if grounded:
+		if crouched:
+			return ground_speed * CROUCH_SPEED_MULTIPLIER
+		return ground_speed
+	return air_speed
 #endregion
 
 
@@ -451,16 +460,16 @@ func take_damage(amount: float, inflictor: Player = null):
 	emit_signal("hurt", amount, inflictor)
 
 
-func _update_for_main_player():
+func _update_for_local_player():
 	const LAYER_FIRST_PERSON = 1 << 1
 	const LAYER_THIRD_PERSON = 1 << 2
-	var is_main_player := (self == Player.main)
+	var is_local_player := (self == Player.local)
 	
-	propagate_call("set_process_input", [is_main_player])
-	propagate_call("set_process_unhandled_input", [is_main_player])
+	propagate_call("set_process_input", [is_local_player])
+	propagate_call("set_process_unhandled_input", [is_local_player])
 	
-	cam_pivot.visible = is_main_player
-	cam_pivot.get_node("Camera").current = is_main_player
+	cam_pivot.visible = is_local_player
+	cam_pivot.get_node("Camera").current = is_local_player
 	
 	# Hacky dependency to WeaponManager to hide your own third person meshes when in first person.
 	var hacky_shit_tp_meshes: Array[MeshInstance3D] = [body_mesh]
@@ -470,5 +479,5 @@ func _update_for_main_player():
 	
 	for mesh in hacky_shit_tp_meshes:
 		# TODO: Show third person model's shadow when in first person.
-		mesh.layers = LAYER_THIRD_PERSON | (0 if is_main_player else LAYER_FIRST_PERSON)
+		mesh.layers = LAYER_THIRD_PERSON | (0 if is_local_player else LAYER_FIRST_PERSON)
 

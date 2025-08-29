@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=3 uid="uid://bp3faj46c64ck"]
+[gd_scene load_steps=60 format=3 uid="uid://bp3faj46c64ck"]
 
 [ext_resource type="Script" uid="uid://ralk8skbs5p3" path="res://player/Player.gd" id="1"]
 [ext_resource type="Script" uid="uid://cqeexyt8opffs" path="res://wep/rocket_launcher.gd" id="2_eytv3"]
@@ -27,7 +27,7 @@
 [ext_resource type="AudioStream" uid="uid://dkpos5l7ljb0r" path="res://sfx/melee/shovel_swing.ogg" id="23_8kr2s"]
 [ext_resource type="AudioStream" uid="uid://bk233lkxqs575" path="res://sfx/melee/shovel_draw.ogg" id="24_mpmeh"]
 [ext_resource type="AudioStream" uid="uid://bnvgn5bcs7t87" path="res://sfx/melee/axe_hit_flesh1.ogg" id="25_rodvj"]
-[ext_resource type="PackedScene" uid="uid://d3tlxp1tfmuf8" path="res://player/soldier/Soldier.tscn" id="25_vdsxv"]
+[ext_resource type="PackedScene" uid="uid://d3tlxp1tfmuf8" path="res://player/body/BodyModel.tscn" id="25_vdsxv"]
 [ext_resource type="AudioStream" uid="uid://b8gi6a17i8xpf" path="res://sfx/melee/axe_hit_flesh2.ogg" id="26_7mqvn"]
 [ext_resource type="AudioStream" uid="uid://yrjfngbx2u1f" path="res://sfx/melee/axe_hit_flesh3.ogg" id="27_cahkd"]
 [ext_resource type="AudioStream" uid="uid://1q6ymrq3yn48" path="res://sfx/melee/shovel_hit1.ogg" id="28_gnrln"]
@@ -38,6 +38,12 @@
 [ext_resource type="Script" uid="uid://dmw8caoh5bhha" path="res://player/server_synchronizer.gd" id="40_icifs"]
 [ext_resource type="AudioStream" uid="uid://chi7fdkssts2p" path="res://sfx/common/footstep/concrete.tres" id="44_w36ex"]
 [ext_resource type="Script" uid="uid://cy8k051va8lv7" path="res://player/footstep_manager.gd" id="48_wpo5q"]
+
+[sub_resource type="GDScript" id="GDScript_8cy8x"]
+resource_name = "first_person_model"
+script/source = "@icon(\"res://shared/icons/vr.png\")
+extends Node3D
+"
 
 [sub_resource type="GDScript" id="GDScript_7vx8s"]
 resource_name = "first_person_anim_player"
@@ -202,6 +208,7 @@ fov = 85.0
 
 [node name="FirstPersonModel" parent="Smoothing3D/Pivot" instance=ExtResource("2_q83su")]
 transform = Transform3D(-1, 0, -9.81473e-08, 0, 1, 0, 1.50996e-07, 0, -0.65, 0, 0, 0)
+script = SubResource("GDScript_8cy8x")
 
 [node name="mesh" parent="Smoothing3D/Pivot/FirstPersonModel/FPSkeleton" index="0"]
 layers = 2
@@ -225,9 +232,8 @@ held_weapon = NodePath("RocketLauncher")
 process_callback = 0
 one_shot = true
 
-[node name="RocketLauncher" type="Node3D" parent="Smoothing3D/Pivot/WeaponManager" node_paths=PackedStringArray("first_person_player")]
+[node name="RocketLauncher" type="Node3D" parent="Smoothing3D/Pivot/WeaponManager"]
 script = ExtResource("2_eytv3")
-first_person_player = NodePath("../../FirstPersonModel/AnimationPlayer")
 
 [node name="Shoot" type="AudioStreamPlayer3D" parent="Smoothing3D/Pivot/WeaponManager/RocketLauncher"]
 transform = Transform3D(-0.988228, -0.152958, -0.00293694, -2.60944e-09, -0.0191974, 0.999816, -0.152986, 0.988046, 0.0189714, 0, 0, 0)
@@ -256,9 +262,8 @@ surface_material_override/0 = ExtResource("5_w6h5j")
 layers = 4
 surface_material_override/0 = ExtResource("5_w6h5j")
 
-[node name="GrenadeLauncher" type="Node3D" parent="Smoothing3D/Pivot/WeaponManager" node_paths=PackedStringArray("first_person_player")]
+[node name="GrenadeLauncher" type="Node3D" parent="Smoothing3D/Pivot/WeaponManager"]
 script = ExtResource("8_txbp0")
-first_person_player = NodePath("../../FirstPersonModel/AnimationPlayer")
 attack_interval = 0.6
 
 [node name="Shoot" type="AudioStreamPlayer3D" parent="Smoothing3D/Pivot/WeaponManager/GrenadeLauncher"]
@@ -276,11 +281,11 @@ volume_db = -20.0
 max_db = -20.0
 attenuation_filter_cutoff_hz = 18520.0
 
-[node name="Shotgun" type="Node3D" parent="Smoothing3D/Pivot/WeaponManager" node_paths=PackedStringArray("first_person_player", "bullet_trail")]
+[node name="Shotgun" type="Node3D" parent="Smoothing3D/Pivot/WeaponManager" node_paths=PackedStringArray("bullet_trail")]
 script = ExtResource("7_3qfhg")
-first_person_player = NodePath("../../FirstPersonModel/AnimationPlayer")
 bullet_trail = NodePath("BulletTrail")
 attack_interval = 0.625
+type = 1
 
 [node name="Shoot" type="AudioStreamPlayer3D" parent="Smoothing3D/Pivot/WeaponManager/Shotgun"]
 transform = Transform3D(-0.988228, -0.152958, -0.00293694, -2.60944e-09, -0.0191974, 0.999816, -0.152986, 0.988046, 0.0189714, 0, 0, 0)
@@ -341,9 +346,9 @@ surface_material_override/0 = ExtResource("15_lowst")
 layers = 4
 surface_material_override/0 = ExtResource("15_lowst")
 
-[node name="Shovel" type="Node3D" parent="Smoothing3D/Pivot/WeaponManager" node_paths=PackedStringArray("first_person_player")]
+[node name="Shovel" type="Node3D" parent="Smoothing3D/Pivot/WeaponManager"]
 script = ExtResource("11_durgm")
-first_person_player = NodePath("../../FirstPersonModel/AnimationPlayer")
+type = 2
 
 [node name="Shoot" type="AudioStreamPlayer3D" parent="Smoothing3D/Pivot/WeaponManager/Shovel"]
 transform = Transform3D(-0.988228, -0.152958, -0.00293694, -2.60944e-09, -0.0191974, 0.999816, -0.152986, 0.988046, 0.0189714, 0, 0, 0)
@@ -402,6 +407,7 @@ trail = NodePath("Trail")
 attack_interval = 1.5
 trigger_action = "player_charge"
 active = true
+type = 3
 
 [node name="Trail" type="GPUParticles3D" parent="Smoothing3D/Pivot/WeaponManager/ChargingShield"]
 material_override = SubResource("StandardMaterial3D_7u7yu")
@@ -467,16 +473,6 @@ script = ExtResource("48_wpo5q")
 [node name="Step" type="Timer" parent="SFX/Footstep"]
 process_callback = 0
 one_shot = true
-
-[connection signal="animation_finished" from="Smoothing3D/Pivot/FirstPersonModel/AnimationPlayer" to="Smoothing3D/Pivot/WeaponManager/Shotgun" method="_on_FirstPersonPlayer_animation_finished"]
-[connection signal="deployed" from="Smoothing3D/Pivot/WeaponManager/RocketLauncher" to="BodyModel/AnimationTree" method="_on_any_weapon_deployed" binds= [0]]
-[connection signal="shot" from="Smoothing3D/Pivot/WeaponManager/RocketLauncher" to="BodyModel/AnimationTree" method="_on_any_weapon_shot"]
-[connection signal="deployed" from="Smoothing3D/Pivot/WeaponManager/GrenadeLauncher" to="BodyModel/AnimationTree" method="_on_any_weapon_deployed" binds= [0]]
-[connection signal="shot" from="Smoothing3D/Pivot/WeaponManager/GrenadeLauncher" to="BodyModel/AnimationTree" method="_on_any_weapon_shot"]
-[connection signal="deployed" from="Smoothing3D/Pivot/WeaponManager/Shotgun" to="BodyModel/AnimationTree" method="_on_any_weapon_deployed" binds= [1]]
-[connection signal="shot" from="Smoothing3D/Pivot/WeaponManager/Shotgun" to="BodyModel/AnimationTree" method="_on_any_weapon_shot"]
-[connection signal="deployed" from="Smoothing3D/Pivot/WeaponManager/Shovel" to="BodyModel/AnimationTree" method="_on_any_weapon_deployed" binds= [2]]
-[connection signal="shot" from="Smoothing3D/Pivot/WeaponManager/Shovel" to="BodyModel/AnimationTree" method="_on_any_weapon_shot"]
 
 [editable path="Smoothing3D/Pivot/FirstPersonModel"]
 [editable path="Smoothing3D/Pivot/WeaponManager/RocketLauncher/FPModel"]

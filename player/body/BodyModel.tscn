@@ -8,16 +8,16 @@
 [ext_resource type="Material" uid="uid://cuc8qbquctc7i" path="res://player/soldier/mat/tongue_mat.tres" id="5_fiyxg"]
 [ext_resource type="Material" uid="uid://nrs81kxpekfb" path="res://player/soldier/mat/hands_mat.tres" id="5_j7es8"]
 [ext_resource type="PackedScene" uid="uid://cwra1254eqlhr" path="res://wep/models/shotgun.glb" id="9_lymci"]
-[ext_resource type="Script" uid="uid://cp1rudrnpq164" path="res://player/soldier/anims/soldier_anim_manager.gd" id="10_ro42a"]
+[ext_resource type="Script" uid="uid://cp1rudrnpq164" path="res://player/body/anims/anim_manager.gd" id="10_ro42a"]
 [ext_resource type="PackedScene" uid="uid://bc37xq0qfcyx5" path="res://wep/models/shovel.glb" id="11_47wd3"]
-[ext_resource type="AnimationNodeBlendTree" uid="uid://babqdhmbrx55u" path="res://player/soldier/anims/root_primary.tres" id="11_nn7aa"]
+[ext_resource type="AnimationNodeBlendTree" uid="uid://babqdhmbrx55u" path="res://player/body/anims/root_primary.tres" id="11_nn7aa"]
 [ext_resource type="PackedScene" uid="uid://cw116s8st8i27" path="res://wep/models/rocket_launcher.glb" id="11_w6e2f"]
-[ext_resource type="AnimationNodeBlendTree" uid="uid://d3mmdlg7iwy2i" path="res://player/soldier/anims/root_melee.tres" id="13_j7es8"]
-[ext_resource type="AnimationNodeBlendTree" uid="uid://cgls1kg1dfa0o" path="res://player/soldier/anims/root_secondary.tres" id="15_cjxjk"]
+[ext_resource type="AnimationNodeBlendTree" uid="uid://d3mmdlg7iwy2i" path="res://player/body/anims/root_melee.tres" id="13_j7es8"]
+[ext_resource type="AnimationNodeBlendTree" uid="uid://cgls1kg1dfa0o" path="res://player/body/anims/root_secondary.tres" id="15_cjxjk"]
 
 [sub_resource type="GDScript" id="GDScript_fiyxg"]
 resource_name = "body_model"
-script/source = "@icon(\"res://player/soldier/mat/soldier_red.png\")
+script/source = "@icon(\"res://shared/icons/man.png\")
 extends Node3D
 
 
@@ -128,7 +128,7 @@ nodes/seek/node = SubResource("AnimationNodeTimeSeek_fiyxg")
 nodes/seek/position = Vector2(133.333, 106.667)
 node_connections = [&"held_type", 0, &"primary", &"held_type", 1, &"secondary", &"held_type", 2, &"melee", &"output", 0, &"seek", &"seek", 0, &"held_type"]
 
-[node name="Soldier" instance=ExtResource("1_up20u")]
+[node name="BodyModel" instance=ExtResource("1_up20u")]
 script = SubResource("GDScript_fiyxg")
 
 [node name="TPSkeleton" parent="." index="0"]

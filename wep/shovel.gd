@@ -7,8 +7,6 @@ const SWING_DELAY = 0.25
 @export_range(0, 120, 1, "hide_slider", "or_greater")
 var base_damage := 65.0
 
-@export var first_person_player: AnimationPlayer
-
 var _attack_tween: Tween
 
 func _deploy():
