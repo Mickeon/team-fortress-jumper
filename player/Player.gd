@@ -135,9 +135,6 @@ func _ready() -> void:
 func _unhandled_input(event):
 	if event.is_action("player_crouch"):
 		crouched = event.is_pressed()
-	
-	elif event.is_action_pressed("debug_noclip"):
-		noclip_enabled = not noclip_enabled
 
 func _physics_process(delta: float):
 	if debug_simulate_vanilla_tickrate:

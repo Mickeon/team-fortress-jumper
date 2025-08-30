@@ -15,6 +15,12 @@ HSP: %s
 @export var player: Player
 @export var display_meters_as_hu := false
 @export var display_pos_from_eyes := false
+@export var display_collision_radius := false:
+	set(new):
+		display_collision_radius = new
+		Explosion.debug_show_radius = display_collision_radius
+		player.debug_show_collisions = display_collision_radius
+		player.debug_show_collision_hull = display_collision_radius
 @export var view_mode := ViewMode.FIRST_PERSON:
 	set(new):
 		if view_mode == new or not player:
@@ -43,60 +49,63 @@ HSP: %s
 			camera.queue_free()
 			get_tree().process_frame.disconnect(_debug_draw)
 			player.debug_show_collision_hull = false
+@export var mute := false:
+	set(new):
+		mute = new
+		AudioServer.set_bus_mute(0, mute)
+		var s := "  🔇"
+		var title := get_window().title
+		get_window().title = (title + s) if mute else title.trim_suffix(s)
 var camera: Camera3D
 var hovered_meta
+var menu: DebugPopupMenu
 
 #region Overriden Methods
 func _ready():
 	# Jank needed because the mouse input needs to go through the Label.
 	meta_hover_started.connect(func _on_meta_hover_started(meta): hovered_meta = meta)
 	meta_hover_ended.connect(func _on_meta_hover_ended(_meta): hovered_meta = null)
+	
+	menu = DebugPopupMenu.new()
+	menu.index_pressed.connect(_on_menu_index_pressed)
+	menu.about_to_popup.connect(_populate_debug_menu)
+	get_tree().create_timer(1.0).timeout.connect(_populate_debug_menu)
+	add_child(menu)
 
 func _input(event):
-	if hovered_meta and event is InputEventMouseButton and event.is_pressed():
-		var url := String(hovered_meta)
-		if url.begins_with("github"):
-			OS.shell_open("https://github.com/Mickeon/team-fortress-jumper")
-			accept_event()
+	if event.is_pressed() and not event.is_echo():
+		if menu.activate_item_by_event(event):
 			return
-		elif url.begins_with("clipboard:"):
-			DisplayServer.clipboard_set(url.trim_prefix("clipboard:"))
-			accept_event()
+	
+	if event.is_action_pressed("debug_menu"):
+		#if event is InputEventMouseButton:
+			#menu.popup(Rect2(event.position + Vector2.ONE * -48, Vector2.ZERO))
+		menu.popup_centered()
+		accept_event()
+	
+	var mouse_button_event := event as InputEventMouseButton
+	if mouse_button_event and mouse_button_event.pressed:
+		if hovered_meta:
+			var url := String(hovered_meta)
+			if url.begins_with("github"):
+				OS.shell_open("https://github.com/Mickeon/team-fortress-jumper")
+				accept_event()
+				return
+			elif url.begins_with("clipboard:"):
+				DisplayServer.clipboard_set(url.trim_prefix("clipboard:"))
+				accept_event()
 	
 	var key_event := event as InputEventKey
 	if key_event and key_event.pressed:
 		var key := key_event.keycode
 		match key:
-			KEY_F1:
-				player.cam_pivot.visible = not player.cam_pivot.visible
-			KEY_F3:
-				if key_event.is_command_or_control_pressed():
-					display_meters_as_hu = not display_meters_as_hu
-				elif key_event.shift_pressed:
-					Explosion.debug_show_radius = not Explosion.debug_show_radius
-					player.debug_show_collisions = Explosion.debug_show_radius
-					player.debug_show_collision_hull = Explosion.debug_show_radius
-				elif key_event.alt_pressed:
-					display_pos_from_eyes = not display_pos_from_eyes
-				else:
-					visible = not visible
-			KEY_F4:
-				player.debug_allow_bunny_hopping = not player.debug_allow_bunny_hopping
 			KEY_PAGEDOWN, KEY_PAGEUP:
 				var mult := 0.5 if key == KEY_PAGEDOWN else 2.0
 				Engine.time_scale = clampf(snappedf(Engine.time_scale * mult, 0.015625), 0.001, 1.0)
 				update_debug_text()
-			KEY_M:
-				AudioServer.set_bus_mute(0, not AudioServer.is_bus_mute(0))
-				var s := "  🔇"
-				var title := get_window().title
-				get_window().title = (title + s) if AudioServer.is_bus_mute(0) else title.trim_suffix(s)
 			KEY_K:
 				player.cam_pivot.rotation.x = -1.55334 if key_event.shift_pressed else 0.0
 				player.cam_pivot.rotation.y = PI
-	
-	if event.is_action_pressed("debug_view_mode"):
-		view_mode = (view_mode + 1) % ViewMode.size() as ViewMode
 
 func _physics_process(_delta):
 	if player and visible:
@@ -190,4 +199,102 @@ static func m_to_hu(value: Variant) -> Variant:
 		return Vector3(value.x / HU, value.y / HU, value.z / HU)
 	
 	return null
+#endregion
+
+
+#region Debug Menu
+@warning_ignore_start("int_as_enum_without_cast", "int_as_enum_without_match")
+func _populate_debug_menu():
+	if menu.item_count > 0:
+		return # Already populated.
+	
+	menu_add_multistate_for_property(self, "view_mode", KEY_NONE, ViewMode.size())
+	menu.set_item_shortcut(-1, shortcut_from_action("debug_view_mode"))
+	
+	menu_add_checkable_for_property(self, "visible", KEY_F3)
+	menu_add_checkable_for_property(self, "display_meters_as_hu", KEY_F3 | KEY_MASK_CTRL)
+	menu_add_checkable_for_property(self, "display_pos_from_eyes", KEY_F3 | KEY_MASK_ALT)
+	menu_add_checkable_for_property(self, "display_collision_radius", KEY_F3 | KEY_MASK_SHIFT)
+	menu_add_checkable_for_property(self, "mute", KEY_M)
+	
+	menu_add_checkable_for_property(player, "cam_pivot:visible", KEY_F1)
+	menu_add_checkable_for_property(player, "debug_allow_bunny_hopping", KEY_F4)
+	menu_add_checkable_for_property(player, "noclip_enabled", KEY_NONE)
+	menu.set_item_shortcut(-1, shortcut_from_action("debug_noclip"))
+
+func _on_menu_index_pressed(index: int):
+	var metadata = menu.get_item_metadata(index)
+	if metadata is not Callable:
+		return
+	
+	var result = metadata.call()
+	if result is bool:
+		menu.set_item_checked(index, result)
+	elif result is int:
+		menu.set_item_multistate(index, result)
+
+func menu_add_item(item_name: String, action_name_or_key: Variant, function: Callable):
+	menu.add_item(item_name)
+	if action_name_or_key is int:
+		menu.set_item_accelerator(-1, action_name_or_key)
+	elif action_name_or_key is String:
+		var shortcut := Shortcut.new()
+		shortcut.events = InputMap.action_get_events(action_name_or_key)
+		menu.set_item_shortcut(-1, shortcut)
+	
+	menu.set_item_metadata(-1, function)
+
+func menu_add_multistate_for_property(object: Object, property_path: NodePath, accel: Key, max_states: int):
+	var property_value = object.get_indexed(property_path)
+	assert(property_value is int)
+	
+	menu.add_multistate_item(property_path, max_states, property_value, -1, accel)
+	menu.set_item_metadata(-1, func():
+		object.set_indexed(property_path, (object.get_indexed(property_path) + 1) % max_states)
+		return object.get_indexed(property_path)
+	)
+
+func menu_add_checkable_for_property(object: Object, property_path: NodePath, accel: Key):
+	var property_value = object.get_indexed(property_path)
+	assert(property_value is bool)
+	
+	menu.add_check_item(property_path, -1, accel)
+	menu.set_item_checked(-1, property_value)
+	menu.set_item_metadata(-1, func():
+		object.set_indexed(property_path, not object.get_indexed(property_path))
+		return object.get_indexed(property_path)
+	)
+@warning_ignore_restore("int_as_enum_without_cast", "int_as_enum_without_match")
+
+static func shortcut_from_action(action_name: StringName) -> Shortcut:
+	var shortcut := Shortcut.new()
+	shortcut.events = InputMap.action_get_events(action_name)
+	return shortcut
+
+class DebugPopupMenu extends PopupMenu:
+	var last_focused_item_id := 0
+	var mouse_mode_before_opening := Input.MOUSE_MODE_VISIBLE
+	func _ready() -> void:
+		hide_on_checkable_item_selection = false
+		hide_on_item_selection = false
+		
+		about_to_popup.connect(func(): 
+			set_focused_item(last_focused_item_id)
+			mouse_mode_before_opening = Input.mouse_mode
+			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		)
+		id_focused.connect(func(id): last_focused_item_id = id)
+		mouse_exited.connect(hide)
+		popup_hide.connect(func(): Input.mouse_mode = mouse_mode_before_opening)
+	
+	func _input(event: InputEvent) -> void:
+		if event.is_action_pressed("ui_focus_next", true, true):
+			set_focused_item(posmod(get_focused_item() + 1, item_count))
+			set_input_as_handled()
+		elif event.is_action_pressed("ui_focus_prev", true, true):
+			set_focused_item(posmod(get_focused_item() - 1, item_count))
+			set_input_as_handled()
+		elif event.is_action_pressed("debug_menu"):
+			hide()
+			set_input_as_handled()
 #endregion

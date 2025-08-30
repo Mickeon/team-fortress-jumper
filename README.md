@@ -42,11 +42,12 @@ Alternatively, download a build from [the releases](https://github.com/Mickeon/t
 #### Debugging:
 | Key | Action |
 | :-: | --- |
+| **E** or **Middle click** | Open debug menu
 | **F1** | Toggle first person model
 | **F3** | Toggle debug label
 | **F4** | Toggle bunny hopping
 | **F5** | Change camera mode
-| **N** or **E** | Toggle noclip
+| **N** | Toggle noclip
 | **Page Up/Down** | Change time scale
 | **ALT** + **F3** | Toggle position from eyes
 | **CTRL** + **F3** | Toggle Hammer Units/Meters
