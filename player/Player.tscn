@@ -1,8 +1,9 @@
-[gd_scene load_steps=60 format=3 uid="uid://bp3faj46c64ck"]
+[gd_scene load_steps=61 format=3 uid="uid://bp3faj46c64ck"]
 
 [ext_resource type="Script" uid="uid://ralk8skbs5p3" path="res://player/Player.gd" id="1"]
 [ext_resource type="Script" uid="uid://cqeexyt8opffs" path="res://wep/rocket_launcher.gd" id="2_eytv3"]
 [ext_resource type="PackedScene" uid="uid://bs1di4sdp87y2" path="res://player/soldier/soldier_fp.glb" id="2_q83su"]
+[ext_resource type="Script" uid="uid://da5guausa6d51" path="res://player/cam_pivot.gd" id="3_610ub"]
 [ext_resource type="Script" uid="uid://yyqovq2q75n1" path="res://addons/smoothing/smoothing.gd" id="4_5fufl"]
 [ext_resource type="AudioStream" uid="uid://824byn35wkj0" path="res://sfx/primary/rocket_jumper_shoot.ogg" id="4_6revy"]
 [ext_resource type="Material" uid="uid://c67e1bprtx6g6" path="res://player/soldier/mat/hands_fp_mat.tres" id="4_8cy8x"]
@@ -201,6 +202,7 @@ target = NodePath("..")
 
 [node name="Pivot" type="Node3D" parent="Smoothing3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2954, 0)
+script = ExtResource("3_610ub")
 
 [node name="Camera" type="Camera3D" parent="Smoothing3D/Pivot"]
 cull_mask = 1048571

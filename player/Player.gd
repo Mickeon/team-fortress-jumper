@@ -51,7 +51,6 @@ var max_slope_angle := deg_to_rad(45.573):
 @export var fp_mesh: MeshInstance3D
 
 @export_group("")
-@export var camera_sensitivity := 0.075
 enum Team { RED, BLU }
 @export var team: Team = Team.RED:
 	set(new):
@@ -134,21 +133,7 @@ func _ready() -> void:
 	_update_for_local_player()
 
 func _unhandled_input(event):
-	if event.is_action_pressed("ui_cancel"):
-		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-		get_viewport().set_input_as_handled()
-	
-	elif (event is InputEventMouseButton 
-	and Input.mouse_mode != Input.MOUSE_MODE_CAPTURED 
-	and event.button_index != MOUSE_BUTTON_WHEEL_UP and event.button_index != MOUSE_BUTTON_WHEEL_DOWN
-	and event.is_pressed()):
-		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-		get_viewport().set_input_as_handled()
-	
-	elif event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
-		_handle_camera_rotation(event)
-	
-	elif event.is_action("player_crouch"):
+	if event.is_action("player_crouch"):
 		crouched = event.is_pressed()
 	
 	elif event.is_action_pressed("debug_noclip"):
@@ -218,11 +203,6 @@ func _physics_process(delta: float):
 			var radius: float = hull.shape.radius
 			DebugDraw3D.draw_cylinder(global_transform.scaled_local(Vector3(radius, HU, radius)), Color.YELLOW)
 
-
-func _handle_camera_rotation(event: InputEventMouseMotion):
-	cam_pivot.rotation.y = wrapf(cam_pivot.rotation.y - event.relative.x * deg_to_rad(camera_sensitivity), -PI, PI)
-	cam_pivot.rotation.x -= event.relative.y * deg_to_rad(camera_sensitivity)
-	cam_pivot.rotation.x = clampf(cam_pivot.rotation.x, -1.55334 , 1.55334) # 89 degrees up and down.
 
 func _handle_noclip(delta: float):
 	const NOCLIP_SPEED = 15.0
