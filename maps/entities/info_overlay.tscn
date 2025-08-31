@@ -9,11 +9,3 @@ script = ExtResource("1_ycpda")
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
 size = Vector3(0.5, 1, 0.5)
 lower_fade = 7.58251e-05
-
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Decal"]
-transform = Transform3D(-1, -1.50996e-07, 6.60024e-15, 0, -4.37114e-08, -1, 1.50996e-07, -1, 4.37114e-08, 0, 0, -0.5)
-visible = false
-radius = 0.10048
-height = 1.0
-sides = 4
-cone = true

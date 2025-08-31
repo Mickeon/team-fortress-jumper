@@ -1,5 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://cl4sstkmevaox"]
+[gd_scene load_steps=2 format=3 uid="uid://cdbxndr06faie"]
 
-[ext_resource type="PackedScene" uid="uid://cx3saydh4cxhk" path="res://maps/entities/func_brush.tscn" id="1_xromg"]
+[ext_resource type="Script" uid="uid://dfg77bkai80ls" path="res://maps/entities/func_detail.gd" id="1_hgoak"]
 
-[node name="FuncDetail" instance=ExtResource("1_xromg")]
+[node name="FuncDetail" type="Node3D"]
+script = ExtResource("1_hgoak")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
