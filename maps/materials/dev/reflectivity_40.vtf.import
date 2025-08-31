@@ -1,0 +1,14 @@
+[remap]
+
+importer="VTF"
+type="Texture"
+uid="uid://dvgec78w31in1"
+path="res://.godot/imported/reflectivity_40.vtf-f77e8a080e7fc996a7e73abdce950561.vtf.res"
+
+[deps]
+
+source_file="res://maps/materials/dev/reflectivity_40.vtf"
+dest_files=["res://.godot/imported/reflectivity_40.vtf-f77e8a080e7fc996a7e73abdce950561.vtf.res"]
+
+[params]
+

@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://wl5mjh1lbxcu"
+path="res://.godot/imported/reflectivity_40.vmt-339f3ddbd5d5adf5f14f1508fa867792.vmt.res"
+
+[deps]
+
+source_file="res://maps/materials/dev/reflectivity_40.vmt"
+dest_files=["res://.godot/imported/reflectivity_40.vmt-339f3ddbd5d5adf5f14f1508fa867792.vmt.res"]
+
+[params]
+
