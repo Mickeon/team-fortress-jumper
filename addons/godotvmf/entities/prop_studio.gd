@@ -22,7 +22,9 @@ func _apply_entity(e: Dictionary) -> void:
 		VMFLogger.error("Failed to load model scene: " + model_path);
 		return;
 
-	var instance := model_scene.instantiate();
+	#var instance := model_scene.instantiate();
+	# Micky: This saves so much disk space.
+	var instance := model_scene.instantiate(PackedScene.GEN_EDIT_STATE_MAIN_INHERITED);
 	instance.name = "model";
 
 	add_child(instance);
