@@ -259,10 +259,6 @@ func _read_frame(frame):
 		push_error("Corrupted file: {0}".format([file.get_path()]));
 		return null;
 
-	if flags & Flags.TEXTUREFLAGS_NORMAL:
-		img.decompress()
-		img.normal_map_to_xy();
-
 	return ImageTexture.create_from_image(img);
 
 func _init(path, duration):
@@ -270,10 +266,11 @@ func _init(path, duration):
 	self.frame_duration = duration;
 
 	file = FileAccess.open(path, FileAccess.READ);
-	
 
 static func get_texture(texture: String):
+	#texture = texture.to_lower();
 	#var texture_path = VMFUtils.normalize_path(VMFConfig.materials.target_folder + "/" + texture + ".vtf");
+#
 	#if not ResourceLoader.exists(texture_path):
 		#VMFLogger.warn("Texture not found: " + texture);
 		#return null;

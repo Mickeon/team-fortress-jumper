@@ -1,22 +1,26 @@
 @tool
 class_name ValveIONode extends Node3D;
 
-static var named_entities = {};
+static var named_entities := {};
+static var scene_instance: Node = null;
 
 ## Assigns global targetname for the node
 static func define_alias(name: String, value: Node):
-	if name == '!self' or name in aliases:
+	if name == '!self':
 		VMFLogger.error('The alias "' + name + '" is already defined');
 		return;
 
 	aliases[name] = value;
 
+static func remove_alias(name: String):
+	if name in aliases:
+		aliases.erase(name);
+
 @export var entity := {};
 @export var enabled := true;
 @export var flags: int = 0;
 
-var config:
-	get: return VMFConfig;
+var config := VMFConfig;
 
 static var aliases: Dictionary = {};
 
@@ -33,6 +37,9 @@ func Disable(_param = null):
 	enabled = false;
 
 func Kill(_param = null):
+	if entity.get("targetname", "") in ValveIONode.named_entities:
+		named_entities.erase(entity.targetname);
+
 	get_parent().remove_child(self);
 	queue_free();
 
@@ -62,8 +69,6 @@ func _ready():
 
 	if ename: add_named_entity(ename, self);
 
-	enabled = entity.get("StartDisabled", 0) == 0;
-
 	parse_connections(self);
 
 	set_process(true);
@@ -71,11 +76,13 @@ func _ready():
 
 	call_deferred("_reparent");
 	call_deferred("_entity_ready");
+	scene_instance = get_tree().current_scene;
 
 func _apply_entity(ent) -> void:
 	self.entity = ent;
 	self.flags = ent.get("spawnflags", 0);
 	self.transform = get_entity_transform(ent);
+	self.enabled = ent.get("StartDisabled", 0) == 0;
 
 	assign_name();
 
@@ -116,6 +123,7 @@ static func call_target_input(target, input, param, delay, caller) -> void:
 			node.set("activator", caller);
 			node.call(input, param);
 
+## Returns the first node with the targetname
 static func get_target(n, caller = null) -> Node3D:
 	if n in ValveIONode.aliases:
 		return ValveIONode.aliases[n];
@@ -130,9 +138,10 @@ static func get_target(n, caller = null) -> Node3D:
 
 	return node;
 
+## Returns all nodes with the targetname
 static func get_all_targets(target_name: String, caller = null) -> Array:
-	if VMFConfig.get_tree().has_group(target_name):
-		return VMFConfig.get_tree().get_nodes_in_group(target_name);
+	if scene_instance.get_tree().has_group(target_name):
+		return scene_instance.get_tree().get_nodes_in_group(target_name);
 
 	return ValveIONode.named_entities.get(target_name, []);
 
@@ -146,15 +155,18 @@ static func parse_connections(caller: Node) -> void:
 		var connections = caller.entity.connections[output];
 		connections = connections if connections is Array else [connections];
 
-		caller.add_user_signal(output);
+		if not caller.has_signal(output):
+			caller.add_user_signal(output);
 
 		for connectionData in connections:
 			var arr = connectionData.split(",");
 			var target = arr[0];
-			var input = arr[1];
-			var param = arr[2];
-			var delay = float(arr[3]);
-			var times = arr[4];
+			var input = arr[1] if arr.size() > 1 else "";
+			var param = arr[2] if arr.size() > 2 else "";
+			var delay = float(arr[3]) if arr.size() > 3 else 0.0;
+			var times = arr[4] if arr.size() > 4 else 1;
+
+			if not input or not target: continue;
 
 			caller.connect(output, func(): call_target_input(target, input, param, delay, caller));
 
@@ -186,12 +198,16 @@ func has_flag(flag: int) -> bool:
 	return (entity.spawnflags & flag) != 0;
 
 func trigger_output(output) -> void:
+	if output is Signal:
+		output = output.get_name();
+
 	if not enabled: return;
 
 	if has_signal(output):
 		emit_signal(output);
 
-func get_mesh() -> ArrayMesh:
+## Returns mesh of the entity
+func get_mesh(cleanup = true, lods = true) -> ArrayMesh:
 	if not validate_entity(): return;
 
 	var solids = entity.solid if entity.solid is Array else [entity.solid];
@@ -201,14 +217,23 @@ func get_mesh() -> ArrayMesh:
 		'world': { 'solid': solids },
 	};
 	
-	return VMFTool.create_mesh(struct, global_position);
+	var mesh = VMFTool.cleanup_mesh(VMFTool.create_mesh(struct, global_position)) \
+			if cleanup \
+			else VMFTool.create_mesh(struct, global_position);
 
+	if not mesh: return null;
+
+	return VMFTool.generate_lods(mesh) if lods else mesh;
+
+## Converts the vector from Z-up to Y-up
 static func convert_vector(v) -> Vector3:
 	return Vector3(v.x, v.z, -v.y);
 
+## Converts Source's angles to Godot's Euler angles
 static func convert_direction(v) -> Vector3:
 	return get_entity_basis({ "angles": v }).get_euler();
 
+## Returns Transform3D based on the entity parameters
 static func get_entity_transform(ent):
 	var angles = ent.get("angles", Vector3.ZERO) / 180 * PI;
 	angles = Vector3(angles.z, angles.y, -angles.x);
@@ -218,6 +243,7 @@ static func get_entity_transform(ent):
 	pos = Vector3(pos.x, pos.z, -pos.y);
 	return Transform3D(basis, pos);
 	
+## Returns Basis based on the entity parameters
 static func get_entity_basis(ent) -> Basis:
 	return get_entity_transform(ent).basis;
 
@@ -226,9 +252,6 @@ static func get_movement_vector(v):
 	var movement = _basis.z;
 
 	return Vector3(movement.z, movement.y, movement.x);
-
-func get_value(field, fallback):
-	return entity[field] if field in entity else fallback;
 
 ## Returns the shape of the entity that depends on solids that it have
 func get_entity_shape():
@@ -251,6 +274,8 @@ func get_entity_convex_shape():
 	};
 
 	var mesh = VMFTool.create_mesh(struct, global_position);
+
+	if (not mesh or mesh.get_surface_count() == 0): return;
 	return mesh.create_convex_shape();
 	
 ## Creates optimised trimesh shape of the entity by using CSGCombiner3D
@@ -265,8 +290,11 @@ func get_entity_trimesh_shape():
 	for solid in solids:
 		var struct = { 'world': { 'solid': [solid] } };
 		var csgmesh = CSGMesh3D.new();
+		var mesh = VMFTool.create_mesh(struct, global_position);
 
-		csgmesh.mesh = VMFTool.create_mesh(struct, global_position);
+		if not mesh or mesh.get_surface_count() == 0: continue;
+
+		csgmesh.mesh = mesh;
 		combiner.add_child(csgmesh);
 		
 	combiner._update_shape();

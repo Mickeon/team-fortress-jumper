@@ -24,10 +24,6 @@ run/max_fps.editor=75
 
 buses/default_bus_layout="res://sfx/default_bus_layout.tres"
 
-[autoload]
-
-VMFConfig="*res://addons/godotvmf/src/VMFConfig.gd"
-
 [debug]
 
 gdscript/warnings/static_called_on_instance=0

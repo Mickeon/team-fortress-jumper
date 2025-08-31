@@ -8,9 +8,10 @@ var textureChecksums = {};
 var mdl_import_plugin;
 var vtf_import_plugin;
 var vmt_import_plugin;
+var vmt_context_plugin: VMTContextMenu;
+var entity_context_plugin: VMFEntityContextMenu;
 
 func _enter_tree() -> void:
-	add_autoload_singleton("VMFConfig", "res://addons/godotvmf/src/VMFConfig.gd");
 	dock = preload("res://addons/godotvmf/plugin.tscn").instantiate();
 	
 	add_control_to_container(CONTAINER_SPATIAL_EDITOR_MENU, dock);
@@ -19,6 +20,7 @@ func _enter_tree() -> void:
 	dock.get_node('ReimportEntities').pressed.connect(ReimportEntities);
 	dock.get_node('ReimportGeometry').pressed.connect(ReimportGeometry);
 	dock.get_node('Docs').pressed.connect(func(): OS.shell_open("https://github.com/H2xDev/GodotVMF/wiki"));
+	dock.get_node('DiscordSupport').pressed.connect(func(): OS.shell_open("https://discord.gg/wtSK94fPxd"));
 
 	mdl_import_plugin = preload("res://addons/godotvmf/godotmdl/import.gd").new();
 	vmt_import_plugin = preload("res://addons/godotvmf/godotvmt/vmt_import.gd").new();
@@ -30,8 +32,18 @@ func _enter_tree() -> void:
 	add_custom_type("VMFNode", "Node3D", preload("res://addons/godotvmf/src/VMFNode.gd"), preload("res://addons/godotvmf/hammer.png"));
 	add_custom_type("ValveIONode", "Node3D", preload("res://addons/godotvmf/src/ValveIONode.gd"), preload("res://addons/godotvmf/hammer.png"));
 
+	vmt_context_plugin = VMTContextMenu.new();
+	add_context_menu_plugin(EditorContextMenuPlugin.CONTEXT_SLOT_FILESYSTEM, vmt_context_plugin);
+
+	entity_context_plugin = VMFEntityContextMenu.new();
+	add_context_menu_plugin(EditorContextMenuPlugin.CONTEXT_SLOT_FILESYSTEM, entity_context_plugin);
+	
+	# Micky: Absolutely necessary for the VMFConfig to match the config file on startup.
+	VMFConfig.load_config()
+
 func _exit_tree():
-	remove_autoload_singleton("VMFConfig");
+	# Micky: This is not necessary anymore.
+	#remove_autoload_singleton("VMFConfig");
 	remove_custom_type("VMFNode");
 	remove_custom_type("ValveIONode");
 	
@@ -41,10 +53,14 @@ func _exit_tree():
 	remove_import_plugin(mdl_import_plugin);
 	remove_import_plugin(vmt_import_plugin);
 	remove_import_plugin(vtf_import_plugin);
+	remove_context_menu_plugin(vmt_context_plugin);
+	remove_context_menu_plugin(entity_context_plugin);
 
 	mdl_import_plugin = null;
 	vmt_import_plugin = null;
 	vtf_import_plugin = null;
+	vmt_context_plugin = null;
+	entity_context_plugin = null;
 
 func GetExistingVMFNodes() -> Array[VMFNode]:
 	var nodes: Array[VMFNode] = [];
@@ -52,7 +68,7 @@ func GetExistingVMFNodes() -> Array[VMFNode]:
 	if !get_tree(): return nodes;
 	
 	nodes.assign(get_tree().get_nodes_in_group("vmfnode_group"));
-	return nodes.filter(func(node): return not node.get_meta("is_instance", false));
+	return nodes.filter(func(node): return not node.get_meta("instance", false));
 
 func ReimportVMF():
 	var nodes := GetExistingVMFNodes();
