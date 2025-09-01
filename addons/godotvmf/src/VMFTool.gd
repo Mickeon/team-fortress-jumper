@@ -357,11 +357,6 @@ static func create_mesh(vmf_structure: Dictionary, _offset: Vector3 = Vector3(0,
 			#var material: String = side.material.to_upper();
 			var material: String = side.material.to_lower(); # Micky: Instead of String.to_upper.
 
-			# Micky: We don't want surfaces with these brushes.
-			# Other places seem to use String.match but for me this is enough.
-			if material in VMFConfig.materials.ignore:
-				continue;
-
 			if not material in material_sides:
 				material_sides[material] = [];
 

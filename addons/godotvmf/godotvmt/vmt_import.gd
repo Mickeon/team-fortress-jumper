@@ -4,7 +4,7 @@ class_name VMTImporter extends EditorImportPlugin
 func _get_importer_name(): return "VMT";
 func _get_visible_name(): return "VMT Importer";
 func _get_recognized_extensions(): return ["vmt"];
-func _get_save_extension(): return "vmt.res"; # Micky: Lower import size by not using .tres.
+func _get_save_extension(): return "vmt.res"; # Micky: It may be desirable to use .tres here.
 func _get_resource_type(): return "Material";
 func _get_preset_count(): return 0;
 func _get_import_order(): return 1;
@@ -21,6 +21,7 @@ func _import(path: String, save_path: String, _a, _b, _c):
 	if ResourceLoader.exists(path_to_save):
 		DirAccess.remove_absolute(path_to_save);
 
+	# Micky: Investigate. FLAG_COMPRESS doesn't do anything unless it's imported as a text resource.
 	var error = ResourceSaver.save(material, path_to_save, ResourceSaver.FLAG_COMPRESS);
 
 	if (error == OK):

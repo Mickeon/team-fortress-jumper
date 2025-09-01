@@ -15,8 +15,6 @@ func assign_instance(instance_scene):
 		queue_free();
 		return;
 	
-	#var node = instance_scene.instantiate() as VMFNode;
-	# Micky: This saves so much disk space.
 	var node = instance_scene.instantiate(PackedScene.GEN_EDIT_STATE_MAIN_INHERITED) as VMFNode;
 
 	var i = 1
