@@ -39,6 +39,7 @@ settings/addon_root_folder="res://addons/debug_draw_3d"
 
 [display]
 
+window/vsync/vsync_mode=3
 window/size/always_on_top.editor=true
 window/vsync/vsync_mode.editor=0
 
@@ -50,13 +51,12 @@ naming/scene_name_casing=1
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/glteamfortress/plugin.cfg", "res://addons/godotvmf/plugin.cfg", "res://addons/multirun/plugin.cfg", "res://addons/plugin_refresher/plugin.cfg", "res://addons/smoothing/plugin.cfg")
+enabled=PackedStringArray("res://addons/godotvmf/plugin.cfg", "res://addons/multirun/plugin.cfg", "res://addons/plugin_refresher/plugin.cfg", "res://addons/smoothing/plugin.cfg")
 
 [file_customization]
 
 folder_colors={
 "res://addons/": "gray",
-"res://addons/glteamfortress/": "orange",
 "res://player/soldier/": "red",
 "res://wep/other/": "teal"
 }

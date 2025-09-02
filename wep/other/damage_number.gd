@@ -10,4 +10,4 @@ func _process(delta: float) -> void:
 	transparency += delta
 	offset.y += delta * 2
 	if transparency >= 1.0:
-		free()
+		queue_free()
