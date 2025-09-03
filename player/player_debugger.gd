@@ -35,10 +35,9 @@ HSP: %s
 				camera.queue_free()
 			camera = Camera3D.new()
 			if view_mode == ViewMode.TOP_DOWN:
-				var cam_pivot = player.cam_pivot
 				var tw := create_tween().set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_OUT).set_parallel()
-				tw.tween_property(camera, "position:y", 10.0, 0.75).from(cam_pivot.position.y)
-				tw.tween_property(camera, "rotation:x", PI / -2, 0.75).from(cam_pivot.rotation.x)
+				tw.tween_property(camera, "position:y", 10.0, 0.75).from(player.cam_pivot.position.y)
+				tw.tween_property(camera, "rotation:x", PI / -2, 0.75).from(player.cam_pivot.rotation.x)
 			
 			camera.set_cull_mask_value(2, false) # Hide First Person model.
 			camera.make_current()
@@ -56,6 +55,24 @@ HSP: %s
 		var s := "  🔇"
 		var title := get_window().title
 		get_window().title = (title + s) if mute else title.trim_suffix(s)
+@export var simulate_vanilla_delta := false:
+	set(new):
+		simulate_vanilla_delta = new
+		snapped_time_scale = snapped_time_scale # Forcefully calling setter.
+@export var snapped_time_scale := 1.0:
+	set(new):
+		const VANILLA_DELTA := 0.015 ## The vanilla delta time for the 66.666 tickrate.
+		var tps: int = ProjectSettings.get_setting_with_override("physics/common/physics_ticks_per_second")
+		
+		snapped_time_scale = clampf(snappedf(new, 0.015625), VANILLA_DELTA, 1.0)
+		Engine.time_scale = snapped_time_scale
+		Engine.physics_ticks_per_second = maxi(roundi(tps * snapped_time_scale), 1)
+		if simulate_vanilla_delta:
+			Engine.time_scale = VANILLA_DELTA * Engine.physics_ticks_per_second
+		
+		player.reset_physics_interpolation()
+		update_debug_text()
+
 var camera: Camera3D
 var hovered_meta
 var menu: DebugPopupMenu
@@ -78,8 +95,6 @@ func _input(event):
 			return
 	
 	if event.is_action_pressed("debug_menu"):
-		#if event is InputEventMouseButton:
-			#menu.popup(Rect2(event.position + Vector2.ONE * -48, Vector2.ZERO))
 		menu.popup_centered()
 		accept_event()
 	
@@ -99,20 +114,17 @@ func _input(event):
 	if key_event and key_event.pressed:
 		var key := key_event.keycode
 		match key:
-			KEY_PAGEDOWN, KEY_PAGEUP:
-				var mult := 0.5 if key == KEY_PAGEDOWN else 2.0
-				Engine.time_scale = clampf(snappedf(Engine.time_scale * mult, 0.015625), 0.001, 1.0)
-				update_debug_text()
+			KEY_PAGEDOWN:
+				snapped_time_scale *= 0.5
+			KEY_PAGEUP:
+				snapped_time_scale *= 2.0
 			KEY_K:
 				player.cam_pivot.rotation.x = -1.55334 if key_event.shift_pressed else 0.0
 				player.cam_pivot.rotation.y = PI
 
 func _physics_process(_delta):
 	if player and visible:
-		# When slowed down, update less frequently.
-		var frequency := maxi(Engine.get_frames_per_second() * (1 - Engine.time_scale), 1)
-		if (Engine.get_physics_frames() % frequency) == 0:
-			update_debug_text()
+		update_debug_text()
 
 func _debug_draw():
 	var velocity_planar := Vector3(player.velocity.x, 0, player.velocity.z)
@@ -165,7 +177,9 @@ func update_debug_text():
 		new_text += "\n[color=dark_gray]Looking from %s[/color]" % Player.local.name
 	
 	if Engine.time_scale != 1.0:
-		new_text += "\nTime scale: %s" % Engine.time_scale
+		new_text += "\nTime scale: %s (%s ticks)" % [Engine.time_scale, Engine.physics_ticks_per_second]
+		if simulate_vanilla_delta:
+			new_text += " [color=dark_gray](Vanilla delta)[/color]"
 	if player.debug_allow_bunny_hopping:
 		new_text += "\nBunny Hopping Enabled"
 	if player.crouched:
@@ -215,6 +229,7 @@ func _populate_debug_menu():
 	menu_add_checkable_for_property(self, "display_meters_as_hu", KEY_F3 | KEY_MASK_CTRL)
 	menu_add_checkable_for_property(self, "display_pos_from_eyes", KEY_F3 | KEY_MASK_ALT)
 	menu_add_checkable_for_property(self, "display_collision_radius", KEY_F3 | KEY_MASK_SHIFT)
+	menu_add_checkable_for_property(self, "simulate_vanilla_delta", KEY_END)
 	menu_add_checkable_for_property(self, "mute", KEY_M)
 	
 	menu_add_checkable_for_property(player, "cam_pivot:visible", KEY_F1)
