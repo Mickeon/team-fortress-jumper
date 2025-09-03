@@ -51,16 +51,16 @@ func _physics_process(_delta: float) -> void:
 
 
 func _handle_rotation(delta) -> void:
-	var facing_blend_pos := Vector2(0, remap(player.cam_pivot.rotation.x, -PI / 2, PI / 2, -1, 1))
+	var facing_blend_pos := Vector2(0, remap(player.view_pivot.rotation.x, -PI / 2, PI / 2, -1, 1))
 	
 	if player.velocity.is_zero_approx():
 		# TODO: This isn't very nice and smooth (See CMultiPlayerAnimState::ComputePoseParam_AimYaw, EstimateYaw).
-		facing_blend_pos.x = remap(wrapf(player.cam_pivot.rotation.y - model.rotation.y, -PI, PI), PI / 4, -PI / 4, -1, 1)
+		facing_blend_pos.x = remap(wrapf(player.view_pivot.rotation.y - model.rotation.y, -PI, PI), PI / 4, -PI / 4, -1, 1)
 		if abs(facing_blend_pos.x) >= 1.0:
-			model.rotation.y = rotate_toward(model.rotation.y, player.cam_pivot.rotation.y, delta * abs(facing_blend_pos.x) * 4)
+			model.rotation.y = rotate_toward(model.rotation.y, player.view_pivot.rotation.y, delta * abs(facing_blend_pos.x) * 4)
 			#facing_blend_pos.x = move_toward(get("parameters/%s/look_blend/blend_position" % held_type_name).x, 0.0, delta * abs(facing_blend_pos.x) * 4)
 	else:
-		model.rotation.y = player.cam_pivot.rotation.y
+		model.rotation.y = player.view_pivot.rotation.y
 		
 	#set(&"parameters/look_blend/blend_position", facing_blend_pos)
 	set("parameters/%s/look_blend/blend_position" % held_type_name, facing_blend_pos)

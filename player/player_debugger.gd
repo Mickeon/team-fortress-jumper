@@ -36,8 +36,8 @@ HSP: %s
 			camera = Camera3D.new()
 			if view_mode == ViewMode.TOP_DOWN:
 				var tw := create_tween().set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_OUT).set_parallel()
-				tw.tween_property(camera, "position:y", 10.0, 0.75).from(player.cam_pivot.position.y)
-				tw.tween_property(camera, "rotation:x", PI / -2, 0.75).from(player.cam_pivot.rotation.x)
+				tw.tween_property(camera, "position:y", 10.0, 0.75).from(player.view_pivot.position.y)
+				tw.tween_property(camera, "rotation:x", PI / -2, 0.75).from(player.view_pivot.rotation.x)
 			
 			camera.set_cull_mask_value(2, false) # Hide First Person model.
 			camera.make_current()
@@ -119,8 +119,8 @@ func _input(event):
 			KEY_PAGEUP:
 				snapped_time_scale *= 2.0
 			KEY_K:
-				player.cam_pivot.rotation.x = -1.55334 if key_event.shift_pressed else 0.0
-				player.cam_pivot.rotation.y = PI
+				player.view_pivot.rotation.x = -1.55334 if key_event.shift_pressed else 0.0
+				player.view_pivot.rotation.y = PI
 
 func _physics_process(_delta):
 	if player and visible:
@@ -140,17 +140,17 @@ func _debug_draw():
 			wish_dir.length(), 
 			Color.DARK_CYAN, 0.25, false)
 	
-	camera.rotation.y = player.cam_pivot.rotation.y
+	camera.rotation.y = player.view_pivot.rotation.y
 	if view_mode == ViewMode.THIRD_PERSON:
-		camera.transform = player.cam_pivot.transform.translated_local(Vector3(0, 0, 2.0))
+		camera.transform = player.view_pivot.transform.translated_local(Vector3(0, 0, 2.0))
 	elif view_mode == ViewMode.FRONT:
-		camera.transform = player.cam_pivot.transform.translated_local(Vector3(0, 0, -2.0)
+		camera.transform = player.view_pivot.transform.translated_local(Vector3(0, 0, -2.0)
 				).rotated_local(Vector3.UP, PI)
 #endregion
 
 func update_debug_text():
-	var angles := Vector2(player.cam_pivot.rotation_degrees.x, player.cam_pivot.rotation_degrees.y)
-	var pos := player.cam_pivot.global_position if display_pos_from_eyes else player.global_position
+	var angles := Vector2(player.view_pivot.rotation_degrees.x, player.view_pivot.rotation_degrees.y)
+	var pos := player.view_pivot.global_position if display_pos_from_eyes else player.global_position
 	var velocity_planar := Vector2(player.velocity.x, player.velocity.z)
 	var multiplayer_id := multiplayer.get_unique_id()
 	var is_server := multiplayer.is_server()
@@ -232,7 +232,7 @@ func _populate_debug_menu():
 	menu_add_checkable_for_property(self, "simulate_vanilla_delta", KEY_END)
 	menu_add_checkable_for_property(self, "mute", KEY_M)
 	
-	menu_add_checkable_for_property(player, "cam_pivot:visible", KEY_F1)
+	menu_add_checkable_for_property(player, "view_pivot:visible", KEY_F1)
 	menu_add_checkable_for_property(player, "debug_allow_bunny_hopping", KEY_F4)
 	menu_add_checkable_for_property(player, "noclip_enabled", KEY_NONE)
 	menu.set_item_shortcut(-1, shortcut_from_action("debug_noclip"))

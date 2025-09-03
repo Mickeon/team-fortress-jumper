@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://ralk8skbs5p3" path="res://player/Player.gd" id="1"]
 [ext_resource type="Script" uid="uid://cqeexyt8opffs" path="res://wep/rocket_launcher.gd" id="2_eytv3"]
 [ext_resource type="PackedScene" uid="uid://bs1di4sdp87y2" path="res://player/soldier/soldier_fp.glb" id="2_q83su"]
-[ext_resource type="Script" uid="uid://da5guausa6d51" path="res://player/cam_pivot.gd" id="3_610ub"]
+[ext_resource type="Script" uid="uid://da5guausa6d51" path="res://player/view_pivot.gd" id="3_610ub"]
 [ext_resource type="AudioStream" uid="uid://824byn35wkj0" path="res://sfx/primary/rocket_jumper_shoot.ogg" id="4_6revy"]
 [ext_resource type="Material" uid="uid://c67e1bprtx6g6" path="res://player/soldier/mat/hands_fp_mat.tres" id="4_8cy8x"]
 [ext_resource type="PackedScene" uid="uid://cw116s8st8i27" path="res://wep/models/rocket_launcher.glb" id="4_fpnlp"]
@@ -180,7 +180,7 @@ resource_local_to_scene = true
 height = 1.562
 radius = 0.457
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("cam_pivot", "hull", "body_mesh", "fp_mesh") groups=["players"]]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("view_pivot", "hull", "body_mesh", "fp_mesh") groups=["players"]]
 process_thread_group = 1
 process_thread_group_order = 0
 process_thread_messages = 0
@@ -190,7 +190,7 @@ floor_stop_on_slope = false
 floor_block_on_wall = false
 floor_max_angle = 0.802851
 script = ExtResource("1")
-cam_pivot = NodePath("Pivot")
+view_pivot = NodePath("Pivot")
 hull = NodePath("CollisionShapeBox")
 body_mesh = NodePath("BodyModel/TPSkeleton/mesh")
 fp_mesh = NodePath("Pivot/FirstPersonModel/FPSkeleton/mesh")

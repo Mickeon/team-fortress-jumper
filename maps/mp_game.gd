@@ -134,7 +134,7 @@ func tweak_other(player: Player):
 	player.hurt.connect(_on_player_hurt.bind(player))
 
 func tweak_server(player: Player):
-	player.cam_pivot.rotation.y += PI
+	player.view_pivot.rotation.y += PI
 
 func tweak_client(player: Player):
 	# All clients are in BLU team.

@@ -14,6 +14,8 @@ const JUMP_FORCE = 289 * HU # not 271 * HU. Gravity applies the first frame in t
 const GRAVITY_FORCE = 800 * HU # 12 * 66.666
 const TERMINAL_SPEED = 3500 * HU
 
+const ViewPivot = preload("uid://da5guausa6d51")
+
 ## The player you control, and see from.
 static var local: Player:
 	set(new):
@@ -45,7 +47,7 @@ var max_slope_angle := deg_to_rad(45.573):
 @export var floor_ray_reach := 18 * HU ## How far down the floor raycast will reach out for collisions.
 
 @export_group("Nodes")
-@export var cam_pivot: Node3D
+@export var view_pivot: ViewPivot
 @export var hull: CollisionShape3D ## The collision hull, the bounding box.
 @export var body_mesh: MeshInstance3D
 @export var fp_mesh: MeshInstance3D
@@ -70,7 +72,6 @@ enum Team { RED, BLU }
 			fp_mesh.set("surface_material_override/1", RED_SLEEVES)
 
 @export_group("Debug", "debug_")
-@export var debug_simulate_vanilla_tickrate := false
 @export var debug_allow_bunny_hopping := false
 @export var debug_show_collisions := false
 @export var debug_show_collision_hull := false
@@ -101,7 +102,7 @@ var crouched := false:
 			
 		hull.position.y = height * 0.5
 		
-		cam_pivot.height_offset = VIEW_CROUCH if crouched else VIEW_BASE
+		view_pivot.height_offset = VIEW_CROUCH if crouched else VIEW_BASE
 		
 		if not grounded:
 			position.y += 20 * HU if crouched else -20 * HU
@@ -137,9 +138,6 @@ func _unhandled_input(event):
 		crouched = event.is_pressed()
 
 func _physics_process(delta: float):
-	if debug_simulate_vanilla_tickrate:
-		delta = 0.015 # 1 / 66.666
-	
 	just_jumped = false
 	if just_landed:
 		if debug_allow_bunny_hopping:
@@ -147,14 +145,14 @@ func _physics_process(delta: float):
 		else:
 			_clamp_speed(1.1) # Prevent carrying too much speed from bunny-hopping.
 #	DebugDraw3D.draw_sphere(get_global_center(), 0.2, Color.RED, delta)
-#	DebugDraw3D.draw_camera_frustum(cam_pivot.get_node("Camera"), Color.VIOLET, delta)
+#	DebugDraw3D.draw_camera_frustum(view_pivot.camera, Color.VIOLET, delta)
 	if noclip_enabled:
 		_handle_noclip(delta)
 		return
 	
 	if is_processing_unhandled_input():
 		wish_dir = Input.get_vector("player_left", "player_right", "player_forward", "player_back")
-		wish_dir = wish_dir.rotated(-cam_pivot.rotation.y)
+		wish_dir = wish_dir.rotated(-view_pivot.rotation.y)
 	#if forced_wishdir.y != 0:
 		#wish_dir.y = forced_wishdir.y
 		#wish_dir = wish_dir.normalized()
@@ -214,7 +212,7 @@ func _handle_noclip(delta: float):
 		velocity.y = move_toward(velocity.y, NOCLIP_SPEED * vertical_acceleration, NOCLIP_ACCELERATION * delta)
 	
 	if flat_acceleration:
-		velocity += cam_pivot.transform.translated_local(flat_acceleration).origin - cam_pivot.position
+		velocity += view_pivot.transform.translated_local(flat_acceleration).origin - view_pivot.position
 		velocity = velocity.limit_length(NOCLIP_SPEED)
 	elif vertical_acceleration == 0.0:
 		velocity = velocity.move_toward(Vector3.ZERO, NOCLIP_ACCELERATION * delta) # Decelerate.
@@ -242,11 +240,11 @@ func _clamp_speed(multiplier := 1.0):
 		var clamped_speed := velocity_planar.length() / max_speed
 		velocity_planar /= clamped_speed	
 	
-	var back_speed := velocity.cross(cam_pivot.global_basis.x)
+	var back_speed := velocity.cross(view_pivot.global_basis.x)
 	var backpedal_walk_speed := max_speed * BACKPEDAL_SPEED_MULTIPLIER
 	if (back_speed.y > backpedal_walk_speed):
 		velocity_planar *= backpedal_walk_speed / back_speed.y
-	#var back_influence := velocity_planar.rotated(cam_pivot.rotation.y).normalized().dot(Vector2.UP)
+	#var back_influence := velocity_planar.rotated(view_pivot.rotation.y).normalized().dot(Vector2.UP)
 	#if back_influence < -0.5 and velocity_planar.length() > backpedal_walk_speed:
 		#velocity_planar.x *= backpedal_walk_speed / back_speed.length() * absf(back_influence)
 		#velocity_planar.y *= backpedal_walk_speed / back_speed.length() * absf(back_influence)
@@ -445,12 +443,12 @@ func _update_for_local_player():
 	propagate_call("set_process_input", [is_local_player])
 	propagate_call("set_process_unhandled_input", [is_local_player])
 	
-	cam_pivot.visible = is_local_player
-	cam_pivot.get_node("Camera").current = is_local_player
+	view_pivot.visible = is_local_player
+	view_pivot.camera.current = is_local_player
 	
 	# Hacky dependency to WeaponManager to hide your own third person meshes when in first person.
 	var hacky_shit_tp_meshes: Array[MeshInstance3D] = [body_mesh]
-	for wep: WeaponNode in cam_pivot.get_node("WeaponManager").get_weapons():
+	for wep: WeaponNode in view_pivot.get_node("WeaponManager").get_weapons():
 		if wep.tp_model:
 			hacky_shit_tp_meshes.append(wep.tp_model.get_child(0).get_child(0))
 	

@@ -5,6 +5,8 @@ const YAW_LIMIT = 1.55334 # 89 degrees up and down.
 @export_range(0, 1, 0.001, "radians_as_degrees") var sensitivity := deg_to_rad(0.075)
 var height_offset := 68 * Player.HU
 
+@onready var camera: Camera3D = $Camera
+
 func _unhandled_input(event: InputEvent) -> void:
 	if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		if event is InputEventMouseMotion:
