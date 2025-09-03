@@ -101,7 +101,7 @@ var crouched := false:
 			
 		hull.position.y = height * 0.5
 		
-		cam_pivot.position.y = VIEW_CROUCH if crouched else VIEW_BASE
+		cam_pivot.height_offset = VIEW_CROUCH if crouched else VIEW_BASE
 		
 		if not grounded:
 			position.y += 20 * HU if crouched else -20 * HU
@@ -450,7 +450,7 @@ func _update_for_local_player():
 	
 	# Hacky dependency to WeaponManager to hide your own third person meshes when in first person.
 	var hacky_shit_tp_meshes: Array[MeshInstance3D] = [body_mesh]
-	for wep: WeaponNode in $Smoothing3D/Pivot/WeaponManager.get_weapons():
+	for wep: WeaponNode in cam_pivot.get_node("WeaponManager").get_weapons():
 		if wep.tp_model:
 			hacky_shit_tp_meshes.append(wep.tp_model.get_child(0).get_child(0))
 	
