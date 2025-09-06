@@ -100,9 +100,11 @@ transform = Transform3D(0.392985, 0.863301, 0.316661, 0.589432, -0.500812, 0.633
 light_color = Color(0.992, 0.965, 0.973, 1)
 light_bake_mode = 1
 shadow_enabled = true
-directional_shadow_mode = 0
+shadow_normal_bias = 7.0
+directional_shadow_mode = 1
+directional_shadow_split_1 = 0.2
 directional_shadow_max_distance = 55.0
-directional_shadow_pancake_size = 130.0
+directional_shadow_pancake_size = 10.0
 
 [node name="DirectionalLight2" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.392985, 0.863301, 0.316661, 0.589432, -0.500812, 0.633843, 0.705785, -0.0624407, -0.705669, 0, 3, 0)
