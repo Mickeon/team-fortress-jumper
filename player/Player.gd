@@ -15,6 +15,8 @@ const GRAVITY_FORCE = 800 * HU # 12 * 66.666
 const TERMINAL_SPEED = 3500 * HU
 
 const ViewPivot = preload("uid://da5guausa6d51")
+const PlayerInput = preload("res://player/input.gd")
+const WeaponManager = preload("res://player/weapon_manager.gd")
 
 ## The player you control, and see from.
 static var local: Player:
@@ -48,6 +50,8 @@ var max_slope_angle := deg_to_rad(45.573):
 
 @export_group("Nodes")
 @export var view_pivot: ViewPivot
+@export var input: PlayerInput
+@export var weapon_manager: WeaponManager
 @export var hull: CollisionShape3D ## The collision hull, the bounding box.
 @export var body_mesh: MeshInstance3D
 @export var fp_mesh: MeshInstance3D
@@ -130,14 +134,27 @@ var noclip_enabled := false:
 var wish_dir := Vector2.ZERO
 var forced_wishdir := Vector2.ZERO
 
+var offline := false:
+	set(new):
+		offline = new
+		_update_for_offline_state()
+var net_id := -1:
+	set(new):
+		if net_id == new:
+			return
+		
+		net_id = new
+		
+		set_multiplayer_authority(1)
+		input.set_multiplayer_authority(net_id)
+		view_pivot.set_multiplayer_authority(net_id)
+		weapon_manager.set_multiplayer_authority(net_id) # It's within view_pilot but just to be sure.
+
 func _ready() -> void:
 	_update_for_local_player()
+	_update_for_offline_state()
 
-func _unhandled_input(event):
-	if event.is_action("player_crouch"):
-		crouched = event.is_pressed()
-
-func _physics_process(delta: float):
+func _physics_process(delta: float) -> void:
 	just_jumped = false
 	if just_landed:
 		if debug_allow_bunny_hopping:
@@ -150,16 +167,17 @@ func _physics_process(delta: float):
 		_handle_noclip(delta)
 		return
 	
-	if is_processing_unhandled_input():
-		wish_dir = Input.get_vector("player_left", "player_right", "player_forward", "player_back")
+	#if is_processing_unhandled_input():
+	if true:
+		wish_dir = input.movement
 		wish_dir = wish_dir.rotated(-view_pivot.rotation.y)
 	#if forced_wishdir.y != 0:
 		#wish_dir.y = forced_wishdir.y
 		#wish_dir = wish_dir.normalized()
 		
-		if grounded and Input.is_action_pressed("player_jump"):
-			# HACK: Ideally there should be a better way to send one-off inputs like these.
-			_jump.rpc_id(1)
+		crouched = input.crouched
+		if grounded and input.jumped:
+			_jump()
 	
 	_apply_friction(delta)
 	
@@ -198,16 +216,18 @@ func _physics_process(delta: float):
 			var radius: float = hull.shape.radius
 			DebugDraw3D.draw_cylinder(global_transform.scaled_local(Vector3(radius, HU, radius)), Color.YELLOW)
 
+func _rollback_tick(delta: float, _tick: int, _is_fresh: bool):
+	_physics_process(delta)
 
 func _handle_noclip(delta: float):
 	const NOCLIP_SPEED = 15.0
 	const NOCLIP_ACCELERATION = 60
 	
-	if is_processing_unhandled_input():
-		wish_dir = Input.get_vector("player_left", "player_right", "player_forward", "player_back")
+	#if is_processing_unhandled_input():
+	wish_dir = input.movement
 	var flat_acceleration := Vector3(wish_dir.x, 0, wish_dir.y) * ground_acceleration * delta
 	
-	var vertical_acceleration := Input.get_axis("player_crouch", "player_jump")
+	var vertical_acceleration := float(input.jumped) - float(input.crouched)
 	if vertical_acceleration:
 		velocity.y = move_toward(velocity.y, NOCLIP_SPEED * vertical_acceleration, NOCLIP_ACCELERATION * delta)
 	
@@ -253,7 +273,6 @@ func _clamp_speed(multiplier := 1.0):
 	velocity.z = velocity_planar.y
 
 
-@rpc("authority", "call_local", "reliable")
 func _jump():
 	if grounded:
 		grounded = false
@@ -298,7 +317,8 @@ func _handle_collision(delta: float):
 #			if slope_angle < max_slope_angle:
 				# Give one extra frame of just landed mercy. Vanilla TF2 does this.
 				# Allows keeping momentum with perfect bunny-hopping.
-				set_deferred("grounded", true)
+				#set_deferred("grounded", true) # Problematic for online.
+				grounded = true
 				just_landed = true
 				velocity.y = 0.0
 		else:
@@ -440,19 +460,23 @@ func _update_for_local_player():
 	const LAYER_THIRD_PERSON = 1 << 2
 	var is_local_player := (self == Player.local)
 	
-	propagate_call("set_process_input", [is_local_player])
-	propagate_call("set_process_unhandled_input", [is_local_player])
-	
 	view_pivot.visible = is_local_player
 	view_pivot.camera.current = is_local_player
 	
 	# Hacky dependency to WeaponManager to hide your own third person meshes when in first person.
 	var hacky_shit_tp_meshes: Array[MeshInstance3D] = [body_mesh]
-	for wep: WeaponNode in view_pivot.get_node("WeaponManager").get_weapons():
+	for wep: WeaponNode in weapon_manager.get_weapons():
 		if wep.tp_model:
 			hacky_shit_tp_meshes.append(wep.tp_model.get_child(0).get_child(0))
 	
 	for mesh in hacky_shit_tp_meshes:
 		# TODO: Show third person model's shadow when in first person.
 		mesh.layers = LAYER_THIRD_PERSON | (0 if is_local_player else LAYER_FIRST_PERSON)
+
+func _update_for_offline_state():
+	# When networking is done, we call the processing methods in the network's tick functions.
+	# We must disable the processing methods so Godot doesn't call them them twice or more times.
+	set_physics_process(offline)
+	input.set_process(offline)
+	weapon_manager.set_physics_process(offline)
 

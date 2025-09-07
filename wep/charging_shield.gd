@@ -1,5 +1,7 @@
 extends WeaponNode
 
+# FIXME: Charging Shield can no longer be "shot" due to netcode changes.
+
 const CHARGE_SPEED = 750 * HU
 
 var previous_ground_speed := 0.0

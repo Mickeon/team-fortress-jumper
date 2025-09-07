@@ -24,13 +24,21 @@ run/max_fps.editor=75
 
 buses/default_bus_layout="res://sfx/default_bus_layout.tres"
 
+[autoload]
+
+NetworkTime="*res://addons/netfox/network-time.gd"
+NetworkTimeSynchronizer="*res://addons/netfox/network-time-synchronizer.gd"
+NetworkRollback="*res://addons/netfox/rollback/network-rollback.gd"
+NetworkEvents="*res://addons/netfox/network-events.gd"
+NetworkPerformance="*res://addons/netfox/network-performance.gd"
+
 [debug]
 
 gdscript/warnings/static_called_on_instance=0
 gdscript/warnings/narrowing_conversion=0
 multirun/add_custom_args=true
 multirun/window_args=["listen --name \"Winnie the Poo\"", "join --order 2 --name \"Piglet\"", "join --order 3 --name \"Corey\"", "join --order 4 --name \"Uhm\""]
-multirun/number_of_windows=2
+multirun/number_of_windows=3
 
 [debug_draw_3d]
 
@@ -51,7 +59,7 @@ naming/scene_name_casing=1
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/godotvmf/plugin.cfg", "res://addons/multirun/plugin.cfg", "res://addons/plugin_refresher/plugin.cfg")
+enabled=PackedStringArray("res://addons/godotvmf/plugin.cfg", "res://addons/multirun/plugin.cfg", "res://addons/netfox.internals/plugin.cfg", "res://addons/netfox/plugin.cfg", "res://addons/plugin_refresher/plugin.cfg")
 
 [file_customization]
 
@@ -223,6 +231,11 @@ debug_menu={
 3d_physics/layer_1="Solid Geometry"
 3d_physics/layer_9="Player"
 3d_physics/layer_10="Projectile"
+
+[netfox]
+
+events/enabled.web=false
+time/tickrate=10
 
 [physics]
 

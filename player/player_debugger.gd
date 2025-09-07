@@ -221,6 +221,9 @@ static func m_to_hu(value: Variant) -> Variant:
 func _populate_debug_menu():
 	if menu.item_count > 0:
 		return # Already populated.
+	if not player:
+		printerr("No player in sight to populate debug menu with?")
+		return
 	
 	menu_add_multistate_for_property(self, "view_mode", KEY_NONE, ViewMode.size())
 	menu.set_item_shortcut(-1, shortcut_from_action("debug_view_mode"))

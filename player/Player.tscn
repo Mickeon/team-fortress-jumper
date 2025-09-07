@@ -1,11 +1,14 @@
-[gd_scene load_steps=60 format=3 uid="uid://bp3faj46c64ck"]
+[gd_scene load_steps=62 format=3 uid="uid://bp3faj46c64ck"]
 
 [ext_resource type="Script" uid="uid://ralk8skbs5p3" path="res://player/Player.gd" id="1"]
+[ext_resource type="Script" uid="uid://bulvmqnteu5wm" path="res://player/input.gd" id="2_610ub"]
 [ext_resource type="Script" uid="uid://cqeexyt8opffs" path="res://wep/rocket_launcher.gd" id="2_eytv3"]
 [ext_resource type="PackedScene" uid="uid://bs1di4sdp87y2" path="res://player/soldier/soldier_fp.glb" id="2_q83su"]
 [ext_resource type="Script" uid="uid://da5guausa6d51" path="res://player/view_pivot.gd" id="3_610ub"]
+[ext_resource type="Script" uid="uid://d350u8evihs1u" path="res://addons/netfox/rollback/rollback-synchronizer.gd" id="3_ayguc"]
 [ext_resource type="AudioStream" uid="uid://824byn35wkj0" path="res://sfx/primary/rocket_jumper_shoot.ogg" id="4_6revy"]
 [ext_resource type="Material" uid="uid://c67e1bprtx6g6" path="res://player/soldier/mat/hands_fp_mat.tres" id="4_8cy8x"]
+[ext_resource type="Script" uid="uid://dour8fehaaugp" path="res://addons/netfox/tick-interpolator.gd" id="4_ayguc"]
 [ext_resource type="PackedScene" uid="uid://cw116s8st8i27" path="res://wep/models/rocket_launcher.glb" id="4_fpnlp"]
 [ext_resource type="Material" uid="uid://blvflicat0g82" path="res://player/soldier/mat/sleeves_mat_red.tres" id="5_610ub"]
 [ext_resource type="Script" uid="uid://bcmj5coy5nnpn" path="res://wep/charging_shield.gd" id="5_k3wqx"]
@@ -35,7 +38,6 @@
 [ext_resource type="AudioStream" uid="uid://dxaoxipsj8cnf" path="res://sfx/common/crit_hit1.ogg" id="30_p4trj"]
 [ext_resource type="AudioStream" uid="uid://c1k6nn541ywka" path="res://sfx/secondary/charging_shield_windup_no_voice.ogg" id="34_ti2ir"]
 [ext_resource type="AudioStream" uid="uid://cqwxehsek2xdy" path="res://sfx/common/rocket_jump_wind.ogg" id="40_4f14b"]
-[ext_resource type="Script" uid="uid://dmw8caoh5bhha" path="res://player/server_synchronizer.gd" id="40_icifs"]
 [ext_resource type="AudioStream" uid="uid://chi7fdkssts2p" path="res://sfx/common/footstep/concrete.tres" id="44_w36ex"]
 [ext_resource type="Script" uid="uid://cy8k051va8lv7" path="res://player/footstep_manager.gd" id="48_wpo5q"]
 
@@ -180,7 +182,7 @@ resource_local_to_scene = true
 height = 1.562
 radius = 0.457
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("view_pivot", "hull", "body_mesh", "fp_mesh") groups=["players"]]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("view_pivot", "input", "weapon_manager", "hull", "body_mesh", "fp_mesh") groups=["players"]]
 process_thread_group = 1
 process_thread_group_order = 0
 process_thread_messages = 0
@@ -191,9 +193,28 @@ floor_block_on_wall = false
 floor_max_angle = 0.802851
 script = ExtResource("1")
 view_pivot = NodePath("Pivot")
+input = NodePath("Input")
+weapon_manager = NodePath("Pivot/WeaponManager")
 hull = NodePath("CollisionShapeBox")
 body_mesh = NodePath("BodyModel/TPSkeleton/mesh")
 fp_mesh = NodePath("Pivot/FirstPersonModel/FPSkeleton/mesh")
+
+[node name="Input" type="Node" parent="."]
+script = ExtResource("2_610ub")
+
+[node name="RollbackSynchronizer" type="Node" parent="." node_paths=PackedStringArray("root")]
+script = ExtResource("3_ayguc")
+root = NodePath("..")
+state_properties = Array[String]([":position", ":grounded", ":crouched", ":just_landed"])
+input_properties = Array[String](["Input:movement", "Input:jumped", "Input:crouched", "Pivot:rotation", "Pivot/WeaponManager:firing_primary"])
+metadata/_custom_type_script = "uid://d350u8evihs1u"
+
+[node name="TickInterpolator" type="Node" parent="." node_paths=PackedStringArray("root")]
+script = ExtResource("4_ayguc")
+root = NodePath("..")
+enabled = false
+properties = Array[String]([":position"])
+metadata/_custom_type_script = "uid://dour8fehaaugp"
 
 [node name="Pivot" type="Node3D" parent="."]
 physics_interpolation_mode = 2
@@ -402,7 +423,6 @@ surface_material_override/0 = ExtResource("19_81co1")
 script = ExtResource("5_k3wqx")
 trail = NodePath("Trail")
 attack_interval = 1.5
-trigger_action = "player_charge"
 active = true
 type = 3
 
@@ -439,9 +459,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.781, 0)
 visible = false
 shape = SubResource("CylinderShape3D_el3cl")
 disabled = true
-
-[node name="Sync" type="Node" parent="."]
-script = ExtResource("40_icifs")
 
 [node name="BodyModel" parent="." node_paths=PackedStringArray("player") instance=ExtResource("25_vdsxv")]
 player = NodePath("..")

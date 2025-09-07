@@ -46,25 +46,30 @@ func _unhandled_input(event):
 				else:
 					map_scene = load("res://maps/ItemTest.tscn")
 
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_WM_CLOSE_REQUEST and multiplayer and multiplayer.is_server():
+		multiplayer.multiplayer_peer.close()
+
 func _ready() -> void:
 	tweak_window()
 	
 	var args := OS.get_cmdline_args()
 	
+	NetworkEvents.on_client_start.connect(func(id): spawn_player(id))
+	NetworkEvents.on_server_start.connect(func(): spawn_player(SERVER_ID))
+	NetworkEvents.on_peer_join.connect(func(id): spawn_player(id))
+	NetworkEvents.on_peer_leave.connect(func(id): remove_player(id))
+	NetworkEvents.on_client_stop.connect(func(): _start_close_countdown())
+	#NetworkEvents.on_server_stop.connect(func(): get_tree().quit())
+	
 	if args.has("listen"):
 		await _host()
 		multiplayer.peer_connected.connect(func(id): chat.broadcast("Client %s connected" % id))
 		multiplayer.peer_disconnected.connect(func(id): chat.broadcast("Client %s disconnected" % id))
-	
 	elif args.has("join"):
 		await _connect()
-	
-	multiplayer.peer_connected.connect(spawn_player)
-	multiplayer.peer_disconnected.connect(remove_player)
-	multiplayer.server_disconnected.connect(_start_close_countdown)
-	
-	spawn_player(multiplayer.get_unique_id())
-	$PlayerDebugger.player = get_node(str(multiplayer.get_unique_id()))
+	else:
+		await spawn_player(SERVER_ID)
 	
 	if not multiplayer.is_server():
 		await multiplayer.peer_connected
@@ -104,15 +109,20 @@ func set_peer_name(new_name: String):
 
 @rpc("authority", "call_local", "reliable")
 func spawn_player(id: int):
-	var is_fake_player := id == 0
+	#var is_fake_player := (id == 0)
+	var is_local_player := (id == multiplayer.get_unique_id())
+	var is_offline := (multiplayer and multiplayer.multiplayer_peer is OfflineMultiplayerPeer)
+	#print(get_tree().get_multiplayer().multiplayer_peer)
 	
 	var player: Player = PlayerScene.instantiate()
 	player.name = str(id)
-	player.set_multiplayer_authority(SERVER_ID if is_fake_player else id)
+	player.net_id = id
+	player.offline = is_offline
 	
 	add_child(player, true)
-	if id == multiplayer.get_unique_id():
+	if is_local_player:
 		Player.local = player
+		$PlayerDebugger.player = player
 	else:
 		tweak_other(player)
 	
@@ -126,7 +136,7 @@ func remove_player(id: int):
 
 func _start_close_countdown():
 	chat.append("Server has closed. Closing game, too.")
-	await get_tree().create_timer(0.5).timeout
+	await get_tree().create_timer(0.5, true, false, true).timeout
 	get_tree().quit()
 
 #region Player Tweaks 
@@ -137,7 +147,6 @@ func tweak_server(player: Player):
 	player.view_pivot.rotation.y += PI
 
 func tweak_client(player: Player):
-	# All clients are in BLU team.
 	player.team = Player.Team.BLU
 	
 	# All clients are shifted ahead on spawn

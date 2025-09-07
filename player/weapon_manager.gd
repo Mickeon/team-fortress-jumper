@@ -16,8 +16,13 @@ const DEPLOY_TIME = 0.5
 
 @onready var deploy_timer: Timer = $Deploy
 
-
-func _unhandled_input(event):
+var firing_primary := false
+#var firing_secondary := false
+#var firing_charge := false
+func _unhandled_input(event: InputEvent):
+	if not is_multiplayer_authority():
+		return
+	
 	if event.is_action_pressed("player_switch_to_primary"):
 		switch_to_by_path.rpc(primary_weapon.get_path())
 	elif event.is_action_pressed("player_switch_to_secondary"):
@@ -25,14 +30,22 @@ func _unhandled_input(event):
 	elif event.is_action_pressed("player_switch_to_melee"):
 		switch_to_by_path.rpc(melee_weapon.get_path())
 	
+	if event.is_action("player_primary"):
+		firing_primary = event.is_pressed()
+	#if event.is_action("player_secondary"):
+		#firing_secondary = event.is_pressed()
+	#if event.is_action("player_charge"):
+		#firing_charge = event.is_pressed()
+	
 	# Additional weapons for further, funny testing.
 	if event is InputEventKey:
 		match event.keycode:
 			KEY_4:
 				switch_to_by_path.rpc("GrenadeLauncher")
 
-
 func _ready() -> void:
+	NetworkTime.before_tick_loop.connect(_gather)
+	
 	deploy_timer.timeout.connect(activate_held_weapon)
 	
 	var fp_anim_player: AnimationPlayer = fp.get_node("AnimationPlayer")
@@ -50,6 +63,12 @@ func _ready() -> void:
 			wep.deployed.connect(tp_anim_tree._on_any_weapon_deployed.bind(wep.type))
 			wep.shot.connect(tp_anim_tree._on_any_weapon_shot)
 
+func _physics_process(_delta) -> void:
+	_gather()
+
+func _gather() -> void:
+	if firing_primary:
+		held_weapon.shoot()
 
 # You cannot pass a whole Object remotely, hence why this exists.
 @rpc("authority", "call_local", "reliable")

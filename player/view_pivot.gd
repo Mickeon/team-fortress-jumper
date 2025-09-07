@@ -8,6 +8,9 @@ var height_offset := 68 * Player.HU
 @onready var camera: Camera3D = $Camera
 
 func _unhandled_input(event: InputEvent) -> void:
+	if not is_multiplayer_authority():
+		return
+	
 	if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		if event is InputEventMouseMotion:
 			_handle_camera_rotation(event)

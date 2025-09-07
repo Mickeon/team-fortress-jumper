@@ -8,17 +8,12 @@ signal shot
 signal deployed
 
 @export var attack_interval := 0.8
-@export_enum("player_primary", "player_secondary", "player_charge")
-var trigger_action := "player_primary"
 @export var active := false:
 	set(new):
 		if active == new:
 			return
 		
 		active = new
-		# When holding down the button, shoot again as soon as possible.
-		if active and Input.is_action_pressed(trigger_action):
-			shoot.rpc()
 enum Type { PRIMARY, SECONDARY, MELEE, EQUIPPABLE }
 @export var type := Type.PRIMARY
 
@@ -30,19 +25,15 @@ enum Type { PRIMARY, SECONDARY, MELEE, EQUIPPABLE }
 
 var first_person_player: AnimationPlayer
 
-
-func _unhandled_input(event):
-	if event.is_action_pressed(trigger_action):
-		# TODO: Try testing rpc_id(1) with this.
-		shoot.rpc()
-
-@rpc("authority", "call_local", "reliable")
 func shoot():
-	# FIXME: Due to lag and the timer being off-sync, the shoot RPC often fails in multiplayer.
-	if not active or (_interval_timer and _interval_timer.time_left > 0.0):
-		#if _interval_timer:
-			#print(_interval_timer.time_left)
+	if not active:
 		return
+	if player_owner.offline:
+		if _interval_timer and _interval_timer.time_left > 0.0:
+			return
+	else:
+		if NetworkTime.seconds_between(_last_shoot_tick, NetworkTime.tick) < attack_interval:
+			return
 	
 	refresh_interval()
 	_shoot()
@@ -67,13 +58,13 @@ func holster():
 		tp_model.hide()
 
 var _interval_timer: SceneTreeTimer
+var _last_shoot_tick := -1
 func refresh_interval():
-	_interval_timer = get_tree().create_timer(attack_interval, true, true)
-	_interval_timer.timeout.connect(func():
-			_ready_to_shoot()
-			# When holding down the button, shoot again as soon as possible.
-			if Input.is_action_pressed(trigger_action): shoot.rpc()
-	)
+	if player_owner.offline:
+		_interval_timer = get_tree().create_timer(attack_interval, true, true)
+		_interval_timer.timeout.connect(_ready_to_shoot)
+	else:
+		_last_shoot_tick = NetworkTime.tick
 
 ## Overridable. Called when deploying this weapon.
 func _deploy():
