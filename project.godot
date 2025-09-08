@@ -236,6 +236,7 @@ debug_menu={
 
 events/enabled.web=false
 time/tickrate=10
+time/sync_to_physics=true
 
 [physics]
 

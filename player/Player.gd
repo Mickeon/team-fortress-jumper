@@ -149,12 +149,23 @@ var net_id := -1:
 		input.set_multiplayer_authority(net_id)
 		view_pivot.set_multiplayer_authority(net_id)
 		weapon_manager.set_multiplayer_authority(net_id) # It's within view_pilot but just to be sure.
+		for wep in weapon_manager.get_weapons():
+			wep.set_multiplayer_authority(1)
+		
+		if has_node("RollbackSynchronizer"):
+			if not is_node_ready():
+				await ready
+				await get_tree().physics_frame
+			$RollbackSynchronizer.process_authority()
 
 func _ready() -> void:
 	_update_for_local_player()
 	_update_for_offline_state()
 
 func _physics_process(delta: float) -> void:
+	_rollback_tick(delta, 0, false)
+
+func _rollback_tick(delta: float, _tick: int, _is_fresh: bool):
 	just_jumped = false
 	if just_landed:
 		if debug_allow_bunny_hopping:
@@ -215,9 +226,6 @@ func _physics_process(delta: float) -> void:
 		else:
 			var radius: float = hull.shape.radius
 			DebugDraw3D.draw_cylinder(global_transform.scaled_local(Vector3(radius, HU, radius)), Color.YELLOW)
-
-func _rollback_tick(delta: float, _tick: int, _is_fresh: bool):
-	_physics_process(delta)
 
 func _handle_noclip(delta: float):
 	const NOCLIP_SPEED = 15.0
