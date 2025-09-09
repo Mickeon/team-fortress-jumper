@@ -134,10 +134,6 @@ var noclip_enabled := false:
 var wish_dir := Vector2.ZERO
 var forced_wishdir := Vector2.ZERO
 
-var offline := false:
-	set(new):
-		offline = new
-		_update_for_offline_state()
 var net_id := -1:
 	set(new):
 		if net_id == new:
@@ -145,6 +141,8 @@ var net_id := -1:
 		
 		net_id = new
 		
+		# FIXME: Fake players (net_id == 0) cannot rollback and are thus broken.
+		#var authority_id = (1 if net_id == 0 else net_id)
 		set_multiplayer_authority(1)
 		input.set_multiplayer_authority(net_id)
 		view_pivot.set_multiplayer_authority(net_id)
@@ -152,11 +150,9 @@ var net_id := -1:
 		for wep in weapon_manager.get_weapons():
 			wep.set_multiplayer_authority(1)
 		
-		if has_node("RollbackSynchronizer"):
-			if not is_node_ready():
-				await ready
-				await get_tree().physics_frame
-			$RollbackSynchronizer.process_authority()
+		var rollback_synchronizer: RollbackSynchronizer = get_node_or_null("RollbackSynchronizer")
+		if rollback_synchronizer and rollback_synchronizer.is_node_ready():
+			rollback_synchronizer.process_authority()
 
 func _ready() -> void:
 	_update_for_local_player()
@@ -172,23 +168,23 @@ func _rollback_tick(delta: float, _tick: int, _is_fresh: bool):
 			_apply_friction(delta)
 		else:
 			_clamp_speed(1.1) # Prevent carrying too much speed from bunny-hopping.
-#	DebugDraw3D.draw_sphere(get_global_center(), 0.2, Color.RED, delta)
-#	DebugDraw3D.draw_camera_frustum(view_pivot.camera, Color.VIOLET, delta)
+	
+	_handle_network_test(delta)
+
 	if noclip_enabled:
 		_handle_noclip(delta)
 		return
 	
 	#if is_processing_unhandled_input():
-	if true:
-		wish_dir = input.movement
-		wish_dir = wish_dir.rotated(-view_pivot.rotation.y)
+	wish_dir = input.movement
+	wish_dir = wish_dir.rotated(-view_pivot.rotation.y)
 	#if forced_wishdir.y != 0:
 		#wish_dir.y = forced_wishdir.y
 		#wish_dir = wish_dir.normalized()
-		
-		crouched = input.crouched
-		if grounded and input.jumped:
-			_jump()
+	
+	crouched = input.crouched
+	if grounded and input.jumped:
+		_jump()
 	
 	_apply_friction(delta)
 	
@@ -246,6 +242,7 @@ func _handle_noclip(delta: float):
 		velocity = velocity.move_toward(Vector3.ZERO, NOCLIP_ACCELERATION * delta) # Decelerate.
 	
 	position += velocity * delta
+	position.y = wrapf(position.y, -1000 * HU, 1000 * HU) # Mostly for testing purposes.
 
 
 func _apply_friction(delta: float):
@@ -484,7 +481,32 @@ func _update_for_local_player():
 func _update_for_offline_state():
 	# When networking is done, we call the processing methods in the network's tick functions.
 	# We must disable the processing methods so Godot doesn't call them them twice or more times.
+	var offline = is_offline()
 	set_physics_process(offline)
 	input.set_process(offline)
 	weapon_manager.set_physics_process(offline)
 
+func _handle_network_test(delta):
+	if noclip_enabled:
+		# Network test. Relies on input broadcasting, working its way backwards. Quite unorthodox.
+		for p: Player in get_tree().get_nodes_in_group("players"):
+			if p != self and p.input.debug_network_use:
+				velocity.y = move_toward(velocity.y, 60.0, 30.0 * delta)
+	else:
+		# Network test. This isn't working, but it really should!
+		#if input.debug_network_use:
+			#for p: Player in get_tree().get_nodes_in_group("players"):
+				#if p != self and p.grounded:
+					#p.velocity.y += 1000 * HU
+					#p.grounded = false
+					#NetworkRollback.mutate(p)
+		
+		# Network test. Relies on input broadcasting, working its way backwards. Quite unorthodox.
+		for p: Player in get_tree().get_nodes_in_group("players"):
+			if p.input.debug_network_use and self != p and grounded:
+				velocity.y = 1000 * HU
+				grounded = false
+
+static func is_offline() -> bool:
+	var tree: SceneTree = Engine.get_main_loop()
+	return tree.get_multiplayer().multiplayer_peer is OfflineMultiplayerPeer

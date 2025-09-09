@@ -28,7 +28,7 @@ var first_person_player: AnimationPlayer
 func shoot():
 	if not active:
 		return
-	if player_owner.offline:
+	if Player.is_offline():
 		if _interval_timer and _interval_timer.time_left > 0.0:
 			return
 	else:
@@ -60,7 +60,7 @@ func holster():
 var _interval_timer: SceneTreeTimer
 var _last_shoot_tick := -1
 func refresh_interval():
-	if player_owner.offline:
+	if Player.is_offline():
 		_interval_timer = get_tree().create_timer(attack_interval, true, true)
 		_interval_timer.timeout.connect(_ready_to_shoot)
 	else:

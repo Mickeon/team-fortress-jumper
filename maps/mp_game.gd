@@ -109,15 +109,13 @@ func set_peer_name(new_name: String):
 
 @rpc("authority", "call_local", "reliable")
 func spawn_player(id: int):
-	#var is_fake_player := (id == 0)
+	var is_fake_player := (id == 0)
 	var is_local_player := (id == multiplayer.get_unique_id())
-	var is_offline := (multiplayer and multiplayer.multiplayer_peer is OfflineMultiplayerPeer)
-	#print(get_tree().get_multiplayer().multiplayer_peer)
 	
 	var player: Player = PlayerScene.instantiate()
-	player.name = str(id)
+	# HACK: Problematic for remove_player but okay for now.
+	player.name = "Dummy" if is_fake_player else str(id)
 	player.net_id = id
-	player.offline = is_offline
 	
 	add_child(player, true)
 	if is_local_player:

@@ -19,6 +19,9 @@ const SURFACE_MAP := {
 @onready var step_timer: Timer = $Step
 
 func _physics_process(_delta) -> void:
+	if player.noclip_enabled:
+		return # Shrug.
+	
 	if player.just_jumped:
 		play_for_surface(JUMP_VOLUME)
 	

@@ -206,7 +206,7 @@ script = ExtResource("2_610ub")
 script = ExtResource("3_ayguc")
 root = NodePath("..")
 state_properties = Array[String]([":position", ":velocity", ":crouched", ":just_landed", ":just_jumped", ":wish_dir", ":grounded"])
-input_properties = Array[String](["Input:movement", "Input:jumped", "Input:crouched", "Pivot:rotation", "Pivot/WeaponManager:firing_primary"])
+input_properties = Array[String](["Input:movement", "Input:jumped", "Input:crouched", "Input:debug_network_use", "Pivot:rotation", "Pivot/WeaponManager:firing_primary"])
 metadata/_custom_type_script = "uid://d350u8evihs1u"
 
 [node name="TickInterpolator" type="Node" parent="." node_paths=PackedStringArray("root")]
