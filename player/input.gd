@@ -4,6 +4,8 @@ var movement := Vector2.ZERO
 var jumped := false
 var crouched := false
 var debug_network_use := false
+var firing_primary := false
+
 
 func _ready():
 	NetworkTime.before_tick_loop.connect(_gather)
@@ -19,4 +21,5 @@ func _gather():
 	jumped = Input.is_action_pressed("player_jump")
 	crouched = Input.is_action_pressed("player_crouch")
 	debug_network_use = Input.is_action_pressed("debug_network_use")
+	firing_primary = Input.is_action_pressed("player_primary")
 

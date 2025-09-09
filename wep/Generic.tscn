@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=3 uid="uid://pvo3x2g53ir3"]
+
+[ext_resource type="Script" uid="uid://dp54yahja8frv" path="res://wep/generic.gd" id="1_h816n"]
+[ext_resource type="AudioStream" uid="uid://cp05pouwbvdae" path="res://sfx/interface/button_click.ogg" id="2_h816n"]
+[ext_resource type="AudioStream" uid="uid://q7y100ioyoni" path="res://sfx/secondary/secondary_draw.ogg" id="3_nisp2"]
+[ext_resource type="AudioStream" uid="uid://oux86kihnmia" path="res://sfx/common/impact_bullet/flesh_impact_bullet.tres" id="5_8rm5d"]
+[ext_resource type="PackedScene" uid="uid://cwra1254eqlhr" path="res://wep/models/shotgun.glb" id="6_7aaei"]
+
+[node name="Generic" type="Node3D"]
+script = ExtResource("1_h816n")
+type = 1
+
+[node name="Shoot" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(-0.988228, -0.152958, -0.00293694, -2.60944e-09, -0.0191974, 0.999816, -0.152986, 0.988046, 0.0189714, 0, 0, 0)
+stream = ExtResource("2_h816n")
+volume_db = -10.0
+max_db = -10.0
+pitch_scale = 0.5
+attenuation_filter_cutoff_hz = 18520.0
+
+[node name="Deploy" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(-0.988228, -0.152958, -0.00293694, -2.60944e-09, -0.0191974, 0.999816, -0.152986, 0.988046, 0.0189714, 0, 0, 0)
+stream = ExtResource("3_nisp2")
+volume_db = -20.0
+max_db = -20.0
+attenuation_filter_cutoff_hz = 18520.0
+
+[node name="BulletImpactFlesh" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("5_8rm5d")
+volume_db = -20.0
+max_db = -15.0
+max_distance = 15.0
+attenuation_filter_cutoff_hz = 18520.0
+
+[node name="FPModel" parent="." instance=ExtResource("6_7aaei")]
+
+[node name="c_shotgun" parent="FPModel/WeaponSkeleton" index="0"]
+layers = 2
+
+[node name="TPModel" parent="." instance=ExtResource("6_7aaei")]
+
+[node name="c_shotgun" parent="TPModel/WeaponSkeleton" index="0"]
+layers = 4
+
+[editable path="FPModel"]
+[editable path="TPModel"]

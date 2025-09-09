@@ -7,7 +7,7 @@ const HU = Player.HU
 signal shot
 signal deployed
 
-@export var attack_interval := 0.8
+@export var fire_cooldown := 0.8
 @export var active := false:
 	set(new):
 		if active == new:
@@ -18,26 +18,79 @@ enum Type { PRIMARY, SECONDARY, MELEE, EQUIPPABLE }
 @export var type := Type.PRIMARY
 
 @onready var player_owner: Player = owner
+@onready var input := player_owner.input
 @onready var fp_model: Node3D = get_node_or_null("FPModel")
 @onready var tp_model: Node3D = get_node_or_null("TPModel")
 @onready var shoot_sfx: AudioStreamPlayer3D = get_node_or_null("Shoot")
 @onready var deploy_sfx: AudioStreamPlayer3D = get_node_or_null("Deploy")
 
+@onready var fire_action := RewindableAction.new()
+@onready var rollback_synchronizer: RollbackSynchronizer = $%RollbackSynchronizer
+
 var first_person_player: AnimationPlayer
 
-func shoot():
-	if not active:
-		return
-	if Player.is_offline():
-		if _interval_timer and _interval_timer.time_left > 0.0:
-			return
-	else:
-		if NetworkTime.seconds_between(_last_shoot_tick, NetworkTime.tick) < attack_interval:
-			return
+var _fire_timer: SceneTreeTimer
+var _last_fire := -1
+
+func _ready() -> void:
+	add_child(fire_action)
+	fire_action.name = "FireAction"
+	fire_action.mutate(self)         # Mutate self, so firing code can run.
+	fire_action.mutate(player_owner) # Mutate player.
+	rollback_synchronizer.add_state(self, "_last_fire")
+
+	NetworkTime.after_tick_loop.connect(func():
+		if fire_action.has_confirmed():
+			_fire_confirmed()	
+	)
 	
-	refresh_interval()
-	_shoot()
+	set_physics_process(Player.is_offline())
+
+func _physics_process(delta: float) -> void:
+	_rollback_tick(delta, 0, false)
+
+func _rollback_tick(_delta: float, _tick: int, _is_fresh: bool):
+	if rollback_synchronizer.is_predicting():
+		return
+	
+	if Player.is_offline():
+		if _can_fire():
+			_fire()
+			_fire_confirmed()
+	else:
+		fire_action.set_active(_can_fire())
+		match fire_action.get_status():
+			RewindableAction.CONFIRMING, RewindableAction.ACTIVE:
+				_fire() # Fire if action has just activated or is active.
+			RewindableAction.CANCELLING:
+				_unfire() # Whoops, turns out we couldn't have fired, undo.
+
+
+func _can_fire() -> bool:
+	if not input.firing_primary:
+		return false
+	if not active:
+		return false
+	if Player.is_offline():
+		if _fire_timer and _fire_timer.time_left > 0.0:
+			return false
+	else:
+		if NetworkTime.seconds_between(_last_fire, NetworkRollback.tick) < fire_cooldown:
+			return false
+	
+	return true
+
+func _fire_confirmed():
+	shoot_sfx.play()
 	emit_signal("shot")
+
+func _fire():
+	refresh_cooldown()
+	_shoot()
+
+func _unfire():
+	fire_action.erase_context()
+
 
 @rpc("authority", "call_local", "reliable")
 func deploy():
@@ -57,14 +110,13 @@ func holster():
 	if tp_model:
 		tp_model.hide()
 
-var _interval_timer: SceneTreeTimer
-var _last_shoot_tick := -1
-func refresh_interval():
+
+func refresh_cooldown():
 	if Player.is_offline():
-		_interval_timer = get_tree().create_timer(attack_interval, true, true)
-		_interval_timer.timeout.connect(_ready_to_shoot)
+		_fire_timer = get_tree().create_timer(fire_cooldown, true, true)
+		_fire_timer.timeout.connect(_ready_to_shoot)
 	else:
-		_last_shoot_tick = NetworkTime.tick
+		_last_fire = NetworkRollback.tick
 
 ## Overridable. Called when deploying this weapon.
 func _deploy():

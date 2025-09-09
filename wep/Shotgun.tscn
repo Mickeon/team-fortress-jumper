@@ -1,0 +1,105 @@
+[gd_scene load_steps=13 format=3 uid="uid://sdbrfx65acjc"]
+
+[ext_resource type="Script" uid="uid://bwsn5huuoojxe" path="res://wep/shotgun.gd" id="1_p3w2e"]
+[ext_resource type="AudioStream" uid="uid://dlpsi358ivubb" path="res://sfx/secondary/shotgun_shoot.ogg" id="2_rtt17"]
+[ext_resource type="AudioStream" uid="uid://q7y100ioyoni" path="res://sfx/secondary/secondary_draw.ogg" id="3_bwgpe"]
+[ext_resource type="AudioStream" uid="uid://blsqvlwnog4li" path="res://sfx/common/impact_bullet/concrete_impact_bullet.tres" id="4_ek5cg"]
+[ext_resource type="AudioStream" uid="uid://oux86kihnmia" path="res://sfx/common/impact_bullet/flesh_impact_bullet.tres" id="5_stdv6"]
+[ext_resource type="PackedScene" uid="uid://cwra1254eqlhr" path="res://wep/models/shotgun.glb" id="6_d0e1d"]
+[ext_resource type="Material" uid="uid://cnmv8s17cp571" path="res://wep/models/shotgun_mat.tres" id="7_oeqgc"]
+
+[sub_resource type="Gradient" id="Gradient_q8p6q"]
+offsets = PackedFloat32Array(0, 0.0748032, 0.161417, 0.929134)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_wmvs3"]
+gradient = SubResource("Gradient_q8p6q")
+width = 3
+height = 16
+fill_to = Vector2(0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mjbim"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.980392, 1, 0.415686, 1)
+albedo_texture = SubResource("GradientTexture2D_wmvs3")
+disable_receive_shadows = true
+use_particle_trails = true
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_02281"]
+direction = Vector3(0, 0, -1)
+spread = 0.0
+initial_velocity_min = 10.0
+initial_velocity_max = 10.0
+gravity = Vector3(0, 0, 0)
+
+[sub_resource type="RibbonTrailMesh" id="RibbonTrailMesh_g472k"]
+shape = 0
+size = 0.05
+
+[node name="Shotgun" type="Node3D" node_paths=PackedStringArray("bullet_trail")]
+script = ExtResource("1_p3w2e")
+bullet_trail = NodePath("BulletTrail")
+type = 1
+
+[node name="Shoot" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(-0.988228, -0.152958, -0.00293694, -2.60944e-09, -0.0191974, 0.999816, -0.152986, 0.988046, 0.0189714, 0, 0, 0)
+stream = ExtResource("2_rtt17")
+volume_db = -20.0
+max_db = -20.0
+attenuation_filter_cutoff_hz = 18520.0
+
+[node name="Deploy" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(-0.988228, -0.152958, -0.00293694, -2.60944e-09, -0.0191974, 0.999816, -0.152986, 0.988046, 0.0189714, 0, 0, 0)
+stream = ExtResource("3_bwgpe")
+volume_db = -20.0
+max_db = -20.0
+attenuation_filter_cutoff_hz = 18520.0
+
+[node name="BulletImpact" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(-0.988228, -0.152958, -0.00293694, -2.60944e-09, -0.0191974, 0.999816, -0.152986, 0.988046, 0.0189714, 0, 0, 0)
+stream = ExtResource("4_ek5cg")
+volume_db = -20.0
+max_db = -20.0
+max_distance = 15.0
+attenuation_filter_cutoff_hz = 18520.0
+
+[node name="BulletImpactFlesh" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(-0.988228, -0.152958, -0.00293694, -2.60944e-09, -0.0191974, 0.999816, -0.152986, 0.988046, 0.0189714, 0, 0, 0)
+stream = ExtResource("5_stdv6")
+volume_db = -20.0
+max_db = -20.0
+max_distance = 15.0
+attenuation_filter_cutoff_hz = 18520.0
+
+[node name="BulletTrail" type="GPUParticles3D" parent="."]
+transform = Transform3D(0.999768, 0, 0.0215357, 0, 1, 0, -0.0215357, 0, 0.999768, 0.212, 0, 0)
+layers = 8
+material_override = SubResource("StandardMaterial3D_mjbim")
+cast_shadow = 0
+emitting = false
+amount = 9
+lifetime = 0.5
+one_shot = true
+fract_delta = false
+transform_align = 3
+trail_enabled = true
+trail_lifetime = 0.1
+process_material = SubResource("ParticleProcessMaterial_02281")
+draw_pass_1 = SubResource("RibbonTrailMesh_g472k")
+
+[node name="FPModel" parent="." instance=ExtResource("6_d0e1d")]
+
+[node name="c_shotgun" parent="FPModel/WeaponSkeleton" index="0"]
+layers = 2
+surface_material_override/0 = ExtResource("7_oeqgc")
+
+[node name="TPModel" parent="." instance=ExtResource("6_d0e1d")]
+
+[node name="c_shotgun" parent="TPModel/WeaponSkeleton" index="0"]
+layers = 4
+surface_material_override/0 = ExtResource("7_oeqgc")
+
+[editable path="FPModel"]
+[editable path="TPModel"]

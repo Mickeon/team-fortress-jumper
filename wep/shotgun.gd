@@ -87,6 +87,7 @@ func deal_damage(player: Player):
 	var knockback_force := minf(damage * volume_ratio * multiplier, 1000 * HU)
 	var add_velocity := knockback_force * direction
 	player.velocity += add_velocity
+	NetworkRollback.mutate(player)
 
 
 static func get_damage_falloff(distance: float) -> float:

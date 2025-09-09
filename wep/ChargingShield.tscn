@@ -1,0 +1,83 @@
+[gd_scene load_steps=12 format=3 uid="uid://rk1pldtwbqcn"]
+
+[ext_resource type="Script" uid="uid://bcmj5coy5nnpn" path="res://wep/charging_shield.gd" id="1_byiaa"]
+[ext_resource type="AudioStream" uid="uid://c1k6nn541ywka" path="res://sfx/secondary/charging_shield_windup_no_voice.ogg" id="2_5frxc"]
+
+[sub_resource type="Gradient" id="Gradient_bi0mt"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.179372, 0.363229, 0.659193, 0.856502)
+colors = PackedColorArray(0.356863, 0.807843, 0.980392, 1, 0.960784, 0.662745, 0.721569, 1, 1, 1, 1, 1, 0.960784, 0.662745, 0.721569, 1, 0.356863, 0.807843, 0.980392, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_kcp36"]
+gradient = SubResource("Gradient_bi0mt")
+width = 16
+height = 16
+fill_to = Vector2(0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7u7yu"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = SubResource("GradientTexture2D_kcp36")
+disable_receive_shadows = true
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+distance_fade_mode = 1
+distance_fade_min_distance = 1.9
+distance_fade_max_distance = 7.5
+
+[sub_resource type="Gradient" id="Gradient_b7pui"]
+offsets = PackedFloat32Array(0.206731, 0.995192)
+colors = PackedColorArray(0.538852, 0.78072, 0.896703, 1, 1, 1, 1, 0.270588)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_awufh"]
+gradient = SubResource("Gradient_b7pui")
+width = 32
+
+[sub_resource type="Curve" id="Curve_iiwv5"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.768018, 0.903614), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.12277, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_imo7j"]
+width = 32
+curve = SubResource("Curve_iiwv5")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_nhp4v"]
+particle_flag_rotate_y = true
+direction = Vector3(0, 0, 1)
+spread = 0.0
+initial_velocity_min = 0.1
+initial_velocity_max = 0.1
+gravity = Vector3(0, -0.05, 0)
+scale_curve = SubResource("CurveTexture_imo7j")
+color_ramp = SubResource("GradientTexture1D_awufh")
+
+[sub_resource type="QuadMesh" id="QuadMesh_gh0ur"]
+size = Vector2(1.4, 1)
+
+[node name="ChargingShield" type="Node3D" node_paths=PackedStringArray("trail")]
+script = ExtResource("1_byiaa")
+trail = NodePath("Trail")
+attack_interval = 1.5
+type = 3
+
+[node name="Trail" type="GPUParticles3D" parent="."]
+material_override = SubResource("StandardMaterial3D_7u7yu")
+emitting = false
+amount = 192
+lifetime = 5.0
+speed_scale = 1.5
+draw_order = 1
+process_material = SubResource("ParticleProcessMaterial_nhp4v")
+draw_pass_1 = SubResource("QuadMesh_gh0ur")
+
+[node name="Shoot" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(-0.988228, -0.152958, -0.00293694, -2.60944e-09, -0.0191974, 0.999816, -0.152986, 0.988046, 0.0189714, 0, 0, 0)
+stream = ExtResource("2_5frxc")
+volume_db = -20.0
+max_db = -20.0
+max_polyphony = 10
+attenuation_filter_cutoff_hz = 18520.0
