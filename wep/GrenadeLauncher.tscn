@@ -1,9 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://cxxkirdbyjvwa"]
+[gd_scene load_steps=4 format=3 uid="uid://cxxkirdbyjvwa"]
 
 [ext_resource type="Script" uid="uid://bfv8te3nappjm" path="res://wep/grenade_launcher.gd" id="1_lf01l"]
 [ext_resource type="AudioStream" uid="uid://c0mggatglgfkc" path="res://sfx/primary/rocket_ll_shoot.ogg" id="2_owy8f"]
 [ext_resource type="AudioStream" uid="uid://c6j2eqvfvvcc4" path="res://sfx/primary/primary_draw.ogg" id="3_bx0dp"]
-[ext_resource type="Script" uid="uid://chr4omg2hy3yu" path="res://addons/netfox/rewindable-action.gd" id="4_1n6ds"]
 
 [node name="GrenadeLauncher" type="Node3D"]
 script = ExtResource("1_lf01l")
@@ -22,7 +21,3 @@ stream = ExtResource("3_bx0dp")
 volume_db = -20.0
 max_db = -20.0
 attenuation_filter_cutoff_hz = 18520.0
-
-[node name="FireAction" type="Node" parent="."]
-script = ExtResource("4_1n6ds")
-metadata/_custom_type_script = "uid://chr4omg2hy3yu"
