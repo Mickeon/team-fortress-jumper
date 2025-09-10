@@ -1,5 +1,7 @@
 extends WeaponNode
 
+# FIXME: Rocket Launcher doesn't work in offline.
+
 const Rocket = preload("./other/rocket.gd")
 
 const SHOOT_OFFSET = Vector3(12.0, -3.0, -23.5) * HU # Vanilla coords: (23.5, 12.0, -3.0)

@@ -82,9 +82,15 @@ func _can_fire() -> bool:
 	
 	return true
 
+var first_fire := false
 func _fire():
 	refresh_cooldown()
-	_shoot()
+	# A potential stop-gap with is_new_hit, as provided in the tutorials, may be odd.
+	# Investigate. Ideally some things should only happen when the server confirms the shot.
+	first_fire = false
+	if not fire_action.has_context():
+		fire_action.set_context(true)
+		first_fire = true
 
 func _unfire():
 	fire_action.erase_context()
@@ -125,10 +131,6 @@ func refresh_cooldown():
 
 ## Overridable. Called when deploying this weapon.
 func _deploy():
-	pass
-
-## Overridable. Called when using this weapon.
-func _shoot():
 	pass
 
 ## Overridable. Called after shooting, when the weapon is ready to shoot again.

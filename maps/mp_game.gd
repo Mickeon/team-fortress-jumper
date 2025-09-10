@@ -203,15 +203,18 @@ func _on_player_hurt(amount: float, inflictor: Player, victim: Player):
 		_queued_damage_numbers[victim] += amount
 
 var _offset := 0.0
+var _debug_show_tick_on_label := false
 func create_damage_label(for_player: Player):
 	const DamageNumberScene = preload("res://wep/other/DamageNumber.tscn")
 	var damage_label: Label3D = DamageNumberScene.instantiate()
-	#damage_label.damage = _queued_damage_numbers[for_player]
-	damage_label.damage = NetworkRollback.tick
+	damage_label.damage = _queued_damage_numbers[for_player]
 	damage_label.position = for_player.position
-	damage_label.position.y += for_player.get_height() + _offset
-	damage_label.modulate.h = damage_label.modulate.h + NetworkRollback.tick * 0.1
-	_offset = wrapf(_offset + 0.5, -1.0, 2.0)
+	damage_label.position.y += for_player.get_height()
+	if _debug_show_tick_on_label:
+		damage_label.damage = NetworkRollback.tick
+		damage_label.position.y += _offset
+		damage_label.modulate.h += NetworkRollback.tick * 0.1
+		_offset = wrapf(_offset + 0.5, -1.0, 2.0)
 	add_child(damage_label)
 	
 	_queued_damage_numbers.erase(for_player)
