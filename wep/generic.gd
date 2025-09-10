@@ -19,9 +19,10 @@ func _on_hit(result: Dictionary):
 	# A potential stop-gap with is_new_hit, as provided in the tutorials, is very janky in my opinion.
 	# Investigate. Ideally some things should only happen when the server confirms the shot.
 	var is_new_hit := false
-	if not fire_action.has_context() or Player.is_offline():
+	if not fire_action.has_context():
 		fire_action.set_context(true)
 		is_new_hit = true
+	
 	#print(fire_action.get_status_string(), " is_new_hit: ", is_new_hit)
 	
 	var victim := result.collider as Player

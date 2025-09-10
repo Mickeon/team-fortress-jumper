@@ -6,7 +6,7 @@ const Grenade = preload("./other/grenade.gd")
 func _deploy():
 	first_person_player.play(&"rocket_launcher_draw")
 
-func _shoot():
+func _fire_confirming():
 	var grenade: Grenade = preload("./other/Grenade.tscn").instantiate()
 	
 	grenade.position = global_position

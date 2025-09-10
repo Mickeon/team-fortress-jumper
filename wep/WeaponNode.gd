@@ -3,6 +3,7 @@ extends Node3D
 class_name WeaponNode
 
 const HU = Player.HU
+const OfflineRewindableAction = preload("res://wep/other/offline_rewindable_action.gd")
 
 signal shot
 signal deployed
@@ -24,7 +25,7 @@ enum Type { PRIMARY, SECONDARY, MELEE, EQUIPPABLE }
 @onready var shoot_sfx: AudioStreamPlayer3D = get_node_or_null("Shoot")
 @onready var deploy_sfx: AudioStreamPlayer3D = get_node_or_null("Deploy")
 
-@onready var fire_action := RewindableAction.new()
+@onready var fire_action: RewindableAction
 @onready var rollback_synchronizer: RollbackSynchronizer = $%RollbackSynchronizer
 
 var first_person_player: AnimationPlayer
@@ -33,38 +34,39 @@ var _fire_timer: SceneTreeTimer
 var _last_fire := -1
 
 func _ready() -> void:
-	add_child(fire_action)
+	fire_action = (OfflineRewindableAction if Player.is_offline() else RewindableAction).new()
 	fire_action.name = "FireAction"
 	fire_action.mutate(self)         # Mutate self, so firing code can run.
 	fire_action.mutate(player_owner) # Mutate player.
+	add_child(fire_action)
 	rollback_synchronizer.add_state(self, "_last_fire")
 
-	NetworkTime.after_tick_loop.connect(func():
-		if fire_action.has_confirmed():
-			_fire_confirmed()	
-	)
+	NetworkTime.after_tick_loop.connect(_after_tick_loop)
 	
 	set_physics_process(Player.is_offline())
 
 func _physics_process(delta: float) -> void:
 	_rollback_tick(delta, 0, false)
+	_after_tick_loop()
 
 func _rollback_tick(_delta: float, _tick: int, _is_fresh: bool):
 	if rollback_synchronizer.is_predicting():
 		return
 	
-	if Player.is_offline():
-		if _can_fire():
+	fire_action.set_active(_can_fire())
+	match fire_action.get_status():
+		RewindableAction.CONFIRMING:
+			_fire_confirming()
 			_fire()
-			_fire_confirmed()
-	else:
-		fire_action.set_active(_can_fire())
-		match fire_action.get_status():
-			RewindableAction.CONFIRMING, RewindableAction.ACTIVE:
-				_fire() # Fire if action has just activated or is active.
-			RewindableAction.CANCELLING:
-				_unfire() # Whoops, turns out we couldn't have fired, undo.
+		RewindableAction.ACTIVE:
+			_fire()
+		RewindableAction.CANCELLING:
+			_unfire() # Whoops, turns out we couldn't have fired, undo.
 
+func _after_tick_loop():
+	if fire_action.has_confirmed():
+		_fire_confirmed()
+	
 
 func _can_fire() -> bool:
 	if not input.firing_primary:
@@ -80,16 +82,19 @@ func _can_fire() -> bool:
 	
 	return true
 
-func _fire_confirmed():
-	shoot_sfx.play()
-	emit_signal("shot")
-
 func _fire():
 	refresh_cooldown()
 	_shoot()
 
 func _unfire():
 	fire_action.erase_context()
+
+func _fire_confirming():
+	pass
+
+func _fire_confirmed():
+	shoot_sfx.play()
+	emit_signal("shot")
 
 
 @rpc("authority", "call_local", "reliable")
