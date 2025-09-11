@@ -17,8 +17,7 @@ const DEPLOY_TIME = 0.5
 @onready var deploy_timer: Timer = $Deploy
 
 func _unhandled_input(event: InputEvent):
-	if not is_multiplayer_authority():
-		return
+	assert(is_multiplayer_authority())
 	
 	if event.is_action_pressed("player_switch_to_primary") and primary_weapon:
 		switch_to_by_path.rpc(primary_weapon.get_path())

@@ -6,6 +6,7 @@ Features to mess with:
 - 4 maps: `level`, [`itemtest`](https://wiki.teamfortress.com/wiki/Itemtest), [`pl_minepit`](https://gamebanana.com/mods/71709), [`koth_harvest_final`](https://wiki.teamfortress.com/wiki/Harvest)
 - Spawnable dummy players
 - Decently proper animations _(I guess that counts?)_
+- Very basic and normally unavailable multiplayer functionality
 - A bunch of debugging utilities and features to mess around with, such as bunny-hopping and noclip _(see below for controls)_
 
 <h3>Showcases:</h3>
@@ -13,7 +14,7 @@ Features to mess with:
 
 
 This repository has not been originally designed to be visible by the public, but I'm putting it out there. It could be useful as a general point of reference. 
-Full support for this demo, as well as additional features _(such as multiplayer)_ should **not** be taken for granted.
+Full support for this demo, as well as additional features _(such as proper multiplayer)_ should **not** be taken for granted.
 
 You can try a **considerably** stripped out version of this project on a web browser on [itch.io](https://mickeon.itch.io/team-fortress-jumper).
 Alternatively, download a build from [the releases](https://github.com/Mickeon/team-fortress-jumper/releases).
@@ -23,17 +24,18 @@ Alternatively, download a build from [the releases](https://github.com/Mickeon/t
 **Beware: Some actions may become outdated.**
 
 #### Basic:
-| Key | Action |
-| :-: | --- |
+| Key | Action | ... |
+| :-: | --- | --- |
 | **WASD** | Move
 | **Jump** | Jump
 | **Shift** or **CTRL** | Crouch
 | **Left Click** | Use Weapon
-| **R** | Charge
+| **R** | Charge | Not available as of writing
 | **1** | Switch to Rocket Launcher
 | **2** | Switch to Shotgun
 | **3** | Switch to Shovel
 | **4** | Switch to Grenade Launcher
+| **5** | Switch to generic weapon
 
 
 #### Selection:
@@ -62,6 +64,7 @@ Alternatively, download a build from [the releases](https://github.com/Mickeon/t
 | **M** | Mute audio
 | **K** | Set rotation's yaw to 89°
 | **Shift** + **K** | Set rotation's pitch to 0°
+| **T** | Network use test
 
 
 ## Credits

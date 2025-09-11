@@ -59,19 +59,7 @@ HSP: %s
 	set(new):
 		simulate_vanilla_delta = new
 		snapped_time_scale = snapped_time_scale # Forcefully calling setter.
-@export var snapped_time_scale := 1.0:
-	set(new):
-		const VANILLA_DELTA := 0.015 ## The vanilla delta time for the 66.666 tickrate.
-		var tps: int = ProjectSettings.get_setting_with_override("physics/common/physics_ticks_per_second")
-		
-		snapped_time_scale = clampf(snappedf(new, 0.015625), VANILLA_DELTA, 1.0)
-		Engine.time_scale = snapped_time_scale
-		Engine.physics_ticks_per_second = maxi(roundi(tps * snapped_time_scale), 1)
-		if simulate_vanilla_delta:
-			Engine.time_scale = VANILLA_DELTA * Engine.physics_ticks_per_second
-		
-		player.reset_physics_interpolation()
-		update_debug_text()
+@export var snapped_time_scale := 1.0: set = set_snapped_time_scale
 
 var camera: Camera3D
 var hovered_meta
@@ -114,10 +102,10 @@ func _input(event):
 	if key_event and key_event.pressed:
 		var key := key_event.keycode
 		match key:
-			KEY_PAGEDOWN:
-				snapped_time_scale *= 0.5
-			KEY_PAGEUP:
-				snapped_time_scale *= 2.0
+			KEY_PAGEDOWN when is_multiplayer_authority():
+				set_snapped_time_scale.rpc(snapped_time_scale * 0.5)
+			KEY_PAGEUP when is_multiplayer_authority():
+				set_snapped_time_scale.rpc(snapped_time_scale * 2.0)
 			KEY_K:
 				player.view_pivot.rotation.x = -1.55334 if key_event.shift_pressed else 0.0
 				player.view_pivot.rotation.y = PI
@@ -188,6 +176,22 @@ func update_debug_text():
 		new_text += "\nAIRBORNE"
 	
 	text = new_text
+
+@rpc("authority", "call_local", "reliable")
+func set_snapped_time_scale(new: float) -> void:
+	const VANILLA_DELTA := 0.015 ## The vanilla delta time for the 66.666 tickrate.
+	var tps: int = ProjectSettings.get_setting_with_override("physics/common/physics_ticks_per_second")
+	
+	snapped_time_scale = clampf(snappedf(new, 0.015625), VANILLA_DELTA, 1.0)
+	Engine.time_scale = snapped_time_scale
+	Engine.physics_ticks_per_second = maxi(roundi(tps * snapped_time_scale), 1)
+	if simulate_vanilla_delta:
+		Engine.time_scale = VANILLA_DELTA * Engine.physics_ticks_per_second
+	
+	#if not Player.is_offline():
+	
+	player.reset_physics_interpolation()
+	update_debug_text()
 
 #region Utility Methods
 func adjust(value: Variant) -> Variant:

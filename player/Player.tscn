@@ -85,6 +85,7 @@ script = ExtResource("2_610ub")
 unique_name_in_owner = true
 script = ExtResource("3_ayguc")
 root = NodePath("..")
+enable_prediction = true
 state_properties = Array[String]([":position", ":velocity", ":crouched", ":just_landed", ":just_jumped", ":wish_dir", ":grounded"])
 input_properties = Array[String](["Input:movement", "Input:jumped", "Input:crouched", "Input:firing_primary", "Input:debug_network_use", "Pivot:rotation"])
 metadata/_custom_type_script = "uid://d350u8evihs1u"
@@ -124,7 +125,7 @@ fp = NodePath("../FirstPersonModel")
 primary_weapon = NodePath("RocketLauncher")
 secondary_weapon = NodePath("Shotgun")
 melee_weapon = NodePath("Shovel")
-held_weapon = NodePath("Generic")
+held_weapon = NodePath("RocketLauncher")
 
 [node name="Deploy" type="Timer" parent="Pivot/WeaponManager"]
 process_callback = 0

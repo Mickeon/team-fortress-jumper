@@ -109,12 +109,12 @@ func set_peer_name(new_name: String):
 
 @rpc("authority", "call_local", "reliable")
 func spawn_player(id: int):
-	var is_fake_player := (id == 0)
+	var is_dummy_player := (id == 0)
 	var is_local_player := (id == multiplayer.get_unique_id())
 	
 	var player: Player = PlayerScene.instantiate()
 	# HACK: Problematic for remove_player but okay for now.
-	player.name = "Dummy" if is_fake_player else str(id)
+	player.name = "Dummy" if is_dummy_player else str(id)
 	player.net_id = id
 	
 	add_child(player, true)
@@ -212,6 +212,7 @@ func create_damage_label(for_player: Player):
 	damage_label.position.y += for_player.get_height()
 	if _debug_show_tick_on_label:
 		damage_label.damage = NetworkRollback.tick
+		damage_label.fade_multiplier = 0.75
 		damage_label.position.y += _offset
 		damage_label.modulate.h += NetworkRollback.tick * 0.1
 		_offset = wrapf(_offset + 0.5, -1.0, 2.0)

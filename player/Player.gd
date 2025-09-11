@@ -141,18 +141,30 @@ var net_id := -1:
 		
 		net_id = new
 		
-		# FIXME: Fake players (net_id == 0) cannot rollback and are thus broken.
-		#var authority_id = (1 if net_id == 0 else net_id)
+		var is_dummy := net_id == 0
+		var authority_id = (1 if is_dummy else net_id)
 		set_multiplayer_authority(1)
-		input.set_multiplayer_authority(net_id)
-		view_pivot.set_multiplayer_authority(net_id)
-		weapon_manager.set_multiplayer_authority(net_id) # It's within view_pilot but just to be sure.
+		input.set_multiplayer_authority(authority_id)
+		view_pivot.set_multiplayer_authority(authority_id)
+		weapon_manager.set_multiplayer_authority(authority_id) # It's within view_pilot but just to be sure.
 		for wep in weapon_manager.get_weapons():
 			wep.set_multiplayer_authority(1)
 		
 		var rollback_synchronizer: RollbackSynchronizer = get_node_or_null("RollbackSynchronizer")
 		if rollback_synchronizer and rollback_synchronizer.is_node_ready():
 			rollback_synchronizer.process_authority()
+		
+		if not is_node_ready():
+			# Required for is_multiplayer_authority(),
+			# and to override the automatic set_process() calls when a node is ready.
+			await ready
+		
+		# I really don't vibe with this. Feels janky.
+		var process_input := input.is_multiplayer_authority() and not is_dummy
+		input.set_process(process_input)
+		input.set_process_unhandled_input(process_input)
+		view_pivot.set_process_unhandled_input(process_input)
+		weapon_manager.set_process_unhandled_input(process_input)
 
 func _ready() -> void:
 	_update_for_local_player()
@@ -481,10 +493,7 @@ func _update_for_local_player():
 func _update_for_offline_state():
 	# When networking is done, we call the processing methods in the network's tick functions.
 	# We must disable the processing methods so Godot doesn't call them them twice or more times.
-	var offline = is_offline()
-	set_physics_process(offline)
-	input.set_process(offline)
-	weapon_manager.set_physics_process(offline)
+	set_physics_process(is_offline())
 
 func _handle_network_test(delta):
 	if noclip_enabled:
