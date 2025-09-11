@@ -1,5 +1,6 @@
 extends WeaponNode
 
+# FIXME: Shovel doesn't work in multiplayer due to swing delay.
 
 const MELEE_RANGE = 96 * HU #48 * HU
 const SWING_DELAY = 0.25
@@ -12,16 +13,20 @@ var _attack_tween: Tween
 func _deploy():
 	first_person_player.play(&"shovel_draw")
 
-func _shoot():
-	const SWING_ANIMATIONS = [&"shovel_swing_a", &"shovel_swing_b"]
+func _fire():
+	super()
 	
-	shoot_sfx.play()
-	first_person_player.stop()
-	first_person_player.play(SWING_ANIMATIONS.pick_random())
+	if first_fire:
+		const SWING_ANIMATIONS = [&"shovel_swing_a", &"shovel_swing_b"]
+		
+		shoot_sfx.play()
+		first_person_player.stop()
+		first_person_player.play(SWING_ANIMATIONS.pick_random())
 	
-	if _attack_tween: _attack_tween.kill()
-	_attack_tween = create_tween()
-	_attack_tween.tween_callback(_create_attack).set_delay(SWING_DELAY)
+	if first_fire:
+		if _attack_tween: _attack_tween.kill()
+		_attack_tween = create_tween()
+		_attack_tween.tween_callback(_create_attack).set_delay(SWING_DELAY)
 
 func _create_attack():
 	if not active:
@@ -39,10 +44,12 @@ func _create_attack():
 		hit_point = result.position
 		if result.collider is Player:
 			deal_damage(result.collider)
-			$Hurt.play()
+			if first_fire:
+				$Hurt.play()
 		else:
 			add_decal(preload("./other/BulletDecal.tscn"), hit_point, result.normal)
-			$Hit.play()
+			if first_fire:
+				$Hit.play()
 
 
 func deal_damage(player: Player):
@@ -50,7 +57,8 @@ func deal_damage(player: Player):
 	if player_owner.rocket_jumping:
 		damage *= 3 # Behave more like the Market Gardener.
 		$Crit.play()
-	player.take_damage(damage, player_owner)
+	if first_fire:
+		player.take_damage(damage, player_owner)
 	
 	var multiplier := 0.05#0.2
 	var direction := (global_position + Vector3(0, -10 * HU, 0)).direction_to(player.global_position)
@@ -58,4 +66,5 @@ func deal_damage(player: Player):
 	var knockback_force := minf(damage * volume_ratio * multiplier, 1000 * HU)
 	var add_velocity := knockback_force * direction
 	player.velocity += add_velocity
+	NetworkRollback.mutate(player)
 

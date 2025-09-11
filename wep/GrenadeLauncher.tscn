@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://cxxkirdbyjvwa"]
+
+[ext_resource type="Script" uid="uid://bfv8te3nappjm" path="res://wep/grenade_launcher.gd" id="1_lf01l"]
+[ext_resource type="AudioStream" uid="uid://c0mggatglgfkc" path="res://sfx/primary/rocket_ll_shoot.ogg" id="2_owy8f"]
+[ext_resource type="AudioStream" uid="uid://c6j2eqvfvvcc4" path="res://sfx/primary/primary_draw.ogg" id="3_bx0dp"]
+
+[node name="GrenadeLauncher" type="Node3D"]
+script = ExtResource("1_lf01l")
+
+[node name="Shoot" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(-0.988228, -0.152958, -0.00293694, -2.60944e-09, -0.0191974, 0.999816, -0.152986, 0.988046, 0.0189714, 0, 0, 0)
+stream = ExtResource("2_owy8f")
+volume_db = -20.0
+max_db = -20.0
+max_polyphony = 10
+attenuation_filter_cutoff_hz = 18520.0
+
+[node name="Deploy" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(-0.988228, -0.152958, -0.00293694, -2.60944e-09, -0.0191974, 0.999816, -0.152986, 0.988046, 0.0189714, 0, 0, 0)
+stream = ExtResource("3_bx0dp")
+volume_db = -20.0
+max_db = -20.0
+attenuation_filter_cutoff_hz = 18520.0

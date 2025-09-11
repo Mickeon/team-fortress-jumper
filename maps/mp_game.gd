@@ -178,7 +178,11 @@ func tweak_window():
 		window.position.x = wrapi(screen_rect.end.x - 1 - window.size.x * order, 
 				screen_rect.position.x - window.size.x * 0.5, screen_rect.end.x - window.size.x)
 		
-		get_viewport().scaling_3d_scale = maxf(1 - debug_window_count * 0.1, 0.5)
+		#get_viewport().scaling_3d_scale = maxf(1 - debug_window_count * 0.1, 0.5)
+		RenderingServer.sub_surface_scattering_set_quality(RenderingServer.SUB_SURFACE_SCATTERING_QUALITY_DISABLED)
+		RenderingServer.environment_set_ssil_quality(RenderingServer.ENV_SSIL_QUALITY_VERY_LOW, true, 0.5, 2, 50.0, 300.0)
+		RenderingServer.environment_glow_set_use_bicubic_upscale(false)
+		RenderingServer.directional_shadow_atlas_set_size(1024, false)
 		
 		$PlayerDebugger.hide()
 
@@ -198,12 +202,19 @@ func _on_player_hurt(amount: float, inflictor: Player, victim: Player):
 	else:
 		_queued_damage_numbers[victim] += amount
 
+var _offset := 0.0
+var _debug_show_tick_on_label := false
 func create_damage_label(for_player: Player):
 	const DamageNumberScene = preload("res://wep/other/DamageNumber.tscn")
 	var damage_label: Label3D = DamageNumberScene.instantiate()
 	damage_label.damage = _queued_damage_numbers[for_player]
 	damage_label.position = for_player.position
 	damage_label.position.y += for_player.get_height()
+	if _debug_show_tick_on_label:
+		damage_label.damage = NetworkRollback.tick
+		damage_label.position.y += _offset
+		damage_label.modulate.h += NetworkRollback.tick * 0.1
+		_offset = wrapf(_offset + 0.5, -1.0, 2.0)
 	add_child(damage_label)
 	
 	_queued_damage_numbers.erase(for_player)

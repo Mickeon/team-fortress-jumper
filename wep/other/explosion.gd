@@ -28,7 +28,7 @@ var splash_radius := 146 * HU:
 var base_damage := 90.0
 var damage_falloff_enabled := true
 
-var sfx: AudioStream = preload("res://wep/other/Explosion.tscn::AudioStreamRandomizer_4c5hd"):
+var sfx: AudioStream = preload("res://sfx/primary/rocket_jumper_explode1.ogg"):
 	set(new):
 		sfx = new
 		$Explode.stream = sfx

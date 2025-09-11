@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://b2xj212301c7a"]
+
+[ext_resource type="Script" uid="uid://cqeexyt8opffs" path="res://wep/rocket_launcher.gd" id="1_iypj8"]
+[ext_resource type="AudioStream" uid="uid://824byn35wkj0" path="res://sfx/primary/rocket_jumper_shoot.ogg" id="2_edf0e"]
+[ext_resource type="AudioStream" uid="uid://c6j2eqvfvvcc4" path="res://sfx/primary/primary_draw.ogg" id="3_q8ndl"]
+[ext_resource type="PackedScene" uid="uid://cw116s8st8i27" path="res://wep/models/rocket_launcher.glb" id="4_p32hk"]
+[ext_resource type="Material" uid="uid://bcyjpdmg18bqa" path="res://wep/models/rocket_launcher_mat.tres" id="5_3wwhv"]
+
+[node name="RocketLauncher" type="Node3D"]
+script = ExtResource("1_iypj8")
+
+[node name="Shoot" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(-0.988228, -0.152958, -0.00293694, -2.60944e-09, -0.0191974, 0.999816, -0.152986, 0.988046, 0.0189714, 0, 0, 0)
+stream = ExtResource("2_edf0e")
+volume_db = -20.0
+max_db = -20.0
+max_polyphony = 10
+attenuation_filter_cutoff_hz = 18520.0
+
+[node name="Deploy" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(-0.988228, -0.152958, -0.00293694, -2.60944e-09, -0.0191974, 0.999816, -0.152986, 0.988046, 0.0189714, 0, 0, 0)
+stream = ExtResource("3_q8ndl")
+volume_db = -20.0
+max_db = -20.0
+attenuation_filter_cutoff_hz = 18520.0
+
+[node name="FPModel" parent="." instance=ExtResource("4_p32hk")]
+
+[node name="c_rocketlauncher" parent="FPModel/WeaponSkeleton" index="0"]
+layers = 2
+surface_material_override/0 = ExtResource("5_3wwhv")
+
+[node name="TPModel" parent="." instance=ExtResource("4_p32hk")]
+
+[node name="c_rocketlauncher" parent="TPModel/WeaponSkeleton" index="0"]
+layers = 4
+surface_material_override/0 = ExtResource("5_3wwhv")
+
+[editable path="FPModel"]
+[editable path="TPModel"]

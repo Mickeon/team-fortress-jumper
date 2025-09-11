@@ -32,11 +32,14 @@ func _deploy():
 	if not first_person_player.animation_finished.is_connected(_on_FirstPersonPlayer_animation_finished):
 		first_person_player.animation_finished.connect(_on_FirstPersonPlayer_animation_finished)
 
-func _shoot():
-	const SHOOT_ANIMATIONS = [&"shotgun_fire", &"shotgun_fire_nopump"]
-	shoot_sfx.play()
-	first_person_player.stop()
-	first_person_player.play(SHOOT_ANIMATIONS.pick_random())
+func _fire():
+	super()
+	if first_fire:
+		const SHOOT_ANIMATIONS = [&"shotgun_fire", &"shotgun_fire_nopump"]
+		
+		shoot_sfx.play()
+		first_person_player.stop()
+		first_person_player.play(SHOOT_ANIMATIONS.pick_random())
 	
 	for i in BULLET_SPREAD_BASE_OFFSETS.size():
 		_create_bullet(BULLET_SPREAD_BASE_OFFSETS[i], i == 0)
@@ -58,7 +61,7 @@ func _create_bullet(base_offset := Vector2.ZERO, first_bullet := false):
 	if result:
 		hit_point = result.position
 		var play_bullet_inpact_sfx = func(bullet_impact: AudioStreamPlayer3D):
-			if first_bullet:
+			if first_bullet and first_fire:
 				bullet_impact.global_position = hit_point
 				bullet_impact.play()
 		
@@ -69,17 +72,18 @@ func _create_bullet(base_offset := Vector2.ZERO, first_bullet := false):
 			add_decal(preload("./other/BulletDecal.tscn"), hit_point, result.normal)
 			play_bullet_inpact_sfx.call($BulletImpact)
 	
-	var particle_origin := bullet_trail.global_position
-	
-	bullet_trail.emit_particle(bullet_trail.global_transform,
-			bullet_trail.to_local(particle_origin).direction_to(bullet_trail.to_local(hit_point)) * max(particle_origin.distance_to(hit_point) * 2, 20),
-			Color.WHITE, Color(),
-			GPUParticles3D.EMIT_FLAG_POSITION | GPUParticles3D.EMIT_FLAG_VELOCITY)
+	if first_fire:
+		var particle_origin := bullet_trail.global_position
+		bullet_trail.emit_particle(bullet_trail.global_transform,
+				bullet_trail.to_local(particle_origin).direction_to(bullet_trail.to_local(hit_point)) * max(particle_origin.distance_to(hit_point) * 2, 20),
+				Color.WHITE, Color(),
+				GPUParticles3D.EMIT_FLAG_POSITION | GPUParticles3D.EMIT_FLAG_VELOCITY)
 
 func deal_damage(player: Player):
 	var damage := base_damage
 	damage *= get_damage_falloff(player_owner.global_position.distance_to(player.global_position))
-	player.take_damage(damage, player_owner)
+	if first_fire:
+		player.take_damage(damage, player_owner)
 	
 	var multiplier := 0.05#0.2
 	var direction := (global_position + Vector3(0, -10 * HU, 0)).direction_to(player.global_position)
@@ -87,6 +91,7 @@ func deal_damage(player: Player):
 	var knockback_force := minf(damage * volume_ratio * multiplier, 1000 * HU)
 	var add_velocity := knockback_force * direction
 	player.velocity += add_velocity
+	NetworkRollback.mutate(player)
 
 
 static func get_damage_falloff(distance: float) -> float:

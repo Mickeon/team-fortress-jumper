@@ -7,7 +7,7 @@ var damage := 0:
 
 
 func _process(delta: float) -> void:
-	transparency += delta
+	transparency += delta * 0.75
 	offset.y += delta * 2
 	if transparency >= 1.0:
 		queue_free()
