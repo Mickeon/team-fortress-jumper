@@ -1,0 +1,14 @@
+[remap]
+
+importer="VTF"
+type="Texture"
+uid="uid://dlwynpd35igen"
+path="res://.godot/imported/smokelit.vtf-1e8e8caab8f49be572e1ebf279f2632c.vtf.res"
+
+[deps]
+
+source_file="res://wep/other/smokelit.vtf"
+dest_files=["res://.godot/imported/smokelit.vtf-1e8e8caab8f49be572e1ebf279f2632c.vtf.res"]
+
+[params]
+

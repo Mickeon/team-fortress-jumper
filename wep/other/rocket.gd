@@ -52,10 +52,13 @@ func explode():
 	queue_free()
 
 func _exit_tree():
-	var trail: GPUParticles3D = $Trail
+	var trail: GPUParticles3D = $TrailFire
 	
-	trail.emitting = false
 	remove_child(trail)
+	trail.emitting = false
+	trail.get_node("TrailBurst").emitting = false
+	trail.get_node("TrailSmoke").emitting = false
 	get_parent().add_child.call_deferred(trail)
-	get_tree().create_timer(1).timeout.connect(trail.queue_free)
+	trail.force_update_transform.call_deferred()
+	get_tree().create_timer(2).timeout.connect(trail.queue_free)
 
