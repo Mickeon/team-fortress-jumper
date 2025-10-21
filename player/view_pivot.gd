@@ -30,4 +30,5 @@ func _handle_camera_rotation(event: InputEventMouseMotion):
 	rotation.x = clampf(rotation.x - event.relative.y * sensitivity, -YAW_LIMIT, YAW_LIMIT)
 
 func _process(_delta: float) -> void:
-	global_position = get_parent_node_3d().get_global_transform_interpolated().origin + Vector3(0.0, height_offset, 0.0)
+	#global_position = get_parent_node_3d().get_global_transform_interpolated().origin + Vector3(0.0, height_offset, 0.0)
+	position = Vector3(0.0, height_offset, 0.0)

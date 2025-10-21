@@ -96,6 +96,7 @@ loop_mode = 0
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_aidlm"]
 graph_offset = Vector2(-1025.43, 7.31687)
+nodes/output/position = Vector2(293.333, 133.333)
 nodes/_add_move/node = SubResource("AnimationNodeAdd2_eb2ii")
 nodes/_add_move/position = Vector2(0, 133.333)
 nodes/_sub_move/node = SubResource("AnimationNodeSub2_k4lpf")
@@ -106,8 +107,7 @@ nodes/move_blend/node = SubResource("AnimationNodeBlendSpace2D_3m4nm")
 nodes/move_blend/position = Vector2(-560, 293.333)
 nodes/move_center/node = SubResource("AnimationNodeAnimation_qfe4l")
 nodes/move_center/position = Vector2(-560, 506.667)
-nodes/output/position = Vector2(293.333, 133.333)
-node_connections = [&"_add_move", 0, &"idle", &"_add_move", 1, &"_sub_move", &"_sub_move", 0, &"move_blend", &"_sub_move", 1, &"move_center", &"output", 0, &"_add_move"]
+node_connections = [&"output", 0, &"_add_move", &"_add_move", 0, &"idle", &"_add_move", 1, &"_sub_move", &"_sub_move", 0, &"move_blend", &"_sub_move", 1, &"move_center"]
 
 [sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_6in2p"]
 mix_mode = 1
@@ -271,6 +271,7 @@ loop_mode = 0
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_3hqhp"]
 graph_offset = Vector2(-1049.6, -11.4297)
+nodes/output/position = Vector2(293.333, 133.333)
 nodes/_add_move/node = SubResource("AnimationNodeAdd2_b8u7f")
 nodes/_add_move/position = Vector2(0, 133.333)
 nodes/_sub_move/node = SubResource("AnimationNodeSub2_48npr")
@@ -281,11 +282,11 @@ nodes/move_blend/node = SubResource("AnimationNodeBlendSpace2D_grp4e")
 nodes/move_blend/position = Vector2(-560, 293.333)
 nodes/move_center/node = SubResource("AnimationNodeAnimation_uis0t")
 nodes/move_center/position = Vector2(-560, 506.667)
-nodes/output/position = Vector2(293.333, 133.333)
-node_connections = [&"_add_move", 0, &"idle", &"_add_move", 1, &"_sub_move", &"_sub_move", 0, &"move_blend", &"_sub_move", 1, &"move_center", &"output", 0, &"_add_move"]
+node_connections = [&"output", 0, &"_add_move", &"_add_move", 0, &"idle", &"_add_move", 1, &"_sub_move", &"_sub_move", 0, &"move_blend", &"_sub_move", 1, &"move_center"]
 
 [resource]
 graph_offset = Vector2(-2298.49, -50.3833)
+nodes/output/position = Vector2(693.333, 346.667)
 nodes/_add_look/node = SubResource("AnimationNodeAdd2_a4mty")
 nodes/_add_look/position = Vector2(480, 346.667)
 nodes/_sub_jump_land/node = SubResource("AnimationNodeSub2_inrim")
@@ -318,7 +319,6 @@ nodes/look_center/node = SubResource("AnimationNodeAnimation_0heri")
 nodes/look_center/position = Vector2(0, 826.667)
 nodes/movement_state/node = SubResource("AnimationNodeTransition_2j2s7")
 nodes/movement_state/position = Vector2(-2400, 133.333)
-nodes/output/position = Vector2(693.333, 346.667)
 nodes/shoot/node = SubResource("AnimationNodeOneShot_7vqwd")
 nodes/shoot/position = Vector2(-613.333, 160)
 nodes/shoot_anim/node = SubResource("AnimationNodeAnimation_v6ac1")
@@ -327,4 +327,4 @@ nodes/shoot_base/node = SubResource("AnimationNodeAnimation_wgvh6")
 nodes/shoot_base/position = Vector2(-853.333, 720)
 nodes/stand/node = SubResource("AnimationNodeBlendTree_3hqhp")
 nodes/stand/position = Vector2(-2800, 53.3333)
-node_connections = [&"_add_look", 0, &"shoot", &"_add_look", 1, &"_sub_look", &"_sub_jump_land", 0, &"jump_land_anim", &"_sub_jump_land", 1, &"jump_land_base", &"_sub_jump_start", 0, &"jump_start_anim", &"_sub_jump_start", 1, &"jump_start_base", &"_sub_look", 0, &"look_blend", &"_sub_look", 1, &"look_center", &"_sub_shoot", 0, &"shoot_anim", &"_sub_shoot", 1, &"shoot_base", &"jump_land", 0, &"jump_start", &"jump_land", 1, &"_sub_jump_land", &"jump_start", 0, &"movement_state", &"jump_start", 1, &"_sub_jump_start", &"movement_state", 0, &"stand", &"movement_state", 1, &"airborne", &"movement_state", 2, &"crouch", &"output", 0, &"_add_look", &"shoot", 0, &"jump_land", &"shoot", 1, &"_sub_shoot"]
+node_connections = [&"output", 0, &"_add_look", &"_add_look", 0, &"shoot", &"_add_look", 1, &"_sub_look", &"_sub_jump_land", 0, &"jump_land_anim", &"_sub_jump_land", 1, &"jump_land_base", &"_sub_jump_start", 0, &"jump_start_anim", &"_sub_jump_start", 1, &"jump_start_base", &"_sub_look", 0, &"look_blend", &"_sub_look", 1, &"look_center", &"_sub_shoot", 0, &"shoot_anim", &"_sub_shoot", 1, &"shoot_base", &"jump_land", 0, &"jump_start", &"jump_land", 1, &"_sub_jump_land", &"jump_start", 0, &"movement_state", &"jump_start", 1, &"_sub_jump_start", &"movement_state", 0, &"stand", &"movement_state", 1, &"airborne", &"movement_state", 2, &"crouch", &"shoot", 0, &"jump_land", &"shoot", 1, &"_sub_shoot"]

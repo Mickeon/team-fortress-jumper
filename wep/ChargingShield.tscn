@@ -61,7 +61,6 @@ size = Vector2(1.4, 1)
 [node name="ChargingShield" type="Node3D" node_paths=PackedStringArray("trail")]
 script = ExtResource("1_byiaa")
 trail = NodePath("Trail")
-attack_interval = 1.5
 type = 3
 
 [node name="Trail" type="GPUParticles3D" parent="."]

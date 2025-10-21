@@ -15,9 +15,11 @@ dest_files=["res://.godot/imported/soldier_fp.glb-7fb15684c983cf1b18393a914a0a9f
 
 nodes/root_type=""
 nodes/root_name=""
+nodes/root_script=null
 nodes/apply_root_scale=true
 nodes/root_scale=1.0
 nodes/import_as_skeleton_bones=true
+nodes/use_name_suffixes=true
 nodes/use_node_type_suffixes=true
 meshes/ensure_tangents=true
 meshes/generate_lods=false
@@ -31,7 +33,10 @@ animation/fps=30
 animation/trimming=false
 animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=true
-import_script/path=""
+import_script/path="uid://c3ton7v6nxeqd"
+materials/extract=0
+materials/extract_format=0
+materials/extract_path=""
 _subresources={
 "nodes": {
 "PATH:Skeleton3D": {

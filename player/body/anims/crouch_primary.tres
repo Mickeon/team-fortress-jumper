@@ -77,6 +77,7 @@ loop_mode = 0
 
 [resource]
 graph_offset = Vector2(-1025.43, 7.31687)
+nodes/output/position = Vector2(293.333, 133.333)
 nodes/_add_move/node = SubResource("AnimationNodeAdd2_1w4up")
 nodes/_add_move/position = Vector2(0, 133.333)
 nodes/_sub_move/node = SubResource("AnimationNodeSub2_cat5n")
@@ -87,5 +88,4 @@ nodes/move_blend/node = SubResource("AnimationNodeBlendSpace2D_js0yo")
 nodes/move_blend/position = Vector2(-560, 293.333)
 nodes/move_center/node = SubResource("AnimationNodeAnimation_l08xs")
 nodes/move_center/position = Vector2(-560, 506.667)
-nodes/output/position = Vector2(293.333, 133.333)
-node_connections = [&"_add_move", 0, &"idle", &"_add_move", 1, &"_sub_move", &"_sub_move", 0, &"move_blend", &"_sub_move", 1, &"move_center", &"output", 0, &"_add_move"]
+node_connections = [&"output", 0, &"_add_move", &"_add_move", 0, &"idle", &"_add_move", 1, &"_sub_move", &"_sub_move", 0, &"move_blend", &"_sub_move", 1, &"move_center"]

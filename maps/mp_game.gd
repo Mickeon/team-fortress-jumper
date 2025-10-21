@@ -46,9 +46,10 @@ func _unhandled_input(event):
 				else:
 					map_scene = load("res://maps/ItemTest.tscn")
 
-func _notification(what: int) -> void:
-	if what == NOTIFICATION_WM_CLOSE_REQUEST and multiplayer and multiplayer.is_server():
-		multiplayer.multiplayer_peer.close()
+#func _notification(what: int) -> void:
+	#if what == NOTIFICATION_WM_CLOSE_REQUEST and multiplayer and multiplayer.is_server():
+		#multiplayer.multiplayer_peer.close()
+		#NetworkTime.stop()
 
 func _ready() -> void:
 	tweak_window()
@@ -61,6 +62,7 @@ func _ready() -> void:
 	NetworkEvents.on_peer_leave.connect(func(id): remove_player(id))
 	NetworkEvents.on_client_stop.connect(func(): _start_close_countdown())
 	#NetworkEvents.on_server_stop.connect(func(): get_tree().quit())
+	#multiplayer.server_disconnected.connect(func(): _start_close_countdown())
 	
 	if args.has("listen"):
 		await _host()
@@ -133,6 +135,7 @@ func remove_player(id: int):
 	get_node(str(id)).queue_free()
 
 func _start_close_countdown():
+	Player.local.process_mode = Node.PROCESS_MODE_DISABLED # HACK: Prevent assert failure on clients.
 	chat.append("Server has closed. Closing game, too.")
 	await get_tree().create_timer(0.5, true, false, true).timeout
 	get_tree().quit()

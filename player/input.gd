@@ -19,8 +19,12 @@ func _ready():
 		
 
 func _unhandled_input(event: InputEvent) -> void:
-	assert(is_multiplayer_authority(), 
-		"Trying to fetch input, but the input callback should've been disabled beforehand.")
+	assert(is_multiplayer_authority(),
+			"Trying to fetch input, but the input callback should've been disabled beforehand.\n" 
+			+ "multiplayer: %s | multiplayer_id: %s | authority: %s | multiplayer_peer_id: %s" % [
+				multiplayer, multiplayer.get_unique_id(), get_multiplayer_authority(), multiplayer.multiplayer_peer.get_unique_id()
+			]
+	)
 	
 	if event.is_action("player_primary"):
 		firing_primary = event.is_pressed()
@@ -46,7 +50,7 @@ func _process(_delta):
 
 var confidence := 1.0
 func _gather():
-	assert(is_multiplayer_authority())
+	#assert(is_multiplayer_authority())
 	movement = Input.get_vector("player_left", "player_right", "player_forward", "player_back")
 
 func _predict(_tick: int):

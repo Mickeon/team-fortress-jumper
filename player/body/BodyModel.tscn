@@ -115,18 +115,18 @@ input_2/reset = false
 explicit_elapse = false
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_j7es8"]
+nodes/output/position = Vector2(506.667, 133.333)
 nodes/held_type/node = SubResource("AnimationNodeTransition_flhtx")
 nodes/held_type/position = Vector2(-80, 106.667)
 nodes/melee/node = ExtResource("13_j7es8")
 nodes/melee/position = Vector2(-560, 400)
-nodes/output/position = Vector2(506.667, 133.333)
 nodes/primary/node = ExtResource("11_nn7aa")
 nodes/primary/position = Vector2(-560, 80)
 nodes/secondary/node = ExtResource("15_cjxjk")
 nodes/secondary/position = Vector2(-560, 240)
 nodes/seek/node = SubResource("AnimationNodeTimeSeek_fiyxg")
 nodes/seek/position = Vector2(133.333, 106.667)
-node_connections = [&"held_type", 0, &"primary", &"held_type", 1, &"secondary", &"held_type", 2, &"melee", &"output", 0, &"seek", &"seek", 0, &"held_type"]
+node_connections = [&"output", 0, &"seek", &"held_type", 0, &"primary", &"held_type", 1, &"secondary", &"held_type", 2, &"melee", &"seek", 0, &"held_type"]
 
 [node name="BodyModel" instance=ExtResource("1_up20u")]
 script = SubResource("GDScript_fiyxg")

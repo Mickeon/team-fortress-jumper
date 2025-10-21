@@ -13,7 +13,7 @@ config_version=5
 config/name="Team Fortress Jumper"
 config/description="A small demo that attempts to recreate how it feels to rocket-jump around in Team Fortress 2."
 run/main_scene="res://maps/MPGame.tscn"
-config/features=PackedStringArray("4.4", "Forward Plus")
+config/features=PackedStringArray("4.5", "Forward Plus")
 boot_splash/fullsize=false
 boot_splash/image="res://icon.png"
 config/icon="res://icon.svg"
@@ -37,7 +37,7 @@ NetworkPerformance="*res://addons/netfox/network-performance.gd"
 gdscript/warnings/static_called_on_instance=0
 gdscript/warnings/narrowing_conversion=0
 multirun/add_custom_args=true
-multirun/window_args=["listen --name \"Winnie the Poo\"", "join --order 2 --name \"Piglet\" --max-fps 5", "join --order 3 --name \"Corey\"", "join --order 4 --name \"Uhm\""]
+multirun/window_args=["listen --name \"Winnie the Poo\"", "join --order 2 --name \"Piglet\" --max-fps 5 --log-file \"user://logs/Piglet.txt\"", "join --order 3 --name \"Corey\" --log-file \"user://logs/Corey.txt\"", "join --order 4 --name \"Uhm\""]
 multirun/number_of_windows=3
 
 [debug_draw_3d]

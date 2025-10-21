@@ -20,7 +20,7 @@ const Type = WeaponNode.Type
 		
 		set(&"parameters/held_type/transition_request", held_type_name)
 
-var held_type_name := &"primary"
+var held_type_name := "primary"
 
 var air_crouched := false:
 	set(new):

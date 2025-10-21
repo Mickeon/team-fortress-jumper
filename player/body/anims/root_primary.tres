@@ -109,6 +109,7 @@ loop_mode = 0
 
 [resource]
 graph_offset = Vector2(-1949.41, 169.014)
+nodes/output/position = Vector2(693.333, 346.667)
 nodes/_add_look/node = SubResource("AnimationNodeAdd2_e6nu5")
 nodes/_add_look/position = Vector2(480, 346.667)
 nodes/_sub_jump_land/node = SubResource("AnimationNodeSub2_vt8xa")
@@ -141,7 +142,6 @@ nodes/look_center/node = SubResource("AnimationNodeAnimation_1w4up")
 nodes/look_center/position = Vector2(0, 826.667)
 nodes/movement_state/node = SubResource("AnimationNodeTransition_d046g")
 nodes/movement_state/position = Vector2(-2400, 133.333)
-nodes/output/position = Vector2(693.333, 346.667)
 nodes/shoot/node = SubResource("AnimationNodeOneShot_q1ugm")
 nodes/shoot/position = Vector2(-613.333, 160)
 nodes/shoot_anim/node = SubResource("AnimationNodeAnimation_vt8xa")
@@ -150,4 +150,4 @@ nodes/shoot_base/node = SubResource("AnimationNodeAnimation_d046g")
 nodes/shoot_base/position = Vector2(-853.333, 720)
 nodes/stand/node = ExtResource("1_q1ugm")
 nodes/stand/position = Vector2(-2800, 53.3333)
-node_connections = [&"_add_look", 0, &"shoot", &"_add_look", 1, &"_sub_look", &"_sub_jump_land", 0, &"jump_land_anim", &"_sub_jump_land", 1, &"jump_land_base", &"_sub_jump_start", 0, &"jump_start_anim", &"_sub_jump_start", 1, &"jump_start_base", &"_sub_look", 0, &"look_blend", &"_sub_look", 1, &"look_center", &"_sub_shoot", 0, &"shoot_anim", &"_sub_shoot", 1, &"shoot_base", &"jump_land", 0, &"jump_start", &"jump_land", 1, &"_sub_jump_land", &"jump_start", 0, &"movement_state", &"jump_start", 1, &"_sub_jump_start", &"movement_state", 0, &"stand", &"movement_state", 1, &"airborne", &"movement_state", 2, &"crouch", &"output", 0, &"_add_look", &"shoot", 0, &"jump_land", &"shoot", 1, &"_sub_shoot"]
+node_connections = [&"output", 0, &"_add_look", &"_add_look", 0, &"shoot", &"_add_look", 1, &"_sub_look", &"_sub_jump_land", 0, &"jump_land_anim", &"_sub_jump_land", 1, &"jump_land_base", &"_sub_jump_start", 0, &"jump_start_anim", &"_sub_jump_start", 1, &"jump_start_base", &"_sub_look", 0, &"look_blend", &"_sub_look", 1, &"look_center", &"_sub_shoot", 0, &"shoot_anim", &"_sub_shoot", 1, &"shoot_base", &"jump_land", 0, &"jump_start", &"jump_land", 1, &"_sub_jump_land", &"jump_start", 0, &"movement_state", &"jump_start", 1, &"_sub_jump_start", &"movement_state", 0, &"stand", &"movement_state", 1, &"airborne", &"movement_state", 2, &"crouch", &"shoot", 0, &"jump_land", &"shoot", 1, &"_sub_shoot"]
