@@ -3,11 +3,9 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dkiqutxhlvd0p"
-path.s3tc="res://.godot/imported/rocket_w_rocket01.jpg-f809f8a76781f9ba5659efc16c0dd49f.s3tc.ctex"
-path.etc2="res://.godot/imported/rocket_w_rocket01.jpg-f809f8a76781f9ba5659efc16c0dd49f.etc2.ctex"
+path="res://.godot/imported/rocket_w_rocket01.jpg-f809f8a76781f9ba5659efc16c0dd49f.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
-"vram_texture": true
+"vram_texture": false
 }
 generator_parameters={
 "md5": "1aa567d9281f7b54e1038febddfffd72"
@@ -16,15 +14,15 @@ generator_parameters={
 [deps]
 
 source_file="res://wep/models/rocket_w_rocket01.jpg"
-dest_files=["res://.godot/imported/rocket_w_rocket01.jpg-f809f8a76781f9ba5659efc16c0dd49f.s3tc.ctex", "res://.godot/imported/rocket_w_rocket01.jpg-f809f8a76781f9ba5659efc16c0dd49f.etc2.ctex"]
+dest_files=["res://.godot/imported/rocket_w_rocket01.jpg-f809f8a76781f9ba5659efc16c0dd49f.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=4
 compress/high_quality=false
 compress/lossy_quality=0.7
-compress/uastc_level=0
-compress/rdo_quality_loss=0.0
+compress/uastc_level=2
+compress/rdo_quality_loss=1.0
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
