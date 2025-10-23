@@ -17,8 +17,8 @@ unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "Select plugin to refresh"
 focus_mode = 0
-item_count = 1
 fit_to_longest_item = false
+item_count = 1
 popup/item_0/text = "Unknown"
 popup/item_0/id = 0
 

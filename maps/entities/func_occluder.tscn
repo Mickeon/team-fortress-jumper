@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://cb5ml2sho6bwm" path="res://maps/entities/func_occluder.gd" id="1_q8f4w"]
 
-
 [node name="FuncOccluder" type="Node3D"]
 script = ExtResource("1_q8f4w")
 
