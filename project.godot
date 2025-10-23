@@ -73,6 +73,20 @@ folder_colors={
 
 players=""
 
+[godot_vmf]
+
+import/scale=0.01905
+models/import=true
+models/target_folder="res://maps"
+materials/target_folder="res://maps/materials"
+materials/ignore=["tools/toolsnodraw", "tools/toolsskybox", "atools/toolsinvisible", "atools/toolsplayerclip", "tools/toolshint", "tools/toolsskip"]
+models/lightmap_texel_size=0.2
+import/gameinfo_path="res://maps"
+import/instances_folder="res://maps/instances"
+import/entities_folder="res://maps/entities"
+import/geometry_folder="res://maps/geometry"
+import/lightmap_texel_size=0.3999999999999988
+
 [gui]
 
 timers/tooltip_delay_sec=0.2

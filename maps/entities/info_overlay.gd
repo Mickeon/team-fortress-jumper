@@ -1,24 +1,24 @@
 @tool
-extends ValveIONode
+extends VMFEntityNode
 
 
 func _entity_ready():
 	set_process(false)
 	set_physics_process(false)
 
-func _apply_entity(ent):
-	super._apply_entity(ent)
+func _entity_setup(vmf_entity: VMFEntity):
+	var data := vmf_entity.data
 	
 	var import_scale := VMFConfig.import.scale
 	
 	var decal: Decal = $Decal
-	var material: BaseMaterial3D = VMFTool.get_material(ent.material)
+	var material: BaseMaterial3D = VMTLoader.get_material(data.material)
 	if not material:
 		return
 	
-	var basis_normal: Vector3 = convert_vector(ent.BasisNormal)
-	#var basis_u: Vector3 = convert_vector(ent.BasisU)
-	#var basis_v: Vector3 = convert_vector(ent.BasisV)
+	var basis_normal: Vector3 = convert_vector(data.BasisNormal)
+	#var basis_u: Vector3 = convert_vector(data.BasisU)
+	#var basis_v: Vector3 = convert_vector(data.BasisV)
 	
 	if basis_normal != Vector3.UP:
 		look_at(global_position + basis_normal)
@@ -26,7 +26,7 @@ func _apply_entity(ent):
 	
 	decal.texture_albedo = material.albedo_texture
 	# Severe approximation.
-	decal.size.x = abs(ent.uv0.x * import_scale * 2)
-	decal.size.z = abs(ent.uv0.y * import_scale * 2)
+	decal.size.x = abs(data.uv0.x * import_scale * 2)
+	decal.size.z = abs(data.uv0.y * import_scale * 2)
 	
 	name = material.resource_path.get_file().get_basename()

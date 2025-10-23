@@ -1,5 +1,5 @@
 @tool
-extends ValveIONode
+extends VMFEntityNode
 
 func _entity_ready():
 	set_process(false)

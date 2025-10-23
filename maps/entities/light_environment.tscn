@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://cwxttgf1xbejo"]
+[gd_scene load_steps=2 format=3 uid="uid://cjdnbnpcoaemu"]
 
 [ext_resource type="Script" uid="uid://inmkmjjd178v" path="res://maps/entities/light_environment.gd" id="1_m4j1f"]
 

@@ -1,11 +1,9 @@
 @tool
-extends ValveIONode
+extends VMFEntityNode
 
-func _apply_entity(entityData):
-	super._apply_entity(entityData);
-	
+func _entity_setup(vmf_entity: VMFEntity):
 	var mesh = get_mesh();
-	$MeshInstance3D.cast_shadow = entityData.get("disableshadows", 0) == 0;
+	$MeshInstance3D.cast_shadow = vmf_entity.data.get("disableshadows", 0) == 0;
 
 	if !mesh or mesh.get_surface_count() == 0:
 		queue_free();
